@@ -16,5 +16,17 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
         }
+                
+        private void AppointmentsButton_Click(object sender, EventArgs e)
+        {
+            AppointmentsForm appointmentsForm = new AppointmentsForm();
+            appointmentsForm.Show();
+            this.Close();
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

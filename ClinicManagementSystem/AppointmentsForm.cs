@@ -31,5 +31,12 @@ namespace ClinicManagementSystem
         {
 
         }
+
+        private void ClientsButton_Click(object sender, EventArgs e)
+        {
+            ClientsForm clientsForm = new ClientsForm();
+            clientsForm.Show();
+            this.Close();
+        }
     }
 }
