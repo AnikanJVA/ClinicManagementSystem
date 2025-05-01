@@ -73,7 +73,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.BillingButton);
             this.splitContainer1.Panel1.Controls.Add(this.ClientsButton);
             this.splitContainer1.Panel1.Controls.Add(this.AppointmentsButton);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             this.splitContainer1.Panel1MinSize = 278;
             // 
             // splitContainer1.Panel2
@@ -86,7 +85,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1350, 729);
             this.splitContainer1.SplitterDistance = 278;
             this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // LogoutButton
             // 
@@ -104,6 +102,7 @@
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.LogoutButton.UseVisualStyleBackColor = false;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // StaffsButton
             // 
@@ -119,7 +118,6 @@
             this.StaffsButton.Size = new System.Drawing.Size(239, 66);
             this.StaffsButton.TabIndex = 5;
             this.StaffsButton.Text = "Staffs";
-            this.StaffsButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.StaffsButton.UseVisualStyleBackColor = false;
             // 
             // DoctorsButton
@@ -222,7 +220,6 @@
             this.ApprovedDataGridView.Name = "ApprovedDataGridView";
             this.ApprovedDataGridView.Size = new System.Drawing.Size(994, 565);
             this.ApprovedDataGridView.TabIndex = 0;
-            this.ApprovedDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // PendingTab
             // 

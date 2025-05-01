@@ -28,5 +28,10 @@ namespace ClinicManagementSystem
         {
 
         }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
@@ -17,25 +18,18 @@ namespace ClinicManagementSystem
             InitializeComponent();
         }
 
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void ClientsButton_Click(object sender, EventArgs e)
         {
             ClientsForm clientsForm = new ClientsForm();
             clientsForm.Show();
+            this.Close();
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            Database.Instance.Connection.Close();
+            loginForm.Show();
             this.Close();
         }
     }
