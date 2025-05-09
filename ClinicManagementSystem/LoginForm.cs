@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -45,14 +46,14 @@ namespace ClinicManagementSystem
                             break;
 
                         case "DOCTOR":
-                            AppointmentsForm appointments = new AppointmentsForm();
-                            appointments.Show();
+                            DocView docView = new DocView();
+                            docView.Show();
                             this.Hide();
                             break;
 
                         case "RECEPTIONIST":
-                            appointments = new AppointmentsForm();
-                            appointments.Show();
+                            RecepView recepView = new RecepView();
+                            recepView.Show();
                             this.Hide();
                             break;
                     }
@@ -94,7 +95,7 @@ namespace ClinicManagementSystem
             
             public static bool AuthenticateUser(string username, string password)
             {
-                string query = "SELECT COUNT(*) FROM users WHERE username = @username AND password = SHA2(@password, 256)";
+                string query = "SELECT COUNT(*) FROM users WHERE username = @username AND password = SHA2(@password, 256) AND status = 'ACTIVE'";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
@@ -103,28 +104,37 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static bool RegisterUser(string username, string password, string accType)
+            public static bool AddUser(string username, string password, string accType)
             {
-                using (var conn = Instance.Connection)
+                string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username AND accType = @accType AND status = 'ACTIVE'";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
-                    string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username";
-                    using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
+                    checkCmd.Parameters.AddWithValue("@username", username);
+                    checkCmd.Parameters.AddWithValue("@accType", accType);
+                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
                     {
-                        checkCmd.Parameters.AddWithValue("@username", username);
-                        if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
+                }
+                string insertQuery = "INSERT INTO users (username, password, accType) VALUES (@username, SHA2(@password, 256), @accType)";
+                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@accType", accType);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
 
-                    string insertQuery = "INSERT INTO users (username, password, accType) VALUES (@username, SHA2(@password, 256), @accType)";
-                    using (MySqlCommand cmd = new MySqlCommand(insertQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
-                        cmd.Parameters.AddWithValue("@accType", accType);
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
+
+            public static bool DeleteUser(string username, string accType)
+            {
+                string updateQuery = "UPDATE users SET status = 'inactive' WHERE username = @username AND accType = @accType";
+                using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@accType", accType);
+                    return cmd.ExecuteNonQuery() > 0;
                 }
             }
 

@@ -1,6 +1,6 @@
 ﻿namespace ClinicManagementSystem
 {
-    partial class AppointmentsForm
+    partial class RecepView
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,6 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.StaffsButton = new System.Windows.Forms.Button();
             this.DoctorsButton = new System.Windows.Forms.Button();
             this.BillingButton = new System.Windows.Forms.Button();
             this.ClientsButton = new System.Windows.Forms.Button();
@@ -68,7 +67,6 @@
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
             this.splitContainer1.Panel1.Controls.Add(this.LogoutButton);
-            this.splitContainer1.Panel1.Controls.Add(this.StaffsButton);
             this.splitContainer1.Panel1.Controls.Add(this.DoctorsButton);
             this.splitContainer1.Panel1.Controls.Add(this.BillingButton);
             this.splitContainer1.Panel1.Controls.Add(this.ClientsButton);
@@ -104,22 +102,6 @@
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
-            // StaffsButton
-            // 
-            this.StaffsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.StaffsButton.FlatAppearance.BorderSize = 0;
-            this.StaffsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.StaffsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.StaffsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StaffsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffsButton.ForeColor = System.Drawing.Color.White;
-            this.StaffsButton.Location = new System.Drawing.Point(20, 352);
-            this.StaffsButton.Name = "StaffsButton";
-            this.StaffsButton.Size = new System.Drawing.Size(239, 66);
-            this.StaffsButton.TabIndex = 5;
-            this.StaffsButton.Text = "Staffs";
-            this.StaffsButton.UseVisualStyleBackColor = false;
-            // 
             // DoctorsButton
             // 
             this.DoctorsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
@@ -153,6 +135,7 @@
             this.BillingButton.Text = "Billing";
             this.BillingButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.BillingButton.UseVisualStyleBackColor = false;
+            this.BillingButton.Click += new System.EventHandler(this.BillingButton_Click);
             // 
             // ClientsButton
             // 
@@ -188,6 +171,7 @@
             this.AppointmentsButton.Text = "Appointments";
             this.AppointmentsButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.AppointmentsButton.UseVisualStyleBackColor = false;
+            this.AppointmentsButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
             // 
             // tabControl1
             // 
@@ -304,13 +288,13 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // AppointmentsForm
+            // RecepView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "AppointmentsForm";
+            this.Name = "RecepView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CLINIC MANAGEMENT SYSTEM";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -329,7 +313,6 @@
         #endregion
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button AppointmentsButton;
-        private System.Windows.Forms.Button StaffsButton;
         private System.Windows.Forms.Button DoctorsButton;
         private System.Windows.Forms.Button BillingButton;
         private System.Windows.Forms.Button ClientsButton;

@@ -40,12 +40,11 @@ namespace ClinicManagementSystem
             }
             else
             {
-                if (Database.RegisterUser(UsernametextBox.Text, PasswordTextBox.Text, AccTypeComboBox.Text))
+                if (Database.AddUser(UsernametextBox.Text, PasswordTextBox.Text, AccTypeComboBox.Text))
                 {
                     MessageBox.Show("User Added succesfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UsernametextBox.Clear();
                     PasswordTextBox.Clear();
-                    AccTypeComboBox.SelectedIndex = 0;
                     dataGridView1.DataSource = Database.GetUsers();
                 }
                 else
@@ -59,7 +58,31 @@ namespace ClinicManagementSystem
         private void deleteButton_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = Database.GetUsers();
-
+            if (string.IsNullOrWhiteSpace(UsernametextBox.Text) ||
+                string.IsNullOrWhiteSpace(AccTypeComboBox.Text))
+            {
+                MessageBox.Show("Can't delete a blank user!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string username = UsernametextBox.Text;
+                string accType = AccTypeComboBox.Text;
+                var choice = MessageBox.Show("Are you sure you want to delete user " + username + "?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (choice == DialogResult.Yes)
+                {
+                    if (Database.DeleteUser(username, accType))
+                    {
+                        MessageBox.Show("User deleted succesfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UsernametextBox.Clear();
+                        PasswordTextBox.Clear();
+                        dataGridView1.DataSource = Database.GetUsers();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error!\nUser not found.\nUser not deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

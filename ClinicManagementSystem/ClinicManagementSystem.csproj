@@ -104,11 +104,11 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientsForm.cs">
+    <Compile Include="DocView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientsForm.Designer.cs">
-      <DependentUpon>ClientsForm.cs</DependentUpon>
+    <Compile Include="DocView.Designer.cs">
+      <DependentUpon>DocView.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -116,22 +116,22 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppointmentsForm.cs">
+    <Compile Include="RecepView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppointmentsForm.Designer.cs">
-      <DependentUpon>AppointmentsForm.cs</DependentUpon>
+    <Compile Include="RecepView.Designer.cs">
+      <DependentUpon>RecepView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppointmentsForm.resx">
-      <DependentUpon>AppointmentsForm.cs</DependentUpon>
+    <EmbeddedResource Include="RecepView.resx">
+      <DependentUpon>RecepView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClientsForm.resx">
-      <DependentUpon>ClientsForm.cs</DependentUpon>
+    <EmbeddedResource Include="DocView.resx">
+      <DependentUpon>DocView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

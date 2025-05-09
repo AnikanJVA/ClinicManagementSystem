@@ -118,7 +118,7 @@
             this.CreateButton.Location = new System.Drawing.Point(50, 216);
             this.CreateButton.Name = "CreateButton";
             this.CreateButton.Size = new System.Drawing.Size(345, 43);
-            this.CreateButton.TabIndex = 5;
+            this.CreateButton.TabIndex = 4;
             this.CreateButton.Text = "Create User";
             this.CreateButton.UseVisualStyleBackColor = false;
             this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
@@ -130,7 +130,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(507, 397);
-            this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // LogoutButton
@@ -145,7 +145,7 @@
             this.LogoutButton.Location = new System.Drawing.Point(50, 376);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(345, 43);
-            this.LogoutButton.TabIndex = 7;
+            this.LogoutButton.TabIndex = 6;
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.LogoutButton.UseVisualStyleBackColor = false;

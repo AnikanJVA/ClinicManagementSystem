@@ -1,6 +1,6 @@
 ﻿namespace ClinicManagementSystem
 {
-    partial class ClientsForm
+    partial class DocView
     {
         /// <summary>
         /// Required designer variable.
@@ -30,9 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.StaffsButton = new System.Windows.Forms.Button();
             this.DoctorsButton = new System.Windows.Forms.Button();
-            this.BillingButton = new System.Windows.Forms.Button();
             this.ClientsButton = new System.Windows.Forms.Button();
             this.AppointmentsButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -66,9 +64,7 @@
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
             this.splitContainer1.Panel1.Controls.Add(this.LogoutButton);
-            this.splitContainer1.Panel1.Controls.Add(this.StaffsButton);
             this.splitContainer1.Panel1.Controls.Add(this.DoctorsButton);
-            this.splitContainer1.Panel1.Controls.Add(this.BillingButton);
             this.splitContainer1.Panel1.Controls.Add(this.ClientsButton);
             this.splitContainer1.Panel1.Controls.Add(this.AppointmentsButton);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
@@ -104,23 +100,6 @@
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
-            // StaffsButton
-            // 
-            this.StaffsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.StaffsButton.FlatAppearance.BorderSize = 0;
-            this.StaffsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.StaffsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.StaffsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StaffsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StaffsButton.ForeColor = System.Drawing.Color.White;
-            this.StaffsButton.Location = new System.Drawing.Point(20, 352);
-            this.StaffsButton.Name = "StaffsButton";
-            this.StaffsButton.Size = new System.Drawing.Size(239, 66);
-            this.StaffsButton.TabIndex = 5;
-            this.StaffsButton.Text = "Staffs";
-            this.StaffsButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.StaffsButton.UseVisualStyleBackColor = false;
-            // 
             // DoctorsButton
             // 
             this.DoctorsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
@@ -130,30 +109,13 @@
             this.DoctorsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DoctorsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DoctorsButton.ForeColor = System.Drawing.Color.White;
-            this.DoctorsButton.Location = new System.Drawing.Point(20, 265);
+            this.DoctorsButton.Location = new System.Drawing.Point(20, 178);
             this.DoctorsButton.Name = "DoctorsButton";
             this.DoctorsButton.Size = new System.Drawing.Size(239, 66);
             this.DoctorsButton.TabIndex = 4;
             this.DoctorsButton.Text = "Doctors";
             this.DoctorsButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.DoctorsButton.UseVisualStyleBackColor = false;
-            // 
-            // BillingButton
-            // 
-            this.BillingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.BillingButton.FlatAppearance.BorderSize = 0;
-            this.BillingButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.BillingButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.BillingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BillingButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BillingButton.ForeColor = System.Drawing.Color.White;
-            this.BillingButton.Location = new System.Drawing.Point(20, 178);
-            this.BillingButton.Name = "BillingButton";
-            this.BillingButton.Size = new System.Drawing.Size(239, 66);
-            this.BillingButton.TabIndex = 3;
-            this.BillingButton.Text = "Billing";
-            this.BillingButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.BillingButton.UseVisualStyleBackColor = false;
             // 
             // ClientsButton
             // 
@@ -289,13 +251,13 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // ClientsForm
+            // DocView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "ClientsForm";
+            this.Name = "DocView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClientsForm";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -315,9 +277,7 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.Button StaffsButton;
         private System.Windows.Forms.Button DoctorsButton;
-        private System.Windows.Forms.Button BillingButton;
         private System.Windows.Forms.Button ClientsButton;
         private System.Windows.Forms.Button AppointmentsButton;
         private System.Windows.Forms.TabControl tabControl1;

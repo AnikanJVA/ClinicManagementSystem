@@ -11,18 +11,16 @@ using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
-    public partial class AppointmentsForm : Form
+    public partial class RecepView : Form
     {
-        public AppointmentsForm()
+        public RecepView()
         {
             InitializeComponent();
         }
 
         private void ClientsButton_Click(object sender, EventArgs e)
         {
-            ClientsForm clientsForm = new ClientsForm();
-            clientsForm.Show();
-            this.Close();
+
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -31,6 +29,16 @@ namespace ClinicManagementSystem
             Database.Instance.Connection.Close();
             loginForm.Show();
             this.Close();
+        }
+
+        private void AppointmentsButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BillingButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
