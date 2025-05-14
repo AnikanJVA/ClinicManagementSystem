@@ -17,15 +17,26 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
         }
-                
+
         private void AppointmentsButton_Click(object sender, EventArgs e)
         {
-
+            AppointmentsButton.BackColor = Color.FromArgb(1, 34, 79);
+            ClientsButton.BackColor = Color.FromArgb(0, 148, 212);
+            DoctorsButton.BackColor = Color.FromArgb(0, 148, 212);
         }
 
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        private void ClientsButton_Click(object sender, EventArgs e)
         {
+            AppointmentsButton.BackColor = Color.FromArgb(0, 148, 212);
+            ClientsButton.BackColor = Color.FromArgb(1, 34, 79);
+            DoctorsButton.BackColor = Color.FromArgb(0, 148, 212);
+        }
 
+        private void DoctorsButton_Click(object sender, EventArgs e)
+        {
+            AppointmentsButton.BackColor = Color.FromArgb(0, 148, 212);
+            ClientsButton.BackColor = Color.FromArgb(0, 148, 212);
+            DoctorsButton.BackColor = Color.FromArgb(1, 34, 79);
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)

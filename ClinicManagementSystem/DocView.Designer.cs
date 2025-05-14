@@ -67,7 +67,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.DoctorsButton);
             this.splitContainer1.Panel1.Controls.Add(this.ClientsButton);
             this.splitContainer1.Panel1.Controls.Add(this.AppointmentsButton);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             this.splitContainer1.Panel1MinSize = 278;
             // 
             // splitContainer1.Panel2
@@ -114,10 +113,11 @@
             this.DoctorsButton.TabIndex = 4;
             this.DoctorsButton.Text = "Doctors";
             this.DoctorsButton.UseVisualStyleBackColor = false;
+            this.DoctorsButton.Click += new System.EventHandler(this.DoctorsButton_Click);
             // 
             // ClientsButton
             // 
-            this.ClientsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.ClientsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
             this.ClientsButton.FlatAppearance.BorderSize = 0;
             this.ClientsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.ClientsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
@@ -130,10 +130,11 @@
             this.ClientsButton.TabIndex = 2;
             this.ClientsButton.Text = "Clients";
             this.ClientsButton.UseVisualStyleBackColor = false;
+            this.ClientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
             // 
             // AppointmentsButton
             // 
-            this.AppointmentsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.AppointmentsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.AppointmentsButton.FlatAppearance.BorderSize = 0;
             this.AppointmentsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.AppointmentsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
