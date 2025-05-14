@@ -24,6 +24,8 @@ namespace ClinicManagementSystem
             PatientsButton.BackColor = Color.FromArgb(0, 148, 212);
             BillingButton.BackColor = Color.FromArgb(0, 148, 212);
             DoctorsButton.BackColor = Color.FromArgb(0, 148, 212);
+            MedicinesButton.BackColor = Color.FromArgb(0, 148, 212);
+            ServicesButton.BackColor = Color.FromArgb(0, 148, 212);
 
             AppointmentTabControl.Show();
             createAppointmentButton.Show();
@@ -40,6 +42,8 @@ namespace ClinicManagementSystem
             PatientsButton.BackColor = Color.FromArgb(0, 148, 212);
             BillingButton.BackColor = Color.FromArgb(1, 34, 79);
             DoctorsButton.BackColor = Color.FromArgb(0, 148, 212);
+            MedicinesButton.BackColor = Color.FromArgb(0, 148, 212);
+            ServicesButton.BackColor = Color.FromArgb(0, 148, 212);
 
             AppointmentTabControl.Hide();
             createAppointmentButton.Hide();
@@ -56,6 +60,8 @@ namespace ClinicManagementSystem
             PatientsButton.BackColor = Color.FromArgb(0, 148, 212);
             BillingButton.BackColor = Color.FromArgb(0, 148, 212);
             DoctorsButton.BackColor = Color.FromArgb(1, 34, 79);
+            MedicinesButton.BackColor = Color.FromArgb(0, 148, 212);
+            ServicesButton.BackColor = Color.FromArgb(0, 148, 212);
 
             AppointmentTabControl.Hide();
             createAppointmentButton.Hide();
@@ -80,6 +86,8 @@ namespace ClinicManagementSystem
             PatientsButton.BackColor = Color.FromArgb(1, 34, 79);
             BillingButton.BackColor = Color.FromArgb(0, 148, 212);
             DoctorsButton.BackColor = Color.FromArgb(0, 148, 212);
+            MedicinesButton.BackColor = Color.FromArgb(0, 148, 212);
+            ServicesButton.BackColor = Color.FromArgb(0, 148, 212);
 
             AppointmentTabControl.Hide();
             createAppointmentButton.Hide();
@@ -95,6 +103,45 @@ namespace ClinicManagementSystem
         {
             DoctorDetailsForm doctorDetailsForm = new DoctorDetailsForm();
             doctorDetailsForm.ShowDialog();
+        }
+
+        private void Medicines_Click(object sender, EventArgs e)
+        {
+            AppointmentsButton.BackColor = Color.FromArgb(0, 148, 212);
+            PatientsButton.BackColor = Color.FromArgb(0, 148, 212);
+            BillingButton.BackColor = Color.FromArgb(0, 148, 212);
+            DoctorsButton.BackColor = Color.FromArgb(0, 148, 212);
+            MedicinesButton.BackColor = Color.FromArgb(1, 34, 79);
+            ServicesButton.BackColor = Color.FromArgb(0, 148, 212);
+
+            AppointmentTabControl.Hide();
+            createAppointmentButton.Hide();
+            updateApointmentButton.Hide();
+
+            DoctorTabControl.Hide();
+            RegisterDoctorButton.Hide();
+            UpdateDoctorButton.Hide();
+
+            MedicineView medicineView = new MedicineView();
+            medicineView.ShowDialog();
+        }
+
+        private void ServicesButton_Click(object sender, EventArgs e)
+        {
+            AppointmentsButton.BackColor = Color.FromArgb(0, 148, 212);
+            PatientsButton.BackColor = Color.FromArgb(0, 148, 212);
+            BillingButton.BackColor = Color.FromArgb(0, 148, 212);
+            DoctorsButton.BackColor = Color.FromArgb(0, 148, 212);
+            MedicinesButton.BackColor = Color.FromArgb(0, 148, 212);
+            ServicesButton.BackColor = Color.FromArgb(1, 34, 79);
+
+            AppointmentTabControl.Hide();
+            createAppointmentButton.Hide();
+            updateApointmentButton.Hide();
+
+            DoctorTabControl.Hide();
+            RegisterDoctorButton.Hide();
+            UpdateDoctorButton.Hide();
         }
     }
 }
