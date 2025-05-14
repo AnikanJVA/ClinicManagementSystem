@@ -40,7 +40,5 @@ namespace ClinicManagementSystem
         {
 
         }
-        // aaa
-
     }
 }
