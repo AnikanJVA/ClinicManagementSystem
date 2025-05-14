@@ -53,6 +53,8 @@
             this.updateApointmentButton = new System.Windows.Forms.Button();
             this.MedicinesButton = new System.Windows.Forms.Button();
             this.ServicesButton = new System.Windows.Forms.Button();
+            this.billingDataGridView = new System.Windows.Forms.DataGridView();
+            this.createBillButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
@@ -67,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ApprovedDataGridView)).BeginInit();
             this.PendingTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billingDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // SplitContainer
@@ -92,12 +95,14 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.SplitContainer.Panel2.Controls.Add(this.RegisterDoctorButton);
+            this.SplitContainer.Panel2.Controls.Add(this.billingDataGridView);
+            this.SplitContainer.Panel2.Controls.Add(this.createBillButton);
             this.SplitContainer.Panel2.Controls.Add(this.UpdateDoctorButton);
-            this.SplitContainer.Panel2.Controls.Add(this.AppointmentTabControl);
             this.SplitContainer.Panel2.Controls.Add(this.createAppointmentButton);
             this.SplitContainer.Panel2.Controls.Add(this.updateApointmentButton);
+            this.SplitContainer.Panel2.Controls.Add(this.AppointmentTabControl);
             this.SplitContainer.Panel2.Controls.Add(this.DoctorTabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.RegisterDoctorButton);
             this.SplitContainer.Panel2MinSize = 978;
             this.SplitContainer.Size = new System.Drawing.Size(1264, 681);
             this.SplitContainer.SplitterDistance = 282;
@@ -115,7 +120,7 @@
             this.LogoutButton.Location = new System.Drawing.Point(20, 578);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(239, 66);
-            this.LogoutButton.TabIndex = 6;
+            this.LogoutButton.TabIndex = 7;
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
@@ -195,7 +200,7 @@
             this.DoctorTabControl.Location = new System.Drawing.Point(36, 12);
             this.DoctorTabControl.Name = "DoctorTabControl";
             this.DoctorTabControl.SelectedIndex = 0;
-            this.DoctorTabControl.Size = new System.Drawing.Size(726, 449);
+            this.DoctorTabControl.Size = new System.Drawing.Size(890, 536);
             this.DoctorTabControl.TabIndex = 12;
             this.DoctorTabControl.Visible = false;
             // 
@@ -205,7 +210,7 @@
             this.ActiveDoctorTab.Location = new System.Drawing.Point(4, 22);
             this.ActiveDoctorTab.Name = "ActiveDoctorTab";
             this.ActiveDoctorTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ActiveDoctorTab.Size = new System.Drawing.Size(718, 423);
+            this.ActiveDoctorTab.Size = new System.Drawing.Size(882, 510);
             this.ActiveDoctorTab.TabIndex = 0;
             this.ActiveDoctorTab.Text = "Active";
             this.ActiveDoctorTab.UseVisualStyleBackColor = true;
@@ -215,7 +220,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(712, 422);
+            this.dataGridView1.Size = new System.Drawing.Size(881, 510);
             this.dataGridView1.TabIndex = 0;
             // 
             // InactiveDoctorTab
@@ -282,7 +287,7 @@
             this.AppointmentTabControl.Location = new System.Drawing.Point(37, 12);
             this.AppointmentTabControl.Name = "AppointmentTabControl";
             this.AppointmentTabControl.SelectedIndex = 0;
-            this.AppointmentTabControl.Size = new System.Drawing.Size(725, 449);
+            this.AppointmentTabControl.Size = new System.Drawing.Size(889, 536);
             this.AppointmentTabControl.TabIndex = 7;
             // 
             // ApprovedTab
@@ -291,7 +296,7 @@
             this.ApprovedTab.Location = new System.Drawing.Point(4, 22);
             this.ApprovedTab.Name = "ApprovedTab";
             this.ApprovedTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ApprovedTab.Size = new System.Drawing.Size(717, 423);
+            this.ApprovedTab.Size = new System.Drawing.Size(881, 510);
             this.ApprovedTab.TabIndex = 0;
             this.ApprovedTab.Text = "Approved";
             this.ApprovedTab.UseVisualStyleBackColor = true;
@@ -301,7 +306,7 @@
             this.ApprovedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ApprovedDataGridView.Location = new System.Drawing.Point(0, 0);
             this.ApprovedDataGridView.Name = "ApprovedDataGridView";
-            this.ApprovedDataGridView.Size = new System.Drawing.Size(717, 422);
+            this.ApprovedDataGridView.Size = new System.Drawing.Size(881, 510);
             this.ApprovedDataGridView.TabIndex = 0;
             // 
             // PendingTab
@@ -368,6 +373,7 @@
             this.createAppointmentButton.TabIndex = 8;
             this.createAppointmentButton.Text = "Create New Appointment";
             this.createAppointmentButton.UseVisualStyleBackColor = false;
+            this.createAppointmentButton.Click += new System.EventHandler(this.createAppointmentButton_Click);
             // 
             // updateApointmentButton
             // 
@@ -397,7 +403,7 @@
             this.MedicinesButton.Location = new System.Drawing.Point(20, 350);
             this.MedicinesButton.Name = "MedicinesButton";
             this.MedicinesButton.Size = new System.Drawing.Size(239, 66);
-            this.MedicinesButton.TabIndex = 4;
+            this.MedicinesButton.TabIndex = 5;
             this.MedicinesButton.Text = "Medicines";
             this.MedicinesButton.UseVisualStyleBackColor = false;
             this.MedicinesButton.Click += new System.EventHandler(this.Medicines_Click);
@@ -414,10 +420,37 @@
             this.ServicesButton.Location = new System.Drawing.Point(20, 442);
             this.ServicesButton.Name = "ServicesButton";
             this.ServicesButton.Size = new System.Drawing.Size(239, 66);
-            this.ServicesButton.TabIndex = 4;
+            this.ServicesButton.TabIndex = 6;
             this.ServicesButton.Text = "Services";
             this.ServicesButton.UseVisualStyleBackColor = false;
             this.ServicesButton.Click += new System.EventHandler(this.ServicesButton_Click);
+            // 
+            // billingDataGridView
+            // 
+            this.billingDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.billingDataGridView.Location = new System.Drawing.Point(41, 34);
+            this.billingDataGridView.Name = "billingDataGridView";
+            this.billingDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.billingDataGridView.TabIndex = 13;
+            this.billingDataGridView.Visible = false;
+            // 
+            // createBillButton
+            // 
+            this.createBillButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.createBillButton.FlatAppearance.BorderSize = 0;
+            this.createBillButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.createBillButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.createBillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createBillButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createBillButton.ForeColor = System.Drawing.Color.White;
+            this.createBillButton.Location = new System.Drawing.Point(271, 578);
+            this.createBillButton.Name = "createBillButton";
+            this.createBillButton.Size = new System.Drawing.Size(410, 66);
+            this.createBillButton.TabIndex = 10;
+            this.createBillButton.Text = "Create Bill";
+            this.createBillButton.UseVisualStyleBackColor = false;
+            this.createBillButton.Visible = false;
+            this.createBillButton.Click += new System.EventHandler(this.createBillButton_Click);
             // 
             // RecepView
             // 
@@ -442,6 +475,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ApprovedDataGridView)).EndInit();
             this.PendingTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.billingDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -472,5 +506,7 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Button ServicesButton;
         private System.Windows.Forms.Button MedicinesButton;
+        private System.Windows.Forms.DataGridView billingDataGridView;
+        private System.Windows.Forms.Button createBillButton;
     }
 }

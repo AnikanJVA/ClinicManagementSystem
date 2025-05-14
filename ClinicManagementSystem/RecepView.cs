@@ -34,6 +34,10 @@ namespace ClinicManagementSystem
             DoctorTabControl.Hide();
             RegisterDoctorButton.Hide();
             UpdateDoctorButton.Hide();
+
+            billingDataGridView.Hide();
+            createBillButton.Hide();
+
         }
 
         private void BillingButton_Click(object sender, EventArgs e)
@@ -52,6 +56,9 @@ namespace ClinicManagementSystem
             DoctorTabControl.Hide();
             RegisterDoctorButton.Hide();
             UpdateDoctorButton.Hide();
+
+            billingDataGridView.Show();
+            createBillButton.Show();
         }
 
         private void DoctorsButton_Click(object sender, EventArgs e)
@@ -70,6 +77,9 @@ namespace ClinicManagementSystem
             DoctorTabControl.Show();
             RegisterDoctorButton.Show();
             UpdateDoctorButton.Show();
+
+            billingDataGridView.Hide();
+            createBillButton.Hide();
         } 
         
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -97,6 +107,8 @@ namespace ClinicManagementSystem
             RegisterDoctorButton.Hide();
             UpdateDoctorButton.Hide();
 
+            billingDataGridView.Hide();
+            createBillButton.Hide();
         }
 
         private void RegisterDoctorButton_Click(object sender, EventArgs e)
@@ -122,6 +134,9 @@ namespace ClinicManagementSystem
             RegisterDoctorButton.Hide();
             UpdateDoctorButton.Hide();
 
+            billingDataGridView.Hide();
+            createBillButton.Hide();
+
             UpdateMedicineForm medicineView = new UpdateMedicineForm();
             medicineView.ShowDialog();
         }
@@ -142,6 +157,21 @@ namespace ClinicManagementSystem
             DoctorTabControl.Hide();
             RegisterDoctorButton.Hide();
             UpdateDoctorButton.Hide();
+
+            billingDataGridView.Hide();
+            createBillButton.Hide();
+        }
+
+        private void createBillButton_Click(object sender, EventArgs e)
+        {
+            CreateBillForm createBillForm = new CreateBillForm();
+            createBillForm.ShowDialog();
+        }
+
+        private void createAppointmentButton_Click(object sender, EventArgs e)
+        {
+            CreateAppointmentForm createAppointmentForm = new CreateAppointmentForm();
+            createAppointmentForm.ShowDialog();
         }
     }
 }
