@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.SplitContainer = new System.Windows.Forms.SplitContainer();
             this.LogoutButton = new System.Windows.Forms.Button();
             this.DoctorsButton = new System.Windows.Forms.Button();
             this.BillingButton = new System.Windows.Forms.Button();
-            this.ClientsButton = new System.Windows.Forms.Button();
+            this.PatientsButton = new System.Windows.Forms.Button();
             this.AppointmentsButton = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.AppointmentTabControl = new System.Windows.Forms.TabControl();
             this.ApprovedTab = new System.Windows.Forms.TabPage();
             this.ApprovedDataGridView = new System.Windows.Forms.DataGridView();
             this.PendingTab = new System.Windows.Forms.TabPage();
@@ -42,47 +42,62 @@
             this.RescheduledTab = new System.Windows.Forms.TabPage();
             this.CanceledTab = new System.Windows.Forms.TabPage();
             this.FinishedTab = new System.Windows.Forms.TabPage();
-            this.UpdateButton = new System.Windows.Forms.Button();
-            this.CreateButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.updateApointmentButton = new System.Windows.Forms.Button();
+            this.createAppointmentButton = new System.Windows.Forms.Button();
+            this.RegisterDoctorButton = new System.Windows.Forms.Button();
+            this.UpdateDoctorButton = new System.Windows.Forms.Button();
+            this.InactiveDoctorTab = new System.Windows.Forms.TabPage();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.ActiveDoctorTab = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DoctorTabControl = new System.Windows.Forms.TabControl();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
+            this.SplitContainer.Panel1.SuspendLayout();
+            this.SplitContainer.Panel2.SuspendLayout();
+            this.SplitContainer.SuspendLayout();
+            this.AppointmentTabControl.SuspendLayout();
             this.ApprovedTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ApprovedDataGridView)).BeginInit();
             this.PendingTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.InactiveDoctorTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.ActiveDoctorTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.DoctorTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // SplitContainer
             // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
+            this.SplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.SplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.SplitContainer.Name = "SplitContainer";
             // 
-            // splitContainer1.Panel1
+            // SplitContainer.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.splitContainer1.Panel1.Controls.Add(this.LogoutButton);
-            this.splitContainer1.Panel1.Controls.Add(this.DoctorsButton);
-            this.splitContainer1.Panel1.Controls.Add(this.BillingButton);
-            this.splitContainer1.Panel1.Controls.Add(this.ClientsButton);
-            this.splitContainer1.Panel1.Controls.Add(this.AppointmentsButton);
-            this.splitContainer1.Panel1MinSize = 278;
+            this.SplitContainer.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
+            this.SplitContainer.Panel1.Controls.Add(this.LogoutButton);
+            this.SplitContainer.Panel1.Controls.Add(this.DoctorsButton);
+            this.SplitContainer.Panel1.Controls.Add(this.BillingButton);
+            this.SplitContainer.Panel1.Controls.Add(this.PatientsButton);
+            this.SplitContainer.Panel1.Controls.Add(this.AppointmentsButton);
+            this.SplitContainer.Panel1MinSize = 278;
             // 
-            // splitContainer1.Panel2
+            // SplitContainer.Panel2
             // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Panel2.Controls.Add(this.UpdateButton);
-            this.splitContainer1.Panel2.Controls.Add(this.CreateButton);
-            this.splitContainer1.Panel2MinSize = 1068;
-            this.splitContainer1.Size = new System.Drawing.Size(1350, 729);
-            this.splitContainer1.SplitterDistance = 278;
-            this.splitContainer1.TabIndex = 0;
+            this.SplitContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
+            this.SplitContainer.Panel2.Controls.Add(this.DoctorTabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.RegisterDoctorButton);
+            this.SplitContainer.Panel2.Controls.Add(this.UpdateDoctorButton);
+            this.SplitContainer.Panel2.Controls.Add(this.AppointmentTabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.createAppointmentButton);
+            this.SplitContainer.Panel2.Controls.Add(this.updateApointmentButton);
+            this.SplitContainer.Panel2MinSize = 1068;
+            this.SplitContainer.Size = new System.Drawing.Size(1350, 729);
+            this.SplitContainer.SplitterDistance = 278;
+            this.SplitContainer.TabIndex = 0;
             // 
             // LogoutButton
             // 
@@ -91,7 +106,7 @@
             this.LogoutButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.LogoutButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.LogoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoutButton.ForeColor = System.Drawing.Color.White;
             this.LogoutButton.Location = new System.Drawing.Point(20, 634);
             this.LogoutButton.Name = "LogoutButton";
@@ -108,7 +123,7 @@
             this.DoctorsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.DoctorsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.DoctorsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DoctorsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoctorsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DoctorsButton.ForeColor = System.Drawing.Color.White;
             this.DoctorsButton.Location = new System.Drawing.Point(20, 265);
             this.DoctorsButton.Name = "DoctorsButton";
@@ -116,6 +131,7 @@
             this.DoctorsButton.TabIndex = 4;
             this.DoctorsButton.Text = "Doctors";
             this.DoctorsButton.UseVisualStyleBackColor = false;
+            this.DoctorsButton.Click += new System.EventHandler(this.DoctorsButton_Click);
             // 
             // BillingButton
             // 
@@ -124,7 +140,7 @@
             this.BillingButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.BillingButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.BillingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BillingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BillingButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BillingButton.ForeColor = System.Drawing.Color.White;
             this.BillingButton.Location = new System.Drawing.Point(20, 178);
             this.BillingButton.Name = "BillingButton";
@@ -134,22 +150,22 @@
             this.BillingButton.UseVisualStyleBackColor = false;
             this.BillingButton.Click += new System.EventHandler(this.BillingButton_Click);
             // 
-            // ClientsButton
+            // PatientsButton
             // 
-            this.ClientsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.ClientsButton.FlatAppearance.BorderSize = 0;
-            this.ClientsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.ClientsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.ClientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClientsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClientsButton.ForeColor = System.Drawing.Color.White;
-            this.ClientsButton.Location = new System.Drawing.Point(20, 93);
-            this.ClientsButton.Name = "ClientsButton";
-            this.ClientsButton.Size = new System.Drawing.Size(239, 66);
-            this.ClientsButton.TabIndex = 2;
-            this.ClientsButton.Text = "Clients";
-            this.ClientsButton.UseVisualStyleBackColor = false;
-            this.ClientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
+            this.PatientsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.PatientsButton.FlatAppearance.BorderSize = 0;
+            this.PatientsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.PatientsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.PatientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PatientsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PatientsButton.ForeColor = System.Drawing.Color.White;
+            this.PatientsButton.Location = new System.Drawing.Point(20, 93);
+            this.PatientsButton.Name = "PatientsButton";
+            this.PatientsButton.Size = new System.Drawing.Size(239, 66);
+            this.PatientsButton.TabIndex = 2;
+            this.PatientsButton.Text = "Patients";
+            this.PatientsButton.UseVisualStyleBackColor = false;
+            this.PatientsButton.Click += new System.EventHandler(this.PatientsButton_Click);
             // 
             // AppointmentsButton
             // 
@@ -158,7 +174,7 @@
             this.AppointmentsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.AppointmentsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.AppointmentsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AppointmentsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AppointmentsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AppointmentsButton.ForeColor = System.Drawing.Color.White;
             this.AppointmentsButton.Location = new System.Drawing.Point(20, 11);
             this.AppointmentsButton.Name = "AppointmentsButton";
@@ -168,18 +184,18 @@
             this.AppointmentsButton.UseVisualStyleBackColor = false;
             this.AppointmentsButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
             // 
-            // tabControl1
+            // AppointmentTabControl
             // 
-            this.tabControl1.Controls.Add(this.ApprovedTab);
-            this.tabControl1.Controls.Add(this.PendingTab);
-            this.tabControl1.Controls.Add(this.RescheduledTab);
-            this.tabControl1.Controls.Add(this.CanceledTab);
-            this.tabControl1.Controls.Add(this.FinishedTab);
-            this.tabControl1.Location = new System.Drawing.Point(37, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1002, 591);
-            this.tabControl1.TabIndex = 7;
+            this.AppointmentTabControl.Controls.Add(this.ApprovedTab);
+            this.AppointmentTabControl.Controls.Add(this.PendingTab);
+            this.AppointmentTabControl.Controls.Add(this.RescheduledTab);
+            this.AppointmentTabControl.Controls.Add(this.CanceledTab);
+            this.AppointmentTabControl.Controls.Add(this.FinishedTab);
+            this.AppointmentTabControl.Location = new System.Drawing.Point(37, 12);
+            this.AppointmentTabControl.Name = "AppointmentTabControl";
+            this.AppointmentTabControl.SelectedIndex = 0;
+            this.AppointmentTabControl.Size = new System.Drawing.Size(1002, 591);
+            this.AppointmentTabControl.TabIndex = 7;
             // 
             // ApprovedTab
             // 
@@ -195,7 +211,7 @@
             // ApprovedDataGridView
             // 
             this.ApprovedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ApprovedDataGridView.Location = new System.Drawing.Point(20, 29);
+            this.ApprovedDataGridView.Location = new System.Drawing.Point(0, 0);
             this.ApprovedDataGridView.Name = "ApprovedDataGridView";
             this.ApprovedDataGridView.Size = new System.Drawing.Size(994, 565);
             this.ApprovedDataGridView.TabIndex = 0;
@@ -249,76 +265,172 @@
             this.FinishedTab.Text = "Finished";
             this.FinishedTab.UseVisualStyleBackColor = true;
             // 
-            // UpdateButton
+            // updateApointmentButton
             // 
-            this.UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.UpdateButton.FlatAppearance.BorderSize = 0;
-            this.UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateButton.ForeColor = System.Drawing.Color.White;
-            this.UpdateButton.Location = new System.Drawing.Point(567, 634);
-            this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(474, 66);
-            this.UpdateButton.TabIndex = 9;
-            this.UpdateButton.Text = "Update Appointment";
-            this.UpdateButton.UseVisualStyleBackColor = false;
+            this.updateApointmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.updateApointmentButton.FlatAppearance.BorderSize = 0;
+            this.updateApointmentButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.updateApointmentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.updateApointmentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.updateApointmentButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateApointmentButton.ForeColor = System.Drawing.Color.White;
+            this.updateApointmentButton.Location = new System.Drawing.Point(567, 634);
+            this.updateApointmentButton.Name = "updateApointmentButton";
+            this.updateApointmentButton.Size = new System.Drawing.Size(474, 66);
+            this.updateApointmentButton.TabIndex = 9;
+            this.updateApointmentButton.Text = "Update Appointment";
+            this.updateApointmentButton.UseVisualStyleBackColor = false;
             // 
-            // CreateButton
+            // createAppointmentButton
             // 
-            this.CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.CreateButton.FlatAppearance.BorderSize = 0;
-            this.CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateButton.ForeColor = System.Drawing.Color.White;
-            this.CreateButton.Location = new System.Drawing.Point(37, 634);
-            this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(474, 66);
-            this.CreateButton.TabIndex = 8;
-            this.CreateButton.Text = "Create New Appointment";
-            this.CreateButton.UseVisualStyleBackColor = false;
+            this.createAppointmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.createAppointmentButton.FlatAppearance.BorderSize = 0;
+            this.createAppointmentButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.createAppointmentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.createAppointmentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createAppointmentButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createAppointmentButton.ForeColor = System.Drawing.Color.White;
+            this.createAppointmentButton.Location = new System.Drawing.Point(37, 634);
+            this.createAppointmentButton.Name = "createAppointmentButton";
+            this.createAppointmentButton.Size = new System.Drawing.Size(474, 66);
+            this.createAppointmentButton.TabIndex = 8;
+            this.createAppointmentButton.Text = "Create New Appointment";
+            this.createAppointmentButton.UseVisualStyleBackColor = false;
+            // 
+            // RegisterDoctorButton
+            // 
+            this.RegisterDoctorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.RegisterDoctorButton.FlatAppearance.BorderSize = 0;
+            this.RegisterDoctorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.RegisterDoctorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.RegisterDoctorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RegisterDoctorButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegisterDoctorButton.ForeColor = System.Drawing.Color.White;
+            this.RegisterDoctorButton.Location = new System.Drawing.Point(37, 634);
+            this.RegisterDoctorButton.Name = "RegisterDoctorButton";
+            this.RegisterDoctorButton.Size = new System.Drawing.Size(474, 66);
+            this.RegisterDoctorButton.TabIndex = 10;
+            this.RegisterDoctorButton.Text = "Register Doctor";
+            this.RegisterDoctorButton.UseVisualStyleBackColor = false;
+            this.RegisterDoctorButton.Visible = false;
+            this.RegisterDoctorButton.Click += new System.EventHandler(this.RegisterDoctorButton_Click);
+            // 
+            // UpdateDoctorButton
+            // 
+            this.UpdateDoctorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.UpdateDoctorButton.FlatAppearance.BorderSize = 0;
+            this.UpdateDoctorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.UpdateDoctorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.UpdateDoctorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UpdateDoctorButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateDoctorButton.ForeColor = System.Drawing.Color.White;
+            this.UpdateDoctorButton.Location = new System.Drawing.Point(567, 634);
+            this.UpdateDoctorButton.Name = "UpdateDoctorButton";
+            this.UpdateDoctorButton.Size = new System.Drawing.Size(474, 66);
+            this.UpdateDoctorButton.TabIndex = 11;
+            this.UpdateDoctorButton.Text = "Update Doctor";
+            this.UpdateDoctorButton.UseVisualStyleBackColor = false;
+            this.UpdateDoctorButton.Visible = false;
+            // 
+            // InactiveDoctorTab
+            // 
+            this.InactiveDoctorTab.Controls.Add(this.dataGridView3);
+            this.InactiveDoctorTab.Location = new System.Drawing.Point(4, 22);
+            this.InactiveDoctorTab.Name = "InactiveDoctorTab";
+            this.InactiveDoctorTab.Padding = new System.Windows.Forms.Padding(3);
+            this.InactiveDoctorTab.Size = new System.Drawing.Size(994, 565);
+            this.InactiveDoctorTab.TabIndex = 1;
+            this.InactiveDoctorTab.Text = "Inactive";
+            this.InactiveDoctorTab.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(1, 0);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(994, 565);
+            this.dataGridView3.TabIndex = 1;
+            // 
+            // ActiveDoctorTab
+            // 
+            this.ActiveDoctorTab.Controls.Add(this.dataGridView1);
+            this.ActiveDoctorTab.Location = new System.Drawing.Point(4, 22);
+            this.ActiveDoctorTab.Name = "ActiveDoctorTab";
+            this.ActiveDoctorTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ActiveDoctorTab.Size = new System.Drawing.Size(994, 565);
+            this.ActiveDoctorTab.TabIndex = 0;
+            this.ActiveDoctorTab.Text = "Active";
+            this.ActiveDoctorTab.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(994, 565);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // DoctorTabControl
+            // 
+            this.DoctorTabControl.Controls.Add(this.ActiveDoctorTab);
+            this.DoctorTabControl.Controls.Add(this.InactiveDoctorTab);
+            this.DoctorTabControl.Location = new System.Drawing.Point(36, 12);
+            this.DoctorTabControl.Name = "DoctorTabControl";
+            this.DoctorTabControl.SelectedIndex = 0;
+            this.DoctorTabControl.Size = new System.Drawing.Size(1002, 591);
+            this.DoctorTabControl.TabIndex = 12;
+            this.DoctorTabControl.Visible = false;
             // 
             // RecepView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.SplitContainer);
             this.Name = "RecepView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CLINIC MANAGEMENT SYSTEM";
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.SplitContainer.Panel1.ResumeLayout(false);
+            this.SplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
+            this.SplitContainer.ResumeLayout(false);
+            this.AppointmentTabControl.ResumeLayout(false);
             this.ApprovedTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ApprovedDataGridView)).EndInit();
             this.PendingTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.InactiveDoctorTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.ActiveDoctorTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.DoctorTabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer SplitContainer;
         private System.Windows.Forms.Button AppointmentsButton;
         private System.Windows.Forms.Button DoctorsButton;
         private System.Windows.Forms.Button BillingButton;
-        private System.Windows.Forms.Button ClientsButton;
+        private System.Windows.Forms.Button PatientsButton;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl AppointmentTabControl;
         private System.Windows.Forms.TabPage ApprovedTab;
         private System.Windows.Forms.TabPage PendingTab;
-        private System.Windows.Forms.Button UpdateButton;
-        private System.Windows.Forms.Button CreateButton;
+        private System.Windows.Forms.Button updateApointmentButton;
+        private System.Windows.Forms.Button createAppointmentButton;
         private System.Windows.Forms.DataGridView ApprovedDataGridView;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TabPage RescheduledTab;
         private System.Windows.Forms.TabPage CanceledTab;
         private System.Windows.Forms.TabPage FinishedTab;
+        private System.Windows.Forms.Button UpdateDoctorButton;
+        private System.Windows.Forms.Button RegisterDoctorButton;
+        private System.Windows.Forms.TabControl DoctorTabControl;
+        private System.Windows.Forms.TabPage ActiveDoctorTab;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TabPage InactiveDoctorTab;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }

@@ -41,7 +41,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.AllTab = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -89,7 +88,7 @@
             this.LogoutButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.LogoutButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.LogoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoutButton.ForeColor = System.Drawing.Color.White;
             this.LogoutButton.Location = new System.Drawing.Point(20, 634);
             this.LogoutButton.Name = "LogoutButton";
@@ -106,9 +105,9 @@
             this.DoctorsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.DoctorsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.DoctorsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DoctorsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoctorsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DoctorsButton.ForeColor = System.Drawing.Color.White;
-            this.DoctorsButton.Location = new System.Drawing.Point(20, 179);
+            this.DoctorsButton.Location = new System.Drawing.Point(20, 178);
             this.DoctorsButton.Name = "DoctorsButton";
             this.DoctorsButton.Size = new System.Drawing.Size(239, 66);
             this.DoctorsButton.TabIndex = 4;
@@ -123,7 +122,7 @@
             this.ClientsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.ClientsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.ClientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClientsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClientsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClientsButton.ForeColor = System.Drawing.Color.White;
             this.ClientsButton.Location = new System.Drawing.Point(20, 93);
             this.ClientsButton.Name = "ClientsButton";
@@ -140,7 +139,7 @@
             this.AppointmentsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.AppointmentsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.AppointmentsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AppointmentsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AppointmentsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AppointmentsButton.ForeColor = System.Drawing.Color.White;
             this.AppointmentsButton.Location = new System.Drawing.Point(20, 11);
             this.AppointmentsButton.Name = "AppointmentsButton";
@@ -154,11 +153,10 @@
             // 
             this.tabControl1.Controls.Add(this.ActiveTab);
             this.tabControl1.Controls.Add(this.InactiveTab);
-            this.tabControl1.Controls.Add(this.AllTab);
-            this.tabControl1.Location = new System.Drawing.Point(37, 11);
+            this.tabControl1.Location = new System.Drawing.Point(37, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1002, 592);
+            this.tabControl1.Size = new System.Drawing.Size(1002, 591);
             this.tabControl1.TabIndex = 7;
             // 
             // ActiveTab
@@ -167,7 +165,7 @@
             this.ActiveTab.Location = new System.Drawing.Point(4, 22);
             this.ActiveTab.Name = "ActiveTab";
             this.ActiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ActiveTab.Size = new System.Drawing.Size(994, 566);
+            this.ActiveTab.Size = new System.Drawing.Size(994, 565);
             this.ActiveTab.TabIndex = 0;
             this.ActiveTab.Text = "Active";
             this.ActiveTab.UseVisualStyleBackColor = true;
@@ -186,7 +184,7 @@
             this.InactiveTab.Location = new System.Drawing.Point(4, 22);
             this.InactiveTab.Name = "InactiveTab";
             this.InactiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.InactiveTab.Size = new System.Drawing.Size(994, 566);
+            this.InactiveTab.Size = new System.Drawing.Size(994, 565);
             this.InactiveTab.TabIndex = 1;
             this.InactiveTab.Text = "Inactive";
             this.InactiveTab.UseVisualStyleBackColor = true;
@@ -206,7 +204,7 @@
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(733, 634);
             this.button3.Name = "button3";
@@ -222,7 +220,7 @@
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(383, 634);
             this.button2.Name = "button2";
@@ -238,7 +236,7 @@
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(37, 634);
             this.button1.Name = "button1";
@@ -246,16 +244,6 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "Register Client";
             this.button1.UseVisualStyleBackColor = false;
-            // 
-            // AllTab
-            // 
-            this.AllTab.Location = new System.Drawing.Point(4, 22);
-            this.AllTab.Name = "AllTab";
-            this.AllTab.Padding = new System.Windows.Forms.Padding(3);
-            this.AllTab.Size = new System.Drawing.Size(994, 566);
-            this.AllTab.TabIndex = 2;
-            this.AllTab.Text = "All";
-            this.AllTab.UseVisualStyleBackColor = true;
             // 
             // DocView
             // 
@@ -294,6 +282,5 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TabPage AllTab;
     }
 }

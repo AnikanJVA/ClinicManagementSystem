@@ -17,7 +17,7 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
         }
-                
+
         private void AppointmentsButton_Click(object sender, EventArgs e)
         {
             AppointmentsButton.BackColor = Color.FromArgb(1, 34, 79);
@@ -46,6 +46,5 @@ namespace ClinicManagementSystem
             loginForm.Show();
             this.Close();
         }
-        // aaa
     }
 }
