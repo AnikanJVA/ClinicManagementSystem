@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ClinicManagementSystem
 {
-    public partial class MedicineView : Form
+    public partial class UpdateMedicineForm : Form
     {
-        public MedicineView()
+        public UpdateMedicineForm()
         {
             InitializeComponent();
         }

@@ -42,7 +42,7 @@
             this.UsernameTextBox.MaximumSize = new System.Drawing.Size(234, 26);
             this.UsernameTextBox.MinimumSize = new System.Drawing.Size(234, 26);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(234, 26);
+            this.UsernameTextBox.Size = new System.Drawing.Size(234, 20);
             this.UsernameTextBox.TabIndex = 1;
             // 
             // PasswordTextBox
@@ -52,18 +52,18 @@
             this.PasswordTextBox.MinimumSize = new System.Drawing.Size(234, 26);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '•';
-            this.PasswordTextBox.Size = new System.Drawing.Size(234, 26);
+            this.PasswordTextBox.Size = new System.Drawing.Size(234, 20);
             this.PasswordTextBox.TabIndex = 2;
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(56, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(295, 68);
             this.label1.TabIndex = 3;
-            this.label1.Text = "CLINIC MANAGEMENT\r\nSYSTEM";
+            this.label1.Text = "DETNAL CLINIC";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2

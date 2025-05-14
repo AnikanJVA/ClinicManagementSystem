@@ -253,7 +253,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "DocView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ClientsForm";
+            this.Text = "DENTAL CLINIC";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

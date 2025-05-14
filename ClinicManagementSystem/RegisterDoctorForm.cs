@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace ClinicManagementSystem
 {
-    public partial class DoctorDetailsForm : Form
+    public partial class RegisterDoctorForm : Form
     {
-        public DoctorDetailsForm()
+        public RegisterDoctorForm()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Doctors_Load(object sender, EventArgs e)
@@ -35,6 +30,11 @@ namespace ClinicManagementSystem
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close(); 
+        }
+
+        private void fnameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

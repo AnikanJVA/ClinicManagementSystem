@@ -104,11 +104,11 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DoctorDetailsForm.cs">
+    <Compile Include="RegisterDoctorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DoctorDetailsForm.Designer.cs">
-      <DependentUpon>DoctorDetailsForm.cs</DependentUpon>
+    <Compile Include="RegisterDoctorForm.Designer.cs">
+      <DependentUpon>RegisterDoctorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DocView.cs">
       <SubType>Form</SubType>
@@ -122,11 +122,11 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MedicineView.cs">
+    <Compile Include="UpdateMedicineForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MedicineView.Designer.cs">
-      <DependentUpon>MedicineView.cs</DependentUpon>
+    <Compile Include="UpdateMedicineForm.Designer.cs">
+      <DependentUpon>UpdateMedicineForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RecepView.cs">
       <SubType>Form</SubType>
@@ -139,11 +139,11 @@
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DoctorDetailsForm.resx">
-      <DependentUpon>DoctorDetailsForm.cs</DependentUpon>
+    <EmbeddedResource Include="RegisterDoctorForm.resx">
+      <DependentUpon>RegisterDoctorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MedicineView.resx">
-      <DependentUpon>MedicineView.cs</DependentUpon>
+    <EmbeddedResource Include="UpdateMedicineForm.resx">
+      <DependentUpon>UpdateMedicineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecepView.resx">
       <DependentUpon>RecepView.cs</DependentUpon>

@@ -427,7 +427,7 @@
             this.Controls.Add(this.SplitContainer);
             this.Name = "RecepView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CLINIC MANAGEMENT SYSTEM";
+            this.Text = "DENTAL CLINIC";
             this.SplitContainer.Panel1.ResumeLayout(false);
             this.SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();

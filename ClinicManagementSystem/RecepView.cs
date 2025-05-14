@@ -101,7 +101,7 @@ namespace ClinicManagementSystem
 
         private void RegisterDoctorButton_Click(object sender, EventArgs e)
         {
-            DoctorDetailsForm doctorDetailsForm = new DoctorDetailsForm();
+            RegisterDoctorForm doctorDetailsForm = new RegisterDoctorForm();
             doctorDetailsForm.ShowDialog();
         }
 
@@ -122,7 +122,7 @@ namespace ClinicManagementSystem
             RegisterDoctorButton.Hide();
             UpdateDoctorButton.Hide();
 
-            MedicineView medicineView = new MedicineView();
+            UpdateMedicineForm medicineView = new UpdateMedicineForm();
             medicineView.ShowDialog();
         }
 
