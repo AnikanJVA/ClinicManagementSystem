@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ClinicManagementSystem
 {
-    public partial class Doctors : Form
+    public partial class DoctorDetailsForm : Form
     {
-        public Doctors()
+        public DoctorDetailsForm()
         {
             InitializeComponent();
         }
@@ -23,6 +23,11 @@ namespace ClinicManagementSystem
         }
 
         private void Doctors_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
         {
 
         }

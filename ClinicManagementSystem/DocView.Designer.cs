@@ -96,7 +96,6 @@
             this.LogoutButton.Size = new System.Drawing.Size(239, 66);
             this.LogoutButton.TabIndex = 6;
             this.LogoutButton.Text = "Logout";
-            this.LogoutButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
@@ -114,7 +113,6 @@
             this.DoctorsButton.Size = new System.Drawing.Size(239, 66);
             this.DoctorsButton.TabIndex = 4;
             this.DoctorsButton.Text = "Doctors";
-            this.DoctorsButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.DoctorsButton.UseVisualStyleBackColor = false;
             // 
             // ClientsButton
@@ -131,7 +129,6 @@
             this.ClientsButton.Size = new System.Drawing.Size(239, 66);
             this.ClientsButton.TabIndex = 2;
             this.ClientsButton.Text = "Clients";
-            this.ClientsButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.ClientsButton.UseVisualStyleBackColor = false;
             // 
             // AppointmentsButton
@@ -148,7 +145,6 @@
             this.AppointmentsButton.Size = new System.Drawing.Size(239, 66);
             this.AppointmentsButton.TabIndex = 1;
             this.AppointmentsButton.Text = "Appointments";
-            this.AppointmentsButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.AppointmentsButton.UseVisualStyleBackColor = false;
             this.AppointmentsButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
             // 
@@ -214,7 +210,6 @@
             this.button3.Size = new System.Drawing.Size(308, 66);
             this.button3.TabIndex = 10;
             this.button3.Text = "Search Client";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button3.UseVisualStyleBackColor = false;
             // 
             // button2
@@ -231,7 +226,6 @@
             this.button2.Size = new System.Drawing.Size(308, 66);
             this.button2.TabIndex = 9;
             this.button2.Text = "Update Client";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button2.UseVisualStyleBackColor = false;
             // 
             // button1
@@ -248,7 +242,6 @@
             this.button1.Size = new System.Drawing.Size(308, 66);
             this.button1.TabIndex = 8;
             this.button1.Text = "Register Client";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button1.UseVisualStyleBackColor = false;
             // 
             // DocView
