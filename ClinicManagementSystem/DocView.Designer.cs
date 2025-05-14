@@ -31,7 +31,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.LogoutButton = new System.Windows.Forms.Button();
             this.DoctorsButton = new System.Windows.Forms.Button();
-            this.ClientsButton = new System.Windows.Forms.Button();
+            this.PatientsButton = new System.Windows.Forms.Button();
             this.AppointmentsButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ActiveTab = new System.Windows.Forms.TabPage();
@@ -65,7 +65,7 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
             this.splitContainer1.Panel1.Controls.Add(this.LogoutButton);
             this.splitContainer1.Panel1.Controls.Add(this.DoctorsButton);
-            this.splitContainer1.Panel1.Controls.Add(this.ClientsButton);
+            this.splitContainer1.Panel1.Controls.Add(this.PatientsButton);
             this.splitContainer1.Panel1.Controls.Add(this.AppointmentsButton);
             this.splitContainer1.Panel1MinSize = 278;
             // 
@@ -115,22 +115,22 @@
             this.DoctorsButton.UseVisualStyleBackColor = false;
             this.DoctorsButton.Click += new System.EventHandler(this.DoctorsButton_Click);
             // 
-            // ClientsButton
+            // PatientsButton
             // 
-            this.ClientsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.ClientsButton.FlatAppearance.BorderSize = 0;
-            this.ClientsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.ClientsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.ClientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ClientsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClientsButton.ForeColor = System.Drawing.Color.White;
-            this.ClientsButton.Location = new System.Drawing.Point(20, 93);
-            this.ClientsButton.Name = "ClientsButton";
-            this.ClientsButton.Size = new System.Drawing.Size(239, 66);
-            this.ClientsButton.TabIndex = 2;
-            this.ClientsButton.Text = "Clients";
-            this.ClientsButton.UseVisualStyleBackColor = false;
-            this.ClientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
+            this.PatientsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.PatientsButton.FlatAppearance.BorderSize = 0;
+            this.PatientsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.PatientsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.PatientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PatientsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PatientsButton.ForeColor = System.Drawing.Color.White;
+            this.PatientsButton.Location = new System.Drawing.Point(20, 93);
+            this.PatientsButton.Name = "PatientsButton";
+            this.PatientsButton.Size = new System.Drawing.Size(239, 66);
+            this.PatientsButton.TabIndex = 2;
+            this.PatientsButton.Text = "Patients";
+            this.PatientsButton.UseVisualStyleBackColor = false;
+            this.PatientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
             // 
             // AppointmentsButton
             // 
@@ -210,7 +210,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(308, 66);
             this.button3.TabIndex = 10;
-            this.button3.Text = "Search Client";
+            this.button3.Text = "Search Patient";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // button2
@@ -226,7 +226,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(308, 66);
             this.button2.TabIndex = 9;
-            this.button2.Text = "Update Client";
+            this.button2.Text = "Update Patient";
             this.button2.UseVisualStyleBackColor = false;
             // 
             // button1
@@ -242,7 +242,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(308, 66);
             this.button1.TabIndex = 8;
-            this.button1.Text = "Register Client";
+            this.button1.Text = "Register Patient";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // DocView
@@ -272,7 +272,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button LogoutButton;
         private System.Windows.Forms.Button DoctorsButton;
-        private System.Windows.Forms.Button ClientsButton;
+        private System.Windows.Forms.Button PatientsButton;
         private System.Windows.Forms.Button AppointmentsButton;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage ActiveTab;
