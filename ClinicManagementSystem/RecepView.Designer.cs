@@ -53,6 +53,7 @@
             this.InactiveDoctorTab = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.RegisterDoctorButton = new System.Windows.Forms.Button();
+            this.AccountTypelabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
@@ -81,6 +82,7 @@
             // SplitContainer.Panel1
             // 
             this.SplitContainer.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
+            this.SplitContainer.Panel1.Controls.Add(this.AccountTypelabel);
             this.SplitContainer.Panel1.Controls.Add(this.LogoutButton);
             this.SplitContainer.Panel1.Controls.Add(this.DoctorsButton);
             this.SplitContainer.Panel1.Controls.Add(this.BillingButton);
@@ -130,7 +132,7 @@
             this.DoctorsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DoctorsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DoctorsButton.ForeColor = System.Drawing.Color.White;
-            this.DoctorsButton.Location = new System.Drawing.Point(20, 265);
+            this.DoctorsButton.Location = new System.Drawing.Point(20, 317);
             this.DoctorsButton.Name = "DoctorsButton";
             this.DoctorsButton.Size = new System.Drawing.Size(239, 66);
             this.DoctorsButton.TabIndex = 4;
@@ -147,7 +149,7 @@
             this.BillingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BillingButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BillingButton.ForeColor = System.Drawing.Color.White;
-            this.BillingButton.Location = new System.Drawing.Point(20, 178);
+            this.BillingButton.Location = new System.Drawing.Point(20, 230);
             this.BillingButton.Name = "BillingButton";
             this.BillingButton.Size = new System.Drawing.Size(239, 66);
             this.BillingButton.TabIndex = 3;
@@ -164,7 +166,7 @@
             this.PatientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PatientsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PatientsButton.ForeColor = System.Drawing.Color.White;
-            this.PatientsButton.Location = new System.Drawing.Point(20, 93);
+            this.PatientsButton.Location = new System.Drawing.Point(20, 145);
             this.PatientsButton.Name = "PatientsButton";
             this.PatientsButton.Size = new System.Drawing.Size(239, 66);
             this.PatientsButton.TabIndex = 2;
@@ -181,7 +183,7 @@
             this.AppointmentsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AppointmentsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AppointmentsButton.ForeColor = System.Drawing.Color.White;
-            this.AppointmentsButton.Location = new System.Drawing.Point(20, 11);
+            this.AppointmentsButton.Location = new System.Drawing.Point(20, 63);
             this.AppointmentsButton.Name = "AppointmentsButton";
             this.AppointmentsButton.Size = new System.Drawing.Size(239, 66);
             this.AppointmentsButton.TabIndex = 1;
@@ -414,6 +416,20 @@
             this.RegisterDoctorButton.Visible = false;
             this.RegisterDoctorButton.Click += new System.EventHandler(this.RegisterDoctorButton_Click);
             // 
+            // AccountTypelabel
+            // 
+            this.AccountTypelabel.AutoSize = true;
+            this.AccountTypelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.AccountTypelabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AccountTypelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.AccountTypelabel.ForeColor = System.Drawing.Color.White;
+            this.AccountTypelabel.Location = new System.Drawing.Point(63, 12);
+            this.AccountTypelabel.Name = "AccountTypelabel";
+            this.AccountTypelabel.Size = new System.Drawing.Size(149, 31);
+            this.AccountTypelabel.TabIndex = 0;
+            this.AccountTypelabel.Text = "Receptionist";
+            this.AccountTypelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // RecepView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,6 +442,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DENTAL CLINIC";
             this.SplitContainer.Panel1.ResumeLayout(false);
+            this.SplitContainer.Panel1.PerformLayout();
             this.SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
@@ -470,5 +487,6 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridView billingDataGridView;
         private System.Windows.Forms.Button createBillButton;
+        private System.Windows.Forms.Label AccountTypelabel;
     }
 }
