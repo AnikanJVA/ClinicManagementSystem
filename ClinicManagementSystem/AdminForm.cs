@@ -15,6 +15,8 @@ namespace ClinicManagementSystem
 {
     public partial class AdminForm : Form
     {
+        private long userid;
+
         public AdminForm()
         {
             InitializeComponent();
@@ -67,12 +69,12 @@ namespace ClinicManagementSystem
             {
                 string username = UsernametextBox.Text;
                 string accType = AccTypeComboBox.Text;
-                var choice = MessageBox.Show("Are you sure you want to delete user " + username + "?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var choice = MessageBox.Show("Are you sure you want to update " + username + "'s status?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (choice == DialogResult.Yes)
                 {
-                    if (Database.DeleteUser(username, accType))
+                    if (Database.UpdateUserStatus(userid))
                     {
-                        MessageBox.Show("User deleted succesfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("User updated succesfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         UsernametextBox.Clear();
                         PasswordTextBox.Clear();
                         dataGridView1.DataSource = Database.GetUsers();
@@ -95,6 +97,14 @@ namespace ClinicManagementSystem
                     if (e.RowIndex >= 0)
                     {
                         DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                        try
+                        {
+                            userid = Convert.ToInt64(row.Cells["Userid"].Value.ToString());
+
+                        }catch (Exception ex) 
+                        {
+                            
+                        }
                         string username = row.Cells["Username"].Value.ToString();
                         string accType = row.Cells["AccountType"].Value.ToString();
 
@@ -103,11 +113,17 @@ namespace ClinicManagementSystem
                     }
                     else
                     {
+                        userid = 000000000;
                         UsernametextBox.Clear();
                         AccTypeComboBox.SelectedIndex = -1;
                     }
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

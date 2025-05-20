@@ -230,7 +230,7 @@
             this.panel1.Size = new System.Drawing.Size(932, 332);
             this.panel1.TabIndex = 19;
             // 
-            // MedicineView
+            // UpdateMedicineForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -238,7 +238,8 @@
             this.ClientSize = new System.Drawing.Size(956, 356);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "MedicineView";
+            this.MaximizeBox = false;
+            this.Name = "UpdateMedicineForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UPDATE MEDICINE";

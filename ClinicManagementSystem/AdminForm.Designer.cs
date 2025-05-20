@@ -44,7 +44,7 @@
             // UsernametextBox
             // 
             this.UsernametextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.UsernametextBox.Location = new System.Drawing.Point(50, 48);
+            this.UsernametextBox.Location = new System.Drawing.Point(42, 53);
             this.UsernametextBox.Name = "UsernametextBox";
             this.UsernametextBox.Size = new System.Drawing.Size(345, 26);
             this.UsernametextBox.TabIndex = 1;
@@ -52,7 +52,7 @@
             // PasswordTextBox
             // 
             this.PasswordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PasswordTextBox.Location = new System.Drawing.Point(50, 107);
+            this.PasswordTextBox.Location = new System.Drawing.Point(417, 53);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '•';
             this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
@@ -68,7 +68,7 @@
             this.AccTypeComboBox.Items.AddRange(new object[] {
             "Doctor",
             "Receptionist"});
-            this.AccTypeComboBox.Location = new System.Drawing.Point(50, 168);
+            this.AccTypeComboBox.Location = new System.Drawing.Point(42, 120);
             this.AccTypeComboBox.Name = "AccTypeComboBox";
             this.AccTypeComboBox.Size = new System.Drawing.Size(345, 28);
             this.AccTypeComboBox.TabIndex = 3;
@@ -78,7 +78,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 15F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(46, 22);
+            this.label1.Location = new System.Drawing.Point(38, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 23);
             this.label1.TabIndex = 3;
@@ -89,7 +89,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 15F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(46, 142);
+            this.label2.Location = new System.Drawing.Point(38, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(147, 23);
             this.label2.TabIndex = 3;
@@ -100,7 +100,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 15F);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(46, 81);
+            this.label3.Location = new System.Drawing.Point(413, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 23);
             this.label3.TabIndex = 3;
@@ -113,11 +113,11 @@
             this.CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 15F);
+            this.CreateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.CreateButton.ForeColor = System.Drawing.Color.White;
-            this.CreateButton.Location = new System.Drawing.Point(50, 216);
+            this.CreateButton.Location = new System.Drawing.Point(417, 115);
             this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(345, 43);
+            this.CreateButton.Size = new System.Drawing.Size(164, 33);
             this.CreateButton.TabIndex = 4;
             this.CreateButton.Text = "Create User";
             this.CreateButton.UseVisualStyleBackColor = false;
@@ -125,13 +125,21 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(426, 22);
+            this.dataGridView1.Location = new System.Drawing.Point(42, 172);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(507, 397);
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.RowTemplate.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(720, 203);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // LogoutButton
             // 
@@ -140,14 +148,13 @@
             this.LogoutButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.LogoutButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.LogoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogoutButton.Font = new System.Drawing.Font("BDO Grotesk Light", 15F);
+            this.LogoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.LogoutButton.ForeColor = System.Drawing.Color.White;
-            this.LogoutButton.Location = new System.Drawing.Point(50, 376);
+            this.LogoutButton.Location = new System.Drawing.Point(42, 403);
             this.LogoutButton.Name = "LogoutButton";
-            this.LogoutButton.Size = new System.Drawing.Size(345, 43);
+            this.LogoutButton.Size = new System.Drawing.Size(164, 33);
             this.LogoutButton.TabIndex = 6;
             this.LogoutButton.Text = "Logout";
-            this.LogoutButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
@@ -158,13 +165,13 @@
             this.deleteButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.deleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteButton.Font = new System.Drawing.Font("BDO Grotesk Light", 15F);
+            this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteButton.ForeColor = System.Drawing.Color.White;
-            this.deleteButton.Location = new System.Drawing.Point(50, 278);
+            this.deleteButton.Location = new System.Drawing.Point(598, 115);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(345, 43);
+            this.deleteButton.Size = new System.Drawing.Size(164, 33);
             this.deleteButton.TabIndex = 5;
-            this.deleteButton.Text = "Delete User";
+            this.deleteButton.Text = "Change Status";
             this.deleteButton.UseVisualStyleBackColor = false;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
@@ -173,7 +180,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(962, 445);
+            this.ClientSize = new System.Drawing.Size(803, 448);
             this.Controls.Add(this.LogoutButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.deleteButton);
@@ -185,9 +192,10 @@
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.UsernametextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AdminForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "adminForm";
+            this.Text = " ";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

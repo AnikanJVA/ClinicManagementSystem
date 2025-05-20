@@ -92,7 +92,7 @@ namespace ClinicManagementSystem
                 }
             }
 
-            
+
             public static bool AuthenticateUser(string username, string password)
             {
                 string query = "SELECT COUNT(*) FROM users WHERE username = @username AND password = SHA2(@password, 256) AND status = 'ACTIVE'";
@@ -127,17 +127,47 @@ namespace ClinicManagementSystem
             }
 
 
-            public static bool DeleteUser(string username, string accType)
+            public static bool UpdateUserStatus(long userid)
             {
-                string updateQuery = "UPDATE users SET status = 'inactive' WHERE username = @username AND accType = @accType";
-                using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
+                if (GetUserStatus(userid) == "ACTIVE")
                 {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@accType", accType);
-                    return cmd.ExecuteNonQuery() > 0;
+                    string updateToInactiveQuery = "UPDATE users SET status = 'INACTIVE' WHERE userid = @userid";
+                    using (MySqlCommand cmd = new MySqlCommand(updateToInactiveQuery, Instance.connection))
+                    {
+                        cmd.Parameters.AddWithValue("@userid", userid);
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
                 }
+                else
+                {
+                    string updateToActiveQuery = "UPDATE users SET status = 'ACTIVE' WHERE userid = @userid";
+                    using (MySqlCommand cmd = new MySqlCommand(updateToActiveQuery, Instance.connection))
+                    {
+                        cmd.Parameters.AddWithValue("@userid", userid);
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+
             }
 
+            public static string GetUserStatus(long userid)
+            {
+                string query = "SELECT status FROM users WHERE userid = @userid";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@userid", userid);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return result.ToString();
+                    }
+
+                    return null;
+                }
+            }
 
             public static string GetUserAccType(string username, string password)
             {
@@ -162,7 +192,7 @@ namespace ClinicManagementSystem
 
             public static DataTable GetUsers()
             {
-                string query = "SELECT Username, accType AS AccountType FROM users WHERE status = 'active' AND accType <> 'admin'";
+                string query = "SELECT UserID, Username, accType AS AccountType, Status FROM users WHERE accType <> 'admin'";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
@@ -172,7 +202,7 @@ namespace ClinicManagementSystem
                 }
             }
 
-            
+
         }
 
         // TODO: database class and methods
