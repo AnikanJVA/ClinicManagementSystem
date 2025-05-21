@@ -69,10 +69,11 @@
             this.SelectPatientButton.ForeColor = System.Drawing.Color.White;
             this.SelectPatientButton.Location = new System.Drawing.Point(491, 33);
             this.SelectPatientButton.Name = "SelectPatientButton";
-            this.SelectPatientButton.Size = new System.Drawing.Size(137, 24);
+            this.SelectPatientButton.Size = new System.Drawing.Size(137, 26);
             this.SelectPatientButton.TabIndex = 2;
             this.SelectPatientButton.Text = "Select Patient";
             this.SelectPatientButton.UseVisualStyleBackColor = false;
+            this.SelectPatientButton.Click += new System.EventHandler(this.SelectPatientButton_Click);
             // 
             // label4
             // 
@@ -94,7 +95,7 @@
             this.SelectDoctorButton.ForeColor = System.Drawing.Color.White;
             this.SelectDoctorButton.Location = new System.Drawing.Point(491, 111);
             this.SelectDoctorButton.Name = "SelectDoctorButton";
-            this.SelectDoctorButton.Size = new System.Drawing.Size(137, 24);
+            this.SelectDoctorButton.Size = new System.Drawing.Size(137, 26);
             this.SelectDoctorButton.TabIndex = 7;
             this.SelectDoctorButton.Text = "Select Doctor";
             this.SelectDoctorButton.UseVisualStyleBackColor = false;
@@ -130,7 +131,7 @@
             this.AppointmentDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AppointmentDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.AppointmentDateTimePicker.Location = new System.Drawing.Point(199, 221);
-            this.AppointmentDateTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AppointmentDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
             this.AppointmentDateTimePicker.Name = "AppointmentDateTimePicker";
             this.AppointmentDateTimePicker.Size = new System.Drawing.Size(277, 26);
             this.AppointmentDateTimePicker.TabIndex = 15;
@@ -234,7 +235,7 @@
             this.SelectServiceButton.ForeColor = System.Drawing.Color.White;
             this.SelectServiceButton.Location = new System.Drawing.Point(491, 184);
             this.SelectServiceButton.Name = "SelectServiceButton";
-            this.SelectServiceButton.Size = new System.Drawing.Size(137, 24);
+            this.SelectServiceButton.Size = new System.Drawing.Size(137, 26);
             this.SelectServiceButton.TabIndex = 7;
             this.SelectServiceButton.Text = "Select Service";
             this.SelectServiceButton.UseVisualStyleBackColor = false;

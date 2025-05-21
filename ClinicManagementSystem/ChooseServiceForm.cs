@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClinicManagementSystem
+namespace ChooseServiceForm
 {
-    public partial class ChoosePatientsForm : Form
+    public partial class ChooseServiceForm : Form
     {
-        public ChoosePatientsForm()
+        public ChooseServiceForm()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

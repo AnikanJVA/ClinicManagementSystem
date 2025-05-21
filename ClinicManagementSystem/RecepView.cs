@@ -29,13 +29,17 @@ namespace ClinicManagementSystem
             createAppointmentButton.Show();
             updateApointmentButton.Show();
 
-            DoctorTabControl.Hide();
-            RegisterDoctorButton.Hide();
-            UpdateDoctorButton.Hide();
+            PatientsTabControl.Hide();
+            RegisterPatientButton.Hide();
+            UpdatePatientButton.Hide();
+            SearchPatientButton.Hide();
 
             billingDataGridView.Hide();
             createBillButton.Hide();
 
+            DoctorTabControl.Hide();
+            RegisterDoctorButton.Hide();
+            UpdateDoctorButton.Hide();
         }
 
         private void BillingButton_Click(object sender, EventArgs e)
@@ -49,12 +53,17 @@ namespace ClinicManagementSystem
             createAppointmentButton.Hide();
             updateApointmentButton.Hide();
 
-            DoctorTabControl.Hide();
-            RegisterDoctorButton.Hide();
-            UpdateDoctorButton.Hide();
+            PatientsTabControl.Hide();
+            RegisterPatientButton.Hide();
+            UpdatePatientButton.Hide();
+            SearchPatientButton.Hide();
 
             billingDataGridView.Show();
             createBillButton.Show();
+
+            DoctorTabControl.Hide();
+            RegisterDoctorButton.Hide();
+            UpdateDoctorButton.Hide();
         }
 
         private void DoctorsButton_Click(object sender, EventArgs e)
@@ -68,12 +77,17 @@ namespace ClinicManagementSystem
             createAppointmentButton.Hide();
             updateApointmentButton.Hide();
 
-            DoctorTabControl.Show();
-            RegisterDoctorButton.Show();
-            UpdateDoctorButton.Show();
+            PatientsTabControl.Hide();
+            RegisterPatientButton.Hide();
+            UpdatePatientButton.Hide();
+            SearchPatientButton.Hide();
 
             billingDataGridView.Hide();
             createBillButton.Hide();
+
+            DoctorTabControl.Show();
+            RegisterDoctorButton.Show();
+            UpdateDoctorButton.Show();
         } 
         
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -94,12 +108,17 @@ namespace ClinicManagementSystem
             createAppointmentButton.Hide();
             updateApointmentButton.Hide();
 
-            DoctorTabControl.Hide();
-            RegisterDoctorButton.Hide();
-            UpdateDoctorButton.Hide();
+            PatientsTabControl.Show();
+            RegisterPatientButton.Show();
+            UpdatePatientButton.Show();
+            SearchPatientButton.Show();
 
             billingDataGridView.Hide();
             createBillButton.Hide();
+
+            DoctorTabControl.Hide();
+            RegisterDoctorButton.Hide();
+            UpdateDoctorButton.Hide();
         }
 
         private void RegisterDoctorButton_Click(object sender, EventArgs e)
@@ -126,6 +145,11 @@ namespace ClinicManagementSystem
         {
             Database.Instance.Connection.Close();
             FormProvider.Login.Show();
+        }
+
+        private void RegisterPatientButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -24,5 +24,11 @@ namespace ClinicManagementSystem
         {
             this.Close();
         }
+
+        private void SelectPatientButton_Click(object sender, EventArgs e)
+        {
+            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm();
+            choosePatientsForm.ShowDialog();
+        }
     }
 }
