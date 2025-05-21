@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.SplitContainer = new System.Windows.Forms.SplitContainer();
+            this.AccountTypelabel = new System.Windows.Forms.Label();
             this.LogoutButton = new System.Windows.Forms.Button();
             this.DoctorsButton = new System.Windows.Forms.Button();
             this.BillingButton = new System.Windows.Forms.Button();
@@ -53,7 +54,6 @@
             this.InactiveDoctorTab = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.RegisterDoctorButton = new System.Windows.Forms.Button();
-            this.AccountTypelabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
@@ -105,6 +105,20 @@
             this.SplitContainer.Size = new System.Drawing.Size(1264, 681);
             this.SplitContainer.SplitterDistance = 282;
             this.SplitContainer.TabIndex = 0;
+            // 
+            // AccountTypelabel
+            // 
+            this.AccountTypelabel.AutoSize = true;
+            this.AccountTypelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.AccountTypelabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AccountTypelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.AccountTypelabel.ForeColor = System.Drawing.Color.White;
+            this.AccountTypelabel.Location = new System.Drawing.Point(63, 12);
+            this.AccountTypelabel.Name = "AccountTypelabel";
+            this.AccountTypelabel.Size = new System.Drawing.Size(149, 31);
+            this.AccountTypelabel.TabIndex = 0;
+            this.AccountTypelabel.Text = "Receptionist";
+            this.AccountTypelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LogoutButton
             // 
@@ -416,20 +430,6 @@
             this.RegisterDoctorButton.Visible = false;
             this.RegisterDoctorButton.Click += new System.EventHandler(this.RegisterDoctorButton_Click);
             // 
-            // AccountTypelabel
-            // 
-            this.AccountTypelabel.AutoSize = true;
-            this.AccountTypelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.AccountTypelabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AccountTypelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.AccountTypelabel.ForeColor = System.Drawing.Color.White;
-            this.AccountTypelabel.Location = new System.Drawing.Point(63, 12);
-            this.AccountTypelabel.Name = "AccountTypelabel";
-            this.AccountTypelabel.Size = new System.Drawing.Size(149, 31);
-            this.AccountTypelabel.TabIndex = 0;
-            this.AccountTypelabel.Text = "Receptionist";
-            this.AccountTypelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // RecepView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,6 +441,7 @@
             this.Name = "RecepView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DENTAL CLINIC";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RecepView_FormClosed);
             this.SplitContainer.Panel1.ResumeLayout(false);
             this.SplitContainer.Panel1.PerformLayout();
             this.SplitContainer.Panel2.ResumeLayout(false);

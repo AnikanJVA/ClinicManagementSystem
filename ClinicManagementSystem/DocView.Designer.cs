@@ -255,6 +255,7 @@
             this.Name = "DocView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DENTAL CLINIC";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DocView_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

@@ -15,27 +15,10 @@ namespace ClinicManagementSystem
         public CreateAppointmentForm()
         {
             InitializeComponent();
+            AppointmentDateTimePicker.Format = DateTimePickerFormat.Custom;
+            AppointmentDateTimePicker.CustomFormat = "  MM '/' dd '/' yyyy  hh':'mm tt";
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {

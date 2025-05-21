@@ -210,7 +210,7 @@
             // liscenseNoTextBox
             // 
             this.liscenseNoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.liscenseNoTextBox.Location = new System.Drawing.Point(617, 175);
+            this.liscenseNoTextBox.Location = new System.Drawing.Point(617, 172);
             this.liscenseNoTextBox.Name = "liscenseNoTextBox";
             this.liscenseNoTextBox.Size = new System.Drawing.Size(306, 26);
             this.liscenseNoTextBox.TabIndex = 14;

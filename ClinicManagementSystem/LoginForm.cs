@@ -42,19 +42,25 @@ namespace ClinicManagementSystem
                         case "ADMIN":
                             AdminForm adminForm = new AdminForm();
                             adminForm.Show();
-                            this.Hide();
+                            FormProvider.Login.Hide();
+                            UsernameTextBox.Clear();
+                            PasswordTextBox.Clear();
                             break;
 
                         case "DOCTOR":
                             DocView docView = new DocView();
                             docView.Show();
-                            this.Hide();
+                            FormProvider.Login.Hide();
+                            UsernameTextBox.Clear();
+                            PasswordTextBox.Clear();
                             break;
 
                         case "RECEPTIONIST":
                             RecepView recepView = new RecepView();
                             recepView.Show();
-                            this.Hide();
+                            FormProvider.Login.Hide();
+                            UsernameTextBox.Clear();
+                            PasswordTextBox.Clear();
                             break;
                     }
                 }

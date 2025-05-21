@@ -41,10 +41,15 @@ namespace ClinicManagementSystem
 
         private void LogoutButton_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
             Database.Instance.Connection.Close();
-            loginForm.Show();
+            FormProvider.Login.Show();
             this.Close();
+        }
+
+        private void DocView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Database.Instance.Connection.Close();
+            FormProvider.Login.Show();
         }
     }
 }
