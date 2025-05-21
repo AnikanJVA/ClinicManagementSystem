@@ -207,10 +207,36 @@ namespace ClinicManagementSystem
                     return table;
                 }
             }
-            
-            public static DataTable GetPatients()
+
+            public static DataTable GetPatients(string status)
             {
-                string query = "SELECT ";
+                string query;
+                if (status.Equals("ACTIVE"))
+                {
+                    query = "SELECT * FROM patients WHERE status = @status";
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@status", status);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+                else if (status.Equals("INACTIVE"))
+                {
+                    query = "SELECT * FROM patients WHERE status = @status";
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@status", status);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+
+                query = "SELECT * FROM patients";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
@@ -219,7 +245,6 @@ namespace ClinicManagementSystem
                     return table;
                 }
             }
-
         }
         // TODO: database class and methods
     }

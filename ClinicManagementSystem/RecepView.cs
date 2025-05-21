@@ -119,6 +119,10 @@ namespace ClinicManagementSystem
             Doctor_TabControl.Hide();
             Doctors_RegisterButton.Hide();
             Doctors_UpdateButton.Hide();
+
+            Patients_AllDataGridView.DataSource = Database.GetPatients("");
+            Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
+            Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
         }
 
         private void RegisterDoctorButton_Click(object sender, EventArgs e)
