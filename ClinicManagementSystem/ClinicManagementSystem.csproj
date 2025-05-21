@@ -147,6 +147,12 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegisterPatientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterPatientForm.Designer.cs">
+      <DependentUpon>RegisterPatientForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateMedicineForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterDoctorForm.resx">
       <DependentUpon>RegisterDoctorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterPatientForm.resx">
+      <DependentUpon>RegisterPatientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateMedicineForm.resx">
       <DependentUpon>UpdateMedicineForm.cs</DependentUpon>

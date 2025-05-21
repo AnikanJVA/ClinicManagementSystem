@@ -207,10 +207,20 @@ namespace ClinicManagementSystem
                     return table;
                 }
             }
-
+            
+            public static DataTable GetPatients()
+            {
+                string query = "SELECT ";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
 
         }
-
         // TODO: database class and methods
     }
 }

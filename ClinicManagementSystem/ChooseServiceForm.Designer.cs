@@ -192,7 +192,7 @@
             this.Controls.Add(this.SelectService);
             this.Controls.Add(this.panel1);
             this.Name = "ChooseServiceForm";
-            this.Text = "Form1";
+            this.Text = "Choose Service";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ServiceTable)).EndInit();
