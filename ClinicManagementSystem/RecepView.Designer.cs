@@ -42,19 +42,6 @@
             this.Appointments_CreateButton = new System.Windows.Forms.Button();
             this.Apointments_UpdateButton = new System.Windows.Forms.Button();
             this.Doctors_RegisterButton = new System.Windows.Forms.Button();
-            this.Patients_TabControl = new System.Windows.Forms.TabControl();
-            this.Patients_AllTab = new System.Windows.Forms.TabPage();
-            this.Patients_AllDataGridView = new System.Windows.Forms.DataGridView();
-            this.Patients_ActiveTab = new System.Windows.Forms.TabPage();
-            this.Patients_InactiveTab = new System.Windows.Forms.TabPage();
-            this.Billing_DataGridView = new System.Windows.Forms.DataGridView();
-            this.Appointments_TabControl = new System.Windows.Forms.TabControl();
-            this.Appointments_ApprovedTab = new System.Windows.Forms.TabPage();
-            this.Appointments_ApprovedDataGridView = new System.Windows.Forms.DataGridView();
-            this.Appointments_PendingTab = new System.Windows.Forms.TabPage();
-            this.Appointments_RescheduledTab = new System.Windows.Forms.TabPage();
-            this.Appointments_CanceledTab = new System.Windows.Forms.TabPage();
-            this.Appointments_FinishedTab = new System.Windows.Forms.TabPage();
             this.Doctor_TabControl = new System.Windows.Forms.TabControl();
             this.Doctors_AllTab = new System.Windows.Forms.TabPage();
             this.Doctors_AllDataGridView = new System.Windows.Forms.DataGridView();
@@ -62,28 +49,41 @@
             this.Doctors_UnavailableTab = new System.Windows.Forms.TabPage();
             this.Doctors_InactiveTab = new System.Windows.Forms.TabPage();
             this.Billing_CreateButton = new System.Windows.Forms.Button();
+            this.Patients_TabControl = new System.Windows.Forms.TabControl();
+            this.Patients_AllTab = new System.Windows.Forms.TabPage();
+            this.Patients_AllDataGridView = new System.Windows.Forms.DataGridView();
+            this.Patients_ActiveTab = new System.Windows.Forms.TabPage();
             this.Patients_ActiveDataGridView = new System.Windows.Forms.DataGridView();
+            this.Patients_InactiveTab = new System.Windows.Forms.TabPage();
             this.Patients_InactiveDataGridView = new System.Windows.Forms.DataGridView();
+            this.Billing_DataGridView = new System.Windows.Forms.DataGridView();
+            this.Appointments_TabControl = new System.Windows.Forms.TabControl();
+            this.Appointments_ApprovedTab = new System.Windows.Forms.TabPage();
+            this.Appointments_ApprovedDataGridView = new System.Windows.Forms.DataGridView();
+            this.Appointments_PendingTab = new System.Windows.Forms.TabPage();
             this.Appointments_PendingDataGridView = new System.Windows.Forms.DataGridView();
+            this.Appointments_RescheduledTab = new System.Windows.Forms.TabPage();
+            this.Appointments_CanceledTab = new System.Windows.Forms.TabPage();
+            this.Appointments_FinishedTab = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
+            this.Doctor_TabControl.SuspendLayout();
+            this.Doctors_AllTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Doctors_AllDataGridView)).BeginInit();
             this.Patients_TabControl.SuspendLayout();
             this.Patients_AllTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Patients_AllDataGridView)).BeginInit();
             this.Patients_ActiveTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_ActiveDataGridView)).BeginInit();
             this.Patients_InactiveTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Billing_DataGridView)).BeginInit();
             this.Appointments_TabControl.SuspendLayout();
             this.Appointments_ApprovedTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_ApprovedDataGridView)).BeginInit();
             this.Appointments_PendingTab.SuspendLayout();
-            this.Doctor_TabControl.SuspendLayout();
-            this.Doctors_AllTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Doctors_AllDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_ActiveDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_PendingDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -345,6 +345,92 @@
             this.Doctors_RegisterButton.Visible = false;
             this.Doctors_RegisterButton.Click += new System.EventHandler(this.RegisterDoctorButton_Click);
             // 
+            // Doctor_TabControl
+            // 
+            this.Doctor_TabControl.Controls.Add(this.Doctors_AllTab);
+            this.Doctor_TabControl.Controls.Add(this.Doctors_ActiveTab);
+            this.Doctor_TabControl.Controls.Add(this.Doctors_UnavailableTab);
+            this.Doctor_TabControl.Controls.Add(this.Doctors_InactiveTab);
+            this.Doctor_TabControl.Location = new System.Drawing.Point(36, 12);
+            this.Doctor_TabControl.Name = "Doctor_TabControl";
+            this.Doctor_TabControl.SelectedIndex = 0;
+            this.Doctor_TabControl.Size = new System.Drawing.Size(890, 536);
+            this.Doctor_TabControl.TabIndex = 12;
+            this.Doctor_TabControl.Visible = false;
+            // 
+            // Doctors_AllTab
+            // 
+            this.Doctors_AllTab.Controls.Add(this.Doctors_AllDataGridView);
+            this.Doctors_AllTab.Location = new System.Drawing.Point(4, 22);
+            this.Doctors_AllTab.Name = "Doctors_AllTab";
+            this.Doctors_AllTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Doctors_AllTab.Size = new System.Drawing.Size(882, 510);
+            this.Doctors_AllTab.TabIndex = 0;
+            this.Doctors_AllTab.Text = "All";
+            this.Doctors_AllTab.UseVisualStyleBackColor = true;
+            // 
+            // Doctors_AllDataGridView
+            // 
+            this.Doctors_AllDataGridView.AllowUserToAddRows = false;
+            this.Doctors_AllDataGridView.AllowUserToDeleteRows = false;
+            this.Doctors_AllDataGridView.AllowUserToResizeColumns = false;
+            this.Doctors_AllDataGridView.AllowUserToResizeRows = false;
+            this.Doctors_AllDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Doctors_AllDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Doctors_AllDataGridView.Location = new System.Drawing.Point(1, 1);
+            this.Doctors_AllDataGridView.Name = "Doctors_AllDataGridView";
+            this.Doctors_AllDataGridView.ReadOnly = true;
+            this.Doctors_AllDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Doctors_AllDataGridView.TabIndex = 0;
+            // 
+            // Doctors_ActiveTab
+            // 
+            this.Doctors_ActiveTab.Location = new System.Drawing.Point(4, 22);
+            this.Doctors_ActiveTab.Name = "Doctors_ActiveTab";
+            this.Doctors_ActiveTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Doctors_ActiveTab.Size = new System.Drawing.Size(882, 510);
+            this.Doctors_ActiveTab.TabIndex = 1;
+            this.Doctors_ActiveTab.Text = "Active";
+            this.Doctors_ActiveTab.UseVisualStyleBackColor = true;
+            // 
+            // Doctors_UnavailableTab
+            // 
+            this.Doctors_UnavailableTab.Location = new System.Drawing.Point(4, 22);
+            this.Doctors_UnavailableTab.Name = "Doctors_UnavailableTab";
+            this.Doctors_UnavailableTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Doctors_UnavailableTab.Size = new System.Drawing.Size(882, 510);
+            this.Doctors_UnavailableTab.TabIndex = 2;
+            this.Doctors_UnavailableTab.Text = "Unavailable";
+            this.Doctors_UnavailableTab.UseVisualStyleBackColor = true;
+            // 
+            // Doctors_InactiveTab
+            // 
+            this.Doctors_InactiveTab.Location = new System.Drawing.Point(4, 22);
+            this.Doctors_InactiveTab.Name = "Doctors_InactiveTab";
+            this.Doctors_InactiveTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Doctors_InactiveTab.Size = new System.Drawing.Size(882, 510);
+            this.Doctors_InactiveTab.TabIndex = 3;
+            this.Doctors_InactiveTab.Text = "Inactive";
+            this.Doctors_InactiveTab.UseVisualStyleBackColor = true;
+            // 
+            // Billing_CreateButton
+            // 
+            this.Billing_CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Billing_CreateButton.FlatAppearance.BorderSize = 0;
+            this.Billing_CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Billing_CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Billing_CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Billing_CreateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Billing_CreateButton.ForeColor = System.Drawing.Color.White;
+            this.Billing_CreateButton.Location = new System.Drawing.Point(271, 578);
+            this.Billing_CreateButton.Name = "Billing_CreateButton";
+            this.Billing_CreateButton.Size = new System.Drawing.Size(410, 66);
+            this.Billing_CreateButton.TabIndex = 10;
+            this.Billing_CreateButton.Text = "Create Bill";
+            this.Billing_CreateButton.UseVisualStyleBackColor = false;
+            this.Billing_CreateButton.Visible = false;
+            this.Billing_CreateButton.Click += new System.EventHandler(this.createBillButton_Click);
+            // 
             // Patients_TabControl
             // 
             this.Patients_TabControl.Controls.Add(this.Patients_AllTab);
@@ -394,6 +480,21 @@
             this.Patients_ActiveTab.Text = "Active";
             this.Patients_ActiveTab.UseVisualStyleBackColor = true;
             // 
+            // Patients_ActiveDataGridView
+            // 
+            this.Patients_ActiveDataGridView.AllowUserToAddRows = false;
+            this.Patients_ActiveDataGridView.AllowUserToDeleteRows = false;
+            this.Patients_ActiveDataGridView.AllowUserToResizeColumns = false;
+            this.Patients_ActiveDataGridView.AllowUserToResizeRows = false;
+            this.Patients_ActiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Patients_ActiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Patients_ActiveDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Patients_ActiveDataGridView.Name = "Patients_ActiveDataGridView";
+            this.Patients_ActiveDataGridView.ReadOnly = true;
+            this.Patients_ActiveDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.Patients_ActiveDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Patients_ActiveDataGridView.TabIndex = 1;
+            // 
             // Patients_InactiveTab
             // 
             this.Patients_InactiveTab.Controls.Add(this.Patients_InactiveDataGridView);
@@ -404,6 +505,21 @@
             this.Patients_InactiveTab.TabIndex = 2;
             this.Patients_InactiveTab.Text = "Inactive";
             this.Patients_InactiveTab.UseVisualStyleBackColor = true;
+            // 
+            // Patients_InactiveDataGridView
+            // 
+            this.Patients_InactiveDataGridView.AllowUserToAddRows = false;
+            this.Patients_InactiveDataGridView.AllowUserToDeleteRows = false;
+            this.Patients_InactiveDataGridView.AllowUserToResizeColumns = false;
+            this.Patients_InactiveDataGridView.AllowUserToResizeRows = false;
+            this.Patients_InactiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Patients_InactiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Patients_InactiveDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Patients_InactiveDataGridView.Name = "Patients_InactiveDataGridView";
+            this.Patients_InactiveDataGridView.ReadOnly = true;
+            this.Patients_InactiveDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.Patients_InactiveDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Patients_InactiveDataGridView.TabIndex = 2;
             // 
             // Billing_DataGridView
             // 
@@ -457,6 +573,14 @@
             this.Appointments_PendingTab.Text = "Pending";
             this.Appointments_PendingTab.UseVisualStyleBackColor = true;
             // 
+            // Appointments_PendingDataGridView
+            // 
+            this.Appointments_PendingDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Appointments_PendingDataGridView.Location = new System.Drawing.Point(0, 1);
+            this.Appointments_PendingDataGridView.Name = "Appointments_PendingDataGridView";
+            this.Appointments_PendingDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Appointments_PendingDataGridView.TabIndex = 1;
+            // 
             // Appointments_RescheduledTab
             // 
             this.Appointments_RescheduledTab.Location = new System.Drawing.Point(4, 22);
@@ -487,124 +611,6 @@
             this.Appointments_FinishedTab.Text = "Finished";
             this.Appointments_FinishedTab.UseVisualStyleBackColor = true;
             // 
-            // Doctor_TabControl
-            // 
-            this.Doctor_TabControl.Controls.Add(this.Doctors_AllTab);
-            this.Doctor_TabControl.Controls.Add(this.Doctors_ActiveTab);
-            this.Doctor_TabControl.Controls.Add(this.Doctors_UnavailableTab);
-            this.Doctor_TabControl.Controls.Add(this.Doctors_InactiveTab);
-            this.Doctor_TabControl.Location = new System.Drawing.Point(36, 12);
-            this.Doctor_TabControl.Name = "Doctor_TabControl";
-            this.Doctor_TabControl.SelectedIndex = 0;
-            this.Doctor_TabControl.Size = new System.Drawing.Size(890, 536);
-            this.Doctor_TabControl.TabIndex = 12;
-            this.Doctor_TabControl.Visible = false;
-            // 
-            // Doctors_AllTab
-            // 
-            this.Doctors_AllTab.Controls.Add(this.Doctors_AllDataGridView);
-            this.Doctors_AllTab.Location = new System.Drawing.Point(4, 22);
-            this.Doctors_AllTab.Name = "Doctors_AllTab";
-            this.Doctors_AllTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Doctors_AllTab.Size = new System.Drawing.Size(882, 510);
-            this.Doctors_AllTab.TabIndex = 0;
-            this.Doctors_AllTab.Text = "All";
-            this.Doctors_AllTab.UseVisualStyleBackColor = true;
-            // 
-            // Doctors_AllDataGridView
-            // 
-            this.Doctors_AllDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Doctors_AllDataGridView.Location = new System.Drawing.Point(1, 1);
-            this.Doctors_AllDataGridView.Name = "Doctors_AllDataGridView";
-            this.Doctors_AllDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Doctors_AllDataGridView.TabIndex = 0;
-            // 
-            // Doctors_ActiveTab
-            // 
-            this.Doctors_ActiveTab.Location = new System.Drawing.Point(4, 22);
-            this.Doctors_ActiveTab.Name = "Doctors_ActiveTab";
-            this.Doctors_ActiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Doctors_ActiveTab.Size = new System.Drawing.Size(882, 510);
-            this.Doctors_ActiveTab.TabIndex = 1;
-            this.Doctors_ActiveTab.Text = "Active";
-            this.Doctors_ActiveTab.UseVisualStyleBackColor = true;
-            // 
-            // Doctors_UnavailableTab
-            // 
-            this.Doctors_UnavailableTab.Location = new System.Drawing.Point(4, 22);
-            this.Doctors_UnavailableTab.Name = "Doctors_UnavailableTab";
-            this.Doctors_UnavailableTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Doctors_UnavailableTab.Size = new System.Drawing.Size(882, 510);
-            this.Doctors_UnavailableTab.TabIndex = 2;
-            this.Doctors_UnavailableTab.Text = "Unavailable";
-            this.Doctors_UnavailableTab.UseVisualStyleBackColor = true;
-            // 
-            // Doctors_InactiveTab
-            // 
-            this.Doctors_InactiveTab.Location = new System.Drawing.Point(4, 22);
-            this.Doctors_InactiveTab.Name = "Doctors_InactiveTab";
-            this.Doctors_InactiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Doctors_InactiveTab.Size = new System.Drawing.Size(882, 510);
-            this.Doctors_InactiveTab.TabIndex = 3;
-            this.Doctors_InactiveTab.Text = "Inactive";
-            this.Doctors_InactiveTab.UseVisualStyleBackColor = true;
-            // 
-            // Billing_CreateButton
-            // 
-            this.Billing_CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Billing_CreateButton.FlatAppearance.BorderSize = 0;
-            this.Billing_CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Billing_CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Billing_CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Billing_CreateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Billing_CreateButton.ForeColor = System.Drawing.Color.White;
-            this.Billing_CreateButton.Location = new System.Drawing.Point(271, 578);
-            this.Billing_CreateButton.Name = "Billing_CreateButton";
-            this.Billing_CreateButton.Size = new System.Drawing.Size(410, 66);
-            this.Billing_CreateButton.TabIndex = 10;
-            this.Billing_CreateButton.Text = "Create Bill";
-            this.Billing_CreateButton.UseVisualStyleBackColor = false;
-            this.Billing_CreateButton.Visible = false;
-            this.Billing_CreateButton.Click += new System.EventHandler(this.createBillButton_Click);
-            // 
-            // Patients_ActiveDataGridView
-            // 
-            this.Patients_ActiveDataGridView.AllowUserToAddRows = false;
-            this.Patients_ActiveDataGridView.AllowUserToDeleteRows = false;
-            this.Patients_ActiveDataGridView.AllowUserToResizeColumns = false;
-            this.Patients_ActiveDataGridView.AllowUserToResizeRows = false;
-            this.Patients_ActiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Patients_ActiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Patients_ActiveDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Patients_ActiveDataGridView.Name = "Patients_ActiveDataGridView";
-            this.Patients_ActiveDataGridView.ReadOnly = true;
-            this.Patients_ActiveDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.Patients_ActiveDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Patients_ActiveDataGridView.TabIndex = 1;
-            // 
-            // Patients_InactiveDataGridView
-            // 
-            this.Patients_InactiveDataGridView.AllowUserToAddRows = false;
-            this.Patients_InactiveDataGridView.AllowUserToDeleteRows = false;
-            this.Patients_InactiveDataGridView.AllowUserToResizeColumns = false;
-            this.Patients_InactiveDataGridView.AllowUserToResizeRows = false;
-            this.Patients_InactiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Patients_InactiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Patients_InactiveDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Patients_InactiveDataGridView.Name = "Patients_InactiveDataGridView";
-            this.Patients_InactiveDataGridView.ReadOnly = true;
-            this.Patients_InactiveDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.Patients_InactiveDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Patients_InactiveDataGridView.TabIndex = 2;
-            // 
-            // Appointments_PendingDataGridView
-            // 
-            this.Appointments_PendingDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Appointments_PendingDataGridView.Location = new System.Drawing.Point(0, 1);
-            this.Appointments_PendingDataGridView.Name = "Appointments_PendingDataGridView";
-            this.Appointments_PendingDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_PendingDataGridView.TabIndex = 1;
-            // 
             // RecepView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -622,21 +628,21 @@
             this.SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
+            this.Doctor_TabControl.ResumeLayout(false);
+            this.Doctors_AllTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Doctors_AllDataGridView)).EndInit();
             this.Patients_TabControl.ResumeLayout(false);
             this.Patients_AllTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Patients_AllDataGridView)).EndInit();
             this.Patients_ActiveTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_ActiveDataGridView)).EndInit();
             this.Patients_InactiveTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Billing_DataGridView)).EndInit();
             this.Appointments_TabControl.ResumeLayout(false);
             this.Appointments_ApprovedTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_ApprovedDataGridView)).EndInit();
             this.Appointments_PendingTab.ResumeLayout(false);
-            this.Doctor_TabControl.ResumeLayout(false);
-            this.Doctors_AllTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Doctors_AllDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_ActiveDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_PendingDataGridView)).EndInit();
             this.ResumeLayout(false);
 

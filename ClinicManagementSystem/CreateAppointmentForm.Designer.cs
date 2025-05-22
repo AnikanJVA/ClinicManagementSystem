@@ -138,41 +138,51 @@
             // 
             // ServiceTextBox
             // 
+            this.ServiceTextBox.Enabled = false;
             this.ServiceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ServiceTextBox.Location = new System.Drawing.Point(199, 184);
             this.ServiceTextBox.Name = "ServiceTextBox";
+            this.ServiceTextBox.ReadOnly = true;
             this.ServiceTextBox.Size = new System.Drawing.Size(277, 26);
             this.ServiceTextBox.TabIndex = 14;
             // 
             // DoctorNameTextBox
             // 
+            this.DoctorNameTextBox.Enabled = false;
             this.DoctorNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DoctorNameTextBox.Location = new System.Drawing.Point(199, 145);
             this.DoctorNameTextBox.Name = "DoctorNameTextBox";
+            this.DoctorNameTextBox.ReadOnly = true;
             this.DoctorNameTextBox.Size = new System.Drawing.Size(277, 26);
             this.DoctorNameTextBox.TabIndex = 14;
             // 
             // DoctorIdTextBox
             // 
+            this.DoctorIdTextBox.Enabled = false;
             this.DoctorIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DoctorIdTextBox.Location = new System.Drawing.Point(199, 109);
             this.DoctorIdTextBox.Name = "DoctorIdTextBox";
+            this.DoctorIdTextBox.ReadOnly = true;
             this.DoctorIdTextBox.Size = new System.Drawing.Size(277, 26);
             this.DoctorIdTextBox.TabIndex = 14;
             // 
             // PatientNameTextBox
             // 
+            this.PatientNameTextBox.Enabled = false;
             this.PatientNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PatientNameTextBox.Location = new System.Drawing.Point(199, 70);
             this.PatientNameTextBox.Name = "PatientNameTextBox";
+            this.PatientNameTextBox.ReadOnly = true;
             this.PatientNameTextBox.Size = new System.Drawing.Size(277, 26);
             this.PatientNameTextBox.TabIndex = 14;
             // 
             // PatientIdTextBox
             // 
+            this.PatientIdTextBox.Enabled = false;
             this.PatientIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PatientIdTextBox.Location = new System.Drawing.Point(199, 33);
             this.PatientIdTextBox.Name = "PatientIdTextBox";
+            this.PatientIdTextBox.ReadOnly = true;
             this.PatientIdTextBox.Size = new System.Drawing.Size(277, 26);
             this.PatientIdTextBox.TabIndex = 13;
             // 
@@ -269,7 +279,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
             this.ClientSize = new System.Drawing.Size(689, 353);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "CreateAppointmentForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

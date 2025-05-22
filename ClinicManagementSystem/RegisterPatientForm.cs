@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
@@ -16,17 +17,73 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             DoBDateTimePicker.Format = DateTimePickerFormat.Custom;
-            DoBDateTimePicker.CustomFormat = "MMMM '/' dd '/' yyyy";
+            DoBDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd";
+            keyPressHandler();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        public void textOnly(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsLetter(e.KeyChar) &&
+                e.KeyChar != '-' &&
+                e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void numOnly(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void keyPressHandler()
+        {
+            LnameTextBox.KeyPress += textOnly;
+            FnameTextBox.KeyPress += textOnly;
+            MnameTextBox.KeyPress += textOnly;
+
+            ContactNoTextBox.KeyPress += numOnly;
+            AltContactNumberTextBox.KeyPress += numOnly;
+        }
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            
+            char sex;
+            if (string.IsNullOrWhiteSpace(FnameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(MnameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(LnameTextBox.Text) ||
+                !MaleRadioButton.Checked && !FemaleRadioButton.Checked ||
+                string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
+                string.IsNullOrWhiteSpace(AltContactNumberTextBox.Text) ||
+                string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
+                string.IsNullOrWhiteSpace(AddressTextBox.Text))
+            {
+                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                sex = MaleRadioButton.Checked ? 'M' : 'F';
+                if (Database.AddPatient(FnameTextBox.Text, MnameTextBox.Text, LnameTextBox.Text, DoBDateTimePicker.Text, sex,
+                                        ContactNoTextBox.Text, AltContactNumberTextBox.Text, EmailTextBox.Text, AddressTextBox.Text))
+                {
+                    MessageBox.Show("Patient registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else 
+                {
+                    MessageBox.Show("Error!\nDupplicate patient detected.\nPatient not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

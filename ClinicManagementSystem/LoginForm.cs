@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -101,22 +102,24 @@ namespace ClinicManagementSystem
 
             public static bool AuthenticateUser(string username, string password)
             {
-                string query = "SELECT COUNT(*) FROM users WHERE username = @username AND password = SHA2(@password, 256) AND status = 'ACTIVE'";
+                string query = "SELECT COUNT(*) FROM users WHERE username = @username AND password = SHA2(@password, 256) AND status = @status";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@status", "ACTIVE");
                     return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
                 }
             }
 
             public static bool AddUser(string username, string password, string accType)
             {
-                string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username AND accType = @accType AND status = 'ACTIVE'";
+                string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username AND accType = @accType AND status = @status";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
                     checkCmd.Parameters.AddWithValue("@username", username);
                     checkCmd.Parameters.AddWithValue("@accType", accType);
+                    checkCmd.Parameters.AddWithValue("@status", "ACTIVE");
                     if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
                     {
                         return false;
@@ -128,6 +131,39 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
                     cmd.Parameters.AddWithValue("@accType", accType);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
+            public static bool AddPatient(string firstName, string middleName, string lastName, string dob, char sex,
+                                          string contactNumber, string altContactNumber, string emailAddresss, string address)
+            {
+                string checkQuery = "SELECT COUNT(*) FROM patients WHERE firstName = @firstName AND middleName = @middleName " + 
+                                    "AND lastName = @lastName AND emailAddress = @emailAddress";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@firstName", firstName);
+                    checkCmd.Parameters.AddWithValue("@middleName", middleName);
+                    checkCmd.Parameters.AddWithValue("@lastName", lastName);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddresss);
+                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
+                    {
+                        return false;
+                    }
+                }
+                string insertQuery = "INSERT INTO patients (firstName, middleName, lastName, DoB, sex, contactNumber, altContactNumber, emailAddress, address) " + 
+                                     "VALUES (@firstName, @middleName, @lastName, @dob, @sex, @contactNumber, @altContactNumber, @emailAddress, @address)";
+                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@middleName", middleName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@dob", dob);
+                    cmd.Parameters.AddWithValue("@sex", sex);
+                    cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                    cmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                    cmd.Parameters.AddWithValue("@emailAddress", emailAddresss);
+                    cmd.Parameters.AddWithValue("@address", address);
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
@@ -213,7 +249,7 @@ namespace ClinicManagementSystem
                 string query;
                 if (status.Equals("ACTIVE"))
                 {
-                    query = "SELECT * FROM patients WHERE status = @status";
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients WHERE status = @status";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -225,7 +261,7 @@ namespace ClinicManagementSystem
                 }
                 else if (status.Equals("INACTIVE"))
                 {
-                    query = "SELECT * FROM patients WHERE status = @status";
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients WHERE status = @status";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -236,7 +272,7 @@ namespace ClinicManagementSystem
                     }
                 }
 
-                query = "SELECT * FROM patients";
+                query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
@@ -245,7 +281,70 @@ namespace ClinicManagementSystem
                     return table;
                 }
             }
+
+            public static DataTable GetSearchPatient(string searchType ,string fname, string mname, string lname)
+            {
+                /* search types:
+                 *   F = first name
+                 *   M = Middle name
+                 *   L = Last name
+                 */
+                string query;
+                searchType = searchType.ToUpper();
+                fname = "%" + fname.Trim() + "%";
+                mname = "%" + mname.Trim() + "%";
+                lname = "%" + lname.Trim() + "%";
+
+                if (searchType == "F")
+                {
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                            " FROM patients WHERE firstName LIKE @fname";
+                }
+                else if (searchType == "M")
+                {
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                            " FROM patients WHERE MiddleName LIKE @mname";
+                }
+                else if (searchType == "L")
+                {
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                            " FROM patients WHERE lastName LIKE @lname";
+                }
+                else if (searchType == "FM")
+                {
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                            " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname";
+                }
+                else if (searchType == "FL")
+                {
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                            " FROM patients WHERE firstName LIKE @fname AND lastName LIKE @lname";
+                }
+                else if (searchType == "ML")
+                {
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                            " FROM patients WHERE middleName LIKE @mname AND lastName LIKE @lname";
+                }
+                else // full name 
+                {
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                            " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname AND lastName LIKE @lname";
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@mname", mname);
+                    cmd.Parameters.AddWithValue("@lname", lname);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+
+            }
+
+            // RetrievePatient(long patientid) 
         }
-        // TODO: database class and methods
     }
 }

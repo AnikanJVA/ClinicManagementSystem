@@ -16,7 +16,7 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             AppointmentDateTimePicker.Format = DateTimePickerFormat.Custom;
-            AppointmentDateTimePicker.CustomFormat = "MM '/' dd '/' yyyy  hh':'mm tt";
+            AppointmentDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
         }
 
 

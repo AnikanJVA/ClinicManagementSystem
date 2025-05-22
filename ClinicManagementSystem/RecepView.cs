@@ -141,8 +141,6 @@ namespace ClinicManagementSystem
         {
             CreateAppointmentForm createAppointmentForm = new CreateAppointmentForm();
             createAppointmentForm.ShowDialog();
-            //ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm();
-            //choosePatientsForm.ShowDialog();
         }
 
         private void RecepView_FormClosed(object sender, FormClosedEventArgs e)
@@ -155,6 +153,9 @@ namespace ClinicManagementSystem
         {
             RegisterPatientForm registerPatientForm = new RegisterPatientForm();
             registerPatientForm.ShowDialog();
+            Patients_AllDataGridView.DataSource = Database.GetPatients("");
+            Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
+            Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
         }
     }
 }
