@@ -88,6 +88,10 @@ namespace ClinicManagementSystem
             Doctor_TabControl.Show();
             Doctors_RegisterButton.Show();
             Doctors_UpdateButton.Show();
+
+            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
+            Doctors_ActiveDataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
         } 
         
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -120,7 +124,7 @@ namespace ClinicManagementSystem
             Doctors_RegisterButton.Hide();
             Doctors_UpdateButton.Hide();
 
-            Patients_AllDataGridView.DataSource = Database.GetPatients("");
+            Patients_AllDataGridView.DataSource = Database.GetPatients("ALL");
             Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
             Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
         }
@@ -129,6 +133,9 @@ namespace ClinicManagementSystem
         {
             RegisterDoctorForm doctorDetailsForm = new RegisterDoctorForm();
             doctorDetailsForm.ShowDialog();
+            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
+            Doctors_ActiveDataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
         }
 
         private void createBillButton_Click(object sender, EventArgs e)
@@ -156,6 +163,11 @@ namespace ClinicManagementSystem
             Patients_AllDataGridView.DataSource = Database.GetPatients("");
             Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
             Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
+        }
+
+        private void Patients_SearchButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

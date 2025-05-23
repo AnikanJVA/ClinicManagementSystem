@@ -75,6 +75,8 @@ namespace ClinicManagementSystem
 
         public sealed class Database
         {
+            private long current_patientID, current_doctorID, current_serviceID;
+
             private static readonly Lazy<Database> instance = new Lazy<Database>(() => new Database());
             private MySqlConnection connection;
 
@@ -98,7 +100,6 @@ namespace ClinicManagementSystem
                     return connection;
                 }
             }
-
 
             public static bool AuthenticateUser(string username, string password)
             {
@@ -168,6 +169,32 @@ namespace ClinicManagementSystem
                 }
             }
 
+            public static bool AddDoctor(string firstName, string middleName, string lastName, string contactNumber, 
+                                         string emailAddresss, string address, string licenseNumber)
+            {
+                string checkQuery = "SELECT COUNT(*) FROM doctors WHERE licenseNumber = @licenseNumber";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
+                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
+                    {
+                        return false;
+                    }
+                }
+                string insertQuery = "INSERT INTO doctors (firstName, middleName, lastName, contactNumber, hireDate, emailAddress, address, licenseNumber) " +
+                                     "VALUES (@firstName, @middleName, @lastName, @contactNumber, NOW(), @emailAddress, @address, @licenseNumber)";
+                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@middleName", middleName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                    cmd.Parameters.AddWithValue("@emailAddress", emailAddresss);
+                    cmd.Parameters.AddWithValue("@address", address);
+                    cmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
 
             public static bool UpdateUserStatus(long userid)
             {
@@ -247,6 +274,7 @@ namespace ClinicManagementSystem
             public static DataTable GetPatients(string status)
             {
                 string query;
+                status = status.ToUpper();
                 if (status.Equals("ACTIVE"))
                 {
                     query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients WHERE status = @status";
@@ -282,13 +310,53 @@ namespace ClinicManagementSystem
                 }
             }
 
+            public static DataTable GetDoctors(string status)
+            {
+                string query;
+                status = status.ToUpper();
+                if (status.Equals("ACTIVE"))
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress FROM doctors WHERE status = @status";
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@status", status);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+                else if (status.Equals("INACTIVE"))
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress FROM doctors WHERE status = @status";
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@status", status);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+
+                query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress FROM doctors";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
+
             public static DataTable GetSearchPatient(string searchType ,string fname, string mname, string lname)
             {
                 /* search types:
                  *   F = first name
                  *   M = Middle name
                  *   L = Last name
-                 */
+                 */     
                 string query;
                 searchType = searchType.ToUpper();
                 fname = "%" + fname.Trim() + "%";
