@@ -129,7 +129,6 @@
             // 
             // ServiceTable
             // 
-            this.ServiceTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ServiceTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ServiceTable.Location = new System.Drawing.Point(467, 41);
             this.ServiceTable.Name = "ServiceTable";

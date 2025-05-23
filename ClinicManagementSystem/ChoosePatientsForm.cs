@@ -33,7 +33,8 @@ namespace ClinicManagementSystem
             }
             else 
             {
-
+                Database.CurrentPatient = (Database.RetrievePatient(Convert.ToInt64(PatientIDTextBox.Text)));
+                this.Close();
             }
         }
 

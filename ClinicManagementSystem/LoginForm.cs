@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.ExceptionServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -75,7 +66,8 @@ namespace ClinicManagementSystem
 
         public sealed class Database
         {
-            private long current_patientID, current_doctorID, current_serviceID;
+            private static Patient currentPatient;
+            private static Doctor currentDoctor;
 
             private static readonly Lazy<Database> instance = new Lazy<Database>(() => new Database());
             private MySqlConnection connection;
@@ -85,6 +77,8 @@ namespace ClinicManagementSystem
                 string connectionString = "server=localhost;database=dentalclinic;user=root;password=;";
                 connection = new MySqlConnection(connectionString);
                 connection.Open();
+                currentPatient = new Patient();
+                currentDoctor = new Doctor();
             }
 
             public static Database Instance => instance.Value;
@@ -99,6 +93,30 @@ namespace ClinicManagementSystem
                     }
                     return connection;
                 }
+            }
+
+            public static Patient CurrentPatient 
+            {
+                set
+                {
+                    currentPatient = value;
+                }
+                get 
+                {
+                    return currentPatient;
+                } 
+            }
+
+            public static Doctor CurrentDoctor
+            {
+                set
+                {
+                    currentDoctor = value;
+                }
+                get 
+                {
+                    return currentDoctor;
+                } 
             }
 
             public static bool AuthenticateUser(string username, string password)
@@ -300,7 +318,7 @@ namespace ClinicManagementSystem
                     }
                 }
 
-                query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients";
+                query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, Status FROM patients";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
@@ -412,7 +430,215 @@ namespace ClinicManagementSystem
 
             }
 
-            // RetrievePatient(long patientid) 
+            public static Patient RetrievePatient(long patientId) 
+            {
+                Patient patient = new Patient();
+                string query;
+
+                query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, " +
+                        "Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status " +
+                        "FROM patients WHERE patientID = @patientId";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read()) 
+                        {
+                            patient.ID = patientId;
+                            patient.FirstName = reader["FirstName"].ToString();
+                            patient.MiddleName = reader["MiddleName"].ToString();
+                            patient.LastName = reader["LastName"].ToString();
+                            patient.DoB = reader["DoB"].ToString();
+                            patient.Sex = reader["Sex"].ToString();
+                            patient.ContactNumber = reader["ContactNumber"].ToString();
+                            patient.AltContactNumber = reader["AltContactNumber"].ToString();
+                            patient.EmailAddress = reader["EmailAddress"].ToString();
+                            patient.Address = reader["Address"].ToString();
+                            patient.Status = reader["Status"].ToString();
+
+                            reader.Close();
+                            return patient;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+                return null;
+            }
+
+            public static Doctor RetrieveDoctor(long doctorId)
+            {
+                Doctor doctor = new Doctor();
+                string query;
+
+                query = "SELECT DoctorID, FirstName, MiddleName, LastName, " +
+                        "HireDate, ContactNumber, EmailAddress, Address, LicenseNumber, Status" +
+                        "FROM doctors WHERE doctorID = @doctorId";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            doctor.ID = doctorId;
+                            doctor.FirstName = reader["FirstName"].ToString();
+                            doctor.MiddleName = reader["MiddleName"].ToString();
+                            doctor.LastName = reader["LastName"].ToString();
+                            doctor.HireDate = reader["HireDate"].ToString();
+                            doctor.ContactNumber = reader["ContactNumber"].ToString();
+                            doctor.EmailAddress = reader["EmailAddress"].ToString();
+                            doctor.Address = reader["Address"].ToString();
+                            doctor.LicenseNumber = reader["LicenseNumber"].ToString();
+                            doctor.Status = reader["Status"].ToString();
+
+                            reader.Close();
+                            return doctor;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+                return null;
+            }
         }
+
+        public class Person
+        {
+            private long id;
+            private string firstName;
+            private string middleName;
+            private string lastName;
+            private string doB;
+            private string sex;
+            private string contactNumber;
+            private string altContactNumber;
+            private string emailAddress;
+            private string address;
+            private string status;
+
+            public Person()
+            {
+                ID = 0;
+                FirstName = string.Empty;
+                MiddleName = string.Empty;
+                LastName = string.Empty;
+                DoB = string.Empty;
+                Sex = string.Empty;
+                ContactNumber = string.Empty;
+                AltContactNumber = string.Empty;
+                EmailAddress = string.Empty;
+                Address = string.Empty;
+                Status = string.Empty;
+            }
+
+            public long ID
+            {
+                get { return id; }
+                set { id = value; }
+            }
+
+            public string FirstName
+            {
+                get { return firstName; }
+                set { firstName = value; }
+            }
+
+            public string MiddleName
+            {
+                get { return middleName; }
+                set { middleName = value; }
+            }
+
+            public string LastName
+            {
+                get { return lastName; }
+                set { lastName = value; }
+            }
+
+            public string DoB
+            {
+                get { return doB; }
+                set { doB = value; }
+            }
+
+            public string Sex
+            {
+                get { return sex; }
+                set { sex = value; }
+            }
+
+            public string ContactNumber
+            {
+                get { return contactNumber; }
+                set { contactNumber = value; }
+            }
+
+            public string AltContactNumber
+            {
+                get { return altContactNumber; }
+                set { altContactNumber = value; }
+            }
+
+            public string EmailAddress
+            {
+                get { return emailAddress; }
+                set { emailAddress = value; }
+            }
+
+            public string Address
+            {
+                get { return address; }
+                set { address = value; }
+            }
+
+            public string Status
+            {
+                get { return status; }
+                set { status = value; }
+            }
+        }
+
+        public class Doctor : Person
+        {
+            private string hireDate;
+            private string licenseNumber;
+
+            public Doctor() : base()
+            {
+                HireDate = string.Empty;
+                LicenseNumber = string.Empty;
+            }
+
+            public string HireDate
+            {
+                get { return hireDate; }
+                set { hireDate = value; }
+            }
+
+            public string LicenseNumber
+            {
+                get { return licenseNumber; }
+                set { licenseNumber = value; }
+            }
+        }
+
+        public class Patient : Person
+        {
+            public Patient() : base()
+            {
+
+            }
+        }
+
     }
 }

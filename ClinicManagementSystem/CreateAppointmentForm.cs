@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
@@ -29,6 +30,10 @@ namespace ClinicManagementSystem
         {
             ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm();
             choosePatientsForm.ShowDialog();
+            PatientIdTextBox.Text = Database.CurrentPatient.ID.ToString();
+            PatientNameTextBox.Text = Database.CurrentPatient.FirstName.ToString() + " " +
+                                      Database.CurrentPatient.MiddleName.ToString() + " " + 
+                                      Database.CurrentPatient.LastName.ToString();
         }
     }
 }
