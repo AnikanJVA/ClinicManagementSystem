@@ -63,7 +63,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(295, 68);
             this.label1.TabIndex = 3;
-            this.label1.Text = "DETNAL CLINIC";
+            this.label1.Text = "DENTAL CLINIC";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2

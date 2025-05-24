@@ -25,9 +25,8 @@ namespace ClinicManagementSystem
 
         private void LogoutButton_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
             Database.Instance.Connection.Close();
-            loginForm.Show();
+            FormProvider.Login.Show();
             this.Close();
         }
 

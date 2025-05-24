@@ -647,6 +647,5 @@ namespace ClinicManagementSystem
 
             }
         }
-
     }
 }
