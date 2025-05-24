@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
@@ -74,5 +75,18 @@ namespace ClinicManagementSystem
             this.Close();
         }
 
+        private void SelectButton_Click(object sender, EventArgs e)
+        {
+            // ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm();
+            // chooseDoctorForm.ShowDiaglog();
+            DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString();
+            FnameTextBox.Text = Database.CurrentDoctor.FirstName.ToString();
+            MnameTextBox.Text = Database.CurrentDoctor.MiddleName.ToString();
+            LnameTextBox.Text = Database.CurrentDoctor.LastName.ToString();
+            LicenseNoTextBox.Text = Database.CurrentDoctor.LicenseNumber.ToString();
+            ContactNoTextBox.Text = Database.CurrentDoctor.ContactNumber.ToString();
+            EmailTextBox.Text = Database.CurrentDoctor.EmailAddress.ToString();
+            StatusComboBox.Text = Database.CurrentDoctor.Status.ToString();
+        }
     }
 }

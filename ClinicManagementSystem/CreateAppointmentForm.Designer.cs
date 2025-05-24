@@ -43,9 +43,8 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.CreateAppoitnmentButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.SelectServiceButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,6 +98,7 @@
             this.SelectDoctorButton.TabIndex = 2;
             this.SelectDoctorButton.Text = "Select Doctor";
             this.SelectDoctorButton.UseVisualStyleBackColor = false;
+            this.SelectDoctorButton.Click += new System.EventHandler(this.SelectDoctorButton_Click);
             // 
             // panel1
             // 
@@ -114,7 +114,6 @@
             this.panel1.Controls.Add(this.CreateAppoitnmentButton);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.SelectServiceButton);
             this.panel1.Controls.Add(this.SelectDoctorButton);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.SelectPatientButton);
@@ -123,14 +122,14 @@
             this.panel1.ForeColor = System.Drawing.SystemColors.Menu;
             this.panel1.Location = new System.Drawing.Point(10, 11);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(670, 332);
+            this.panel1.Size = new System.Drawing.Size(651, 364);
             this.panel1.TabIndex = 9;
             // 
             // AppointmentDateTimePicker
             // 
             this.AppointmentDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AppointmentDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AppointmentDateTimePicker.Location = new System.Drawing.Point(199, 221);
+            this.AppointmentDateTimePicker.Location = new System.Drawing.Point(199, 261);
             this.AppointmentDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
             this.AppointmentDateTimePicker.Name = "AppointmentDateTimePicker";
             this.AppointmentDateTimePicker.Size = new System.Drawing.Size(277, 26);
@@ -138,12 +137,11 @@
             // 
             // ServiceTextBox
             // 
-            this.ServiceTextBox.Enabled = false;
             this.ServiceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ServiceTextBox.Location = new System.Drawing.Point(199, 184);
+            this.ServiceTextBox.Multiline = true;
             this.ServiceTextBox.Name = "ServiceTextBox";
-            this.ServiceTextBox.ReadOnly = true;
-            this.ServiceTextBox.Size = new System.Drawing.Size(277, 26);
+            this.ServiceTextBox.Size = new System.Drawing.Size(429, 62);
             this.ServiceTextBox.TabIndex = 0;
             // 
             // DoctorNameTextBox
@@ -204,7 +202,7 @@
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.ForeColor = System.Drawing.Color.White;
-            this.cancelButton.Location = new System.Drawing.Point(352, 271);
+            this.cancelButton.Location = new System.Drawing.Point(351, 308);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(277, 31);
             this.cancelButton.TabIndex = 6;
@@ -219,48 +217,23 @@
             this.CreateAppoitnmentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateAppoitnmentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateAppoitnmentButton.ForeColor = System.Drawing.Color.White;
-            this.CreateAppoitnmentButton.Location = new System.Drawing.Point(49, 271);
+            this.CreateAppoitnmentButton.Location = new System.Drawing.Point(26, 308);
             this.CreateAppoitnmentButton.Name = "CreateAppoitnmentButton";
             this.CreateAppoitnmentButton.Size = new System.Drawing.Size(297, 31);
             this.CreateAppoitnmentButton.TabIndex = 5;
             this.CreateAppoitnmentButton.Text = "Create Appointment ";
             this.CreateAppoitnmentButton.UseVisualStyleBackColor = false;
+            this.CreateAppoitnmentButton.Click += new System.EventHandler(this.CreateAppoitnmentButton_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(18, 225);
+            this.label6.Location = new System.Drawing.Point(18, 266);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(181, 20);
             this.label6.TabIndex = 9;
             this.label6.Text = "Appointment Date Time:";
-            // 
-            // SelectServiceButton
-            // 
-            this.SelectServiceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.SelectServiceButton.FlatAppearance.BorderSize = 0;
-            this.SelectServiceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SelectServiceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectServiceButton.ForeColor = System.Drawing.Color.White;
-            this.SelectServiceButton.Location = new System.Drawing.Point(491, 184);
-            this.SelectServiceButton.Name = "SelectServiceButton";
-            this.SelectServiceButton.Size = new System.Drawing.Size(137, 26);
-            this.SelectServiceButton.TabIndex = 3;
-            this.SelectServiceButton.Text = "Select Service";
-            this.SelectServiceButton.UseVisualStyleBackColor = false;
-            this.SelectServiceButton.Click += new System.EventHandler(this.SelectServiceButton_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Menu;
-            this.label2.Location = new System.Drawing.Point(134, 186);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Service:";
             // 
             // label3
             // 
@@ -273,12 +246,23 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Patient ID: ";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Menu;
+            this.label2.Location = new System.Drawing.Point(15, 187);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(187, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Reason for Appointment:";
+            // 
             // CreateAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(689, 353);
+            this.ClientSize = new System.Drawing.Size(673, 387);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -308,8 +292,7 @@
         private System.Windows.Forms.TextBox DoctorNameTextBox;
         private System.Windows.Forms.TextBox DoctorIdTextBox;
         private System.Windows.Forms.TextBox ServiceTextBox;
-        private System.Windows.Forms.Button SelectServiceButton;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker AppointmentDateTimePicker;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,19 +12,25 @@ using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
-    public partial class CreateAppointmentForm : Form
+    public partial class UpdateAppoitnment : Form
     {
-        public CreateAppointmentForm()
+        public UpdateAppoitnment()
         {
             InitializeComponent();
-            AppointmentDateTimePicker.Format = DateTimePickerFormat.Custom;
-            AppointmentDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
         }
-
-
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SelectAppointmentButton_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void SelectPatientButton_Click(object sender, EventArgs e)
@@ -32,7 +39,7 @@ namespace ClinicManagementSystem
             choosePatientsForm.ShowDialog();
             PatientIdTextBox.Text = Database.CurrentPatient.ID.ToString();
             PatientNameTextBox.Text = Database.CurrentPatient.FirstName.ToString() + " " +
-                                      Database.CurrentPatient.MiddleName.ToString() + " " + 
+                                      Database.CurrentPatient.MiddleName.ToString() + " " +
                                       Database.CurrentPatient.LastName.ToString();
         }
 
@@ -40,15 +47,10 @@ namespace ClinicManagementSystem
         {
             // ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm();
             // chooseDoctorForm.ShowDiaglog();
-            DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString(); 
+            DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString();
             DoctorNameTextBox.Text = Database.CurrentDoctor.FirstName.ToString() + " " +
                                      Database.CurrentDoctor.MiddleName.ToString() + " " +
                                      Database.CurrentDoctor.LastName.ToString();
-        }
-
-        private void CreateAppoitnmentButton_Click(object sender, EventArgs e)
-        {
-            
         }
     }
 }

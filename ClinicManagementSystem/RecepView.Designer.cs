@@ -124,7 +124,6 @@
             // 
             this.SplitContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
             this.SplitContainer.Panel2.Controls.Add(this.Patients_UpdateButton);
-            this.SplitContainer.Panel2.Controls.Add(this.Doctors_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Apointments_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_CreateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_RegisterButton);
@@ -135,6 +134,7 @@
             this.SplitContainer.Panel2.Controls.Add(this.Billing_DataGridView);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_SearchButton);
+            this.SplitContainer.Panel2.Controls.Add(this.Doctors_UpdateButton);
             this.SplitContainer.Panel2MinSize = 978;
             this.SplitContainer.Size = new System.Drawing.Size(1264, 681);
             this.SplitContainer.SplitterDistance = 282;
@@ -309,6 +309,7 @@
             this.Apointments_UpdateButton.TabIndex = 9;
             this.Apointments_UpdateButton.Text = "Update Appointment";
             this.Apointments_UpdateButton.UseVisualStyleBackColor = false;
+            this.Apointments_UpdateButton.Click += new System.EventHandler(this.Apointments_UpdateButton_Click);
             // 
             // Billing_CreateButton
             // 

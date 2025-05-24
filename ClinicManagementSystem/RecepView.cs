@@ -185,5 +185,11 @@ namespace ClinicManagementSystem
             UpdateDoctorForm updateDoctorForm = new UpdateDoctorForm();
             updateDoctorForm.ShowDialog();
         }
+
+        private void Apointments_UpdateButton_Click(object sender, EventArgs e)
+        {
+            UpdateAppoitnment updateAppoitnment = new UpdateAppoitnment();
+            updateAppoitnment.ShowDialog();
+        }
     }
 }
