@@ -63,7 +63,7 @@ namespace ClinicManagementSystem
             if (string.IsNullOrWhiteSpace(UsernametextBox.Text) ||
                 string.IsNullOrWhiteSpace(AccTypeComboBox.Text))
             {
-                MessageBox.Show("Can't delete a blank user!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Please select a user first!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -81,7 +81,7 @@ namespace ClinicManagementSystem
                     }
                     else
                     {
-                        MessageBox.Show("Error!\nUser not found.\nUser not deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error!\nUser not found.\nUser not updated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

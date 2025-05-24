@@ -57,8 +57,8 @@
             this.SearchLnameTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Patients_DataGridView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -94,7 +94,7 @@
             this.ContactNumberTextBox.Name = "ContactNumberTextBox";
             this.ContactNumberTextBox.ReadOnly = true;
             this.ContactNumberTextBox.Size = new System.Drawing.Size(287, 26);
-            this.ContactNumberTextBox.TabIndex = 1;
+            this.ContactNumberTextBox.TabIndex = 0;
             // 
             // SexTextBox
             // 
@@ -104,7 +104,7 @@
             this.SexTextBox.Name = "SexTextBox";
             this.SexTextBox.ReadOnly = true;
             this.SexTextBox.Size = new System.Drawing.Size(287, 26);
-            this.SexTextBox.TabIndex = 1;
+            this.SexTextBox.TabIndex = 0;
             // 
             // DoBTextBox
             // 
@@ -114,7 +114,7 @@
             this.DoBTextBox.Name = "DoBTextBox";
             this.DoBTextBox.ReadOnly = true;
             this.DoBTextBox.Size = new System.Drawing.Size(287, 26);
-            this.DoBTextBox.TabIndex = 1;
+            this.DoBTextBox.TabIndex = 0;
             // 
             // LastNameTextBox
             // 
@@ -124,7 +124,7 @@
             this.LastNameTextBox.Name = "LastNameTextBox";
             this.LastNameTextBox.ReadOnly = true;
             this.LastNameTextBox.Size = new System.Drawing.Size(287, 26);
-            this.LastNameTextBox.TabIndex = 1;
+            this.LastNameTextBox.TabIndex = 0;
             // 
             // MiddleNameTextBox
             // 
@@ -134,7 +134,7 @@
             this.MiddleNameTextBox.Name = "MiddleNameTextBox";
             this.MiddleNameTextBox.ReadOnly = true;
             this.MiddleNameTextBox.Size = new System.Drawing.Size(287, 26);
-            this.MiddleNameTextBox.TabIndex = 1;
+            this.MiddleNameTextBox.TabIndex = 0;
             // 
             // FirstNameTextBox
             // 
@@ -144,7 +144,7 @@
             this.FirstNameTextBox.Name = "FirstNameTextBox";
             this.FirstNameTextBox.ReadOnly = true;
             this.FirstNameTextBox.Size = new System.Drawing.Size(287, 26);
-            this.FirstNameTextBox.TabIndex = 1;
+            this.FirstNameTextBox.TabIndex = 0;
             // 
             // PatientIDTextBox
             // 
@@ -154,7 +154,7 @@
             this.PatientIDTextBox.Name = "PatientIDTextBox";
             this.PatientIDTextBox.ReadOnly = true;
             this.PatientIDTextBox.Size = new System.Drawing.Size(287, 26);
-            this.PatientIDTextBox.TabIndex = 1;
+            this.PatientIDTextBox.TabIndex = 0;
             // 
             // label9
             // 
@@ -243,7 +243,7 @@
             this.Patients_DataGridView.Name = "Patients_DataGridView";
             this.Patients_DataGridView.ReadOnly = true;
             this.Patients_DataGridView.Size = new System.Drawing.Size(560, 272);
-            this.Patients_DataGridView.TabIndex = 1;
+            this.Patients_DataGridView.TabIndex = 0;
             this.Patients_DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Patients_DataGridView_CellClick);
             // 
             // label7
@@ -286,7 +286,7 @@
             this.SearchButton.Location = new System.Drawing.Point(870, 7);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(138, 26);
-            this.SearchButton.TabIndex = 2;
+            this.SearchButton.TabIndex = 4;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
@@ -301,7 +301,7 @@
             this.RegisterNewPatientButton.Location = new System.Drawing.Point(569, 397);
             this.RegisterNewPatientButton.Name = "RegisterNewPatientButton";
             this.RegisterNewPatientButton.Size = new System.Drawing.Size(383, 38);
-            this.RegisterNewPatientButton.TabIndex = 2;
+            this.RegisterNewPatientButton.TabIndex = 7;
             this.RegisterNewPatientButton.Text = "Register New Patient";
             this.RegisterNewPatientButton.UseVisualStyleBackColor = false;
             this.RegisterNewPatientButton.Click += new System.EventHandler(this.RegisterNewPatientButton_Click);
@@ -316,7 +316,7 @@
             this.CancelButton.Location = new System.Drawing.Point(569, 451);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(383, 38);
-            this.CancelButton.TabIndex = 2;
+            this.CancelButton.TabIndex = 9;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -331,7 +331,7 @@
             this.SelectButton.Location = new System.Drawing.Point(46, 451);
             this.SelectButton.Name = "SelectButton";
             this.SelectButton.Size = new System.Drawing.Size(383, 38);
-            this.SelectButton.TabIndex = 2;
+            this.SelectButton.TabIndex = 8;
             this.SelectButton.Text = "Select Patient";
             this.SelectButton.UseVisualStyleBackColor = false;
             this.SelectButton.Click += new System.EventHandler(this.SelectButton_Click);
@@ -346,7 +346,7 @@
             this.ResetButton.Location = new System.Drawing.Point(874, 79);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.Size = new System.Drawing.Size(156, 26);
-            this.ResetButton.TabIndex = 2;
+            this.ResetButton.TabIndex = 5;
             this.ResetButton.Text = "Reset Resutls";
             this.ResetButton.UseVisualStyleBackColor = false;
             this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
@@ -368,7 +368,7 @@
             this.SearchMnameTextBox.Location = new System.Drawing.Point(433, 7);
             this.SearchMnameTextBox.Name = "SearchMnameTextBox";
             this.SearchMnameTextBox.Size = new System.Drawing.Size(119, 26);
-            this.SearchMnameTextBox.TabIndex = 1;
+            this.SearchMnameTextBox.TabIndex = 2;
             // 
             // SearchLnameTextBox
             // 
@@ -376,7 +376,7 @@
             this.SearchLnameTextBox.Location = new System.Drawing.Point(681, 6);
             this.SearchLnameTextBox.Name = "SearchLnameTextBox";
             this.SearchLnameTextBox.Size = new System.Drawing.Size(119, 26);
-            this.SearchLnameTextBox.TabIndex = 1;
+            this.SearchLnameTextBox.TabIndex = 3;
             // 
             // label11
             // 
@@ -405,17 +405,6 @@
             this.panel2.Size = new System.Drawing.Size(1021, 40);
             this.panel2.TabIndex = 3;
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(332, 10);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 20);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Middle Name:";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -426,6 +415,17 @@
             this.label13.Size = new System.Drawing.Size(90, 20);
             this.label13.TabIndex = 0;
             this.label13.Text = "Last Name:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(332, 10);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(105, 20);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Middle Name:";
             // 
             // ChoosePatientsForm
             // 

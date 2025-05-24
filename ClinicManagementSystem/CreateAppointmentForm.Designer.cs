@@ -70,7 +70,7 @@
             this.SelectPatientButton.Location = new System.Drawing.Point(491, 33);
             this.SelectPatientButton.Name = "SelectPatientButton";
             this.SelectPatientButton.Size = new System.Drawing.Size(137, 26);
-            this.SelectPatientButton.TabIndex = 2;
+            this.SelectPatientButton.TabIndex = 1;
             this.SelectPatientButton.Text = "Select Patient";
             this.SelectPatientButton.UseVisualStyleBackColor = false;
             this.SelectPatientButton.Click += new System.EventHandler(this.SelectPatientButton_Click);
@@ -96,7 +96,7 @@
             this.SelectDoctorButton.Location = new System.Drawing.Point(491, 111);
             this.SelectDoctorButton.Name = "SelectDoctorButton";
             this.SelectDoctorButton.Size = new System.Drawing.Size(137, 26);
-            this.SelectDoctorButton.TabIndex = 7;
+            this.SelectDoctorButton.TabIndex = 2;
             this.SelectDoctorButton.Text = "Select Doctor";
             this.SelectDoctorButton.UseVisualStyleBackColor = false;
             // 
@@ -134,7 +134,7 @@
             this.AppointmentDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
             this.AppointmentDateTimePicker.Name = "AppointmentDateTimePicker";
             this.AppointmentDateTimePicker.Size = new System.Drawing.Size(277, 26);
-            this.AppointmentDateTimePicker.TabIndex = 15;
+            this.AppointmentDateTimePicker.TabIndex = 4;
             // 
             // ServiceTextBox
             // 
@@ -144,7 +144,7 @@
             this.ServiceTextBox.Name = "ServiceTextBox";
             this.ServiceTextBox.ReadOnly = true;
             this.ServiceTextBox.Size = new System.Drawing.Size(277, 26);
-            this.ServiceTextBox.TabIndex = 14;
+            this.ServiceTextBox.TabIndex = 0;
             // 
             // DoctorNameTextBox
             // 
@@ -154,7 +154,7 @@
             this.DoctorNameTextBox.Name = "DoctorNameTextBox";
             this.DoctorNameTextBox.ReadOnly = true;
             this.DoctorNameTextBox.Size = new System.Drawing.Size(277, 26);
-            this.DoctorNameTextBox.TabIndex = 14;
+            this.DoctorNameTextBox.TabIndex = 0;
             // 
             // DoctorIdTextBox
             // 
@@ -164,7 +164,7 @@
             this.DoctorIdTextBox.Name = "DoctorIdTextBox";
             this.DoctorIdTextBox.ReadOnly = true;
             this.DoctorIdTextBox.Size = new System.Drawing.Size(277, 26);
-            this.DoctorIdTextBox.TabIndex = 14;
+            this.DoctorIdTextBox.TabIndex = 0;
             // 
             // PatientNameTextBox
             // 
@@ -174,7 +174,7 @@
             this.PatientNameTextBox.Name = "PatientNameTextBox";
             this.PatientNameTextBox.ReadOnly = true;
             this.PatientNameTextBox.Size = new System.Drawing.Size(277, 26);
-            this.PatientNameTextBox.TabIndex = 14;
+            this.PatientNameTextBox.TabIndex = 0;
             // 
             // PatientIdTextBox
             // 
@@ -184,7 +184,7 @@
             this.PatientIdTextBox.Name = "PatientIdTextBox";
             this.PatientIdTextBox.ReadOnly = true;
             this.PatientIdTextBox.Size = new System.Drawing.Size(277, 26);
-            this.PatientIdTextBox.TabIndex = 13;
+            this.PatientIdTextBox.TabIndex = 0;
             // 
             // label7
             // 
@@ -207,7 +207,7 @@
             this.cancelButton.Location = new System.Drawing.Point(352, 271);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(277, 31);
-            this.cancelButton.TabIndex = 11;
+            this.cancelButton.TabIndex = 6;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = false;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -222,7 +222,7 @@
             this.CreateAppoitnmentButton.Location = new System.Drawing.Point(49, 271);
             this.CreateAppoitnmentButton.Name = "CreateAppoitnmentButton";
             this.CreateAppoitnmentButton.Size = new System.Drawing.Size(297, 31);
-            this.CreateAppoitnmentButton.TabIndex = 11;
+            this.CreateAppoitnmentButton.TabIndex = 5;
             this.CreateAppoitnmentButton.Text = "Create Appointment ";
             this.CreateAppoitnmentButton.UseVisualStyleBackColor = false;
             // 
@@ -246,7 +246,7 @@
             this.SelectServiceButton.Location = new System.Drawing.Point(491, 184);
             this.SelectServiceButton.Name = "SelectServiceButton";
             this.SelectServiceButton.Size = new System.Drawing.Size(137, 26);
-            this.SelectServiceButton.TabIndex = 7;
+            this.SelectServiceButton.TabIndex = 3;
             this.SelectServiceButton.Text = "Select Service";
             this.SelectServiceButton.UseVisualStyleBackColor = false;
             // 

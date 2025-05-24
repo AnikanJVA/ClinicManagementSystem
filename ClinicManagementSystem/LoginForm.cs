@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -357,7 +363,7 @@ namespace ClinicManagementSystem
                     }
                 }
 
-                query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress FROM doctors";
+                query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress, Status FROM doctors";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {

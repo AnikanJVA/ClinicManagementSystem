@@ -30,26 +30,31 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.DoctorsButton = new System.Windows.Forms.Button();
-            this.PatientsButton = new System.Windows.Forms.Button();
-            this.AppointmentsButton = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.ActiveTab = new System.Windows.Forms.TabPage();
-            this.ApprovedDataGridView = new System.Windows.Forms.DataGridView();
-            this.InactiveTab = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Patients_NavButton = new System.Windows.Forms.Button();
+            this.Appointments_NavButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.AccountTypelabel = new System.Windows.Forms.Label();
+            this.Prescriptions_NavButton = new System.Windows.Forms.Button();
+            this.Doctor_TabControl = new System.Windows.Forms.TabControl();
+            this.Doctors_AllTab = new System.Windows.Forms.TabPage();
+            this.Doctors_AllDataGridView = new System.Windows.Forms.DataGridView();
+            this.Doctors_ActiveTab = new System.Windows.Forms.TabPage();
+            this.Doctors_ActiveDataGridView = new System.Windows.Forms.DataGridView();
+            this.Doctors_InactiveTab = new System.Windows.Forms.TabPage();
+            this.Doctors_InactiveDataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.ActiveTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ApprovedDataGridView)).BeginInit();
-            this.InactiveTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.Doctor_TabControl.SuspendLayout();
+            this.Doctors_AllTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Doctors_AllDataGridView)).BeginInit();
+            this.Doctors_ActiveTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Doctors_ActiveDataGridView)).BeginInit();
+            this.Doctors_InactiveTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Doctors_InactiveDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -63,22 +68,23 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
+            this.splitContainer1.Panel1.Controls.Add(this.AccountTypelabel);
             this.splitContainer1.Panel1.Controls.Add(this.LogoutButton);
-            this.splitContainer1.Panel1.Controls.Add(this.DoctorsButton);
-            this.splitContainer1.Panel1.Controls.Add(this.PatientsButton);
-            this.splitContainer1.Panel1.Controls.Add(this.AppointmentsButton);
-            this.splitContainer1.Panel1MinSize = 278;
+            this.splitContainer1.Panel1.Controls.Add(this.Prescriptions_NavButton);
+            this.splitContainer1.Panel1.Controls.Add(this.Patients_NavButton);
+            this.splitContainer1.Panel1.Controls.Add(this.Appointments_NavButton);
+            this.splitContainer1.Panel1MinSize = 282;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
+            this.splitContainer1.Panel2.Controls.Add(this.Doctor_TabControl);
             this.splitContainer1.Panel2.Controls.Add(this.button3);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2MinSize = 1068;
-            this.splitContainer1.Size = new System.Drawing.Size(1350, 729);
-            this.splitContainer1.SplitterDistance = 278;
+            this.splitContainer1.Panel2MinSize = 978;
+            this.splitContainer1.Size = new System.Drawing.Size(1264, 681);
+            this.splitContainer1.SplitterDistance = 282;
             this.splitContainer1.TabIndex = 1;
             // 
             // LogoutButton
@@ -90,7 +96,7 @@
             this.LogoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogoutButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoutButton.ForeColor = System.Drawing.Color.White;
-            this.LogoutButton.Location = new System.Drawing.Point(20, 634);
+            this.LogoutButton.Location = new System.Drawing.Point(20, 578);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(239, 66);
             this.LogoutButton.TabIndex = 6;
@@ -98,104 +104,39 @@
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
-            // DoctorsButton
+            // Patients_NavButton
             // 
-            this.DoctorsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.DoctorsButton.FlatAppearance.BorderSize = 0;
-            this.DoctorsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.DoctorsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.DoctorsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DoctorsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DoctorsButton.ForeColor = System.Drawing.Color.White;
-            this.DoctorsButton.Location = new System.Drawing.Point(20, 178);
-            this.DoctorsButton.Name = "DoctorsButton";
-            this.DoctorsButton.Size = new System.Drawing.Size(239, 66);
-            this.DoctorsButton.TabIndex = 4;
-            this.DoctorsButton.Text = "Doctors";
-            this.DoctorsButton.UseVisualStyleBackColor = false;
-            this.DoctorsButton.Click += new System.EventHandler(this.DoctorsButton_Click);
+            this.Patients_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_NavButton.FlatAppearance.BorderSize = 0;
+            this.Patients_NavButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_NavButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_NavButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_NavButton.Location = new System.Drawing.Point(20, 150);
+            this.Patients_NavButton.Name = "Patients_NavButton";
+            this.Patients_NavButton.Size = new System.Drawing.Size(239, 66);
+            this.Patients_NavButton.TabIndex = 2;
+            this.Patients_NavButton.Text = "Patients";
+            this.Patients_NavButton.UseVisualStyleBackColor = false;
+            this.Patients_NavButton.Click += new System.EventHandler(this.ClientsButton_Click);
             // 
-            // PatientsButton
+            // Appointments_NavButton
             // 
-            this.PatientsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.PatientsButton.FlatAppearance.BorderSize = 0;
-            this.PatientsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.PatientsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.PatientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PatientsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PatientsButton.ForeColor = System.Drawing.Color.White;
-            this.PatientsButton.Location = new System.Drawing.Point(20, 93);
-            this.PatientsButton.Name = "PatientsButton";
-            this.PatientsButton.Size = new System.Drawing.Size(239, 66);
-            this.PatientsButton.TabIndex = 2;
-            this.PatientsButton.Text = "Patients";
-            this.PatientsButton.UseVisualStyleBackColor = false;
-            this.PatientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
-            // 
-            // AppointmentsButton
-            // 
-            this.AppointmentsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.AppointmentsButton.FlatAppearance.BorderSize = 0;
-            this.AppointmentsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.AppointmentsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.AppointmentsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AppointmentsButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AppointmentsButton.ForeColor = System.Drawing.Color.White;
-            this.AppointmentsButton.Location = new System.Drawing.Point(20, 11);
-            this.AppointmentsButton.Name = "AppointmentsButton";
-            this.AppointmentsButton.Size = new System.Drawing.Size(239, 66);
-            this.AppointmentsButton.TabIndex = 1;
-            this.AppointmentsButton.Text = "Appointments";
-            this.AppointmentsButton.UseVisualStyleBackColor = false;
-            this.AppointmentsButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.ActiveTab);
-            this.tabControl1.Controls.Add(this.InactiveTab);
-            this.tabControl1.Location = new System.Drawing.Point(37, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1002, 591);
-            this.tabControl1.TabIndex = 7;
-            // 
-            // ActiveTab
-            // 
-            this.ActiveTab.Controls.Add(this.ApprovedDataGridView);
-            this.ActiveTab.Location = new System.Drawing.Point(4, 22);
-            this.ActiveTab.Name = "ActiveTab";
-            this.ActiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ActiveTab.Size = new System.Drawing.Size(994, 565);
-            this.ActiveTab.TabIndex = 0;
-            this.ActiveTab.Text = "Active";
-            this.ActiveTab.UseVisualStyleBackColor = true;
-            // 
-            // ApprovedDataGridView
-            // 
-            this.ApprovedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ApprovedDataGridView.Location = new System.Drawing.Point(6, 29);
-            this.ApprovedDataGridView.Name = "ApprovedDataGridView";
-            this.ApprovedDataGridView.Size = new System.Drawing.Size(994, 565);
-            this.ApprovedDataGridView.TabIndex = 0;
-            // 
-            // InactiveTab
-            // 
-            this.InactiveTab.Controls.Add(this.dataGridView2);
-            this.InactiveTab.Location = new System.Drawing.Point(4, 22);
-            this.InactiveTab.Name = "InactiveTab";
-            this.InactiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.InactiveTab.Size = new System.Drawing.Size(994, 565);
-            this.InactiveTab.TabIndex = 1;
-            this.InactiveTab.Text = "Inactive";
-            this.InactiveTab.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 15);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(994, 565);
-            this.dataGridView2.TabIndex = 1;
+            this.Appointments_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_NavButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_NavButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_NavButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appointments_NavButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_NavButton.Location = new System.Drawing.Point(20, 65);
+            this.Appointments_NavButton.Name = "Appointments_NavButton";
+            this.Appointments_NavButton.Size = new System.Drawing.Size(239, 66);
+            this.Appointments_NavButton.TabIndex = 1;
+            this.Appointments_NavButton.Text = "Appointments";
+            this.Appointments_NavButton.UseVisualStyleBackColor = false;
+            this.Appointments_NavButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
             // 
             // button3
             // 
@@ -206,12 +147,13 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(733, 634);
+            this.button3.Location = new System.Drawing.Point(646, 578);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(308, 66);
+            this.button3.Size = new System.Drawing.Size(280, 66);
             this.button3.TabIndex = 10;
             this.button3.Text = "Search Patient";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
             // 
             // button2
             // 
@@ -222,12 +164,13 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(383, 634);
+            this.button2.Location = new System.Drawing.Point(341, 578);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(308, 66);
+            this.button2.Size = new System.Drawing.Size(280, 66);
             this.button2.TabIndex = 9;
             this.button2.Text = "Update Patient";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
             // 
             // button1
             // 
@@ -238,33 +181,156 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(37, 634);
+            this.button1.Location = new System.Drawing.Point(36, 578);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(308, 66);
+            this.button1.Size = new System.Drawing.Size(280, 66);
             this.button1.TabIndex = 8;
             this.button1.Text = "Register Patient";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            // 
+            // AccountTypelabel
+            // 
+            this.AccountTypelabel.AutoSize = true;
+            this.AccountTypelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.AccountTypelabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AccountTypelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.AccountTypelabel.ForeColor = System.Drawing.Color.White;
+            this.AccountTypelabel.Location = new System.Drawing.Point(97, 12);
+            this.AccountTypelabel.Name = "AccountTypelabel";
+            this.AccountTypelabel.Size = new System.Drawing.Size(86, 31);
+            this.AccountTypelabel.TabIndex = 7;
+            this.AccountTypelabel.Text = "Doctor";
+            this.AccountTypelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Prescriptions_NavButton
+            // 
+            this.Prescriptions_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Prescriptions_NavButton.FlatAppearance.BorderSize = 0;
+            this.Prescriptions_NavButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Prescriptions_NavButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Prescriptions_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Prescriptions_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Prescriptions_NavButton.ForeColor = System.Drawing.Color.White;
+            this.Prescriptions_NavButton.Location = new System.Drawing.Point(20, 235);
+            this.Prescriptions_NavButton.Name = "Prescriptions_NavButton";
+            this.Prescriptions_NavButton.Size = new System.Drawing.Size(239, 66);
+            this.Prescriptions_NavButton.TabIndex = 4;
+            this.Prescriptions_NavButton.Text = "Prescriptions";
+            this.Prescriptions_NavButton.UseVisualStyleBackColor = false;
+            this.Prescriptions_NavButton.Click += new System.EventHandler(this.Prescriptions_NavButton_Click);
+            // 
+            // Doctor_TabControl
+            // 
+            this.Doctor_TabControl.Controls.Add(this.Doctors_AllTab);
+            this.Doctor_TabControl.Controls.Add(this.Doctors_ActiveTab);
+            this.Doctor_TabControl.Controls.Add(this.Doctors_InactiveTab);
+            this.Doctor_TabControl.Location = new System.Drawing.Point(37, 12);
+            this.Doctor_TabControl.Name = "Doctor_TabControl";
+            this.Doctor_TabControl.SelectedIndex = 0;
+            this.Doctor_TabControl.Size = new System.Drawing.Size(889, 536);
+            this.Doctor_TabControl.TabIndex = 13;
+            this.Doctor_TabControl.Visible = false;
+            // 
+            // Doctors_AllTab
+            // 
+            this.Doctors_AllTab.Controls.Add(this.Doctors_AllDataGridView);
+            this.Doctors_AllTab.Location = new System.Drawing.Point(4, 22);
+            this.Doctors_AllTab.Name = "Doctors_AllTab";
+            this.Doctors_AllTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Doctors_AllTab.Size = new System.Drawing.Size(881, 510);
+            this.Doctors_AllTab.TabIndex = 0;
+            this.Doctors_AllTab.Text = "All";
+            this.Doctors_AllTab.UseVisualStyleBackColor = true;
+            // 
+            // Doctors_AllDataGridView
+            // 
+            this.Doctors_AllDataGridView.AllowUserToAddRows = false;
+            this.Doctors_AllDataGridView.AllowUserToDeleteRows = false;
+            this.Doctors_AllDataGridView.AllowUserToResizeColumns = false;
+            this.Doctors_AllDataGridView.AllowUserToResizeRows = false;
+            this.Doctors_AllDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Doctors_AllDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Doctors_AllDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Doctors_AllDataGridView.Name = "Doctors_AllDataGridView";
+            this.Doctors_AllDataGridView.ReadOnly = true;
+            this.Doctors_AllDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Doctors_AllDataGridView.TabIndex = 0;
+            // 
+            // Doctors_ActiveTab
+            // 
+            this.Doctors_ActiveTab.Controls.Add(this.Doctors_ActiveDataGridView);
+            this.Doctors_ActiveTab.Location = new System.Drawing.Point(4, 22);
+            this.Doctors_ActiveTab.Name = "Doctors_ActiveTab";
+            this.Doctors_ActiveTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Doctors_ActiveTab.Size = new System.Drawing.Size(881, 510);
+            this.Doctors_ActiveTab.TabIndex = 2;
+            this.Doctors_ActiveTab.Text = "Active";
+            this.Doctors_ActiveTab.UseVisualStyleBackColor = true;
+            // 
+            // Doctors_ActiveDataGridView
+            // 
+            this.Doctors_ActiveDataGridView.AllowUserToAddRows = false;
+            this.Doctors_ActiveDataGridView.AllowUserToDeleteRows = false;
+            this.Doctors_ActiveDataGridView.AllowUserToResizeColumns = false;
+            this.Doctors_ActiveDataGridView.AllowUserToResizeRows = false;
+            this.Doctors_ActiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Doctors_ActiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Doctors_ActiveDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Doctors_ActiveDataGridView.Name = "Doctors_ActiveDataGridView";
+            this.Doctors_ActiveDataGridView.ReadOnly = true;
+            this.Doctors_ActiveDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Doctors_ActiveDataGridView.TabIndex = 2;
+            // 
+            // Doctors_InactiveTab
+            // 
+            this.Doctors_InactiveTab.Controls.Add(this.Doctors_InactiveDataGridView);
+            this.Doctors_InactiveTab.Location = new System.Drawing.Point(4, 22);
+            this.Doctors_InactiveTab.Name = "Doctors_InactiveTab";
+            this.Doctors_InactiveTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Doctors_InactiveTab.Size = new System.Drawing.Size(881, 510);
+            this.Doctors_InactiveTab.TabIndex = 3;
+            this.Doctors_InactiveTab.Text = "Inactive";
+            this.Doctors_InactiveTab.UseVisualStyleBackColor = true;
+            // 
+            // Doctors_InactiveDataGridView
+            // 
+            this.Doctors_InactiveDataGridView.AllowUserToAddRows = false;
+            this.Doctors_InactiveDataGridView.AllowUserToDeleteRows = false;
+            this.Doctors_InactiveDataGridView.AllowUserToResizeColumns = false;
+            this.Doctors_InactiveDataGridView.AllowUserToResizeRows = false;
+            this.Doctors_InactiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Doctors_InactiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Doctors_InactiveDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Doctors_InactiveDataGridView.Name = "Doctors_InactiveDataGridView";
+            this.Doctors_InactiveDataGridView.ReadOnly = true;
+            this.Doctors_InactiveDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Doctors_InactiveDataGridView.TabIndex = 2;
             // 
             // DocView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.splitContainer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "DocView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DENTAL CLINIC";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DocView_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.ActiveTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ApprovedDataGridView)).EndInit();
-            this.InactiveTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.Doctor_TabControl.ResumeLayout(false);
+            this.Doctors_AllTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Doctors_AllDataGridView)).EndInit();
+            this.Doctors_ActiveTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Doctors_ActiveDataGridView)).EndInit();
+            this.Doctors_InactiveTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Doctors_InactiveDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,16 +339,19 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.Button DoctorsButton;
-        private System.Windows.Forms.Button PatientsButton;
-        private System.Windows.Forms.Button AppointmentsButton;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage ActiveTab;
-        private System.Windows.Forms.DataGridView ApprovedDataGridView;
-        private System.Windows.Forms.TabPage InactiveTab;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button Patients_NavButton;
+        private System.Windows.Forms.Button Appointments_NavButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label AccountTypelabel;
+        private System.Windows.Forms.Button Prescriptions_NavButton;
+        private System.Windows.Forms.TabControl Doctor_TabControl;
+        private System.Windows.Forms.TabPage Doctors_AllTab;
+        private System.Windows.Forms.DataGridView Doctors_AllDataGridView;
+        private System.Windows.Forms.TabPage Doctors_ActiveTab;
+        private System.Windows.Forms.DataGridView Doctors_ActiveDataGridView;
+        private System.Windows.Forms.TabPage Doctors_InactiveTab;
+        private System.Windows.Forms.DataGridView Doctors_InactiveDataGridView;
     }
 }
