@@ -179,5 +179,11 @@ namespace ClinicManagementSystem
             Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
 
         }
+
+        private void Doctors_UpdateButton_Click(object sender, EventArgs e)
+        {
+            UpdateDoctorForm updateDoctorForm = new UpdateDoctorForm();
+            updateDoctorForm.ShowDialog();
+        }
     }
 }
