@@ -29,31 +29,19 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.AccountTypelabel = new System.Windows.Forms.Label();
             this.LogoutButton = new System.Windows.Forms.Button();
+            this.Prescriptions_NavButton = new System.Windows.Forms.Button();
             this.Patients_NavButton = new System.Windows.Forms.Button();
             this.Appointments_NavButton = new System.Windows.Forms.Button();
+            this.Doctors_InactiveDataGridView = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.AccountTypelabel = new System.Windows.Forms.Label();
-            this.Prescriptions_NavButton = new System.Windows.Forms.Button();
-            this.Doctor_TabControl = new System.Windows.Forms.TabControl();
-            this.Doctors_AllTab = new System.Windows.Forms.TabPage();
-            this.Doctors_AllDataGridView = new System.Windows.Forms.DataGridView();
-            this.Doctors_ActiveTab = new System.Windows.Forms.TabPage();
-            this.Doctors_ActiveDataGridView = new System.Windows.Forms.DataGridView();
-            this.Doctors_InactiveTab = new System.Windows.Forms.TabPage();
-            this.Doctors_InactiveDataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.Doctor_TabControl.SuspendLayout();
-            this.Doctors_AllTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Doctors_AllDataGridView)).BeginInit();
-            this.Doctors_ActiveTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Doctors_ActiveDataGridView)).BeginInit();
-            this.Doctors_InactiveTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Doctors_InactiveDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +66,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.splitContainer1.Panel2.Controls.Add(this.Doctor_TabControl);
+            this.splitContainer1.Panel2.Controls.Add(this.Doctors_InactiveDataGridView);
             this.splitContainer1.Panel2.Controls.Add(this.button3);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
@@ -86,6 +74,20 @@
             this.splitContainer1.Size = new System.Drawing.Size(1264, 681);
             this.splitContainer1.SplitterDistance = 282;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // AccountTypelabel
+            // 
+            this.AccountTypelabel.AutoSize = true;
+            this.AccountTypelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.AccountTypelabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AccountTypelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.AccountTypelabel.ForeColor = System.Drawing.Color.White;
+            this.AccountTypelabel.Location = new System.Drawing.Point(97, 12);
+            this.AccountTypelabel.Name = "AccountTypelabel";
+            this.AccountTypelabel.Size = new System.Drawing.Size(86, 31);
+            this.AccountTypelabel.TabIndex = 7;
+            this.AccountTypelabel.Text = "Doctor";
+            this.AccountTypelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LogoutButton
             // 
@@ -103,6 +105,23 @@
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+            // 
+            // Prescriptions_NavButton
+            // 
+            this.Prescriptions_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Prescriptions_NavButton.FlatAppearance.BorderSize = 0;
+            this.Prescriptions_NavButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Prescriptions_NavButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Prescriptions_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Prescriptions_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Prescriptions_NavButton.ForeColor = System.Drawing.Color.White;
+            this.Prescriptions_NavButton.Location = new System.Drawing.Point(20, 235);
+            this.Prescriptions_NavButton.Name = "Prescriptions_NavButton";
+            this.Prescriptions_NavButton.Size = new System.Drawing.Size(239, 66);
+            this.Prescriptions_NavButton.TabIndex = 4;
+            this.Prescriptions_NavButton.Text = "Prescriptions";
+            this.Prescriptions_NavButton.UseVisualStyleBackColor = false;
+            this.Prescriptions_NavButton.Click += new System.EventHandler(this.Prescriptions_NavButton_Click);
             // 
             // Patients_NavButton
             // 
@@ -137,6 +156,20 @@
             this.Appointments_NavButton.Text = "Appointments";
             this.Appointments_NavButton.UseVisualStyleBackColor = false;
             this.Appointments_NavButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
+            // 
+            // Doctors_InactiveDataGridView
+            // 
+            this.Doctors_InactiveDataGridView.AllowUserToAddRows = false;
+            this.Doctors_InactiveDataGridView.AllowUserToDeleteRows = false;
+            this.Doctors_InactiveDataGridView.AllowUserToResizeColumns = false;
+            this.Doctors_InactiveDataGridView.AllowUserToResizeRows = false;
+            this.Doctors_InactiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Doctors_InactiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Doctors_InactiveDataGridView.Location = new System.Drawing.Point(45, 25);
+            this.Doctors_InactiveDataGridView.Name = "Doctors_InactiveDataGridView";
+            this.Doctors_InactiveDataGridView.ReadOnly = true;
+            this.Doctors_InactiveDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Doctors_InactiveDataGridView.TabIndex = 2;
             // 
             // button3
             // 
@@ -189,124 +222,6 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Visible = false;
             // 
-            // AccountTypelabel
-            // 
-            this.AccountTypelabel.AutoSize = true;
-            this.AccountTypelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.AccountTypelabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AccountTypelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.AccountTypelabel.ForeColor = System.Drawing.Color.White;
-            this.AccountTypelabel.Location = new System.Drawing.Point(97, 12);
-            this.AccountTypelabel.Name = "AccountTypelabel";
-            this.AccountTypelabel.Size = new System.Drawing.Size(86, 31);
-            this.AccountTypelabel.TabIndex = 7;
-            this.AccountTypelabel.Text = "Doctor";
-            this.AccountTypelabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Prescriptions_NavButton
-            // 
-            this.Prescriptions_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Prescriptions_NavButton.FlatAppearance.BorderSize = 0;
-            this.Prescriptions_NavButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Prescriptions_NavButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Prescriptions_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Prescriptions_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Prescriptions_NavButton.ForeColor = System.Drawing.Color.White;
-            this.Prescriptions_NavButton.Location = new System.Drawing.Point(20, 235);
-            this.Prescriptions_NavButton.Name = "Prescriptions_NavButton";
-            this.Prescriptions_NavButton.Size = new System.Drawing.Size(239, 66);
-            this.Prescriptions_NavButton.TabIndex = 4;
-            this.Prescriptions_NavButton.Text = "Prescriptions";
-            this.Prescriptions_NavButton.UseVisualStyleBackColor = false;
-            this.Prescriptions_NavButton.Click += new System.EventHandler(this.Prescriptions_NavButton_Click);
-            // 
-            // Doctor_TabControl
-            // 
-            this.Doctor_TabControl.Controls.Add(this.Doctors_AllTab);
-            this.Doctor_TabControl.Controls.Add(this.Doctors_ActiveTab);
-            this.Doctor_TabControl.Controls.Add(this.Doctors_InactiveTab);
-            this.Doctor_TabControl.Location = new System.Drawing.Point(37, 12);
-            this.Doctor_TabControl.Name = "Doctor_TabControl";
-            this.Doctor_TabControl.SelectedIndex = 0;
-            this.Doctor_TabControl.Size = new System.Drawing.Size(889, 536);
-            this.Doctor_TabControl.TabIndex = 13;
-            this.Doctor_TabControl.Visible = false;
-            // 
-            // Doctors_AllTab
-            // 
-            this.Doctors_AllTab.Controls.Add(this.Doctors_AllDataGridView);
-            this.Doctors_AllTab.Location = new System.Drawing.Point(4, 22);
-            this.Doctors_AllTab.Name = "Doctors_AllTab";
-            this.Doctors_AllTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Doctors_AllTab.Size = new System.Drawing.Size(881, 510);
-            this.Doctors_AllTab.TabIndex = 0;
-            this.Doctors_AllTab.Text = "All";
-            this.Doctors_AllTab.UseVisualStyleBackColor = true;
-            // 
-            // Doctors_AllDataGridView
-            // 
-            this.Doctors_AllDataGridView.AllowUserToAddRows = false;
-            this.Doctors_AllDataGridView.AllowUserToDeleteRows = false;
-            this.Doctors_AllDataGridView.AllowUserToResizeColumns = false;
-            this.Doctors_AllDataGridView.AllowUserToResizeRows = false;
-            this.Doctors_AllDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Doctors_AllDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Doctors_AllDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Doctors_AllDataGridView.Name = "Doctors_AllDataGridView";
-            this.Doctors_AllDataGridView.ReadOnly = true;
-            this.Doctors_AllDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Doctors_AllDataGridView.TabIndex = 0;
-            // 
-            // Doctors_ActiveTab
-            // 
-            this.Doctors_ActiveTab.Controls.Add(this.Doctors_ActiveDataGridView);
-            this.Doctors_ActiveTab.Location = new System.Drawing.Point(4, 22);
-            this.Doctors_ActiveTab.Name = "Doctors_ActiveTab";
-            this.Doctors_ActiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Doctors_ActiveTab.Size = new System.Drawing.Size(881, 510);
-            this.Doctors_ActiveTab.TabIndex = 2;
-            this.Doctors_ActiveTab.Text = "Active";
-            this.Doctors_ActiveTab.UseVisualStyleBackColor = true;
-            // 
-            // Doctors_ActiveDataGridView
-            // 
-            this.Doctors_ActiveDataGridView.AllowUserToAddRows = false;
-            this.Doctors_ActiveDataGridView.AllowUserToDeleteRows = false;
-            this.Doctors_ActiveDataGridView.AllowUserToResizeColumns = false;
-            this.Doctors_ActiveDataGridView.AllowUserToResizeRows = false;
-            this.Doctors_ActiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Doctors_ActiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Doctors_ActiveDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Doctors_ActiveDataGridView.Name = "Doctors_ActiveDataGridView";
-            this.Doctors_ActiveDataGridView.ReadOnly = true;
-            this.Doctors_ActiveDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Doctors_ActiveDataGridView.TabIndex = 2;
-            // 
-            // Doctors_InactiveTab
-            // 
-            this.Doctors_InactiveTab.Controls.Add(this.Doctors_InactiveDataGridView);
-            this.Doctors_InactiveTab.Location = new System.Drawing.Point(4, 22);
-            this.Doctors_InactiveTab.Name = "Doctors_InactiveTab";
-            this.Doctors_InactiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Doctors_InactiveTab.Size = new System.Drawing.Size(881, 510);
-            this.Doctors_InactiveTab.TabIndex = 3;
-            this.Doctors_InactiveTab.Text = "Inactive";
-            this.Doctors_InactiveTab.UseVisualStyleBackColor = true;
-            // 
-            // Doctors_InactiveDataGridView
-            // 
-            this.Doctors_InactiveDataGridView.AllowUserToAddRows = false;
-            this.Doctors_InactiveDataGridView.AllowUserToDeleteRows = false;
-            this.Doctors_InactiveDataGridView.AllowUserToResizeColumns = false;
-            this.Doctors_InactiveDataGridView.AllowUserToResizeRows = false;
-            this.Doctors_InactiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Doctors_InactiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Doctors_InactiveDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Doctors_InactiveDataGridView.Name = "Doctors_InactiveDataGridView";
-            this.Doctors_InactiveDataGridView.ReadOnly = true;
-            this.Doctors_InactiveDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Doctors_InactiveDataGridView.TabIndex = 2;
-            // 
             // DocView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,12 +239,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.Doctor_TabControl.ResumeLayout(false);
-            this.Doctors_AllTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Doctors_AllDataGridView)).EndInit();
-            this.Doctors_ActiveTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Doctors_ActiveDataGridView)).EndInit();
-            this.Doctors_InactiveTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Doctors_InactiveDataGridView)).EndInit();
             this.ResumeLayout(false);
 
@@ -346,12 +255,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label AccountTypelabel;
         private System.Windows.Forms.Button Prescriptions_NavButton;
-        private System.Windows.Forms.TabControl Doctor_TabControl;
-        private System.Windows.Forms.TabPage Doctors_AllTab;
-        private System.Windows.Forms.DataGridView Doctors_AllDataGridView;
-        private System.Windows.Forms.TabPage Doctors_ActiveTab;
-        private System.Windows.Forms.DataGridView Doctors_ActiveDataGridView;
-        private System.Windows.Forms.TabPage Doctors_InactiveTab;
         private System.Windows.Forms.DataGridView Doctors_InactiveDataGridView;
     }
 }
