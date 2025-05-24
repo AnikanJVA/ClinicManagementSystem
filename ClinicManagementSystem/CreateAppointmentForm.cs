@@ -35,5 +35,11 @@ namespace ClinicManagementSystem
                                       Database.CurrentPatient.MiddleName.ToString() + " " + 
                                       Database.CurrentPatient.LastName.ToString();
         }
+
+        private void SelectServiceButton_Click(object sender, EventArgs e)
+        {
+            ChooseServiceForm chooseServiceForm = new ChooseServiceForm();
+            chooseServiceForm.ShowDialog();
+        }
     }
 }

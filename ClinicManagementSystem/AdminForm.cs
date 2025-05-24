@@ -125,5 +125,11 @@ namespace ClinicManagementSystem
         {
 
         }
+
+        private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Database.Instance.Connection.Close();
+            FormProvider.Login.Show();
+        }
     }
 }

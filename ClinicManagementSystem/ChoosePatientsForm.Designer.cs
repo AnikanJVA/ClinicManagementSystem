@@ -235,9 +235,11 @@
             // 
             // Patients_DataGridView
             // 
+            this.Patients_DataGridView.AllowUserToAddRows = false;
+            this.Patients_DataGridView.AllowUserToDeleteRows = false;
             this.Patients_DataGridView.AllowUserToResizeColumns = false;
             this.Patients_DataGridView.AllowUserToResizeRows = false;
-            this.Patients_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.Patients_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Patients_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Patients_DataGridView.Location = new System.Drawing.Point(470, 109);
             this.Patients_DataGridView.Name = "Patients_DataGridView";
@@ -432,7 +434,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(1057, 525);
+            this.ClientSize = new System.Drawing.Size(1041, 508);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.CancelButton);

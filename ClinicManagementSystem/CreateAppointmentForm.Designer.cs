@@ -249,6 +249,7 @@
             this.SelectServiceButton.TabIndex = 3;
             this.SelectServiceButton.Text = "Select Service";
             this.SelectServiceButton.UseVisualStyleBackColor = false;
+            this.SelectServiceButton.Click += new System.EventHandler(this.SelectServiceButton_Click);
             // 
             // label2
             // 

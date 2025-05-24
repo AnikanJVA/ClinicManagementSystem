@@ -169,5 +169,15 @@ namespace ClinicManagementSystem
         {
 
         }
+
+        private void Patients_UpdateButton_Click(object sender, EventArgs e)
+        {
+            UpdatePatientForm updatePatientForm = new UpdatePatientForm();
+            updatePatientForm.ShowDialog();
+            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
+            Doctors_ActiveDataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
+
+        }
     }
 }

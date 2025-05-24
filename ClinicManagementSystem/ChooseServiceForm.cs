@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ChooseServiceForm
+namespace ClinicManagementSystem
 {
     public partial class ChooseServiceForm : Form
     {
