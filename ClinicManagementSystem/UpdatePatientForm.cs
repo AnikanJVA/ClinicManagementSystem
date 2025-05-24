@@ -64,7 +64,8 @@ namespace ClinicManagementSystem
                 string.IsNullOrWhiteSpace(AltContactNumberTextBox.Text) ||
                 string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
-                string.IsNullOrWhiteSpace(PatientIdTextBox.Text))
+                string.IsNullOrWhiteSpace(PatientIdTextBox.Text) ||
+                string.IsNullOrWhiteSpace(StatusComboBox.Text))
             {
                 MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -75,13 +76,15 @@ namespace ClinicManagementSystem
                     MessageBox.Show("Select Patient First!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 sex = MaleRadioButton.Checked ? 'M' : 'F';
+                
+                // update patient database method
             }
         }
 
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm();
+            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm("ALL");
             choosePatientsForm.ShowDialog();
             PatientIdTextBox.Text = Database.CurrentPatient.ID.ToString();
             FnameTextBox.Text = Database.CurrentPatient.FirstName.ToString();
@@ -103,6 +106,7 @@ namespace ClinicManagementSystem
             AltContactNumberTextBox.Text = Database.CurrentPatient.AltContactNumber.ToString();
             EmailTextBox.Text = Database.CurrentPatient.EmailAddress.ToString();
             AddressTextBox.Text = Database.CurrentPatient.Address.ToString();
+            StatusComboBox.Text = Database.CurrentPatient.Status.ToString();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

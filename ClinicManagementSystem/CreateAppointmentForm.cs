@@ -18,6 +18,7 @@ namespace ClinicManagementSystem
             InitializeComponent();
             AppointmentDateTimePicker.Format = DateTimePickerFormat.Custom;
             AppointmentDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
+            AppointmentDateTimePicker.MinDate = DateTime.Today;
         }
 
 
@@ -38,9 +39,9 @@ namespace ClinicManagementSystem
 
         private void SelectDoctorButton_Click(object sender, EventArgs e)
         {
-            // ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm();
-            // chooseDoctorForm.ShowDiaglog();
-            DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString(); 
+            ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm();
+            chooseDoctorForm.ShowDialog();
+            DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString();
             DoctorNameTextBox.Text = Database.CurrentDoctor.FirstName.ToString() + " " +
                                      Database.CurrentDoctor.MiddleName.ToString() + " " +
                                      Database.CurrentDoctor.LastName.ToString();
@@ -48,7 +49,17 @@ namespace ClinicManagementSystem
 
         private void CreateAppoitnmentButton_Click(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrWhiteSpace(PatientIdTextBox.Text) ||
+                string.IsNullOrWhiteSpace(DoctorIdTextBox.Text) ||
+                string.IsNullOrWhiteSpace(ReasonTextBox.Text))
+            {
+                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // check if date or doctor is available 
+                // database update method 
+            }
         }
     }
 }

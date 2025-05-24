@@ -243,7 +243,7 @@ namespace ClinicManagementSystem
 
             }
 
-            public static string GetUserStatus(long userid)
+            public static string GetUserStatus(long userid) // to change, pwede mag buhat ug user nga class same sa doctor ug patient
             {
                 string query = "SELECT status FROM users WHERE userid = @userid";
 
@@ -262,7 +262,7 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static string GetUserAccType(string username, string password)
+            public static string GetUserAccType(string username, string password) // to change, pwede mag buhat ug user nga class same sa doctor ug patient
             {
                 string query = "SELECT accType FROM users WHERE username = @username AND password = SHA2(@password, 256) LIMIT 1";
 
@@ -299,35 +299,22 @@ namespace ClinicManagementSystem
             {
                 string query;
                 status = status.ToUpper();
-                if (status.Equals("ACTIVE"))
+                if (status.Equals("ALL"))
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients WHERE status = @status";
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, Status FROM patients ORDER BY patientId DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
-                        cmd.Parameters.AddWithValue("@status", status);
                         DataTable table = new DataTable();
                         adapter.Fill(table);
                         return table;
                     }
                 }
-                else if (status.Equals("INACTIVE"))
-                {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients WHERE status = @status";
-                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        cmd.Parameters.AddWithValue("@status", status);
-                        DataTable table = new DataTable();
-                        adapter.Fill(table);
-                        return table;
-                    }
-                }
-
-                query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, Status FROM patients";
+                query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients WHERE status = @status ORDER BY patientId DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
+                    cmd.Parameters.AddWithValue("@status", status);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
                     return table;
@@ -338,41 +325,56 @@ namespace ClinicManagementSystem
             {
                 string query;
                 status = status.ToUpper();
-                if (status.Equals("ACTIVE"))
-                {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress FROM doctors WHERE status = @status";
-                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        cmd.Parameters.AddWithValue("@status", status);
-                        DataTable table = new DataTable();
-                        adapter.Fill(table);
-                        return table;
-                    }
-                }
-                else if (status.Equals("INACTIVE"))
-                {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress FROM doctors WHERE status = @status";
-                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
-                    {
-                        cmd.Parameters.AddWithValue("@status", status);
-                        DataTable table = new DataTable();
-                        adapter.Fill(table);
-                        return table;
-                    }
-                }
 
-                query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress, Status FROM doctors";
+                if (status.Equals("ALL"))
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress, LicenseNumber, Status FROM doctors ORDER BY doctorId DESC";
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+                query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress, LicenseNumber FROM doctors WHERE status = @status ORDER BY doctorId DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
+                    cmd.Parameters.AddWithValue("@status", status);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
                     return table;
                 }
             }
 
+            public static DataTable GetAppointments(string status)
+            {
+                string query;
+                status = status.ToUpper();
+                if (status.Equals("ALL"))
+                {
+                    query = "SELECT AppointmentID, PatientID, DoctorID, AppointmentDateTime, ReasonForAppointment, Status FROM appointments ORDER BY appointmentId DESC";
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+                
+                query = "SELECT AppointmentID, PatientID, DoctorID, AppointmentDateTime, ReasonForAppointment, Status FROM appointments WHERE status = @status ORDER BY appointmentId DESC";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@status", status);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
 
             public static DataTable GetSearchPatient(string searchType ,string fname, string mname, string lname)
             {
@@ -390,37 +392,37 @@ namespace ClinicManagementSystem
                 if (searchType == "F")
                 {
                     query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
-                            " FROM patients WHERE firstName LIKE @fname";
+                            " FROM patients WHERE firstName LIKE @fname ORDER BY patientId DESC";
                 }
                 else if (searchType == "M")
                 {
                     query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
-                            " FROM patients WHERE MiddleName LIKE @mname";
+                            " FROM patients WHERE MiddleName LIKE @mname ORDER BY patientId DESC";
                 }
                 else if (searchType == "L")
                 {
                     query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
-                            " FROM patients WHERE lastName LIKE @lname";
+                            " FROM patients WHERE lastName LIKE @lname ORDER BY patientId DESC";
                 }
                 else if (searchType == "FM")
                 {
                     query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
-                            " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname";
+                            " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname ORDER BY patientId DESC";
                 }
                 else if (searchType == "FL")
                 {
                     query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
-                            " FROM patients WHERE firstName LIKE @fname AND lastName LIKE @lname";
+                            " FROM patients WHERE firstName LIKE @fname AND lastName LIKE @lname ORDER BY patientId DESC";
                 }
                 else if (searchType == "ML")
                 {
                     query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
-                            " FROM patients WHERE middleName LIKE @mname AND lastName LIKE @lname";
+                            " FROM patients WHERE middleName LIKE @mname AND lastName LIKE @lname ORDER BY patientId DESC";
                 }
                 else // full name 
                 {
                     query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
-                            " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname AND lastName LIKE @lname";
+                            " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname AND lastName LIKE @lname ORDER BY patientId DESC";
                 }
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
@@ -477,13 +479,14 @@ namespace ClinicManagementSystem
                 return null;
             }
 
+            
             public static Doctor RetrieveDoctor(long doctorId)
             {
                 Doctor doctor = new Doctor();
                 string query;
 
                 query = "SELECT DoctorID, FirstName, MiddleName, LastName, " +
-                        "HireDate, ContactNumber, EmailAddress, Address, LicenseNumber, Status" +
+                        "HireDate, ContactNumber, EmailAddress, Address, LicenseNumber, Status " +
                         "FROM doctors WHERE doctorID = @doctorId";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 {
@@ -517,7 +520,7 @@ namespace ClinicManagementSystem
                 return null;
             }
 
-            
+
         }
 
         public class Person

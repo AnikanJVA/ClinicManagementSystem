@@ -45,8 +45,8 @@ namespace ClinicManagementSystem
 
         private void SelectDoctorButton_Click(object sender, EventArgs e)
         {
-            // ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm();
-            // chooseDoctorForm.ShowDiaglog();
+            ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm();
+             chooseDoctorForm.ShowDialog();
             DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString();
             DoctorNameTextBox.Text = Database.CurrentDoctor.FirstName.ToString() + " " +
                                      Database.CurrentDoctor.MiddleName.ToString() + " " +

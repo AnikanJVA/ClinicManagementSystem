@@ -73,8 +73,15 @@ namespace ClinicManagementSystem
             else
             {
                 sex = MaleRadioButton.Checked ? 'M' : 'F';
-                if (Database.AddPatient(FnameTextBox.Text, MnameTextBox.Text, LnameTextBox.Text, DoBDateTimePicker.Text, sex,
-                                        ContactNoTextBox.Text, AltContactNumberTextBox.Text, EmailTextBox.Text, AddressTextBox.Text))
+                if (Database.AddPatient(FnameTextBox.Text, 
+                                        MnameTextBox.Text,
+                                        LnameTextBox.Text,
+                                        DoBDateTimePicker.Text,
+                                        sex,
+                                        ContactNoTextBox.Text,
+                                        AltContactNumberTextBox.Text,
+                                        EmailTextBox.Text,
+                                        AddressTextBox.Text))
                 {
                     MessageBox.Show("Patient registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();

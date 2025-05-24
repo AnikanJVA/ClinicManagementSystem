@@ -34,7 +34,7 @@
             this.SelectDoctorButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.AppointmentDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.ServiceTextBox = new System.Windows.Forms.TextBox();
+            this.ReasonTextBox = new System.Windows.Forms.TextBox();
             this.DoctorNameTextBox = new System.Windows.Forms.TextBox();
             this.DoctorIdTextBox = new System.Windows.Forms.TextBox();
             this.PatientNameTextBox = new System.Windows.Forms.TextBox();
@@ -43,8 +43,8 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.CreateAppoitnmentButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,7 +104,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.panel1.Controls.Add(this.AppointmentDateTimePicker);
-            this.panel1.Controls.Add(this.ServiceTextBox);
+            this.panel1.Controls.Add(this.ReasonTextBox);
             this.panel1.Controls.Add(this.DoctorNameTextBox);
             this.panel1.Controls.Add(this.DoctorIdTextBox);
             this.panel1.Controls.Add(this.PatientNameTextBox);
@@ -135,14 +135,14 @@
             this.AppointmentDateTimePicker.Size = new System.Drawing.Size(277, 26);
             this.AppointmentDateTimePicker.TabIndex = 4;
             // 
-            // ServiceTextBox
+            // ReasonTextBox
             // 
-            this.ServiceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ServiceTextBox.Location = new System.Drawing.Point(199, 184);
-            this.ServiceTextBox.Multiline = true;
-            this.ServiceTextBox.Name = "ServiceTextBox";
-            this.ServiceTextBox.Size = new System.Drawing.Size(429, 62);
-            this.ServiceTextBox.TabIndex = 0;
+            this.ReasonTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReasonTextBox.Location = new System.Drawing.Point(199, 184);
+            this.ReasonTextBox.Multiline = true;
+            this.ReasonTextBox.Name = "ReasonTextBox";
+            this.ReasonTextBox.Size = new System.Drawing.Size(429, 62);
+            this.ReasonTextBox.TabIndex = 0;
             // 
             // DoctorNameTextBox
             // 
@@ -235,17 +235,6 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "Appointment Date Time:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.Menu;
-            this.label3.Location = new System.Drawing.Point(117, 33);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Patient ID: ";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -256,6 +245,17 @@
             this.label2.Size = new System.Drawing.Size(187, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Reason for Appointment:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Menu;
+            this.label3.Location = new System.Drawing.Point(117, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 20);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Patient ID: ";
             // 
             // CreateAppointmentForm
             // 
@@ -291,7 +291,7 @@
         private System.Windows.Forms.Button SelectPatientButton;
         private System.Windows.Forms.TextBox DoctorNameTextBox;
         private System.Windows.Forms.TextBox DoctorIdTextBox;
-        private System.Windows.Forms.TextBox ServiceTextBox;
+        private System.Windows.Forms.TextBox ReasonTextBox;
         private System.Windows.Forms.DateTimePicker AppointmentDateTimePicker;
         private System.Windows.Forms.Label label2;
     }

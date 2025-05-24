@@ -39,13 +39,11 @@
             this.MaleRadioButton = new System.Windows.Forms.RadioButton();
             this.CancelButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
-            this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.FnameTextBox = new System.Windows.Forms.TextBox();
             this.LnameTextBox = new System.Windows.Forms.TextBox();
             this.MnameTextBox = new System.Windows.Forms.TextBox();
             this.ContactNoTextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -53,6 +51,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.AddressTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,6 +97,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.panel1.Controls.Add(this.StatusComboBox);
             this.panel1.Controls.Add(this.DoBDateTimePicker);
             this.panel1.Controls.Add(this.SelectButton);
             this.panel1.Controls.Add(this.label1);
@@ -110,6 +113,7 @@
             this.panel1.Controls.Add(this.FnameTextBox);
             this.panel1.Controls.Add(this.LnameTextBox);
             this.panel1.Controls.Add(this.MnameTextBox);
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.ContactNoTextBox);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label5);
@@ -128,7 +132,7 @@
             // 
             this.DoBDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.DoBDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DoBDateTimePicker.Location = new System.Drawing.Point(153, 203);
+            this.DoBDateTimePicker.Location = new System.Drawing.Point(153, 199);
             this.DoBDateTimePicker.Name = "DoBDateTimePicker";
             this.DoBDateTimePicker.Size = new System.Drawing.Size(306, 26);
             this.DoBDateTimePicker.TabIndex = 4;
@@ -213,18 +217,10 @@
             this.UpdateButton.UseVisualStyleBackColor = false;
             this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
-            // AddressTextBox
-            // 
-            this.AddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddressTextBox.Location = new System.Drawing.Point(617, 208);
-            this.AddressTextBox.Name = "AddressTextBox";
-            this.AddressTextBox.Size = new System.Drawing.Size(306, 26);
-            this.AddressTextBox.TabIndex = 10;
-            // 
             // EmailTextBox
             // 
             this.EmailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmailTextBox.Location = new System.Drawing.Point(617, 165);
+            this.EmailTextBox.Location = new System.Drawing.Point(617, 156);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(306, 26);
             this.EmailTextBox.TabIndex = 9;
@@ -261,17 +257,6 @@
             this.ContactNoTextBox.Size = new System.Drawing.Size(306, 26);
             this.ContactNoTextBox.TabIndex = 7;
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(539, 211);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 20);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Address:";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -299,7 +284,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(44, 208);
+            this.label9.Location = new System.Drawing.Point(44, 204);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(103, 20);
             this.label9.TabIndex = 2;
@@ -321,7 +306,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(505, 165);
+            this.label6.Location = new System.Drawing.Point(505, 156);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 20);
             this.label6.TabIndex = 5;
@@ -348,6 +333,49 @@
             this.label10.Size = new System.Drawing.Size(105, 20);
             this.label10.TabIndex = 1;
             this.label10.Text = "Middle Name:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(539, 198);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 20);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Address:";
+            // 
+            // AddressTextBox
+            // 
+            this.AddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddressTextBox.Location = new System.Drawing.Point(617, 195);
+            this.AddressTextBox.Name = "AddressTextBox";
+            this.AddressTextBox.Size = new System.Drawing.Size(306, 26);
+            this.AddressTextBox.TabIndex = 10;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(551, 237);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(60, 20);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Status:";
+            // 
+            // StatusComboBox
+            // 
+            this.StatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.StatusComboBox.FormattingEnabled = true;
+            this.StatusComboBox.Items.AddRange(new object[] {
+            "Active",
+            "Incative"});
+            this.StatusComboBox.Location = new System.Drawing.Point(617, 234);
+            this.StatusComboBox.Name = "StatusComboBox";
+            this.StatusComboBox.Size = new System.Drawing.Size(306, 28);
+            this.StatusComboBox.TabIndex = 27;
             // 
             // UpdatePatientForm
             // 
@@ -379,13 +407,11 @@
         private System.Windows.Forms.RadioButton MaleRadioButton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button UpdateButton;
-        private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.TextBox EmailTextBox;
         private System.Windows.Forms.TextBox FnameTextBox;
         private System.Windows.Forms.TextBox LnameTextBox;
         private System.Windows.Forms.TextBox MnameTextBox;
         private System.Windows.Forms.TextBox ContactNoTextBox;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -393,6 +419,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox AddressTextBox;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox StatusComboBox;
     }
 }
 

@@ -58,17 +58,19 @@
             this.Patients_InactiveDataGridView = new System.Windows.Forms.DataGridView();
             this.Billing_DataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_TabControl = new System.Windows.Forms.TabControl();
+            this.Appointments_AllTab = new System.Windows.Forms.TabPage();
             this.Appointments_ApprovedTab = new System.Windows.Forms.TabPage();
-            this.Appointments_ApprovedDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_PendingTab = new System.Windows.Forms.TabPage();
-            this.Appointments_PendingDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_RescheduledTab = new System.Windows.Forms.TabPage();
-            this.Appointments_RescheduledDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_CanceledTab = new System.Windows.Forms.TabPage();
-            this.Appointments_CanceledDataGridView = new System.Windows.Forms.DataGridView();
-            this.Appointments_FinishedTab = new System.Windows.Forms.TabPage();
-            this.Appointments_FinishedDataGridView = new System.Windows.Forms.DataGridView();
             this.Doctors_RegisterButton = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Appointments_ApprovedDataGridView = new System.Windows.Forms.DataGridView();
+            this.Appointments_PendingDataGridView = new System.Windows.Forms.DataGridView();
+            this.Appointments_RescheduledDataGridView = new System.Windows.Forms.DataGridView();
+            this.Appointments_CanceledDataGridView = new System.Windows.Forms.DataGridView();
+            this.Appointments_FinishedDataGridView = new System.Windows.Forms.DataGridView();
+            this.Appointments_AllDataGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
@@ -89,16 +91,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Billing_DataGridView)).BeginInit();
             this.Appointments_TabControl.SuspendLayout();
+            this.Appointments_AllTab.SuspendLayout();
             this.Appointments_ApprovedTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Appointments_ApprovedDataGridView)).BeginInit();
             this.Appointments_PendingTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Appointments_PendingDataGridView)).BeginInit();
             this.Appointments_RescheduledTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Appointments_RescheduledDataGridView)).BeginInit();
             this.Appointments_CanceledTab.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Appointments_ApprovedDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Appointments_PendingDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Appointments_RescheduledDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_CanceledDataGridView)).BeginInit();
-            this.Appointments_FinishedTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_FinishedDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Appointments_AllDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // SplitContainer
@@ -128,13 +132,13 @@
             this.SplitContainer.Panel2.Controls.Add(this.Billing_CreateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_RegisterButton);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_CreateButton);
-            this.SplitContainer.Panel2.Controls.Add(this.Doctor_TabControl);
-            this.SplitContainer.Panel2.Controls.Add(this.Patients_TabControl);
-            this.SplitContainer.Panel2.Controls.Add(this.Billing_DataGridView);
-            this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Doctors_RegisterButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_SearchButton);
             this.SplitContainer.Panel2.Controls.Add(this.Doctors_UpdateButton);
+            this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.Doctor_TabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.Patients_TabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.Billing_DataGridView);
             this.SplitContainer.Panel2MinSize = 978;
             this.SplitContainer.Size = new System.Drawing.Size(1264, 681);
             this.SplitContainer.SplitterDistance = 282;
@@ -552,16 +556,28 @@
             // 
             // Appointments_TabControl
             // 
+            this.Appointments_TabControl.Controls.Add(this.Appointments_AllTab);
             this.Appointments_TabControl.Controls.Add(this.Appointments_ApprovedTab);
             this.Appointments_TabControl.Controls.Add(this.Appointments_PendingTab);
             this.Appointments_TabControl.Controls.Add(this.Appointments_RescheduledTab);
             this.Appointments_TabControl.Controls.Add(this.Appointments_CanceledTab);
-            this.Appointments_TabControl.Controls.Add(this.Appointments_FinishedTab);
+            this.Appointments_TabControl.Controls.Add(this.tabPage1);
             this.Appointments_TabControl.Location = new System.Drawing.Point(37, 12);
             this.Appointments_TabControl.Name = "Appointments_TabControl";
             this.Appointments_TabControl.SelectedIndex = 0;
             this.Appointments_TabControl.Size = new System.Drawing.Size(889, 536);
             this.Appointments_TabControl.TabIndex = 7;
+            // 
+            // Appointments_AllTab
+            // 
+            this.Appointments_AllTab.Controls.Add(this.Appointments_AllDataGridView);
+            this.Appointments_AllTab.Location = new System.Drawing.Point(4, 22);
+            this.Appointments_AllTab.Name = "Appointments_AllTab";
+            this.Appointments_AllTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Appointments_AllTab.Size = new System.Drawing.Size(881, 510);
+            this.Appointments_AllTab.TabIndex = 0;
+            this.Appointments_AllTab.Text = "All";
+            this.Appointments_AllTab.UseVisualStyleBackColor = true;
             // 
             // Appointments_ApprovedTab
             // 
@@ -570,24 +586,9 @@
             this.Appointments_ApprovedTab.Name = "Appointments_ApprovedTab";
             this.Appointments_ApprovedTab.Padding = new System.Windows.Forms.Padding(3);
             this.Appointments_ApprovedTab.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_ApprovedTab.TabIndex = 0;
+            this.Appointments_ApprovedTab.TabIndex = 1;
             this.Appointments_ApprovedTab.Text = "Approved";
             this.Appointments_ApprovedTab.UseVisualStyleBackColor = true;
-            // 
-            // Appointments_ApprovedDataGridView
-            // 
-            this.Appointments_ApprovedDataGridView.AllowUserToAddRows = false;
-            this.Appointments_ApprovedDataGridView.AllowUserToDeleteRows = false;
-            this.Appointments_ApprovedDataGridView.AllowUserToResizeColumns = false;
-            this.Appointments_ApprovedDataGridView.AllowUserToResizeRows = false;
-            this.Appointments_ApprovedDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Appointments_ApprovedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Appointments_ApprovedDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Appointments_ApprovedDataGridView.MultiSelect = false;
-            this.Appointments_ApprovedDataGridView.Name = "Appointments_ApprovedDataGridView";
-            this.Appointments_ApprovedDataGridView.ReadOnly = true;
-            this.Appointments_ApprovedDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_ApprovedDataGridView.TabIndex = 0;
             // 
             // Appointments_PendingTab
             // 
@@ -596,24 +597,9 @@
             this.Appointments_PendingTab.Name = "Appointments_PendingTab";
             this.Appointments_PendingTab.Padding = new System.Windows.Forms.Padding(3);
             this.Appointments_PendingTab.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_PendingTab.TabIndex = 1;
+            this.Appointments_PendingTab.TabIndex = 2;
             this.Appointments_PendingTab.Text = "Pending";
             this.Appointments_PendingTab.UseVisualStyleBackColor = true;
-            // 
-            // Appointments_PendingDataGridView
-            // 
-            this.Appointments_PendingDataGridView.AllowUserToAddRows = false;
-            this.Appointments_PendingDataGridView.AllowUserToDeleteRows = false;
-            this.Appointments_PendingDataGridView.AllowUserToResizeColumns = false;
-            this.Appointments_PendingDataGridView.AllowUserToResizeRows = false;
-            this.Appointments_PendingDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Appointments_PendingDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Appointments_PendingDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Appointments_PendingDataGridView.MultiSelect = false;
-            this.Appointments_PendingDataGridView.Name = "Appointments_PendingDataGridView";
-            this.Appointments_PendingDataGridView.ReadOnly = true;
-            this.Appointments_PendingDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_PendingDataGridView.TabIndex = 1;
             // 
             // Appointments_RescheduledTab
             // 
@@ -622,24 +608,9 @@
             this.Appointments_RescheduledTab.Name = "Appointments_RescheduledTab";
             this.Appointments_RescheduledTab.Padding = new System.Windows.Forms.Padding(3);
             this.Appointments_RescheduledTab.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_RescheduledTab.TabIndex = 2;
+            this.Appointments_RescheduledTab.TabIndex = 3;
             this.Appointments_RescheduledTab.Text = "Rescheduled";
             this.Appointments_RescheduledTab.UseVisualStyleBackColor = true;
-            // 
-            // Appointments_RescheduledDataGridView
-            // 
-            this.Appointments_RescheduledDataGridView.AllowUserToAddRows = false;
-            this.Appointments_RescheduledDataGridView.AllowUserToDeleteRows = false;
-            this.Appointments_RescheduledDataGridView.AllowUserToResizeColumns = false;
-            this.Appointments_RescheduledDataGridView.AllowUserToResizeRows = false;
-            this.Appointments_RescheduledDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Appointments_RescheduledDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Appointments_RescheduledDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Appointments_RescheduledDataGridView.MultiSelect = false;
-            this.Appointments_RescheduledDataGridView.Name = "Appointments_RescheduledDataGridView";
-            this.Appointments_RescheduledDataGridView.ReadOnly = true;
-            this.Appointments_RescheduledDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_RescheduledDataGridView.TabIndex = 2;
             // 
             // Appointments_CanceledTab
             // 
@@ -648,50 +619,9 @@
             this.Appointments_CanceledTab.Name = "Appointments_CanceledTab";
             this.Appointments_CanceledTab.Padding = new System.Windows.Forms.Padding(3);
             this.Appointments_CanceledTab.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_CanceledTab.TabIndex = 3;
+            this.Appointments_CanceledTab.TabIndex = 4;
             this.Appointments_CanceledTab.Text = "Canceled";
             this.Appointments_CanceledTab.UseVisualStyleBackColor = true;
-            // 
-            // Appointments_CanceledDataGridView
-            // 
-            this.Appointments_CanceledDataGridView.AllowUserToAddRows = false;
-            this.Appointments_CanceledDataGridView.AllowUserToDeleteRows = false;
-            this.Appointments_CanceledDataGridView.AllowUserToResizeColumns = false;
-            this.Appointments_CanceledDataGridView.AllowUserToResizeRows = false;
-            this.Appointments_CanceledDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Appointments_CanceledDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Appointments_CanceledDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Appointments_CanceledDataGridView.MultiSelect = false;
-            this.Appointments_CanceledDataGridView.Name = "Appointments_CanceledDataGridView";
-            this.Appointments_CanceledDataGridView.ReadOnly = true;
-            this.Appointments_CanceledDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_CanceledDataGridView.TabIndex = 2;
-            // 
-            // Appointments_FinishedTab
-            // 
-            this.Appointments_FinishedTab.Controls.Add(this.Appointments_FinishedDataGridView);
-            this.Appointments_FinishedTab.Location = new System.Drawing.Point(4, 22);
-            this.Appointments_FinishedTab.Name = "Appointments_FinishedTab";
-            this.Appointments_FinishedTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Appointments_FinishedTab.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_FinishedTab.TabIndex = 4;
-            this.Appointments_FinishedTab.Text = "Finished";
-            this.Appointments_FinishedTab.UseVisualStyleBackColor = true;
-            // 
-            // Appointments_FinishedDataGridView
-            // 
-            this.Appointments_FinishedDataGridView.AllowUserToAddRows = false;
-            this.Appointments_FinishedDataGridView.AllowUserToDeleteRows = false;
-            this.Appointments_FinishedDataGridView.AllowUserToResizeColumns = false;
-            this.Appointments_FinishedDataGridView.AllowUserToResizeRows = false;
-            this.Appointments_FinishedDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Appointments_FinishedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Appointments_FinishedDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Appointments_FinishedDataGridView.MultiSelect = false;
-            this.Appointments_FinishedDataGridView.Name = "Appointments_FinishedDataGridView";
-            this.Appointments_FinishedDataGridView.ReadOnly = true;
-            this.Appointments_FinishedDataGridView.Size = new System.Drawing.Size(881, 510);
-            this.Appointments_FinishedDataGridView.TabIndex = 2;
             // 
             // Doctors_RegisterButton
             // 
@@ -710,6 +640,107 @@
             this.Doctors_RegisterButton.UseVisualStyleBackColor = false;
             this.Doctors_RegisterButton.Visible = false;
             this.Doctors_RegisterButton.Click += new System.EventHandler(this.RegisterDoctorButton_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.Appointments_FinishedDataGridView);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(881, 510);
+            this.tabPage1.TabIndex = 5;
+            this.tabPage1.Text = "Finished";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Appointments_ApprovedDataGridView
+            // 
+            this.Appointments_ApprovedDataGridView.AllowUserToAddRows = false;
+            this.Appointments_ApprovedDataGridView.AllowUserToDeleteRows = false;
+            this.Appointments_ApprovedDataGridView.AllowUserToResizeColumns = false;
+            this.Appointments_ApprovedDataGridView.AllowUserToResizeRows = false;
+            this.Appointments_ApprovedDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Appointments_ApprovedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Appointments_ApprovedDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Appointments_ApprovedDataGridView.MultiSelect = false;
+            this.Appointments_ApprovedDataGridView.Name = "Appointments_ApprovedDataGridView";
+            this.Appointments_ApprovedDataGridView.ReadOnly = true;
+            this.Appointments_ApprovedDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Appointments_ApprovedDataGridView.TabIndex = 2;
+            // 
+            // Appointments_PendingDataGridView
+            // 
+            this.Appointments_PendingDataGridView.AllowUserToAddRows = false;
+            this.Appointments_PendingDataGridView.AllowUserToDeleteRows = false;
+            this.Appointments_PendingDataGridView.AllowUserToResizeColumns = false;
+            this.Appointments_PendingDataGridView.AllowUserToResizeRows = false;
+            this.Appointments_PendingDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Appointments_PendingDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Appointments_PendingDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Appointments_PendingDataGridView.MultiSelect = false;
+            this.Appointments_PendingDataGridView.Name = "Appointments_PendingDataGridView";
+            this.Appointments_PendingDataGridView.ReadOnly = true;
+            this.Appointments_PendingDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Appointments_PendingDataGridView.TabIndex = 5;
+            // 
+            // Appointments_RescheduledDataGridView
+            // 
+            this.Appointments_RescheduledDataGridView.AllowUserToAddRows = false;
+            this.Appointments_RescheduledDataGridView.AllowUserToDeleteRows = false;
+            this.Appointments_RescheduledDataGridView.AllowUserToResizeColumns = false;
+            this.Appointments_RescheduledDataGridView.AllowUserToResizeRows = false;
+            this.Appointments_RescheduledDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Appointments_RescheduledDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Appointments_RescheduledDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Appointments_RescheduledDataGridView.MultiSelect = false;
+            this.Appointments_RescheduledDataGridView.Name = "Appointments_RescheduledDataGridView";
+            this.Appointments_RescheduledDataGridView.ReadOnly = true;
+            this.Appointments_RescheduledDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Appointments_RescheduledDataGridView.TabIndex = 5;
+            // 
+            // Appointments_CanceledDataGridView
+            // 
+            this.Appointments_CanceledDataGridView.AllowUserToAddRows = false;
+            this.Appointments_CanceledDataGridView.AllowUserToDeleteRows = false;
+            this.Appointments_CanceledDataGridView.AllowUserToResizeColumns = false;
+            this.Appointments_CanceledDataGridView.AllowUserToResizeRows = false;
+            this.Appointments_CanceledDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Appointments_CanceledDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Appointments_CanceledDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Appointments_CanceledDataGridView.MultiSelect = false;
+            this.Appointments_CanceledDataGridView.Name = "Appointments_CanceledDataGridView";
+            this.Appointments_CanceledDataGridView.ReadOnly = true;
+            this.Appointments_CanceledDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Appointments_CanceledDataGridView.TabIndex = 4;
+            // 
+            // Appointments_FinishedDataGridView
+            // 
+            this.Appointments_FinishedDataGridView.AllowUserToAddRows = false;
+            this.Appointments_FinishedDataGridView.AllowUserToDeleteRows = false;
+            this.Appointments_FinishedDataGridView.AllowUserToResizeColumns = false;
+            this.Appointments_FinishedDataGridView.AllowUserToResizeRows = false;
+            this.Appointments_FinishedDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Appointments_FinishedDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Appointments_FinishedDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Appointments_FinishedDataGridView.MultiSelect = false;
+            this.Appointments_FinishedDataGridView.Name = "Appointments_FinishedDataGridView";
+            this.Appointments_FinishedDataGridView.ReadOnly = true;
+            this.Appointments_FinishedDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Appointments_FinishedDataGridView.TabIndex = 4;
+            // 
+            // Appointments_AllDataGridView
+            // 
+            this.Appointments_AllDataGridView.AllowUserToAddRows = false;
+            this.Appointments_AllDataGridView.AllowUserToDeleteRows = false;
+            this.Appointments_AllDataGridView.AllowUserToResizeColumns = false;
+            this.Appointments_AllDataGridView.AllowUserToResizeRows = false;
+            this.Appointments_AllDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Appointments_AllDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Appointments_AllDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Appointments_AllDataGridView.MultiSelect = false;
+            this.Appointments_AllDataGridView.Name = "Appointments_AllDataGridView";
+            this.Appointments_AllDataGridView.ReadOnly = true;
+            this.Appointments_AllDataGridView.Size = new System.Drawing.Size(881, 510);
+            this.Appointments_AllDataGridView.TabIndex = 3;
             // 
             // RecepView
             // 
@@ -744,16 +775,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Billing_DataGridView)).EndInit();
             this.Appointments_TabControl.ResumeLayout(false);
+            this.Appointments_AllTab.ResumeLayout(false);
             this.Appointments_ApprovedTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Appointments_ApprovedDataGridView)).EndInit();
             this.Appointments_PendingTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Appointments_PendingDataGridView)).EndInit();
             this.Appointments_RescheduledTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Appointments_RescheduledDataGridView)).EndInit();
             this.Appointments_CanceledTab.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Appointments_ApprovedDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Appointments_PendingDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Appointments_RescheduledDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_CanceledDataGridView)).EndInit();
-            this.Appointments_FinishedTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_FinishedDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Appointments_AllDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -766,14 +799,13 @@
         private System.Windows.Forms.Button Patients_NavButton;
         private System.Windows.Forms.Button LogoutButton;
         private System.Windows.Forms.TabControl Appointments_TabControl;
+        private System.Windows.Forms.TabPage Appointments_AllTab;
         private System.Windows.Forms.TabPage Appointments_ApprovedTab;
-        private System.Windows.Forms.TabPage Appointments_PendingTab;
         private System.Windows.Forms.Button Apointments_UpdateButton;
         private System.Windows.Forms.Button Appointments_CreateButton;
-        private System.Windows.Forms.DataGridView Appointments_ApprovedDataGridView;
+        private System.Windows.Forms.TabPage Appointments_PendingTab;
         private System.Windows.Forms.TabPage Appointments_RescheduledTab;
         private System.Windows.Forms.TabPage Appointments_CanceledTab;
-        private System.Windows.Forms.TabPage Appointments_FinishedTab;
         private System.Windows.Forms.Button Doctors_UpdateButton;
         private System.Windows.Forms.Button Doctors_RegisterButton;
         private System.Windows.Forms.TabControl Doctor_TabControl;
@@ -794,11 +826,14 @@
         private System.Windows.Forms.Button Patients_UpdateButton;
         private System.Windows.Forms.DataGridView Patients_ActiveDataGridView;
         private System.Windows.Forms.DataGridView Patients_InactiveDataGridView;
-        private System.Windows.Forms.DataGridView Appointments_PendingDataGridView;
         private System.Windows.Forms.DataGridView Doctors_ActiveDataGridView;
         private System.Windows.Forms.DataGridView Doctors_InactiveDataGridView;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView Appointments_ApprovedDataGridView;
+        private System.Windows.Forms.DataGridView Appointments_PendingDataGridView;
         private System.Windows.Forms.DataGridView Appointments_RescheduledDataGridView;
         private System.Windows.Forms.DataGridView Appointments_CanceledDataGridView;
         private System.Windows.Forms.DataGridView Appointments_FinishedDataGridView;
+        private System.Windows.Forms.DataGridView Appointments_AllDataGridView;
     }
 }

@@ -20,6 +20,12 @@ namespace ClinicManagementSystem
             Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
         }
 
+        public ChoosePatientsForm(string status)
+        {
+            InitializeComponent();
+            Patients_DataGridView.DataSource = Database.GetPatients(status);
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -33,16 +39,9 @@ namespace ClinicManagementSystem
             }
             else 
             {
-                Database.CurrentPatient = (Database.RetrievePatient(Convert.ToInt64(PatientIDTextBox.Text)));
+                Database.CurrentPatient = Database.RetrievePatient(Convert.ToInt64(PatientIDTextBox.Text));
                 this.Close();
             }
-        }
-
-        private void RegisterNewPatientButton_Click(object sender, EventArgs e)
-        {
-            RegisterPatientForm registerPatientForm = new RegisterPatientForm();
-            registerPatientForm.ShowDialog();
-            Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
         }
 
         private void Patients_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -92,6 +91,15 @@ namespace ClinicManagementSystem
 
             }
         }
+
+        private void RegisterNewPatientButton_Click(object sender, EventArgs e)
+        {
+            RegisterPatientForm registerPatientForm = new RegisterPatientForm();
+            registerPatientForm.ShowDialog();
+            Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
+        }
+
+
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
