@@ -86,6 +86,7 @@ namespace ClinicManagementSystem
                 connection.Open();
                 currentPatient = new Patient();
                 currentDoctor = new Doctor();
+                currentAppointment = new Appointment();
             }
 
             public static Database Instance => instance.Value;
@@ -124,6 +125,18 @@ namespace ClinicManagementSystem
                 {
                     return currentDoctor;
                 } 
+            }
+
+            public static Appointment CurrentAppointment
+            {
+                set
+                {
+                    currentAppointment = value;
+                }
+                get
+                {
+                    return currentAppointment;
+                }
             }
 
             public static bool AuthenticateUser(string username, string password)
@@ -282,6 +295,23 @@ namespace ClinicManagementSystem
 
             }
 
+            public static bool UpdateAppointment(long appointmentId,
+                                                 long doctorId,
+                                                 string appointmentDateTime,
+                                                 string status
+                                                 )
+            {
+                string query = "UPDATE appointments SET doctorId = @doctorId, appointmentDateTime = @appointmentDateTime, status = @status WHERE appointmentId = @appointmentId";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
             public static string GetUserStatus(long userid) // to change, pwede mag buhat ug user nga class same sa doctor ug patient
             {
                 string query = "SELECT status FROM users WHERE userid = @userid";
@@ -393,7 +423,12 @@ namespace ClinicManagementSystem
                 status = status.ToUpper();
                 if (status.Equals("ALL"))
                 {
-                    query = "SELECT AppointmentID, PatientID, DoctorID, AppointmentDateTime, ReasonForAppointment, Status FROM appointments ORDER BY appointmentId DESC";
+                    query = "SELECT appointments.AppointmentID, CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, " +
+                            "CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, " +
+                            "appointments.AppointmentDateTime, appointments.ReasonForAppointment, appointments.status " +
+                            "FROM appointments " +
+                            "INNER JOIN patients ON appointments.patientID = patients.patientID " +
+                            "INNER JOIN doctors ON appointments.doctorID = doctors.doctorID ORDER BY appointments.appointmentID DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -402,8 +437,15 @@ namespace ClinicManagementSystem
                         return table;
                     }
                 }
-                
-                query = "SELECT AppointmentID, PatientID, DoctorID, AppointmentDateTime, ReasonForAppointment, Status FROM appointments WHERE status = @status ORDER BY appointmentId DESC";
+
+                query = "SELECT appointments.AppointmentID, CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, " +
+                            "CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, " +
+                            "appointments.AppointmentDateTime, appointments.ReasonForAppointment, appointments.status " +
+                            "FROM appointments " +
+                            "INNER JOIN patients ON appointments.patientID = patients.patientID " +
+                            "INNER JOIN doctors ON appointments.doctorID = doctors.doctorID " +
+                            "HAVING appointments.status = @status " +
+                            "ORDER BY appointments.appointmentID DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -576,7 +618,7 @@ namespace ClinicManagementSystem
                             appointment.PatientId = Convert.ToInt64(reader["patientId"].ToString());
                             appointment.DoctorId = Convert.ToInt64(reader["doctorId"].ToString());
                             appointment.DateTime = reader["appointmentDateTime"].ToString();
-                            appointment.Reason = reader["reasonFormAppointment"].ToString();
+                            appointment.Reason = reader["reasonForAppointment"].ToString();
                             appointment.Status = reader["status"].ToString();
 
                             reader.Close();

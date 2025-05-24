@@ -67,6 +67,8 @@ namespace ClinicManagementSystem
             Doctor_TabControl.Hide();
             Doctors_RegisterButton.Hide();
             Doctors_UpdateButton.Hide();
+
+            UpdateDataGrids();
         }
 
         private void DoctorsButton_Click(object sender, EventArgs e)
@@ -139,6 +141,7 @@ namespace ClinicManagementSystem
         {
             CreateBillForm createBillForm = new CreateBillForm();
             createBillForm.ShowDialog();
+            UpdateDataGrids();
         }
 
         private void createAppointmentButton_Click(object sender, EventArgs e)
@@ -177,12 +180,14 @@ namespace ClinicManagementSystem
         {
             UpdateDoctorForm updateDoctorForm = new UpdateDoctorForm();
             updateDoctorForm.ShowDialog();
+            UpdateDataGrids();
         }
 
         private void Apointments_UpdateButton_Click(object sender, EventArgs e)
         {
             UpdateAppoitnment updateAppoitnment = new UpdateAppoitnment();
             updateAppoitnment.ShowDialog();
+            UpdateDataGrids();
         }
 
         public void UpdateDataGrids()
