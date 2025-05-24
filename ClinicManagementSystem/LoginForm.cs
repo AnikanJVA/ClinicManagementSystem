@@ -74,6 +74,7 @@ namespace ClinicManagementSystem
         {
             private static Patient currentPatient;
             private static Doctor currentDoctor;
+            private static Appointment currentAppointment;
 
             private static readonly Lazy<Database> instance = new Lazy<Database>(() => new Database());
             private MySqlConnection connection;
@@ -160,8 +161,15 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static bool AddPatient(string firstName, string middleName, string lastName, string dob, char sex,
-                                          string contactNumber, string altContactNumber, string emailAddresss, string address)
+            public static bool AddPatient(string firstName,
+                                          string middleName,
+                                          string lastName, 
+                                          string dob, 
+                                          char sex,
+                                          string contactNumber,
+                                          string altContactNumber, 
+                                          string emailAddresss, 
+                                          string address)
             {
                 string checkQuery = "SELECT COUNT(*) FROM patients WHERE firstName = @firstName AND middleName = @middleName " + 
                                     "AND lastName = @lastName AND emailAddress = @emailAddress";
@@ -193,8 +201,13 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static bool AddDoctor(string firstName, string middleName, string lastName, string contactNumber, 
-                                         string emailAddresss, string address, string licenseNumber)
+            public static bool AddDoctor(string firstName,
+                                         string middleName,
+                                         string lastName,
+                                         string contactNumber, 
+                                         string emailAddresss,
+                                         string address,
+                                         string licenseNumber)
             {
                 string checkQuery = "SELECT COUNT(*) FROM doctors WHERE licenseNumber = @licenseNumber";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
@@ -220,7 +233,33 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static bool UpdateUserStatus(long userid)
+            public static bool AddAppointment(long patientId,
+                                              long doctorId,
+                                              string appointmentDateTime,
+                                              string reasonForAppointment)
+            {
+                string checkQuery = "SELECT COUNT(*) FROM appointments WHERE AppointmentDateTime = @appointmentDateTime";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
+                    {
+                        return false;
+                    }
+                }
+                string insertQuery = "INSERT INTO appointments (patientId, doctorId, appointmentDateTime, reasonForAppointment) " +
+                                     "VALUES (@patientId, @doctorId, @appointmentDateTime, @reasonForAppointment)";
+                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+                    cmd.Parameters.AddWithValue("@reasonForAppointment", reasonForAppointment);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
+            public static bool UpdateUserStatus(long userid) // to change
             {
                 if (GetUserStatus(userid) == "ACTIVE")
                 {
@@ -478,7 +517,6 @@ namespace ClinicManagementSystem
                 }
                 return null;
             }
-
             
             public static Doctor RetrieveDoctor(long doctorId)
             {
@@ -520,7 +558,39 @@ namespace ClinicManagementSystem
                 return null;
             }
 
+            public static Appointment RetrieveAppointment(long appointmentId)
+            {
+                Appointment appointment = new Appointment();
+                string query;
 
+                query = "SELECT * FROM appointments WHERE appointmentId = @appointmentId";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            appointment.AppointmentId = appointmentId;
+                            appointment.PatientId = Convert.ToInt64(reader["patientId"].ToString());
+                            appointment.DoctorId = Convert.ToInt64(reader["doctorId"].ToString());
+                            appointment.DateTime = reader["appointmentDateTime"].ToString();
+                            appointment.Reason = reader["reasonFormAppointment"].ToString();
+                            appointment.Status = reader["status"].ToString();
+
+                            reader.Close();
+                            return appointment;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+                return null;
+            }
         }
 
         public class Person
@@ -536,6 +606,8 @@ namespace ClinicManagementSystem
             private string emailAddress;
             private string address;
             private string status;
+            private string username;
+            private string accType;
 
             public Person()
             {
@@ -550,6 +622,8 @@ namespace ClinicManagementSystem
                 EmailAddress = string.Empty;
                 Address = string.Empty;
                 Status = string.Empty;
+                Username = string.Empty;
+                AccType = string.Empty;
             }
 
             public long ID
@@ -617,12 +691,25 @@ namespace ClinicManagementSystem
                 get { return status; }
                 set { status = value; }
             }
+
+            public string Username
+            {
+                get { return username; }
+                set { username = value; }
+            }
+
+            public string AccType
+            {
+                get { return accType; }
+                set { accType = value; }
+            }
         }
 
         public class Doctor : Person
         {
             private string hireDate;
             private string licenseNumber;
+            private string schedule;
 
             public Doctor() : base()
             {
@@ -641,6 +728,12 @@ namespace ClinicManagementSystem
                 get { return licenseNumber; }
                 set { licenseNumber = value; }
             }
+
+            public string Schedule
+            {
+                get { return schedule; }
+                set { schedule = value; }
+            } 
         }
 
         public class Patient : Person
@@ -648,6 +741,62 @@ namespace ClinicManagementSystem
             public Patient() : base()
             {
 
+            }
+        }
+
+        public class Appointment
+        {
+            private long appointmentId;
+            private long patientId;
+            private long doctorId;
+            private string dateTime;
+            private string reason;
+            private string status;
+
+            public Appointment()
+            {
+                AppointmentId = 0;
+                PatientId = 0;
+                DoctorId = 0;   
+                DateTime = string.Empty;
+                Reason = string.Empty;
+                Status = string.Empty;
+            }
+
+            public long AppointmentId 
+            {
+                get {return appointmentId;}
+                set {appointmentId = value;}
+            }
+
+            public long PatientId
+            {
+                get { return patientId; }
+                set { patientId = value; }
+            }
+
+            public long DoctorId
+            {
+                get { return doctorId; }
+                set { doctorId = value; }
+            }
+
+            public string DateTime
+            {
+                get { return dateTime; }
+                set { dateTime = value; }
+            }
+
+            public string Reason
+            {
+                get { return reason; }
+                set { reason = value; }
+            }
+
+            public string Status
+            {
+                get { return status; }
+                set { status = value; }
             }
         }
     }

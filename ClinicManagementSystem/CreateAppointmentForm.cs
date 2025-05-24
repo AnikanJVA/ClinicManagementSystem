@@ -58,7 +58,18 @@ namespace ClinicManagementSystem
             else
             {
                 // check if date or doctor is available 
-                // database update method 
+                if(Database.AddAppointment(Convert.ToInt64(PatientIdTextBox.Text),
+                                           Convert.ToInt64(DoctorIdTextBox.Text),
+                                           AppointmentDateTimePicker.Text,
+                                           ReasonTextBox.Text))
+                {
+                    MessageBox.Show("Appointment created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error!\nAppointment date and time not available.\nAppointment not created.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

@@ -16,6 +16,7 @@ namespace ClinicManagementSystem
         public RecepView()
         {
             InitializeComponent();
+            UpdateDataGrids();
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
@@ -41,13 +42,8 @@ namespace ClinicManagementSystem
             Doctors_RegisterButton.Hide();
             Doctors_UpdateButton.Hide();
 
-            Appointments_AllDataGridView.DataSource = Database.GetAppointments("ALL");
-            Appointments_ApprovedDataGridView.DataSource = Database.GetAppointments("APPROVED");
-            Appointments_PendingDataGridView.DataSource = Database.GetAppointments("PENDING");
-            Appointments_RescheduledDataGridView.DataSource = Database.GetAppointments("RESCHEDULED");
-            Appointments_CanceledDataGridView.DataSource = Database.GetAppointments("CANCELED");
-            Appointments_FinishedDataGridView.DataSource = Database.GetAppointments("FINISHED");
-        } 
+            UpdateDataGrids();
+        }
 
         private void BillingButton_Click(object sender, EventArgs e)
         {
@@ -96,11 +92,9 @@ namespace ClinicManagementSystem
             Doctors_RegisterButton.Show();
             Doctors_UpdateButton.Show();
 
-            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
-            Doctors_ActiveDataGridView.DataSource = Database.GetDoctors("ACTIVE");
-            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
-        } 
-        
+            UpdateDataGrids();
+        }
+
         private void LogoutButton_Click(object sender, EventArgs e)
         {
             Database.Instance.Connection.Close();
@@ -131,18 +125,14 @@ namespace ClinicManagementSystem
             Doctors_RegisterButton.Hide();
             Doctors_UpdateButton.Hide();
 
-            Patients_AllDataGridView.DataSource = Database.GetPatients("ALL");
-            Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
-            Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
+            UpdateDataGrids();
         }
 
         private void RegisterDoctorButton_Click(object sender, EventArgs e)
         {
             RegisterDoctorForm doctorDetailsForm = new RegisterDoctorForm();
             doctorDetailsForm.ShowDialog();
-            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
-            Doctors_ActiveDataGridView.DataSource = Database.GetDoctors("ACTIVE");
-            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
+            UpdateDataGrids();
         }
 
         private void createBillButton_Click(object sender, EventArgs e)
@@ -155,6 +145,7 @@ namespace ClinicManagementSystem
         {
             CreateAppointmentForm createAppointmentForm = new CreateAppointmentForm();
             createAppointmentForm.ShowDialog();
+            UpdateDataGrids();
         }
 
         private void RecepView_FormClosed(object sender, FormClosedEventArgs e)
@@ -167,9 +158,7 @@ namespace ClinicManagementSystem
         {
             RegisterPatientForm registerPatientForm = new RegisterPatientForm();
             registerPatientForm.ShowDialog();
-            Patients_AllDataGridView.DataSource = Database.GetPatients("");
-            Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
-            Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
+            UpdateDataGrids();
         }
 
         private void Patients_SearchButton_Click(object sender, EventArgs e)
@@ -181,10 +170,7 @@ namespace ClinicManagementSystem
         {
             UpdatePatientForm updatePatientForm = new UpdatePatientForm();
             updatePatientForm.ShowDialog();
-            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
-            Doctors_ActiveDataGridView.DataSource = Database.GetDoctors("ACTIVE");
-            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
-
+            UpdateDataGrids();
         }
 
         private void Doctors_UpdateButton_Click(object sender, EventArgs e)
@@ -197,6 +183,24 @@ namespace ClinicManagementSystem
         {
             UpdateAppoitnment updateAppoitnment = new UpdateAppoitnment();
             updateAppoitnment.ShowDialog();
+        }
+
+        public void UpdateDataGrids()
+        { 
+            Appointments_AllDataGridView.DataSource = Database.GetAppointments("ALL");
+            Appointments_ApprovedDataGridView.DataSource = Database.GetAppointments("APPROVED");
+            Appointments_PendingDataGridView.DataSource = Database.GetAppointments("PENDING");
+            Appointments_RescheduledDataGridView.DataSource = Database.GetAppointments("RESCHEDULED");
+            Appointments_CanceledDataGridView.DataSource = Database.GetAppointments("CANCELED");
+            Appointments_FinishedDataGridView.DataSource = Database.GetAppointments("FINISHED");
+
+            Patients_AllDataGridView.DataSource = Database.GetPatients("ALL");
+            Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
+            Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
+
+            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
+            Doctors_ActiveDataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
         }
     }
 }
