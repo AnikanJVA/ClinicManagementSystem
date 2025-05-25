@@ -88,7 +88,7 @@ namespace ClinicManagementSystem
                 }
                 else 
                 {
-                    MessageBox.Show("Error!\nDupplicate patient detected.\nPatient not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error!\nDupplicate patient information detected.\nPatient not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

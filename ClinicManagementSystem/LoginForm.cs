@@ -185,14 +185,15 @@ namespace ClinicManagementSystem
                                           string emailAddress, 
                                           string address)
             {
-                string checkQuery = "SELECT COUNT(*) FROM patients WHERE firstName = @firstName AND middleName = @middleName " + 
-                                    "AND lastName = @lastName AND emailAddress = @emailAddress";
+                string checkQuery = "SELECT COUNT(*) FROM patients " +
+                                    "WHERE emailAddress = @EmailAddress " +
+                                    "OR contactNumber = @ContactNumber " +
+                                    "OR altContactNumber = @AltContactNumber";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
-                    checkCmd.Parameters.AddWithValue("@firstName", firstName);
-                    checkCmd.Parameters.AddWithValue("@middleName", middleName);
-                    checkCmd.Parameters.AddWithValue("@lastName", lastName);
-                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
                     if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
                     {
                         return false;
@@ -297,46 +298,68 @@ namespace ClinicManagementSystem
             }
 
             public static bool UpdatePatient(long patientId,
-                                 string firstName,
-                                 string middleName,
-                                 string lastName,
-                                 string dob,
-                                 char sex,
-                                 string contactNumber,
-                                 string altContactNumber,
-                                 string emailAddress,
-                                 string address,
-                                 string status)
+                                             string firstName,
+                                             string middleName,
+                                             string lastName,
+                                             string dob,
+                                             char sex,
+                                             string contactNumber,
+                                             string altContactNumber,
+                                             string emailAddress,
+                                             string address,
+                                             string status)
             {
-                string checkQuery = "SELECT COUNT(*) FROM patients WHERE firstName = @firstName AND middleName = @middleName " +
-                                    "AND lastName = @lastName AND emailAddress = @emailAddress AND patientId <> @patientId";
+                string checkQuery = @"SELECT COUNT(*) FROM patients 
+                                      WHERE patientId <> @patientId 
+                                      AND (
+                                          emailAddress = @EmailAddress 
+                                          OR contactNumber = @ContactNumber 
+                                          OR altContactNumber = @AltContactNumber
+                                          OR contactNumber = @AltContactNumber
+                                          OR altContactNumber = @ContactNumber
+                                      )";
+
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
-                    checkCmd.Parameters.AddWithValue("@firstName", firstName);
-                    checkCmd.Parameters.AddWithValue("@middleName", middleName);
-                    checkCmd.Parameters.AddWithValue("@lastName", lastName);
-                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
                     checkCmd.Parameters.AddWithValue("@patientId", patientId);
-                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
+                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (count > 0)
                     {
                         return false;
                     }
                 }
-                string query = "UPDATE patients SET firstName = @firstName, middleName = @middleName, lastName = @lastName, DoB = @dob, sex = @sex, contactNumber = @contactNumber," +
-                               " altContactNumber = @altContactNumber, emailAddress = @emailAddress, address = @address, status = @status WHERE patientId = @patientId";
-                using (MySqlCommand cmd = new MySqlCommand(query, Instance.connection))
+
+                string updateQuery = @"UPDATE patients SET 
+                                    firstName = @FirstName,
+                                    middleName = @MiddleName,
+                                    lastName = @LastName,
+                                    DoB = @DoB,
+                                    sex = @Sex,
+                                    contactNumber = @ContactNumber,
+                                    altContactNumber = @AltContactNumber,
+                                    emailAddress = @EmailAddress,
+                                    address = @Address,
+                                    status = @Status
+                                    WHERE patientId = @PatientId";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
                 {
-                    cmd.Parameters.AddWithValue("@firstName", firstName);
-                    cmd.Parameters.AddWithValue("@middleName", middleName);
-                    cmd.Parameters.AddWithValue("@lastName", lastName);
-                    cmd.Parameters.AddWithValue("@dob", dob);
-                    cmd.Parameters.AddWithValue("@sex", sex);
-                    cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    cmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
-                    cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
-                    cmd.Parameters.AddWithValue("@address", address);
-                    cmd.Parameters.AddWithValue("@status", status);
-                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@FirstName", firstName);
+                    cmd.Parameters.AddWithValue("@MiddleName", middleName);
+                    cmd.Parameters.AddWithValue("@LastName", lastName);
+                    cmd.Parameters.AddWithValue("@DoB", dob);
+                    cmd.Parameters.AddWithValue("@Sex", sex);
+                    cmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                    cmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+                    cmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@Address", address);
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.Parameters.AddWithValue("@PatientId", patientId);
+
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
