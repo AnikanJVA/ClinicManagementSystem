@@ -59,6 +59,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Patients_DataGridView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -315,7 +316,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(569, 451);
+            this.CancelButton.Location = new System.Drawing.Point(311, 441);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(383, 38);
             this.CancelButton.TabIndex = 9;
@@ -330,7 +331,7 @@
             this.SelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.SelectButton.ForeColor = System.Drawing.Color.White;
-            this.SelectButton.Location = new System.Drawing.Point(46, 451);
+            this.SelectButton.Location = new System.Drawing.Point(77, 397);
             this.SelectButton.Name = "SelectButton";
             this.SelectButton.Size = new System.Drawing.Size(383, 38);
             this.SelectButton.TabIndex = 8;
@@ -429,6 +430,20 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "Middle Name:";
             // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.CloseButton.FlatAppearance.BorderSize = 0;
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.CloseButton.ForeColor = System.Drawing.Color.White;
+            this.CloseButton.Location = new System.Drawing.Point(311, 441);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(383, 38);
+            this.CloseButton.TabIndex = 10;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.UseVisualStyleBackColor = false;
+            // 
             // ChoosePatientsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,6 +459,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
+            this.Controls.Add(this.CloseButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "ChoosePatientsForm";
@@ -492,5 +508,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button CloseButton;
     }
 }

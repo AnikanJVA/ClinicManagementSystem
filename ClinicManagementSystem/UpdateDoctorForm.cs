@@ -58,15 +58,19 @@ namespace ClinicManagementSystem
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(FnameTextBox.Text) ||
-         string.IsNullOrWhiteSpace(MnameTextBox.Text) ||
-         string.IsNullOrWhiteSpace(LnameTextBox.Text) ||
-         string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
-         string.IsNullOrWhiteSpace(LicenseNoTextBox.Text) ||
-         string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
-         string.IsNullOrWhiteSpace(DoctorIdTextBox.Text) ||
-         string.IsNullOrWhiteSpace(AddressTextBox.Text))
+             string.IsNullOrWhiteSpace(MnameTextBox.Text) ||
+             string.IsNullOrWhiteSpace(LnameTextBox.Text) ||
+             string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
+             string.IsNullOrWhiteSpace(LicenseNoTextBox.Text) ||
+             string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
+             string.IsNullOrWhiteSpace(DoctorIdTextBox.Text) ||
+             string.IsNullOrWhiteSpace(AddressTextBox.Text))
             {
                 MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
             }
         }
 
@@ -86,6 +90,7 @@ namespace ClinicManagementSystem
             LicenseNoTextBox.Text = Database.CurrentDoctor.LicenseNumber.ToString();
             ContactNoTextBox.Text = Database.CurrentDoctor.ContactNumber.ToString();
             EmailTextBox.Text = Database.CurrentDoctor.EmailAddress.ToString();
+            AddressTextBox.Text = Database.CurrentDoctor.Address.ToString();
             StatusComboBox.Text = Database.CurrentDoctor.Status.ToString();
         }
     }

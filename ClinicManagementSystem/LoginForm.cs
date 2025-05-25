@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -181,7 +182,7 @@ namespace ClinicManagementSystem
                                           char sex,
                                           string contactNumber,
                                           string altContactNumber, 
-                                          string emailAddresss, 
+                                          string emailAddress, 
                                           string address)
             {
                 string checkQuery = "SELECT COUNT(*) FROM patients WHERE firstName = @firstName AND middleName = @middleName " + 
@@ -191,7 +192,7 @@ namespace ClinicManagementSystem
                     checkCmd.Parameters.AddWithValue("@firstName", firstName);
                     checkCmd.Parameters.AddWithValue("@middleName", middleName);
                     checkCmd.Parameters.AddWithValue("@lastName", lastName);
-                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddresss);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
                     if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
                     {
                         return false;
@@ -208,7 +209,7 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@sex", sex);
                     cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
                     cmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
-                    cmd.Parameters.AddWithValue("@emailAddress", emailAddresss);
+                    cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
                     cmd.Parameters.AddWithValue("@address", address);
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -218,7 +219,7 @@ namespace ClinicManagementSystem
                                          string middleName,
                                          string lastName,
                                          string contactNumber, 
-                                         string emailAddresss,
+                                         string emailAddress,
                                          string address,
                                          string licenseNumber)
             {
@@ -239,7 +240,7 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@middleName", middleName);
                     cmd.Parameters.AddWithValue("@lastName", lastName);
                     cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    cmd.Parameters.AddWithValue("@emailAddress", emailAddresss);
+                    cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
                     cmd.Parameters.AddWithValue("@address", address);
                     cmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
                     return cmd.ExecuteNonQuery() > 0;
@@ -295,6 +296,51 @@ namespace ClinicManagementSystem
 
             }
 
+            public static bool UpdatePatient(long patientId,
+                                 string firstName,
+                                 string middleName,
+                                 string lastName,
+                                 string dob,
+                                 char sex,
+                                 string contactNumber,
+                                 string altContactNumber,
+                                 string emailAddress,
+                                 string address,
+                                 string status)
+            {
+                string checkQuery = "SELECT COUNT(*) FROM patients WHERE firstName = @firstName AND middleName = @middleName " +
+                                    "AND lastName = @lastName AND emailAddress = @emailAddress AND patientId <> @patientId";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@firstName", firstName);
+                    checkCmd.Parameters.AddWithValue("@middleName", middleName);
+                    checkCmd.Parameters.AddWithValue("@lastName", lastName);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@patientId", patientId);
+                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
+                    {
+                        return false;
+                    }
+                }
+                string query = "UPDATE patients SET firstName = @firstName, middleName = @middleName, lastName = @lastName, DoB = @dob, sex = @sex, contactNumber = @contactNumber," +
+                               " altContactNumber = @altContactNumber, emailAddress = @emailAddress, address = @address, status = @status WHERE patientId = @patientId";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@middleName", middleName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@dob", dob);
+                    cmd.Parameters.AddWithValue("@sex", sex);
+                    cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                    cmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                    cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@address", address);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
             public static bool UpdateAppointment(long appointmentId,
                                                  long doctorId,
                                                  string appointmentDateTime,
@@ -311,7 +357,7 @@ namespace ClinicManagementSystem
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
-
+            
             public static string GetUserStatus(long userid) // to change, pwede mag buhat ug user nga class same sa doctor ug patient
             {
                 string query = "SELECT status FROM users WHERE userid = @userid";

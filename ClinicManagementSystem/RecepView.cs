@@ -38,7 +38,7 @@ namespace ClinicManagementSystem
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
 
-            Doctor_TabControl.Hide();
+            Doctors_TabControl.Hide();
             Doctors_RegisterButton.Hide();
             Doctors_UpdateButton.Hide();
 
@@ -64,7 +64,7 @@ namespace ClinicManagementSystem
             Billing_DataGridView.Show();
             Billing_CreateButton.Show();
 
-            Doctor_TabControl.Hide();
+            Doctors_TabControl.Hide();
             Doctors_RegisterButton.Hide();
             Doctors_UpdateButton.Hide();
 
@@ -90,7 +90,7 @@ namespace ClinicManagementSystem
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
 
-            Doctor_TabControl.Show();
+            Doctors_TabControl.Show();
             Doctors_RegisterButton.Show();
             Doctors_UpdateButton.Show();
 
@@ -123,7 +123,7 @@ namespace ClinicManagementSystem
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
 
-            Doctor_TabControl.Hide();
+            Doctors_TabControl.Hide();
             Doctors_RegisterButton.Hide();
             Doctors_UpdateButton.Hide();
 
@@ -204,7 +204,8 @@ namespace ClinicManagementSystem
             Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
 
             Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
-            Doctors_ActiveDataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_AvailableDataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_UnavailableDataGridView.DataSource = Database.GetDoctors("UNAVAILABLE");
             Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
         }
     }

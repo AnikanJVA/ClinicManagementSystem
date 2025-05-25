@@ -35,6 +35,8 @@ namespace ClinicManagementSystem
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(1, 34, 79);
             Prescriptions_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+
+
         }
         private void Prescriptions_NavButton_Click(object sender, EventArgs e)
         {

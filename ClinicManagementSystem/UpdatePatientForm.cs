@@ -64,7 +64,7 @@ namespace ClinicManagementSystem
                 string.IsNullOrWhiteSpace(AltContactNumberTextBox.Text) ||
                 string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
-                string.IsNullOrWhiteSpace(PatientIdTextBox.Text) ||
+                string.IsNullOrWhiteSpace(PatientIdTextBox.Text) || 
                 string.IsNullOrWhiteSpace(StatusComboBox.Text))
             {
                 MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -75,9 +75,29 @@ namespace ClinicManagementSystem
                 {
                     MessageBox.Show("Select Patient First!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                sex = MaleRadioButton.Checked ? 'M' : 'F';
-                
-                // update patient database method
+                else
+                {
+                    sex = MaleRadioButton.Checked ? 'M' : 'F';
+                    if (Database.UpdatePatient(Convert.ToInt64(PatientIdTextBox.Text),
+                                               FnameTextBox.Text,
+                                               MnameTextBox.Text,
+                                               LnameTextBox.Text,
+                                               DoBDateTimePicker.Text,
+                                               sex,
+                                               ContactNoTextBox.Text,
+                                               AltContactNumberTextBox.Text,
+                                               EmailTextBox.Text,
+                                               AddressTextBox.Text,
+                                               StatusComboBox.Text.ToUpper())) 
+                    {
+                        MessageBox.Show("Patient updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error!\nDupplicate patient detected.\nPatient not udpated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 

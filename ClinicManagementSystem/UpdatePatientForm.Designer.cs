@@ -32,6 +32,7 @@
             this.PatientIdTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.DoBDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.AltContactNumberTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,11 +40,14 @@
             this.MaleRadioButton = new System.Windows.Forms.RadioButton();
             this.CancelButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
+            this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.FnameTextBox = new System.Windows.Forms.TextBox();
             this.LnameTextBox = new System.Windows.Forms.TextBox();
             this.MnameTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.ContactNoTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -51,10 +55,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.AddressTextBox = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +127,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(963, 341);
             this.panel1.TabIndex = 25;
+            // 
+            // StatusComboBox
+            // 
+            this.StatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.StatusComboBox.FormattingEnabled = true;
+            this.StatusComboBox.Items.AddRange(new object[] {
+            "Active",
+            "Inactive"});
+            this.StatusComboBox.Location = new System.Drawing.Point(617, 234);
+            this.StatusComboBox.Name = "StatusComboBox";
+            this.StatusComboBox.Size = new System.Drawing.Size(306, 28);
+            this.StatusComboBox.TabIndex = 27;
             // 
             // DoBDateTimePicker
             // 
@@ -217,6 +230,14 @@
             this.UpdateButton.UseVisualStyleBackColor = false;
             this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
+            // AddressTextBox
+            // 
+            this.AddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddressTextBox.Location = new System.Drawing.Point(617, 195);
+            this.AddressTextBox.Name = "AddressTextBox";
+            this.AddressTextBox.Size = new System.Drawing.Size(306, 26);
+            this.AddressTextBox.TabIndex = 10;
+            // 
             // EmailTextBox
             // 
             this.EmailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -249,6 +270,17 @@
             this.MnameTextBox.Size = new System.Drawing.Size(306, 26);
             this.MnameTextBox.TabIndex = 2;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(551, 237);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(60, 20);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Status:";
+            // 
             // ContactNoTextBox
             // 
             this.ContactNoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -256,6 +288,17 @@
             this.ContactNoTextBox.Name = "ContactNoTextBox";
             this.ContactNoTextBox.Size = new System.Drawing.Size(306, 26);
             this.ContactNoTextBox.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(539, 198);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 20);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Address:";
             // 
             // label5
             // 
@@ -333,49 +376,6 @@
             this.label10.Size = new System.Drawing.Size(105, 20);
             this.label10.TabIndex = 1;
             this.label10.Text = "Middle Name:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(539, 198);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 20);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Address:";
-            // 
-            // AddressTextBox
-            // 
-            this.AddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddressTextBox.Location = new System.Drawing.Point(617, 195);
-            this.AddressTextBox.Name = "AddressTextBox";
-            this.AddressTextBox.Size = new System.Drawing.Size(306, 26);
-            this.AddressTextBox.TabIndex = 10;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(551, 237);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 20);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Status:";
-            // 
-            // StatusComboBox
-            // 
-            this.StatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.StatusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.StatusComboBox.FormattingEnabled = true;
-            this.StatusComboBox.Items.AddRange(new object[] {
-            "Active",
-            "Incative"});
-            this.StatusComboBox.Location = new System.Drawing.Point(617, 234);
-            this.StatusComboBox.Name = "StatusComboBox";
-            this.StatusComboBox.Size = new System.Drawing.Size(306, 28);
-            this.StatusComboBox.TabIndex = 27;
             // 
             // UpdatePatientForm
             // 

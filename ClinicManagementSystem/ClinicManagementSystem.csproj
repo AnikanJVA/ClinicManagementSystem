@@ -140,6 +140,12 @@
     <Compile Include="AddServiceForm.Designer.cs">
       <DependentUpon>AddServiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreatePrescriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreatePrescriptionForm.Designer.cs">
+      <DependentUpon>CreatePrescriptionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormProvider.cs" />
     <Compile Include="RegisterDoctorForm.cs">
       <SubType>Form</SubType>
@@ -219,6 +225,9 @@
     <EmbeddedResource Include="AddServiceForm.resx">
       <DependentUpon>AddServiceForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreatePrescriptionForm.resx">
+      <DependentUpon>CreatePrescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegisterDoctorForm.resx">
       <DependentUpon>RegisterDoctorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +245,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecepView.resx">
       <DependentUpon>RecepView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DocView.resx">
       <DependentUpon>DocView.cs</DependentUpon>
