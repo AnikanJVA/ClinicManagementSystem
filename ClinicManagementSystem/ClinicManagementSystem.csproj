@@ -171,6 +171,12 @@
     <Compile Include="RegisterPatientForm.Designer.cs">
       <DependentUpon>RegisterPatientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegisterReceptionistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterReceptionistForm.Designer.cs">
+      <DependentUpon>RegisterReceptionistForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateAppoitnmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,12 @@
     <Compile Include="UpdatePatientForm.Designer.cs">
       <DependentUpon>UpdatePatientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateReceptionistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateReceptionistForm.Designer.cs">
+      <DependentUpon>UpdateReceptionistForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -234,6 +246,9 @@
     <EmbeddedResource Include="RegisterPatientForm.resx">
       <DependentUpon>RegisterPatientForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RegisterReceptionistForm.resx">
+      <DependentUpon>RegisterReceptionistForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateAppoitnmentForm.resx">
       <DependentUpon>UpdateAppoitnmentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +279,9 @@
     </Compile>
     <EmbeddedResource Include="UpdatePatientForm.resx">
       <DependentUpon>UpdatePatientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateReceptionistForm.resx">
+      <DependentUpon>UpdateReceptionistForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

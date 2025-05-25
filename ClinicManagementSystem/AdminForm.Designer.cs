@@ -28,100 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.UsernametextBox = new System.Windows.Forms.TextBox();
-            this.PasswordTextBox = new System.Windows.Forms.TextBox();
-            this.AccTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.CreateButton = new System.Windows.Forms.Button();
+            this.RegisterDoctorButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.deleteButton = new System.Windows.Forms.Button();
+            this.RegisterReceptionistButton = new System.Windows.Forms.Button();
+            this.UpdateDoctorButton = new System.Windows.Forms.Button();
+            this.UpdateReceptionistButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // UsernametextBox
+            // RegisterDoctorButton
             // 
-            this.UsernametextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.UsernametextBox.Location = new System.Drawing.Point(42, 53);
-            this.UsernametextBox.Name = "UsernametextBox";
-            this.UsernametextBox.Size = new System.Drawing.Size(345, 26);
-            this.UsernametextBox.TabIndex = 1;
-            // 
-            // PasswordTextBox
-            // 
-            this.PasswordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PasswordTextBox.Location = new System.Drawing.Point(417, 53);
-            this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.PasswordChar = '•';
-            this.PasswordTextBox.Size = new System.Drawing.Size(345, 26);
-            this.PasswordTextBox.TabIndex = 2;
-            // 
-            // AccTypeComboBox
-            // 
-            this.AccTypeComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.AccTypeComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.AccTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.AccTypeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AccTypeComboBox.FormattingEnabled = true;
-            this.AccTypeComboBox.Items.AddRange(new object[] {
-            "Doctor",
-            "Receptionist"});
-            this.AccTypeComboBox.Location = new System.Drawing.Point(42, 120);
-            this.AccTypeComboBox.Name = "AccTypeComboBox";
-            this.AccTypeComboBox.Size = new System.Drawing.Size(345, 28);
-            this.AccTypeComboBox.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(38, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 23);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Username";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 15F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(38, 94);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 23);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Account Type";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 15F);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(413, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 23);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Password";
-            // 
-            // CreateButton
-            // 
-            this.CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.CreateButton.FlatAppearance.BorderSize = 0;
-            this.CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CreateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.CreateButton.ForeColor = System.Drawing.Color.White;
-            this.CreateButton.Location = new System.Drawing.Point(417, 115);
-            this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(164, 33);
-            this.CreateButton.TabIndex = 4;
-            this.CreateButton.Text = "Create User";
-            this.CreateButton.UseVisualStyleBackColor = false;
-            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
+            this.RegisterDoctorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.RegisterDoctorButton.FlatAppearance.BorderSize = 0;
+            this.RegisterDoctorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.RegisterDoctorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.RegisterDoctorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RegisterDoctorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.RegisterDoctorButton.ForeColor = System.Drawing.Color.White;
+            this.RegisterDoctorButton.Location = new System.Drawing.Point(39, 12);
+            this.RegisterDoctorButton.Name = "RegisterDoctorButton";
+            this.RegisterDoctorButton.Size = new System.Drawing.Size(173, 33);
+            this.RegisterDoctorButton.TabIndex = 4;
+            this.RegisterDoctorButton.Text = "Register Doctor";
+            this.RegisterDoctorButton.UseVisualStyleBackColor = false;
+            this.RegisterDoctorButton.Click += new System.EventHandler(this.RegisterDoctorButton_Click);
             // 
             // dataGridView1
             // 
@@ -131,15 +62,14 @@
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(42, 172);
+            this.dataGridView1.Location = new System.Drawing.Point(230, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(720, 203);
+            this.dataGridView1.Size = new System.Drawing.Size(681, 355);
             this.dataGridView1.TabIndex = 7;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // LogoutButton
             // 
@@ -150,7 +80,7 @@
             this.LogoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.LogoutButton.ForeColor = System.Drawing.Color.White;
-            this.LogoutButton.Location = new System.Drawing.Point(42, 403);
+            this.LogoutButton.Location = new System.Drawing.Point(48, 334);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(164, 33);
             this.LogoutButton.TabIndex = 6;
@@ -158,39 +88,69 @@
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
-            // deleteButton
+            // RegisterReceptionistButton
             // 
-            this.deleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.deleteButton.FlatAppearance.BorderSize = 0;
-            this.deleteButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.deleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.ForeColor = System.Drawing.Color.White;
-            this.deleteButton.Location = new System.Drawing.Point(598, 115);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(164, 33);
-            this.deleteButton.TabIndex = 5;
-            this.deleteButton.Text = "Change Status";
-            this.deleteButton.UseVisualStyleBackColor = false;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.RegisterReceptionistButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.RegisterReceptionistButton.FlatAppearance.BorderSize = 0;
+            this.RegisterReceptionistButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.RegisterReceptionistButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.RegisterReceptionistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RegisterReceptionistButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegisterReceptionistButton.ForeColor = System.Drawing.Color.White;
+            this.RegisterReceptionistButton.Location = new System.Drawing.Point(39, 110);
+            this.RegisterReceptionistButton.Name = "RegisterReceptionistButton";
+            this.RegisterReceptionistButton.Size = new System.Drawing.Size(173, 33);
+            this.RegisterReceptionistButton.TabIndex = 5;
+            this.RegisterReceptionistButton.Text = "Register Receptionist";
+            this.RegisterReceptionistButton.UseVisualStyleBackColor = false;
+            this.RegisterReceptionistButton.Click += new System.EventHandler(this.RegisterReceptionistButton_Click);
+            // 
+            // UpdateDoctorButton
+            // 
+            this.UpdateDoctorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.UpdateDoctorButton.FlatAppearance.BorderSize = 0;
+            this.UpdateDoctorButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.UpdateDoctorButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.UpdateDoctorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UpdateDoctorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.UpdateDoctorButton.ForeColor = System.Drawing.Color.White;
+            this.UpdateDoctorButton.Location = new System.Drawing.Point(39, 61);
+            this.UpdateDoctorButton.Name = "UpdateDoctorButton";
+            this.UpdateDoctorButton.Size = new System.Drawing.Size(173, 33);
+            this.UpdateDoctorButton.TabIndex = 9;
+            this.UpdateDoctorButton.Text = "Update Doctor";
+            this.UpdateDoctorButton.UseVisualStyleBackColor = false;
+            this.UpdateDoctorButton.Click += new System.EventHandler(this.UpdateDoctorButton_Click);
+            // 
+            // UpdateReceptionistButton
+            // 
+            this.UpdateReceptionistButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.UpdateReceptionistButton.FlatAppearance.BorderSize = 0;
+            this.UpdateReceptionistButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.UpdateReceptionistButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.UpdateReceptionistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UpdateReceptionistButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateReceptionistButton.ForeColor = System.Drawing.Color.White;
+            this.UpdateReceptionistButton.Location = new System.Drawing.Point(39, 159);
+            this.UpdateReceptionistButton.Name = "UpdateReceptionistButton";
+            this.UpdateReceptionistButton.Size = new System.Drawing.Size(173, 33);
+            this.UpdateReceptionistButton.TabIndex = 10;
+            this.UpdateReceptionistButton.Text = "Update Receptionist";
+            this.UpdateReceptionistButton.UseVisualStyleBackColor = false;
+            this.UpdateReceptionistButton.Click += new System.EventHandler(this.UpdateReceptionistButton_Click);
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(803, 448);
+            this.ClientSize = new System.Drawing.Size(921, 382);
             this.Controls.Add(this.LogoutButton);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.deleteButton);
-            this.Controls.Add(this.CreateButton);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.AccTypeComboBox);
-            this.Controls.Add(this.PasswordTextBox);
-            this.Controls.Add(this.UsernametextBox);
+            this.Controls.Add(this.RegisterReceptionistButton);
+            this.Controls.Add(this.RegisterDoctorButton);
+            this.Controls.Add(this.UpdateDoctorButton);
+            this.Controls.Add(this.UpdateReceptionistButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "AdminForm";
@@ -199,21 +159,15 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox UsernametextBox;
-        private System.Windows.Forms.TextBox PasswordTextBox;
-        private System.Windows.Forms.ComboBox AccTypeComboBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button CreateButton;
+        private System.Windows.Forms.Button RegisterDoctorButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button RegisterReceptionistButton;
+        private System.Windows.Forms.Button UpdateDoctorButton;
+        private System.Windows.Forms.Button UpdateReceptionistButton;
     }
 }

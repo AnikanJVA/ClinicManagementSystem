@@ -216,6 +216,7 @@ namespace ClinicManagementSystem
                 }
             }
 
+            // to update AddDoctor method
             public static bool AddDoctor(string firstName,
                                          string middleName,
                                          string lastName,

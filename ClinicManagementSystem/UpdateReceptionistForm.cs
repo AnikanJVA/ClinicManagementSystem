@@ -7,62 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
-    public partial class RegisterDoctorForm : Form
+    public partial class UpdateReceptionistForm : Form
     {
-        public RegisterDoctorForm()
+        public UpdateReceptionistForm()
         {
             InitializeComponent();
         }
-        public void textOnly(object sender, KeyPressEventArgs e)
+
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) &&
-                !char.IsLetter(e.KeyChar) &&
-                e.KeyChar != '-' &&
-                e.KeyChar != ' ')
-            {
-                e.Handled = true;
-            }
+            this.Close();
         }
 
-        public void numOnly(object sender, KeyPressEventArgs e)
+        private void RegisterDoctorButton_Click(object sender, EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) &&
-                !char.IsDigit(e.KeyChar) &&
-                e.KeyChar != ' ')
-            {
-                e.Handled = true;
-            }
-        }
-
-        public void keyPressHandler()
-        {
-            LnameTextBox.KeyPress += textOnly;
-            FnameTextBox.KeyPress += textOnly;
-            MnameTextBox.KeyPress += textOnly;
-
-            ContactNoTextBox.KeyPress += numOnly;
-            LicenseNoTextBox.KeyPress += numOnly;
-            AltContactNoTextBox.KeyPress += numOnly;
-        }
-
-        private void RegisterButton_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(UsernameTextBox.Text) ||
-                string.IsNullOrWhiteSpace(PasswordTextBox.Text) ||
-                string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
+            if (string.IsNullOrWhiteSpace(EmailAddressTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AltContactNoTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
                 string.IsNullOrWhiteSpace(FnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(MnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(LnameTextBox.Text) ||
-                string.IsNullOrWhiteSpace(LicenseNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(ScheduleComboBox.Text)
-                )
+                string.IsNullOrWhiteSpace(UserIDTextBox.Text) ||
+                string.IsNullOrWhiteSpace(StatusComboBox.Text))
             {
                 MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -81,9 +51,9 @@ namespace ClinicManagementSystem
             }
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void SelectUserButton_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+
         }
     }
 }
