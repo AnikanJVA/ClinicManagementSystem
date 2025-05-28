@@ -15,16 +15,16 @@ namespace ClinicManagementSystem
     public partial class ChooseAppointmentForm : Form
     {
         private long appointmentID;
-        public ChooseAppointmentForm()
-        {
-            InitializeComponent();
-            Appointments_DataGridView.DataSource = Database.GetAppointments("ACTIVE");
-            CloseButton.Visible = false;
-            SelectButton.Visible = true;
-            CancelButton.Visible = true;
-        }
+        //public ChooseAppointmentForm()
+        //{
+        //    InitializeComponent();
+        //    Appointments_DataGridView.DataSource = Database.GetAppointments("ALL");
+        //    CloseButton.Visible = false;
+        //    SelectButton.Visible = true;
+        //    CancelButton.Visible = true;
+        //}
 
-        public ChooseAppointmentForm(string formType)
+        public ChooseAppointmentForm(string status, string formType)
         {
             InitializeComponent();
             if (formType.ToUpper().Equals("SEARCH"))
@@ -33,6 +33,13 @@ namespace ClinicManagementSystem
                 CloseButton.Visible = true;
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;
+            }
+            else
+            {
+                Appointments_DataGridView.DataSource = Database.GetAppointments("ALL");
+                CloseButton.Visible = false;
+                SelectButton.Visible = true;
+                CancelButton.Visible = true;
             }
         }
 
@@ -50,6 +57,8 @@ namespace ClinicManagementSystem
             else
             {
                 Database.CurrentAppointment = Database.RetrieveAppointment(Convert.ToInt64(AppointmentIDTextBox.Text));
+                Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
                 this.Close();
             }
         }
@@ -59,7 +68,7 @@ namespace ClinicManagementSystem
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 var cell = Appointments_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                if (cell != null)
+                if (cell.Value != null)
                 {
                     if (e.RowIndex >= 0)
                     {
@@ -72,22 +81,18 @@ namespace ClinicManagementSystem
                         {
 
                         }
-                        string appointmentDate = row.Cells["AppointmentDate"].Value.ToString();
-                        string patientID = row.Cells["PatientID"].Value.ToString();
-                        string patientName = row.Cells["PatientName"].Value.ToString();
-                        string doctorID = row.Cells["DoctorID"].Value.ToString();
-                        string doctorName = row.Cells["DoctorName"].Value.ToString();
-                        string service = row.Cells["Service"].Value.ToString();
-                        string status = row.Cells["Status"].Value.ToString();
+                        string patientName = row.Cells["Patient"].Value.ToString();
+                        string doctorName = row.Cells["Doctor"].Value.ToString();
 
-                        AppointmentIDTextBox.Text = Convert.ToString(appointmentID);
-                        AppointmentDateTextBox.Text = appointmentDate;
-                        PatientIDTextBox.Text = patientID;
+                        Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                        AppointmentIDTextBox.Text = appointmentID.ToString();
+                        AppointmentDateTextBox.Text = Database.CurrentAppointment.DateTime;
+                        PatientIDTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
                         PatientNameTextBox.Text = patientName;
-                        DoctorIDTextBox.Text = doctorID;
+                        DoctorIDTextBox.Text = Database.CurrentAppointment.DoctorId.ToString();
                         DoctorNameTextBox.Text = doctorName;
-                        ServiceTextBox.Text = service;
-                        StatusTextBox.Text = status;
+                        ReasonTextBox.Text = Database.CurrentAppointment.Reason;
+                        StatusTextBox.Text = Database.CurrentAppointment.Status;
                     }
                     else
                     {
@@ -97,12 +102,16 @@ namespace ClinicManagementSystem
                         PatientNameTextBox.Clear();
                         DoctorIDTextBox.Clear();
                         DoctorNameTextBox.Clear();
-                        ServiceTextBox.Clear();
+                        ReasonTextBox.Clear();
                         StatusTextBox.Clear();
                     }
                 }
             }
+        }
 
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

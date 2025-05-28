@@ -20,7 +20,7 @@ namespace ClinicManagementSystem
         public ChooseDoctorForm()
         {
             InitializeComponent();
-            Doctors_DataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_DataGridView.DataSource = Database.GetDoctors("AVAILABLE");
             CloseButton.Visible = false;
             SelectButton.Visible = true;
             CancelButton.Visible = true;
@@ -31,7 +31,7 @@ namespace ClinicManagementSystem
             InitializeComponent();
             if (formType.ToUpper().Equals("SEARCH"))
             {
-                Doctors_DataGridView.DataSource = Database.GetDoctors("ALL");
+                Doctors_DataGridView.DataSource = Database.GetDoctors("AVAILABLE");
                 CloseButton.Visible = true;
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;
@@ -82,7 +82,7 @@ namespace ClinicManagementSystem
                         string altContactNumber = row.Cells["AltContactNumber"].Value.ToString();
                         string emailAddress = row.Cells["emailAddress"].Value.ToString();
                         string address = row.Cells["address"].Value.ToString();
-                        string status = row.Cells["status"].ToString();
+                        string availabilityStatus = row.Cells["AvailabilityStatus"].Value.ToString();
 
                         DoctorIDTextBox.Text = Convert.ToString(doctorID);
                         FirstNameTextBox.Text = fname;
@@ -93,7 +93,7 @@ namespace ClinicManagementSystem
                         AltContactNumberTextBox.Text = altContactNumber;
                         EmailAddressTextBox.Text = emailAddress;
                         AddressTextBox.Text = address;
-                        StatusComboBox.Text = status;
+                        StatusComboBox.Text = availabilityStatus;
                     }
                     else
                     {
@@ -114,7 +114,7 @@ namespace ClinicManagementSystem
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            Doctors_DataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_DataGridView.DataSource = Database.GetDoctors("AVAILABLE");
         }
 
         private void SearchButton_Click(Object sender, EventArgs e)

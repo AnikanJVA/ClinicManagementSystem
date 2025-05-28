@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2025 at 05:56 AM
+-- Generation Time: May 28, 2025 at 04:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,7 +33,7 @@ CREATE TABLE `appointments` (
   `DoctorID` bigint(20) DEFAULT NULL,
   `AppointmentDateTime` datetime DEFAULT NULL,
   `ReasonForAppointment` text DEFAULT NULL,
-  `Status` varchar(20) DEFAULT NULL
+  `Status` varchar(20) DEFAULT 'APPROVED'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -64,16 +64,9 @@ CREATE TABLE `doctors` (
   `LastName` varchar(50) DEFAULT NULL,
   `HireDate` date DEFAULT NULL,
   `LicenseNumber` varchar(50) DEFAULT NULL,
-  `Schedule` text DEFAULT NULL
+  `Schedule` text DEFAULT NULL,
+  `AvailabilityStatus` varchar(20) DEFAULT 'AVAILABLE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `doctors`
---
-
-INSERT INTO `doctors` (`DoctorID`, `UserID`, `FirstName`, `MiddleName`, `LastName`, `HireDate`, `LicenseNumber`, `Schedule`) VALUES
-(1, 2, 'Alok', 'Giegie', 'Konojia', '2025-05-28', '123456789', 'MWF'),
-(2, 3, 'Salamat', 'Docc', 'Abs', '2025-05-28', '987987978987', 'TThS');
 
 -- --------------------------------------------------------
 
@@ -100,11 +93,10 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`PatientID`, `FirstName`, `LastName`, `MiddleName`, `DoB`, `Sex`, `ContactNumber`, `AltContactNumber`, `EmailAddress`, `Address`, `Status`) VALUES
-(1, 'ani', 'va', 'kan', '2003-10-11', 'm', '09103243490', NULL, 'anikanjva@gmail.com', 'juna subd, matina, davao city', 'ACTIVE'),
+(1, 'ani', 'va', 'kan', '2003-10-11', 'm', '09103243490', '09080808', 'anikanjva@gmail.com', 'juna subd, matina, davao city', 'ACTIVE'),
 (2, 'james andrew', 'De castro', 'Doe', '2000-05-10', 'M', '09101010101', '09222222222', 'james@gmail.com', 'cabantian dc', 'ACTIVE'),
 (3, 'justine', 'mantua', 'lamnda', '2004-09-10', 'M', '09123123123', '09123123123', 'justine@gmail.com', 'bangkerohan dc', 'ACTIVE'),
-(4, 'matt oliver', 'pojadas', 'utrera', '2004-07-06', 'M', '0933333333', '0944444444', 'matt@gmail.com', 'sandawa dc', 'ACTIVE'),
-(5, 'princess', 'fernando', 'pia', '2005-04-14', 'F', '0955555555', '0966666666', 'princess@gmail.com', 'ecoland dc', 'ACTIVE');
+(4, 'matt oliver', 'pojadas', 'utrera', '2004-07-06', 'M', '0933333333', '0944444444', 'matt@gmail.com', 'sandawa dc', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -192,9 +184,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `AccType`, `EmailAddress`, `ContactNumber`, `AltContactNumber`, `Address`, `status`) VALUES
-(1, 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'admin', 'admin@admin.com', '0000000', '111111111', 'adminhome', 'ACTIVE'),
-(2, 'ani', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', 'asdf@gmail.com', '0910324124412', '0192302194210', 'davao', 'ACTIVE'),
-(3, 'doc', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', 'doc@email.com', '0933333333', '0944444444', 'maina', 'ACTIVE');
+(1, 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'admin', 'admin@admin.com', '0000000', '111111111', 'adminhome', 'ACTIVE');
 
 --
 -- Indexes for dumped tables
@@ -294,13 +284,13 @@ ALTER TABLE `bills`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `DoctorID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `DoctorID` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `PatientID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `PatientID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `prescriptionrecords`
@@ -336,7 +326,7 @@ ALTER TABLE `servicetypes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `UserID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

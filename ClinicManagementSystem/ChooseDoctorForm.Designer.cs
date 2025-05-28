@@ -106,8 +106,8 @@
             this.StatusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.StatusComboBox.FormattingEnabled = true;
             this.StatusComboBox.Items.AddRange(new object[] {
-            "Available",
-            "Unavaible"});
+            "AVAILABLE",
+            "UNAVAILABLE"});
             this.StatusComboBox.Location = new System.Drawing.Point(166, 289);
             this.StatusComboBox.Name = "StatusComboBox";
             this.StatusComboBox.Size = new System.Drawing.Size(287, 28);
@@ -457,6 +457,7 @@
             this.SearchButton.TabIndex = 4;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // label13
             // 
@@ -515,6 +516,7 @@
             this.ResetButton.TabIndex = 9;
             this.ResetButton.Text = "Reset Resutls";
             this.ResetButton.UseVisualStyleBackColor = false;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // CloseButton
             // 

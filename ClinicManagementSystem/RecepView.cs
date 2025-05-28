@@ -193,7 +193,7 @@ namespace ClinicManagementSystem
             Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
 
             Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
-            Doctors_AvailableDataGridView.DataSource = Database.GetDoctors("ACTIVE");
+            Doctors_AvailableDataGridView.DataSource = Database.GetDoctors("AVAILABLE");
             Doctors_UnavailableDataGridView.DataSource = Database.GetDoctors("UNAVAILABLE");
             Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
         }

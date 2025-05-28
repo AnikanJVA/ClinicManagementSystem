@@ -33,7 +33,7 @@
             this.PatientNameTextBox = new System.Windows.Forms.TextBox();
             this.DoctorIDTextBox = new System.Windows.Forms.TextBox();
             this.DoctorNameTextBox = new System.Windows.Forms.TextBox();
-            this.ServiceTextBox = new System.Windows.Forms.TextBox();
+            this.ReasonTextBox = new System.Windows.Forms.TextBox();
             this.StatusTextBox = new System.Windows.Forms.TextBox();
             this.PatientIDTextBox = new System.Windows.Forms.TextBox();
             this.AppointmentIDTextBox = new System.Windows.Forms.TextBox();
@@ -60,7 +60,7 @@
             this.panel1.Controls.Add(this.PatientNameTextBox);
             this.panel1.Controls.Add(this.DoctorIDTextBox);
             this.panel1.Controls.Add(this.DoctorNameTextBox);
-            this.panel1.Controls.Add(this.ServiceTextBox);
+            this.panel1.Controls.Add(this.ReasonTextBox);
             this.panel1.Controls.Add(this.StatusTextBox);
             this.panel1.Controls.Add(this.PatientIDTextBox);
             this.panel1.Controls.Add(this.AppointmentIDTextBox);
@@ -75,79 +75,96 @@
             this.panel1.Location = new System.Drawing.Point(24, 17);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(422, 291);
+            this.panel1.Size = new System.Drawing.Size(422, 307);
             this.panel1.TabIndex = 0;
             // 
             // AppointmentDateTextBox
             // 
+            this.AppointmentDateTextBox.Enabled = false;
             this.AppointmentDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AppointmentDateTextBox.Location = new System.Drawing.Point(162, 69);
+            this.AppointmentDateTextBox.Location = new System.Drawing.Point(163, 45);
             this.AppointmentDateTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.AppointmentDateTextBox.Name = "AppointmentDateTextBox";
-            this.AppointmentDateTextBox.Size = new System.Drawing.Size(214, 26);
+            this.AppointmentDateTextBox.ReadOnly = true;
+            this.AppointmentDateTextBox.Size = new System.Drawing.Size(244, 26);
             this.AppointmentDateTextBox.TabIndex = 15;
             // 
             // PatientNameTextBox
             // 
+            this.PatientNameTextBox.Enabled = false;
             this.PatientNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PatientNameTextBox.Location = new System.Drawing.Point(162, 128);
+            this.PatientNameTextBox.Location = new System.Drawing.Point(163, 105);
             this.PatientNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.PatientNameTextBox.Name = "PatientNameTextBox";
-            this.PatientNameTextBox.Size = new System.Drawing.Size(214, 26);
+            this.PatientNameTextBox.ReadOnly = true;
+            this.PatientNameTextBox.Size = new System.Drawing.Size(244, 26);
             this.PatientNameTextBox.TabIndex = 14;
             // 
             // DoctorIDTextBox
             // 
+            this.DoctorIDTextBox.Enabled = false;
             this.DoctorIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.DoctorIDTextBox.Location = new System.Drawing.Point(162, 158);
+            this.DoctorIDTextBox.Location = new System.Drawing.Point(163, 135);
             this.DoctorIDTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.DoctorIDTextBox.Name = "DoctorIDTextBox";
-            this.DoctorIDTextBox.Size = new System.Drawing.Size(214, 26);
+            this.DoctorIDTextBox.ReadOnly = true;
+            this.DoctorIDTextBox.Size = new System.Drawing.Size(244, 26);
             this.DoctorIDTextBox.TabIndex = 13;
             // 
             // DoctorNameTextBox
             // 
+            this.DoctorNameTextBox.Enabled = false;
             this.DoctorNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.DoctorNameTextBox.Location = new System.Drawing.Point(162, 187);
+            this.DoctorNameTextBox.Location = new System.Drawing.Point(163, 165);
             this.DoctorNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.DoctorNameTextBox.Name = "DoctorNameTextBox";
-            this.DoctorNameTextBox.Size = new System.Drawing.Size(214, 26);
+            this.DoctorNameTextBox.ReadOnly = true;
+            this.DoctorNameTextBox.Size = new System.Drawing.Size(244, 26);
             this.DoctorNameTextBox.TabIndex = 12;
             // 
-            // ServiceTextBox
+            // ReasonTextBox
             // 
-            this.ServiceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ServiceTextBox.Location = new System.Drawing.Point(162, 214);
-            this.ServiceTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.ServiceTextBox.Name = "ServiceTextBox";
-            this.ServiceTextBox.Size = new System.Drawing.Size(214, 26);
-            this.ServiceTextBox.TabIndex = 11;
+            this.ReasonTextBox.Enabled = false;
+            this.ReasonTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ReasonTextBox.Location = new System.Drawing.Point(163, 198);
+            this.ReasonTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ReasonTextBox.Multiline = true;
+            this.ReasonTextBox.Name = "ReasonTextBox";
+            this.ReasonTextBox.ReadOnly = true;
+            this.ReasonTextBox.Size = new System.Drawing.Size(244, 60);
+            this.ReasonTextBox.TabIndex = 11;
             // 
             // StatusTextBox
             // 
+            this.StatusTextBox.Enabled = false;
             this.StatusTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.StatusTextBox.Location = new System.Drawing.Point(162, 243);
+            this.StatusTextBox.Location = new System.Drawing.Point(163, 262);
             this.StatusTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.StatusTextBox.Name = "StatusTextBox";
-            this.StatusTextBox.Size = new System.Drawing.Size(214, 26);
+            this.StatusTextBox.ReadOnly = true;
+            this.StatusTextBox.Size = new System.Drawing.Size(244, 26);
             this.StatusTextBox.TabIndex = 10;
             // 
             // PatientIDTextBox
             // 
+            this.PatientIDTextBox.Enabled = false;
             this.PatientIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PatientIDTextBox.Location = new System.Drawing.Point(162, 98);
+            this.PatientIDTextBox.Location = new System.Drawing.Point(163, 75);
             this.PatientIDTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.PatientIDTextBox.Name = "PatientIDTextBox";
-            this.PatientIDTextBox.Size = new System.Drawing.Size(214, 26);
+            this.PatientIDTextBox.ReadOnly = true;
+            this.PatientIDTextBox.Size = new System.Drawing.Size(244, 26);
             this.PatientIDTextBox.TabIndex = 9;
             // 
             // AppointmentIDTextBox
             // 
+            this.AppointmentIDTextBox.Enabled = false;
             this.AppointmentIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AppointmentIDTextBox.Location = new System.Drawing.Point(162, 37);
+            this.AppointmentIDTextBox.Location = new System.Drawing.Point(163, 15);
             this.AppointmentIDTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.AppointmentIDTextBox.Name = "AppointmentIDTextBox";
-            this.AppointmentIDTextBox.Size = new System.Drawing.Size(214, 26);
+            this.AppointmentIDTextBox.ReadOnly = true;
+            this.AppointmentIDTextBox.Size = new System.Drawing.Size(244, 26);
             this.AppointmentIDTextBox.TabIndex = 8;
             // 
             // label8
@@ -155,7 +172,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(92, 243);
+            this.label8.Location = new System.Drawing.Point(99, 265);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 20);
@@ -165,21 +182,21 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label7.ForeColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(83, 214);
+            this.label7.Location = new System.Drawing.Point(65, 202);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.Size = new System.Drawing.Size(98, 36);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Service: ";
+            this.label7.Text = "Reason for \r\nAppointment: ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(47, 184);
+            this.label6.Location = new System.Drawing.Point(56, 168);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 20);
@@ -191,7 +208,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(72, 154);
+            this.label5.Location = new System.Drawing.Point(81, 141);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 20);
@@ -203,7 +220,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(44, 125);
+            this.label4.Location = new System.Drawing.Point(56, 111);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 20);
@@ -215,7 +232,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(69, 96);
+            this.label3.Location = new System.Drawing.Point(81, 81);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 20);
@@ -227,7 +244,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(15, 66);
+            this.label2.Location = new System.Drawing.Point(25, 51);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 20);
@@ -239,7 +256,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(32, 37);
+            this.label1.Location = new System.Drawing.Point(42, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 20);
@@ -260,8 +277,9 @@
             this.Appointments_DataGridView.ReadOnly = true;
             this.Appointments_DataGridView.RowHeadersWidth = 51;
             this.Appointments_DataGridView.RowTemplate.Height = 24;
-            this.Appointments_DataGridView.Size = new System.Drawing.Size(420, 291);
+            this.Appointments_DataGridView.Size = new System.Drawing.Size(695, 307);
             this.Appointments_DataGridView.TabIndex = 1;
+            this.Appointments_DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Appointments_DataGridView_CellClick);
             // 
             // SelectButton
             // 
@@ -270,7 +288,7 @@
             this.SelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.SelectButton.ForeColor = System.Drawing.Color.White;
-            this.SelectButton.Location = new System.Drawing.Point(63, 312);
+            this.SelectButton.Location = new System.Drawing.Point(197, 350);
             this.SelectButton.Margin = new System.Windows.Forms.Padding(2);
             this.SelectButton.Name = "SelectButton";
             this.SelectButton.Size = new System.Drawing.Size(383, 38);
@@ -278,6 +296,7 @@
             this.SelectButton.Text = "Select  Appointment ";
             this.SelectButton.UseVisualStyleBackColor = false;
             this.SelectButton.Visible = false;
+            this.SelectButton.Click += new System.EventHandler(this.SelectButton_Click);
             // 
             // CancelButton
             // 
@@ -286,7 +305,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(462, 312);
+            this.CancelButton.Location = new System.Drawing.Point(605, 350);
             this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(383, 38);
@@ -294,6 +313,7 @@
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Visible = false;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // CloseButton
             // 
@@ -302,7 +322,7 @@
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.CloseButton.ForeColor = System.Drawing.Color.White;
-            this.CloseButton.Location = new System.Drawing.Point(262, 312);
+            this.CloseButton.Location = new System.Drawing.Point(400, 350);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(2);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(383, 38);
@@ -310,22 +330,24 @@
             this.CloseButton.Text = "Close ";
             this.CloseButton.UseVisualStyleBackColor = false;
             this.CloseButton.Visible = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // ChooseAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(910, 372);
+            this.ClientSize = new System.Drawing.Size(1183, 413);
+            this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.Appointments_DataGridView);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "ChooseAppointmentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choose Appoinment";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -351,7 +373,7 @@
         private System.Windows.Forms.TextBox PatientIDTextBox;
         private System.Windows.Forms.TextBox AppointmentIDTextBox;
         private System.Windows.Forms.TextBox DoctorNameTextBox;
-        private System.Windows.Forms.TextBox ServiceTextBox;
+        private System.Windows.Forms.TextBox ReasonTextBox;
         private System.Windows.Forms.TextBox StatusTextBox;
         private System.Windows.Forms.TextBox PatientNameTextBox;
         private System.Windows.Forms.TextBox DoctorIDTextBox;

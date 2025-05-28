@@ -736,14 +736,14 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static DataTable GetDoctors(string status)
+            public static DataTable GetDoctors(string availabilityStatus)
             {
                 string query;
-                status = status.ToUpper();
+                availabilityStatus = availabilityStatus.ToUpper();
 
-                if (status.Equals("ALL"))
+                if (availabilityStatus.Equals("ALL"))
                 {
-                    query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.EmailAddress, d.LicenseNumber, u.Status FROM doctors d " +
+                    query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.AvailabilityStatus FROM doctors d " +
                             "INNER JOIN users u ON d.userId = u.userId ORDER BY doctorId DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -753,12 +753,12 @@ namespace ClinicManagementSystem
                         return table;
                     }
                 }
-                query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.EmailAddress, d.LicenseNumber, u.Status FROM doctors d " +
-                        "INNER JOIN users u ON d.userId = u.userId WHERE status = @status ORDER BY doctorId DESC";
+                query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.AvailabilityStatus FROM doctors d " +
+                        "INNER JOIN users u ON d.userId = u.userId WHERE availabilityStatus = @availabilityStatus ORDER BY doctorId DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
-                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@availabilityStatus", availabilityStatus);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
                     return table;
@@ -771,12 +771,14 @@ namespace ClinicManagementSystem
                 status = status.ToUpper();
                 if (status.Equals("ALL"))
                 {
-                    query = "SELECT appointments.AppointmentID, CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, " +
-                            "CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, " +
-                            "appointments.AppointmentDateTime, appointments.ReasonForAppointment, appointments.status " +
-                            "FROM appointments " +
-                            "INNER JOIN patients ON appointments.patientID = patients.patientID " +
-                            "INNER JOIN doctors ON appointments.doctorID = doctors.doctorID ORDER BY appointments.appointmentID DESC";
+                    query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
+                            CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                            CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                            appointments.ReasonForAppointment, appointments.Status 
+                            FROM appointments 
+                            INNER JOIN patients ON appointments.patientID = patients.patientID 
+                            INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
+                            ORDER BY appointments.appointmentID DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -786,14 +788,16 @@ namespace ClinicManagementSystem
                     }
                 }
 
-                query = "SELECT appointments.AppointmentID, CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, " +
-                            "CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, " +
-                            "appointments.AppointmentDateTime, appointments.ReasonForAppointment, appointments.status " +
-                            "FROM appointments " +
-                            "INNER JOIN patients ON appointments.patientID = patients.patientID " +
-                            "INNER JOIN doctors ON appointments.doctorID = doctors.doctorID " +
-                            "HAVING appointments.status = @status " +
-                            "ORDER BY appointments.appointmentID DESC";
+                query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
+                         CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                         CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                         appointments.ReasonForAppointment, 
+                         appointments.Status 
+                         FROM appointments 
+                         INNER JOIN patients ON appointments.patientID = patients.patientID 
+                         INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
+                         HAVING appointments.status = @status 
+                         ORDER BY appointments.appointmentID DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -1351,6 +1355,7 @@ namespace ClinicManagementSystem
             private string hireDate;
             private string licenseNumber;
             private string schedule;
+            private string availabilityStatus;
 
             public Doctor() : base()
             {
@@ -1361,6 +1366,7 @@ namespace ClinicManagementSystem
                 HireDate = string.Empty;
                 LicenseNumber = string.Empty;
                 Schedule = string.Empty;
+                AvailabilityStatus = string.Empty;
             }
 
             public long DoctorId
@@ -1401,6 +1407,12 @@ namespace ClinicManagementSystem
             {
                 get { return schedule; }
                 set { schedule = value; }
+            }
+
+            public string AvailabilityStatus
+            {
+                get { return availabilityStatus; }
+                set { availabilityStatus = value; }
             }
         }
 

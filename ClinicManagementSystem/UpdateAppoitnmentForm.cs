@@ -18,7 +18,9 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             AppointmentDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
+            
         }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -32,7 +34,6 @@ namespace ClinicManagementSystem
             }
             else
             {
-                MessageBox.Show(AppointmentDateTimePicker.Text);
                 Database.UpdateAppointment(Convert.ToInt64(AppointmentIDTextBox.Text),
                                            Convert.ToInt64(DoctorIdTextBox.Text),
                                            AppointmentDateTimePicker.Text,
@@ -43,11 +44,9 @@ namespace ClinicManagementSystem
 
         private void SelectAppointmentButton_Click(object sender, EventArgs e)
         {
-            //ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm();
-            //chooseAppointmentForm.ShowDialog();
-            //Database.CurrentAppointment = Database.RetrieveAppointment(3);
-            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
-            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+            ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("ALL", "SELECT");
+            chooseAppointmentForm.ShowDialog();
+
             AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
             AppointmentDateTimePicker.Text = Database.CurrentAppointment.DateTime.ToString();
             PatientIdTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
