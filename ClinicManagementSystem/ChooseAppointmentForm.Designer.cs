@@ -316,7 +316,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(910, 373);
+            this.ClientSize = new System.Drawing.Size(910, 372);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SelectButton);

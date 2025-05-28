@@ -69,13 +69,20 @@ namespace ClinicManagementSystem
             }
             else
             {
-                if (Database.AddUser(UsernameTextBox.Text, PasswordTextBox.Text, "DOCTOR", EmailTextBox.Text, ContactNoTextBox.Text, AltContactNoTextBox.Text, AddressTextBox.Text))
+                if (Database.AddDoctor(UsernameTextBox.Text, 
+                                       PasswordTextBox.Text, 
+                                       EmailTextBox.Text, 
+                                       ContactNoTextBox.Text, 
+                                       AltContactNoTextBox.Text, 
+                                       AddressTextBox.Text, 
+                                       LicenseNoTextBox.Text, 
+                                       FnameTextBox.Text, 
+                                       MnameTextBox.Text, 
+                                       LnameTextBox.Text, 
+                                       ScheduleComboBox.Text))
                 {
-                    if (Database.AddDoctor(Database.CurrentUser.UserId, FnameTextBox.Text, MnameTextBox.Text, LnameTextBox.Text, LicenseNoTextBox.Text, ScheduleComboBox.Text))
-                    {
-                        MessageBox.Show("Doctor registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
+                    MessageBox.Show("Doctor registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
                     
                 else

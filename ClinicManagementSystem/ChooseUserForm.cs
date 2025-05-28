@@ -14,22 +14,31 @@ namespace ClinicManagementSystem
     public partial class ChooseUserForm : Form
     {
         private long userId;
-
+        private string accType;
         public ChooseUserForm(string accType)
         {
+            this.accType = accType.ToUpper();
             InitializeComponent();
             dataGridView1.DataSource = Database.GetUsers(accType);
             if (accType.ToUpper().Equals("DOCTOR"))
             {
+                AccTypeIDLabel.Text = "Doctor ID:";
+                AccTypeIDLabel.Location = new Point(77, 81);
+
                 LicenseNumberLabel.Visible = true;
                 LicenseNumberTextBox.Visible = true;
+                ScheduleComboBox.Visible = true;
                 ScheduleLabel.Visible = true;
                 LicenseNumberTextBox.Visible = true;
             }
             else
             {
+                AccTypeIDLabel.Text = "Receptionist ID:";
+                AccTypeIDLabel.Location = new Point(35, 84);
+
                 LicenseNumberLabel.Visible = false;
                 LicenseNumberTextBox.Visible = false;
+                ScheduleComboBox.Visible = false;
                 ScheduleLabel.Visible = false;
                 LicenseNumberTextBox.Visible = false;
             }
@@ -41,10 +50,12 @@ namespace ClinicManagementSystem
 
         public ChooseUserForm(string formtype, string accType)
         {
+            this.accType = accType.ToUpper();
             if (accType.ToUpper().Equals("DOCTOR"))
             {
                 LicenseNumberLabel.Visible = true;
                 LicenseNumberTextBox.Visible = true;
+                ScheduleComboBox.Visible = true;
                 ScheduleLabel.Visible = true;
                 LicenseNumberTextBox.Visible = true;
             }
@@ -53,6 +64,7 @@ namespace ClinicManagementSystem
                 LicenseNumberLabel.Visible = false;
                 LicenseNumberTextBox.Visible = false;
                 ScheduleLabel.Visible = false;
+                ScheduleComboBox.Visible = false;
                 LicenseNumberTextBox.Visible = false;
             }
 
@@ -75,7 +87,14 @@ namespace ClinicManagementSystem
             else
             {
                 Database.CurrentUser = Database.RetrieveUser(Convert.ToInt64(UserIDTextBox.Text));
-                Database.CurrentDoctor = Database.RetrieveDoctor(Convert.ToInt64(UserIDTextBox.Text), "USERID");
+                if (accType.Equals("DOCTOR"))
+                {
+                    Database.CurrentDoctor = Database.RetrieveDoctor(Convert.ToInt64(UserIDTextBox.Text), "USERID");
+                }
+                else
+                {
+                    Database.CurrentReceptionist = Database.RetrieveReceptionist(Convert.ToInt64(UserIDTextBox.Text));
+                }
                 this.Close();
             }
         }
@@ -108,39 +127,59 @@ namespace ClinicManagementSystem
                         {
 
                         }
+                        string doctorId = "0";
+                        string receptionistId = "0";
+
                         string username = row.Cells["Username"].Value.ToString();
-                        string doctorId = row.Cells["DoctorID"].Value.ToString();
+                        if (accType.Equals("DOCTOR"))
+                        {
+                            doctorId = row.Cells["DoctorID"].Value.ToString();
+                        }
+                        else
+                        {
+                            receptionistId = row.Cells["ReceptionistID"].Value.ToString();
+                        }
                         string fname = row.Cells["FirstName"].Value.ToString();
                         string mname = row.Cells["MiddleName"].Value.ToString();
                         string lname = row.Cells["LastName"].Value.ToString();
-                        string licenseNumber = row.Cells["LicenseNumber"].Value.ToString();
                         string contactNumber = row.Cells["ContactNumber"].Value.ToString();
                         string altContactNumber = row.Cells["AltContactNumber"].Value.ToString();
                         string emailAddress = row.Cells["EmailAddress"].Value.ToString();
                         string address = row.Cells["Address"].Value.ToString();
-                        string schedule = row.Cells["Schedule"].Value.ToString();
                         string status = row.Cells["status"].Value.ToString();
 
+                        if (accType.Equals("DOCTOR"))
+                        {
+                            string schedule = row.Cells["Schedule"].Value.ToString();
+                            string licenseNumber = row.Cells["LicenseNumber"].Value.ToString();
+                            LicenseNumberTextBox.Text = licenseNumber;
+                            ScheduleComboBox.Text = schedule;
+                        }
 
                         UserIDTextBox.Text = Convert.ToString(userId);
                         UsernameTextBox.Text = Convert.ToString(username);
-                        DoctorIDTextBox.Text = Convert.ToString(doctorId);
+                        if (accType.Equals("DOCTOR"))
+                        {
+                            AccTypeIDTextBox.Text = Convert.ToString(doctorId);
+                        }
+                        else
+                        {
+                            AccTypeIDTextBox.Text = Convert.ToString(receptionistId);
+                        }
                         FirstNameTextBox.Text = fname;
                         MiddleNameTextBox.Text = mname;
                         LastNameTextBox.Text = lname;
-                        LicenseNumberTextBox.Text = licenseNumber;
                         ContactNumberTextBox.Text = contactNumber;
                         AltContactNumberTextBox.Text = altContactNumber;
                         EmailAddressTextBox.Text = emailAddress;
                         AddressTextBox.Text = address;
-                        ScheduleComboBox.Text = schedule;
                         StatusComboBox.Text = status;
                     }
                     else
                     {
                         UserIDTextBox.Clear();
                         UsernameTextBox.Clear();
-                        DoctorIDTextBox.Clear();
+                        AccTypeIDTextBox.Clear();
                         FirstNameTextBox.Clear();
                         MiddleNameTextBox.Clear();
                         LastNameTextBox.Clear();

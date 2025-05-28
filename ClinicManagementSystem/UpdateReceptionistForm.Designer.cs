@@ -91,7 +91,7 @@
             "Active",
             "Inactive"});
             this.StatusComboBox.Location = new System.Drawing.Point(578, 193);
-            this.StatusComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StatusComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.StatusComboBox.Name = "StatusComboBox";
             this.StatusComboBox.Size = new System.Drawing.Size(244, 28);
             this.StatusComboBox.TabIndex = 25;
@@ -137,9 +137,11 @@
             // 
             // UserIDTextBox
             // 
+            this.UserIDTextBox.Enabled = false;
             this.UserIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserIDTextBox.Location = new System.Drawing.Point(170, 30);
             this.UserIDTextBox.Name = "UserIDTextBox";
+            this.UserIDTextBox.ReadOnly = true;
             this.UserIDTextBox.Size = new System.Drawing.Size(244, 26);
             this.UserIDTextBox.TabIndex = 20;
             // 
@@ -319,7 +321,7 @@
             this.ClientSize = new System.Drawing.Size(936, 349);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "UpdateReceptionistForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

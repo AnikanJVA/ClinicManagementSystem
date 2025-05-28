@@ -114,7 +114,7 @@ namespace ClinicManagementSystem
 
                 else
                 {
-                    MessageBox.Show("Error!\nDupplicate doctor information detected.\nDoctor not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error!\nDupplicate doctor information detected.\nDoctor not updated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

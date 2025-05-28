@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
@@ -15,6 +16,37 @@ namespace ClinicManagementSystem
         public UpdateReceptionistForm()
         {
             InitializeComponent();
+            keyPressHandler();
+        }
+        public void textOnly(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsLetter(e.KeyChar) &&
+                e.KeyChar != '-' &&
+                e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void numOnly(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void keyPressHandler()
+        {
+            LnameTextBox.KeyPress += textOnly;
+            FnameTextBox.KeyPress += textOnly;
+            MnameTextBox.KeyPress += textOnly;
+
+            ContactNoTextBox.KeyPress += numOnly;
+            AltContactNoTextBox.KeyPress += numOnly;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -38,22 +70,42 @@ namespace ClinicManagementSystem
             }
             else
             {
-                //if (Database.AddDoctor(UsernameTextBox.Text, PasswordTextBox.Text, EmailTextBox.Text, ContactNoTextBox.Text, 
-                //                        LnameTextBox.Text, AltContactNoTextBox.Text, AddressTextBox.Text))
-                //{
-                //    MessageBox.Show("Doctor registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    this.Close();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Error!\nDupplicate doctor detected.\nDoctor not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                if (Database.UpdateUserReceptionist(Database.CurrentUser.UserId,
+                                              Database.CurrentReceptionist.ReceptionistId,
+                                              EmailAddressTextBox.Text,
+                                              ContactNoTextBox.Text,
+                                              AltContactNoTextBox.Text,
+                                              AddressTextBox.Text,
+                                              FnameTextBox.Text,
+                                              MnameTextBox.Text,
+                                              LnameTextBox.Text,
+                                              StatusComboBox.Text.ToUpper()))
+                {
+                    MessageBox.Show("Receptionist updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error!\nDupplicate receptionist information detected.\nReceptionist not updated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void SelectUserButton_Click(object sender, EventArgs e)
         {
+            ChooseUserForm chooseUserForm = new ChooseUserForm("RECEPTIONIST");
+            chooseUserForm.ShowDialog();
+            UserIDTextBox.Text = Database.CurrentUser.UserId.ToString();
+            EmailAddressTextBox.Text = Database.CurrentUser.EmailAddress;
+            ContactNoTextBox.Text = Database.CurrentUser.ContactNumber.ToString();
+            AltContactNoTextBox.Text = Database.CurrentUser.AltContactNumber.ToString();
+            AddressTextBox.Text = Database.CurrentUser.Address;
 
+
+            FnameTextBox.Text = Database.CurrentReceptionist.FirstName;
+            MnameTextBox.Text = Database.CurrentReceptionist.MiddleName;
+            LnameTextBox.Text = Database.CurrentReceptionist.LastName;
+            StatusComboBox.Text = Database.CurrentUser.Status;
         }
     }
 }

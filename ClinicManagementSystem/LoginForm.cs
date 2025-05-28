@@ -186,47 +186,6 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static bool AddUser(string username,
-                                       string password,
-                                       string accType, 
-                                       string emailAddress,
-                                       string contactNumber,
-                                       string altContactNumber,
-                                       string address)
-            {
-                string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username AND accType = @accType AND " +
-                                    "(emailAddress = @emailAddress OR contactNumber = @contactNumber OR altContactNumber = @altContactNumber " +
-                                    "OR contactNumber = @altContactNumber OR altContactNumber = @contactNumber)";
-                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
-                {
-                    checkCmd.Parameters.AddWithValue("@username", username);
-                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
-                    checkCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
-                    checkCmd.Parameters.AddWithValue("@accType", accType);
-                    checkCmd.Parameters.AddWithValue("@status", "ACTIVE");
-                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
-                    {
-                        return false;
-                    }
-                }
-                string insertQuery = "INSERT INTO users (username, password, accType, emailAddress, contactNumber, altContactNumber, address) " +
-                                     "VALUES (@username, SHA2(@password, 256), @accType, @emailAddress, @contactNumber, @altContactNumber, @address)";
-                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
-                {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password);
-                    cmd.Parameters.AddWithValue("@accType", accType);
-                    cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
-                    cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    cmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
-                    cmd.Parameters.AddWithValue("@address", address);
-                    bool isSuccesful = cmd.ExecuteNonQuery() > 0;
-                    CurrentUser = RetrieveUser(username, accType);
-                    return isSuccesful;
-                }
-            }
-
             public static bool AddPatient(string firstName,
                                           string middleName,
                                           string lastName, 
@@ -268,36 +227,172 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static bool AddDoctor(long userId,
+            public static bool AddDoctor(string username,
+                                         string password,
+                                         string emailAddress,
+                                         string contactNumber,
+                                         string altContactNumber,
+                                         string address,
+                                         string licenseNumber,
                                          string firstName,
                                          string middleName,
                                          string lastName,
-                                         string licenseNumber,
                                          string schedule)
             {
-                string checkQuery = "SELECT COUNT(*) FROM doctors " +
-                                    "WHERE licenseNumber = @licenseNumber" ;
+                string accType = "DOCTOR";
+
+                string checkQuery = @"SELECT COUNT(*) FROM users u
+                          LEFT JOIN doctors d ON u.UserID = d.UserID
+                          WHERE 
+                          (u.username = @username AND u.accType = @accType)
+                          OR u.emailAddress = @emailAddress
+                          OR u.contactNumber IN (@contactNumber, @altContactNumber)
+                          OR u.altContactNumber IN (@contactNumber, @altContactNumber)
+                          OR d.LicenseNumber = @licenseNumber";
+
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
+                    checkCmd.Parameters.AddWithValue("@username", username);
+                    checkCmd.Parameters.AddWithValue("@accType", accType);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
                     checkCmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
+
+                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
+                    {
+                        return false; 
+                    }
+                }
+
+                using (MySqlTransaction transaction = Instance.connection.BeginTransaction())
+                {
+                    try
+                    {
+                        long userId;
+
+                        string userInsert = @"INSERT INTO users (username, password, accType, emailAddress, contactNumber, altContactNumber, address)
+                                              VALUES (@username, SHA2(@password, 256), @accType, @emailAddress, @contactNumber, @altContactNumber, @address);
+                                              SELECT LAST_INSERT_ID();";
+
+                        using (MySqlCommand userCmd = new MySqlCommand(userInsert, Instance.connection, transaction))
+                        {
+                            userCmd.Parameters.AddWithValue("@username", username);
+                            userCmd.Parameters.AddWithValue("@password", password);
+                            userCmd.Parameters.AddWithValue("@accType", accType);
+                            userCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                            userCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                            userCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                            userCmd.Parameters.AddWithValue("@address", address);
+
+                            userId = Convert.ToInt64(userCmd.ExecuteScalar());
+                        }
+
+                        string doctorInsert = @"INSERT INTO doctors (userId, firstName, middleName, lastName, schedule, licenseNumber, hireDate)
+                                                 VALUES (@userId, @firstName, @middleName, @lastName, @schedule, @licenseNumber, NOW())";
+
+                        using (MySqlCommand doctorCmd = new MySqlCommand(doctorInsert, Instance.connection, transaction))
+                        {
+                            doctorCmd.Parameters.AddWithValue("@userId", userId);
+                            doctorCmd.Parameters.AddWithValue("@firstName", firstName);
+                            doctorCmd.Parameters.AddWithValue("@middleName", middleName);
+                            doctorCmd.Parameters.AddWithValue("@lastName", lastName);
+                            doctorCmd.Parameters.AddWithValue("@schedule", schedule);
+                            doctorCmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
+
+                            doctorCmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+            }
+
+            public static bool AddReceptionist(string username,
+                                               string password,
+                                               string emailAddress,
+                                               string contactNumber,
+                                               string altContactNumber,
+                                               string address,
+                                               string firstName,
+                                               string middleName,
+                                               string lastName)
+            {
+                string accType = "RECEPTIONIST";
+
+               
+                string checkQuery = @"SELECT COUNT(*) FROM users u
+                                      LEFT JOIN receptionists r ON u.UserID = r.UserID
+                                      WHERE 
+                                      (u.username = @username AND u.accType = @accType)
+                                      OR u.emailAddress = @emailAddress
+                                      OR u.contactNumber IN (@contactNumber, @altContactNumber)
+                                      OR u.altContactNumber IN (@contactNumber, @altContactNumber)";
+
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@username", username);
+                    checkCmd.Parameters.AddWithValue("@accType", accType);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+
                     if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
                     {
                         return false;
                     }
                 }
-                string insertQuery = "INSERT INTO doctors (userId, firstName, middleName, lastName, schedule, licenseNumber, hireDate) " +
-                                     "VALUES (@userId, @firstName, @middleName, @lastName, @schedule, @licenseNumber, NOW())";
-                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+
+                MySqlTransaction transaction = Instance.connection.BeginTransaction();
+
+                try
                 {
-                    cmd.Parameters.AddWithValue("@userId", userId);
-                    cmd.Parameters.AddWithValue("@firstName", firstName);
-                    cmd.Parameters.AddWithValue("@middleName", middleName);
-                    cmd.Parameters.AddWithValue("@lastName", lastName);
-                    cmd.Parameters.AddWithValue("@schedule", schedule);
-                    cmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
-                    return cmd.ExecuteNonQuery() > 0;
+                    string userInsert = @"INSERT INTO users (username, password, accType, emailAddress, contactNumber, altContactNumber, address)
+                              VALUES (@username, SHA2(@password, 256), @accType, @emailAddress, @contactNumber, @altContactNumber, @address)";
+
+                    using (MySqlCommand userCmd = new MySqlCommand(userInsert, Instance.connection, transaction))
+                    {
+                        userCmd.Parameters.AddWithValue("@username", username);
+                        userCmd.Parameters.AddWithValue("@password", password);
+                        userCmd.Parameters.AddWithValue("@accType", accType);
+                        userCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                        userCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                        userCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                        userCmd.Parameters.AddWithValue("@address", address);
+
+                        userCmd.ExecuteNonQuery();
+                    }
+
+                    string receptionistInsert = @"INSERT INTO receptionists (userId, firstName, middleName, lastName)
+                                      VALUES (LAST_INSERT_ID(), @firstName, @middleName, @lastName)";
+
+                    using (MySqlCommand recCmd = new MySqlCommand(receptionistInsert, Instance.connection, transaction))
+                    {
+                        recCmd.Parameters.AddWithValue("@firstName", firstName);
+                        recCmd.Parameters.AddWithValue("@middleName", middleName);
+                        recCmd.Parameters.AddWithValue("@lastName", lastName);
+
+                        recCmd.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show("Error: " + ex.Message, "Transaction Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
+
 
             public static bool AddAppointment(long patientId,
                                               long doctorId,
@@ -393,36 +488,39 @@ namespace ClinicManagementSystem
             }
 
             public static bool UpdateUserDoctor(long userId,
-                                            long doctorId,
-                                            string emailAddress,
-                                            string contactNumber,
-                                            string altContactNumber,
-                                            string address,
-                                            string licenseNumber,
-                                            string firstName,
-                                            string middleName,
-                                            string lastName,
-                                            string status,
-                                            string schedule)
+                                                long doctorId,
+                                                string emailAddress,
+                                                string contactNumber,
+                                                string altContactNumber,
+                                                string address,
+                                                string licenseNumber,
+                                                string firstName,
+                                                string middleName,
+                                                string lastName,
+                                                string status,
+                                                string schedule)
             {
-                string checkQuery = @"SELECT COUNT(*), COUNT(d.LicenseNumber) FROM users u INNER JOIN  doctors d ON u.UserID = d.UserID 
-                                    WHERE u.userId <> @userId
-                                    AND (
-                                    u.emailAddress = @emailAddress 
-                                    OR u.contactNumber = @contactNumber
-                                    OR u.altContactNumber = @altContactNumber
-                                    OR u.contactNumber = @altContactNumber
-                                    OR u.altContactNumber = @contactNumber 
-                                    ) 
-                                    AND d.LicenseNumber = @licenseNumber";
+                string checkQuery = @"
+                            SELECT COUNT(*) 
+                            FROM users u
+                            LEFT JOIN doctors d ON u.userId = d.userId
+                            WHERE 
+                                u.userId <> @userId 
+                                AND (
+                                    u.emailAddress = @EmailAddress 
+                                    OR u.contactNumber IN (@ContactNumber, @AltContactNumber)
+                                    OR u.altContactNumber IN (@ContactNumber, @AltContactNumber)
+                                    OR (d.licenseNumber = @LicenseNumber AND d.doctorId <> @doctorId)
+                                )";
 
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
                     checkCmd.Parameters.AddWithValue("@userId", userId);
-                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
-                    checkCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
-                    checkCmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
+                    checkCmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+                    checkCmd.Parameters.AddWithValue("@LicenseNumber", licenseNumber);
 
                     int count = Convert.ToInt32(checkCmd.ExecuteScalar());
                     if (count > 0)
@@ -444,7 +542,8 @@ namespace ClinicManagementSystem
                                     middleName = @MiddleName,
                                     lastName = @LastName,
                                     licenseNumber = @LicenseNumber,
-                                    schedule = @Schedule";
+                                    schedule = @Schedule 
+                                    WHERE userId = @userId";
 
                 using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
                 {
@@ -459,6 +558,74 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@LastName", lastName);
                     cmd.Parameters.AddWithValue("@LicenseNumber", licenseNumber);
                     cmd.Parameters.AddWithValue("@Schedule", schedule);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
+            public static bool UpdateUserReceptionist(long userId,
+                                      long receptionistId,
+                                      string emailAddress,
+                                      string contactNumber,
+                                      string altContactNumber,
+                                      string address,
+                                      string firstName,
+                                      string middleName,
+                                      string lastName,
+                                      string status)
+            {
+                string checkQuery = @"
+                                    SELECT COUNT(*)
+                                    FROM users u
+                                    LEFT JOIN receptionists r ON u.userId = r.userId
+                                    WHERE 
+                                        u.userId <> @userId AND (
+                                            u.emailAddress = @EmailAddress 
+                                            OR u.contactNumber IN (@ContactNumber, @AltContactNumber)
+                                            OR u.altContactNumber IN (@ContactNumber, @AltContactNumber)
+                                        )";
+
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@userId", userId);
+                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        return false; 
+                    }
+                }
+
+                string updateQuery = @"
+                                    UPDATE users SET 
+                                        contactNumber = @ContactNumber,
+                                        altContactNumber = @AltContactNumber,
+                                        emailAddress = @EmailAddress,
+                                        address = @Address,
+                                        status = @Status
+                                    WHERE userId = @userId;
+
+                                    UPDATE receptionists SET
+                                        firstName = @FirstName,
+                                        middleName = @MiddleName,
+                                        lastName = @LastName
+                                    WHERE receptionistId = @receptionistId";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@receptionistId", receptionistId);
+                    cmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                    cmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+                    cmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@Address", address);
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.Parameters.AddWithValue("@FirstName", firstName);
+                    cmd.Parameters.AddWithValue("@MiddleName", middleName);
+                    cmd.Parameters.AddWithValue("@LastName", lastName);
+
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
@@ -479,7 +646,6 @@ namespace ClinicManagementSystem
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
-
 
             public static string GetUserAccType(string username, string password) // to change, pwede mag buhat ug user nga class same sa doctor ug patient
             {
@@ -516,9 +682,24 @@ namespace ClinicManagementSystem
 
             public static DataTable GetUsers(string accType)
             {
-                string query = "SELECT u.UserID, u.Username, d.DoctorID, d.FirstName, d.MiddleName, d.LastName, d.LicenseNumber, d.Schedule, u.EmailAddress, u.ContactNumber, u.AltContactNumber, u.Address, u.Status FROM users u " +
-                    "INNER JOIN doctors d ON u.UserID = d.UserID WHERE accType = @accType";
+                string query;
+                if (accType.ToUpper().Equals("DOCTOR"))
+                {
+                    query = "SELECT u.UserID, u.Username, d.DoctorID, d.FirstName, d.MiddleName, d.LastName, d.LicenseNumber, d.Schedule, u.EmailAddress, u.ContactNumber, u.AltContactNumber, u.Address, u.Status FROM users u " +
+                                   "INNER JOIN doctors d ON u.UserID = d.UserID WHERE accType = @accType";
 
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@accType", accType);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+
+                query = "SELECT u.UserID, u.Username, r.ReceptionistID, r.FirstName, r.MiddleName, r.LastName, u.EmailAddress, u.ContactNumber, u.AltContactNumber, u.Address, u.Status FROM users u " +
+                        "INNER JOIN receptionists r ON u.UserID = r.UserID WHERE accType = @accType";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
@@ -864,7 +1045,42 @@ namespace ClinicManagementSystem
                 return null;
             }
 
-    
+            public static Receptionist RetrieveReceptionist(long Id)
+            {
+                Receptionist receptionist = new Receptionist();
+                string query;
+
+                query = "SELECT * FROM receptionists WHERE userID = @Id";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            receptionist.ReceptionistId = Convert.ToInt64(reader["ReceptionistID"]);
+                            receptionist.UserId = Convert.ToInt64(reader["UserID"]);
+                            receptionist.FirstName = reader["FirstName"].ToString();
+                            receptionist.MiddleName = reader["MiddleName"].ToString();
+                            receptionist.LastName = reader["LastName"].ToString();
+
+                            reader.Close();
+                            return receptionist;
+                        }
+
+                        reader.Close(); 
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+
+                return null;
+            }
 
             public static Doctor RetrieveDoctor(long Id, string idType)
             {
@@ -901,7 +1117,7 @@ namespace ClinicManagementSystem
                             return doctor;
                         }
 
-                        reader.Close(); // Ensure it's always closed
+                        reader.Close();
                     }
                     catch (Exception ex)
                     {

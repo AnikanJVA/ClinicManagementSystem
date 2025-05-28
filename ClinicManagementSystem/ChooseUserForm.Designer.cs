@@ -60,8 +60,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.DoctorIDTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.AccTypeIDTextBox = new System.Windows.Forms.TextBox();
+            this.AccTypeIDLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -195,8 +195,8 @@
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.UsernameTextBox);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.DoctorIDTextBox);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.AccTypeIDTextBox);
+            this.panel1.Controls.Add(this.AccTypeIDLabel);
             this.panel1.Location = new System.Drawing.Point(34, 41);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
@@ -485,30 +485,30 @@
             this.label11.TabIndex = 2;
             this.label11.Text = "Username:";
             // 
-            // DoctorIDTextBox
+            // AccTypeIDTextBox
             // 
-            this.DoctorIDTextBox.Enabled = false;
-            this.DoctorIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DoctorIDTextBox.Location = new System.Drawing.Point(163, 78);
-            this.DoctorIDTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.DoctorIDTextBox.Name = "DoctorIDTextBox";
-            this.DoctorIDTextBox.ReadOnly = true;
-            this.DoctorIDTextBox.Size = new System.Drawing.Size(287, 26);
-            this.DoctorIDTextBox.TabIndex = 3;
+            this.AccTypeIDTextBox.Enabled = false;
+            this.AccTypeIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccTypeIDTextBox.Location = new System.Drawing.Point(163, 78);
+            this.AccTypeIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.AccTypeIDTextBox.Name = "AccTypeIDTextBox";
+            this.AccTypeIDTextBox.ReadOnly = true;
+            this.AccTypeIDTextBox.Size = new System.Drawing.Size(287, 26);
+            this.AccTypeIDTextBox.TabIndex = 3;
             // 
-            // label1
+            // AccTypeIDLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(77, 81);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 20);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Doctor ID:";
+            this.AccTypeIDLabel.AutoSize = true;
+            this.AccTypeIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccTypeIDLabel.ForeColor = System.Drawing.Color.White;
+            this.AccTypeIDLabel.Location = new System.Drawing.Point(77, 81);
+            this.AccTypeIDLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AccTypeIDLabel.Name = "AccTypeIDLabel";
+            this.AccTypeIDLabel.Size = new System.Drawing.Size(82, 20);
+            this.AccTypeIDLabel.TabIndex = 2;
+            this.AccTypeIDLabel.Text = "Doctor ID:";
             // 
-            // ChooseUser
+            // ChooseUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -524,7 +524,7 @@
             this.Controls.Add(this.CloseButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "ChooseUser";
+            this.Name = "ChooseUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Choose User";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -563,8 +563,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox FirstNameTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox DoctorIDTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox AccTypeIDTextBox;
+        private System.Windows.Forms.Label AccTypeIDLabel;
         private System.Windows.Forms.TextBox UserIDTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox ScheduleComboBox;
