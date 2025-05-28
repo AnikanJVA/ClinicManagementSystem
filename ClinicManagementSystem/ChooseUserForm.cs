@@ -11,24 +11,54 @@ using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
-    public partial class ChooseUser : Form
+    public partial class ChooseUserForm : Form
     {
         private long userId;
 
-        public ChooseUser()
+        public ChooseUserForm(string accType)
         {
             InitializeComponent();
-            dataGridView1.DataSource = Database.GetUsers("DOCTOR");
+            dataGridView1.DataSource = Database.GetUsers(accType);
+            if (accType.ToUpper().Equals("DOCTOR"))
+            {
+                LicenseNumberLabel.Visible = true;
+                LicenseNumberTextBox.Visible = true;
+                ScheduleLabel.Visible = true;
+                LicenseNumberTextBox.Visible = true;
+            }
+            else
+            {
+                LicenseNumberLabel.Visible = false;
+                LicenseNumberTextBox.Visible = false;
+                ScheduleLabel.Visible = false;
+                LicenseNumberTextBox.Visible = false;
+            }
+            
             SelectButton.Visible = true;
             CancelButton.Visible = true;
             CloseButton.Visible = false;
         }
 
-        public ChooseUser(string formtype)
+        public ChooseUserForm(string formtype, string accType)
         {
-            if (formtype.ToUpper().Equals("SEARCH"))
+            if (accType.ToUpper().Equals("DOCTOR"))
             {
-                dataGridView1.DataSource = Database.GetUsers("DOCTOR");
+                LicenseNumberLabel.Visible = true;
+                LicenseNumberTextBox.Visible = true;
+                ScheduleLabel.Visible = true;
+                LicenseNumberTextBox.Visible = true;
+            }
+            else
+            {
+                LicenseNumberLabel.Visible = false;
+                LicenseNumberTextBox.Visible = false;
+                ScheduleLabel.Visible = false;
+                LicenseNumberTextBox.Visible = false;
+            }
+
+            if (formtype.ToUpper().Equals("SEARCH"))
+            { 
+                dataGridView1.DataSource = Database.GetUsers(accType);
                 InitializeComponent();
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;

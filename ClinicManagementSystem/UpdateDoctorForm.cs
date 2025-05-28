@@ -59,7 +59,7 @@ namespace ClinicManagementSystem
 
         private void SelectUserButton_Click(object sender, EventArgs e)
         {
-            ChooseUser chooseUserForm = new ChooseUser();
+            ChooseUserForm chooseUserForm = new ChooseUserForm("DOCTOR");
             chooseUserForm.ShowDialog();
             UserIDTextBox.Text = Database.CurrentUser.UserId.ToString();
             EmailAddressTextBox.Text = Database.CurrentUser.EmailAddress;
@@ -94,16 +94,28 @@ namespace ClinicManagementSystem
             }
             else
             {
-                //if (Database.AddDoctor(UsernameTextBox.Text, PasswordTextBox.Text, EmailTextBox.Text, ContactNoTextBox.Text, 
-                //                        LnameTextBox.Text, AltContactNoTextBox.Text, AddressTextBox.Text))
-                //{
-                //    MessageBox.Show("Doctor registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    this.Close();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Error!\nDupplicate doctor detected.\nDoctor not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                if (Database.UpdateUserDoctor(Database.CurrentUser.UserId, 
+                                              Database.CurrentDoctor.DoctorId, 
+                                              EmailAddressTextBox.Text, 
+                                              ContactNoTextBox.Text,
+                                              AltContactNoTextBox.Text,
+                                              AddressTextBox.Text,
+                                              LicenseNoTextBox.Text,
+                                              FnameTextBox.Text,
+                                              MnameTextBox.Text,
+                                              LnameTextBox.Text,
+                                              StatusComboBox.Text.ToUpper(),
+                                              ScheduleComboBox.Text
+                                              ))
+                {
+                    MessageBox.Show("Doctor updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close(); 
+                }
+
+                else
+                {
+                    MessageBox.Show("Error!\nDupplicate doctor information detected.\nDoctor not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace ClinicManagementSystem
 {
-    partial class ChooseUser
+    partial class ChooseUserForm
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,8 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.SelectButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ScheduleComboBox = new System.Windows.Forms.ComboBox();
+            this.ScheduleLabel = new System.Windows.Forms.Label();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -47,21 +49,19 @@
             this.LicenseNumberTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ContactNumberTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.LicenseNumberLabel = new System.Windows.Forms.Label();
             this.LastNameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.MiddleNameTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.FirstNameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.UserIDTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.DoctorIDTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.UserIDTextBox = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.UsernameTextBox = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.ScheduleComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -108,7 +108,7 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(536, 41);
             this.dataGridView1.Name = "dataGridView1";
@@ -172,7 +172,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.panel1.Controls.Add(this.ScheduleComboBox);
-            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.ScheduleLabel);
             this.panel1.Controls.Add(this.StatusComboBox);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label15);
@@ -184,7 +184,7 @@
             this.panel1.Controls.Add(this.LicenseNumberTextBox);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.ContactNumberTextBox);
-            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.LicenseNumberLabel);
             this.panel1.Controls.Add(this.LastNameTextBox);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.MiddleNameTextBox);
@@ -202,6 +202,32 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(484, 427);
             this.panel1.TabIndex = 10;
+            // 
+            // ScheduleComboBox
+            // 
+            this.ScheduleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ScheduleComboBox.Enabled = false;
+            this.ScheduleComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ScheduleComboBox.FormattingEnabled = true;
+            this.ScheduleComboBox.Items.AddRange(new object[] {
+            "MWF",
+            "TThS"});
+            this.ScheduleComboBox.Location = new System.Drawing.Point(163, 350);
+            this.ScheduleComboBox.Name = "ScheduleComboBox";
+            this.ScheduleComboBox.Size = new System.Drawing.Size(287, 28);
+            this.ScheduleComboBox.TabIndex = 22;
+            // 
+            // ScheduleLabel
+            // 
+            this.ScheduleLabel.AutoSize = true;
+            this.ScheduleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScheduleLabel.ForeColor = System.Drawing.Color.White;
+            this.ScheduleLabel.Location = new System.Drawing.Point(78, 353);
+            this.ScheduleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ScheduleLabel.Name = "ScheduleLabel";
+            this.ScheduleLabel.Size = new System.Drawing.Size(80, 20);
+            this.ScheduleLabel.TabIndex = 21;
+            this.ScheduleLabel.Text = "Schedule:";
             // 
             // StatusComboBox
             // 
@@ -332,17 +358,17 @@
             this.ContactNumberTextBox.Size = new System.Drawing.Size(287, 26);
             this.ContactNumberTextBox.TabIndex = 11;
             // 
-            // label5
+            // LicenseNumberLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(30, 202);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 20);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "License Number:";
+            this.LicenseNumberLabel.AutoSize = true;
+            this.LicenseNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LicenseNumberLabel.ForeColor = System.Drawing.Color.White;
+            this.LicenseNumberLabel.Location = new System.Drawing.Point(30, 202);
+            this.LicenseNumberLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LicenseNumberLabel.Name = "LicenseNumberLabel";
+            this.LicenseNumberLabel.Size = new System.Drawing.Size(128, 20);
+            this.LicenseNumberLabel.TabIndex = 10;
+            this.LicenseNumberLabel.Text = "License Number:";
             // 
             // LastNameTextBox
             // 
@@ -413,6 +439,52 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "First Name:";
             // 
+            // UserIDTextBox
+            // 
+            this.UserIDTextBox.Enabled = false;
+            this.UserIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserIDTextBox.Location = new System.Drawing.Point(163, 16);
+            this.UserIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.UserIDTextBox.Name = "UserIDTextBox";
+            this.UserIDTextBox.ReadOnly = true;
+            this.UserIDTextBox.Size = new System.Drawing.Size(287, 26);
+            this.UserIDTextBox.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(90, 19);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 20);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "User ID:";
+            // 
+            // UsernameTextBox
+            // 
+            this.UsernameTextBox.Enabled = false;
+            this.UsernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameTextBox.Location = new System.Drawing.Point(163, 46);
+            this.UsernameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.UsernameTextBox.Name = "UsernameTextBox";
+            this.UsernameTextBox.ReadOnly = true;
+            this.UsernameTextBox.Size = new System.Drawing.Size(287, 26);
+            this.UsernameTextBox.TabIndex = 3;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(72, 49);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(87, 20);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Username:";
+            // 
             // DoctorIDTextBox
             // 
             this.DoctorIDTextBox.Enabled = false;
@@ -435,78 +507,6 @@
             this.label1.Size = new System.Drawing.Size(82, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Doctor ID:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(90, 19);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 20);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "User ID:";
-            // 
-            // UserIDTextBox
-            // 
-            this.UserIDTextBox.Enabled = false;
-            this.UserIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserIDTextBox.Location = new System.Drawing.Point(163, 16);
-            this.UserIDTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.UserIDTextBox.Name = "UserIDTextBox";
-            this.UserIDTextBox.ReadOnly = true;
-            this.UserIDTextBox.Size = new System.Drawing.Size(287, 26);
-            this.UserIDTextBox.TabIndex = 3;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(72, 49);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(87, 20);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Username:";
-            // 
-            // UsernameTextBox
-            // 
-            this.UsernameTextBox.Enabled = false;
-            this.UsernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTextBox.Location = new System.Drawing.Point(163, 46);
-            this.UsernameTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.ReadOnly = true;
-            this.UsernameTextBox.Size = new System.Drawing.Size(287, 26);
-            this.UsernameTextBox.TabIndex = 3;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(78, 353);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 20);
-            this.label12.TabIndex = 21;
-            this.label12.Text = "Schedule:";
-            // 
-            // ScheduleComboBox
-            // 
-            this.ScheduleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ScheduleComboBox.Enabled = false;
-            this.ScheduleComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ScheduleComboBox.FormattingEnabled = true;
-            this.ScheduleComboBox.Items.AddRange(new object[] {
-            "MWF",
-            "TThS"});
-            this.ScheduleComboBox.Location = new System.Drawing.Point(163, 350);
-            this.ScheduleComboBox.Name = "ScheduleComboBox";
-            this.ScheduleComboBox.Size = new System.Drawing.Size(287, 28);
-            this.ScheduleComboBox.TabIndex = 22;
             // 
             // ChooseUser
             // 
@@ -556,7 +556,7 @@
         private System.Windows.Forms.TextBox LicenseNumberTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox ContactNumberTextBox;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label LicenseNumberLabel;
         private System.Windows.Forms.TextBox LastNameTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox MiddleNameTextBox;
@@ -568,7 +568,7 @@
         private System.Windows.Forms.TextBox UserIDTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox ScheduleComboBox;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label ScheduleLabel;
         private System.Windows.Forms.TextBox UsernameTextBox;
         private System.Windows.Forms.Label label11;
     }

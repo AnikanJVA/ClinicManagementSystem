@@ -392,6 +392,77 @@ namespace ClinicManagementSystem
                 }
             }
 
+            public static bool UpdateUserDoctor(long userId,
+                                            long doctorId,
+                                            string emailAddress,
+                                            string contactNumber,
+                                            string altContactNumber,
+                                            string address,
+                                            string licenseNumber,
+                                            string firstName,
+                                            string middleName,
+                                            string lastName,
+                                            string status,
+                                            string schedule)
+            {
+                string checkQuery = @"SELECT COUNT(*), COUNT(d.LicenseNumber) FROM users u INNER JOIN  doctors d ON u.UserID = d.UserID 
+                                    WHERE u.userId <> @userId
+                                    AND (
+                                    u.emailAddress = @emailAddress 
+                                    OR u.contactNumber = @contactNumber
+                                    OR u.altContactNumber = @altContactNumber
+                                    OR u.contactNumber = @altContactNumber
+                                    OR u.altContactNumber = @contactNumber 
+                                    ) 
+                                    AND d.LicenseNumber = @licenseNumber";
+
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@userId", userId);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                    checkCmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
+
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        return false;
+                    }
+                }
+
+                string updateQuery = @"UPDATE users SET 
+                                    contactNumber = @ContactNumber,
+                                    altContactNumber = @AltContactNumber,
+                                    emailAddress = @EmailAddress,
+                                    address = @Address,
+                                    status = @Status
+                                    WHERE userId = @userId;
+                                    
+                                    UPDATE doctors SET
+                                    firstName = @FirstName,
+                                    middleName = @MiddleName,
+                                    lastName = @LastName,
+                                    licenseNumber = @LicenseNumber,
+                                    schedule = @Schedule";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                    cmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+                    cmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@Address", address);
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.Parameters.AddWithValue("@FirstName", firstName);
+                    cmd.Parameters.AddWithValue("@MiddleName", middleName);
+                    cmd.Parameters.AddWithValue("@LastName", lastName);
+                    cmd.Parameters.AddWithValue("@LicenseNumber", licenseNumber);
+                    cmd.Parameters.AddWithValue("@Schedule", schedule);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
             public static bool UpdateAppointment(long appointmentId,
                                                  long doctorId,
                                                  string appointmentDateTime,
@@ -492,7 +563,7 @@ namespace ClinicManagementSystem
                 if (status.Equals("ALL"))
                 {
                     query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.EmailAddress, d.LicenseNumber, u.Status FROM doctors d " +
-                            "INNER JOIN users u ON d.userId = u.userId ORDER BY doctorId DESC"; // join
+                            "INNER JOIN users u ON d.userId = u.userId ORDER BY doctorId DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -502,7 +573,7 @@ namespace ClinicManagementSystem
                     }
                 }
                 query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.EmailAddress, d.LicenseNumber, u.Status FROM doctors d " +
-                        "INNER JOIN users u ON d.userId = u.userId WHERE status = @status ORDER BY doctorId DESC"; // join
+                        "INNER JOIN users u ON d.userId = u.userId WHERE status = @status ORDER BY doctorId DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
