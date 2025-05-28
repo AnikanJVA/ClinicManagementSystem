@@ -7,14 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
     public partial class ChooseServiceForm : Form
     {
+        private long serviceID;
+
         public ChooseServiceForm()
         {
             InitializeComponent();
+            Services_DataGridView.DataSource = Database.GetServices();
+        }
+
+        public ChooseServiceForm(string formType)
+        {
+            InitializeComponent();
+            Services_DataGridView.DataSource = Database.GetServices();
+            UpdateServiceButton.Visible = false;
+            AddNewServiceButton.Visible = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -27,6 +39,41 @@ namespace ClinicManagementSystem
             this.Close();
         }
 
+        private void Services_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Services_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Services_DataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            serviceID = Convert.ToInt64(row.Cells["ServiceID"].Value.ToString());
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        string serviceName = row.Cells["ServiceName"].Value.ToString();
+                        string serviceDescription= row.Cells["ServiceDescription"].Value.ToString();
+
+                        ServiceIdTextBox.Text = Convert.ToString(serviceID);
+                        ServiceNameTextBox.Text = serviceName;
+                        ServiceDescriptionTextBox.Text = serviceDescription;
+                    }
+                    else
+                    {
+                        ServiceIdTextBox.Clear();
+                        ServiceNameTextBox.Clear();
+                        ServiceDescriptionTextBox.Clear();
+                    }
+                }
+            }
+        }
+
         private void SelectService_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(ServiceIdTextBox.Text) ||
@@ -37,8 +84,27 @@ namespace ClinicManagementSystem
             }
             else
             {
-                // if ()
+                //Database.CurrentService = Database.RetrieveService(Convert.ToInt64(ServiceIdTextBox.Text));
+                //this.Close();
             }
+        }
+
+        private void Services_DataGridView_CellClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddNewService_Click(object sender, EventArgs e)
+        {
+            AddNewServiceForm addNewServiceForm = new AddNewServiceForm();
+            addNewServiceForm.ShowDialog();
+
+        }
+
+        private void UpdateService_Click(object sender, EventArgs e)
+        {
+            AddNewServiceForm addNewServiceForm = new AddNewServiceForm("UPDATE");
+            addNewServiceForm.ShowDialog();
         }
     }
 }

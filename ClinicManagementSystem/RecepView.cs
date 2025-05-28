@@ -21,6 +21,7 @@ namespace ClinicManagementSystem
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
         {
+            DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(1, 34, 79);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Billing_NavButton.BackColor = Color.FromArgb(0, 148, 212);
@@ -28,7 +29,7 @@ namespace ClinicManagementSystem
 
             Appointments_TabControl.Show();
             Appointments_CreateButton.Show();
-            Apointments_UpdateButton.Show();
+            Appointments_UpdateButton.Show();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -46,6 +47,7 @@ namespace ClinicManagementSystem
 
         private void BillingButton_Click(object sender, EventArgs e)
         {
+            DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Billing_NavButton.BackColor = Color.FromArgb(1, 34, 79);
@@ -53,7 +55,7 @@ namespace ClinicManagementSystem
 
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
-            Apointments_UpdateButton.Hide();
+            Appointments_UpdateButton.Hide();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -71,6 +73,7 @@ namespace ClinicManagementSystem
 
         private void DoctorsButton_Click(object sender, EventArgs e)
         {
+            DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Billing_NavButton.BackColor = Color.FromArgb(0, 148, 212);
@@ -78,7 +81,7 @@ namespace ClinicManagementSystem
 
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
-            Apointments_UpdateButton.Hide();
+            Appointments_UpdateButton.Hide();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -103,6 +106,7 @@ namespace ClinicManagementSystem
 
         private void PatientsButton_Click(object sender, EventArgs e)
         {
+            DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(1, 34, 79);
             Billing_NavButton.BackColor = Color.FromArgb(0, 148, 212);
@@ -110,7 +114,7 @@ namespace ClinicManagementSystem
 
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
-            Apointments_UpdateButton.Hide();
+            Appointments_UpdateButton.Hide();
 
             Patients_TabControl.Show();
             Patients_RegisterButton.Show();
@@ -198,6 +202,28 @@ namespace ClinicManagementSystem
             Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
         }
 
-       
+        private void DashBoard_NavButton_Click(object sender, EventArgs e)
+        {
+            DashBoard_NavButton.BackColor = Color.FromArgb(1, 34, 79);
+            Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+            Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+            Billing_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+            Doctors_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+
+            Appointments_TabControl.Hide();
+            Appointments_CreateButton.Hide();
+            Appointments_UpdateButton.Hide();
+
+            Patients_TabControl.Hide();
+            Patients_RegisterButton.Hide();
+            Patients_UpdateButton.Hide();
+            Patients_SearchButton.Hide();
+
+            Billing_DataGridView.Hide();
+            Billing_CreateButton.Hide();
+
+            Doctors_TabControl.Hide();
+            Doctors_SearchButton.Hide();
+        }
     }
 }

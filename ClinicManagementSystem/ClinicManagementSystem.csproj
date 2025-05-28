@@ -98,6 +98,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNewServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewServiceForm.Designer.cs">
+      <DependentUpon>AddNewServiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +195,12 @@
     <Compile Include="RegisterReceptionistForm.Designer.cs">
       <DependentUpon>RegisterReceptionistForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectedServicesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectedServicesForm.Designer.cs">
+      <DependentUpon>SelectedServicesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateAppoitnmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +239,9 @@
     <Compile Include="UpdateReceptionistForm.Designer.cs">
       <DependentUpon>UpdateReceptionistForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddNewServiceForm.resx">
+      <DependentUpon>AddNewServiceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -266,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterReceptionistForm.resx">
       <DependentUpon>RegisterReceptionistForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectedServicesForm.resx">
+      <DependentUpon>SelectedServicesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateAppoitnmentForm.resx">
       <DependentUpon>UpdateAppoitnmentForm.cs</DependentUpon>

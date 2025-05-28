@@ -35,12 +35,6 @@
             this.Billing_NavButton = new System.Windows.Forms.Button();
             this.Patients_NavButton = new System.Windows.Forms.Button();
             this.Appointments_NavButton = new System.Windows.Forms.Button();
-            this.Patients_UpdateButton = new System.Windows.Forms.Button();
-            this.Apointments_UpdateButton = new System.Windows.Forms.Button();
-            this.Billing_CreateButton = new System.Windows.Forms.Button();
-            this.Patients_RegisterButton = new System.Windows.Forms.Button();
-            this.Appointments_CreateButton = new System.Windows.Forms.Button();
-            this.Patients_SearchButton = new System.Windows.Forms.Button();
             this.Doctors_SearchButton = new System.Windows.Forms.Button();
             this.Doctors_TabControl = new System.Windows.Forms.TabControl();
             this.Doctors_AllTab = new System.Windows.Forms.TabPage();
@@ -72,6 +66,13 @@
             this.Appointments_CanceledDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_FinishedTab = new System.Windows.Forms.TabPage();
             this.Appointments_FinishedDataGridView = new System.Windows.Forms.DataGridView();
+            this.Patients_RegisterButton = new System.Windows.Forms.Button();
+            this.Appointments_CreateButton = new System.Windows.Forms.Button();
+            this.Appointments_UpdateButton = new System.Windows.Forms.Button();
+            this.Patients_SearchButton = new System.Windows.Forms.Button();
+            this.Patients_UpdateButton = new System.Windows.Forms.Button();
+            this.Billing_CreateButton = new System.Windows.Forms.Button();
+            this.DashBoard_NavButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
@@ -119,6 +120,7 @@
             // SplitContainer.Panel1
             // 
             this.SplitContainer.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
+            this.SplitContainer.Panel1.Controls.Add(this.DashBoard_NavButton);
             this.SplitContainer.Panel1.Controls.Add(this.AccountTypelabel);
             this.SplitContainer.Panel1.Controls.Add(this.LogoutButton);
             this.SplitContainer.Panel1.Controls.Add(this.Doctors_NavButton);
@@ -137,7 +139,7 @@
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_RegisterButton);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_CreateButton);
-            this.SplitContainer.Panel2.Controls.Add(this.Apointments_UpdateButton);
+            this.SplitContainer.Panel2.Controls.Add(this.Appointments_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_SearchButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_CreateButton);
@@ -187,7 +189,7 @@
             this.Doctors_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Doctors_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Doctors_NavButton.ForeColor = System.Drawing.Color.White;
-            this.Doctors_NavButton.Location = new System.Drawing.Point(20, 320);
+            this.Doctors_NavButton.Location = new System.Drawing.Point(20, 414);
             this.Doctors_NavButton.Name = "Doctors_NavButton";
             this.Doctors_NavButton.Size = new System.Drawing.Size(239, 66);
             this.Doctors_NavButton.TabIndex = 4;
@@ -204,7 +206,7 @@
             this.Billing_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Billing_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Billing_NavButton.ForeColor = System.Drawing.Color.White;
-            this.Billing_NavButton.Location = new System.Drawing.Point(20, 235);
+            this.Billing_NavButton.Location = new System.Drawing.Point(20, 330);
             this.Billing_NavButton.Name = "Billing_NavButton";
             this.Billing_NavButton.Size = new System.Drawing.Size(239, 66);
             this.Billing_NavButton.TabIndex = 3;
@@ -221,7 +223,7 @@
             this.Patients_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Patients_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Patients_NavButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_NavButton.Location = new System.Drawing.Point(20, 150);
+            this.Patients_NavButton.Location = new System.Drawing.Point(20, 246);
             this.Patients_NavButton.Name = "Patients_NavButton";
             this.Patients_NavButton.Size = new System.Drawing.Size(239, 66);
             this.Patients_NavButton.TabIndex = 2;
@@ -231,126 +233,20 @@
             // 
             // Appointments_NavButton
             // 
-            this.Appointments_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
             this.Appointments_NavButton.FlatAppearance.BorderSize = 0;
             this.Appointments_NavButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
             this.Appointments_NavButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.Appointments_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Appointments_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Appointments_NavButton.ForeColor = System.Drawing.Color.White;
-            this.Appointments_NavButton.Location = new System.Drawing.Point(20, 65);
+            this.Appointments_NavButton.Location = new System.Drawing.Point(20, 162);
             this.Appointments_NavButton.Name = "Appointments_NavButton";
             this.Appointments_NavButton.Size = new System.Drawing.Size(239, 66);
             this.Appointments_NavButton.TabIndex = 1;
             this.Appointments_NavButton.Text = "Appointments";
             this.Appointments_NavButton.UseVisualStyleBackColor = false;
             this.Appointments_NavButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
-            // 
-            // Patients_UpdateButton
-            // 
-            this.Patients_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Patients_UpdateButton.FlatAppearance.BorderSize = 0;
-            this.Patients_UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Patients_UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Patients_UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patients_UpdateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Patients_UpdateButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_UpdateButton.Location = new System.Drawing.Point(341, 578);
-            this.Patients_UpdateButton.Name = "Patients_UpdateButton";
-            this.Patients_UpdateButton.Size = new System.Drawing.Size(280, 66);
-            this.Patients_UpdateButton.TabIndex = 15;
-            this.Patients_UpdateButton.Text = "Update Patient";
-            this.Patients_UpdateButton.UseVisualStyleBackColor = false;
-            this.Patients_UpdateButton.Visible = false;
-            this.Patients_UpdateButton.Click += new System.EventHandler(this.Patients_UpdateButton_Click);
-            // 
-            // Apointments_UpdateButton
-            // 
-            this.Apointments_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Apointments_UpdateButton.FlatAppearance.BorderSize = 0;
-            this.Apointments_UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Apointments_UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Apointments_UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Apointments_UpdateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Apointments_UpdateButton.ForeColor = System.Drawing.Color.White;
-            this.Apointments_UpdateButton.Location = new System.Drawing.Point(516, 578);
-            this.Apointments_UpdateButton.Name = "Apointments_UpdateButton";
-            this.Apointments_UpdateButton.Size = new System.Drawing.Size(410, 66);
-            this.Apointments_UpdateButton.TabIndex = 9;
-            this.Apointments_UpdateButton.Text = "Update Appointment";
-            this.Apointments_UpdateButton.UseVisualStyleBackColor = false;
-            this.Apointments_UpdateButton.Click += new System.EventHandler(this.Apointments_UpdateButton_Click);
-            // 
-            // Billing_CreateButton
-            // 
-            this.Billing_CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Billing_CreateButton.FlatAppearance.BorderSize = 0;
-            this.Billing_CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Billing_CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Billing_CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Billing_CreateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Billing_CreateButton.ForeColor = System.Drawing.Color.White;
-            this.Billing_CreateButton.Location = new System.Drawing.Point(271, 578);
-            this.Billing_CreateButton.Name = "Billing_CreateButton";
-            this.Billing_CreateButton.Size = new System.Drawing.Size(410, 66);
-            this.Billing_CreateButton.TabIndex = 10;
-            this.Billing_CreateButton.Text = "Create Bill";
-            this.Billing_CreateButton.UseVisualStyleBackColor = false;
-            this.Billing_CreateButton.Visible = false;
-            this.Billing_CreateButton.Click += new System.EventHandler(this.createBillButton_Click);
-            // 
-            // Patients_RegisterButton
-            // 
-            this.Patients_RegisterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Patients_RegisterButton.FlatAppearance.BorderSize = 0;
-            this.Patients_RegisterButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Patients_RegisterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Patients_RegisterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patients_RegisterButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Patients_RegisterButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_RegisterButton.Location = new System.Drawing.Point(36, 578);
-            this.Patients_RegisterButton.Name = "Patients_RegisterButton";
-            this.Patients_RegisterButton.Size = new System.Drawing.Size(280, 66);
-            this.Patients_RegisterButton.TabIndex = 15;
-            this.Patients_RegisterButton.Text = "Register Patient";
-            this.Patients_RegisterButton.UseVisualStyleBackColor = false;
-            this.Patients_RegisterButton.Visible = false;
-            this.Patients_RegisterButton.Click += new System.EventHandler(this.RegisterPatientButton_Click);
-            // 
-            // Appointments_CreateButton
-            // 
-            this.Appointments_CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Appointments_CreateButton.FlatAppearance.BorderSize = 0;
-            this.Appointments_CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Appointments_CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Appointments_CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Appointments_CreateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Appointments_CreateButton.ForeColor = System.Drawing.Color.White;
-            this.Appointments_CreateButton.Location = new System.Drawing.Point(36, 578);
-            this.Appointments_CreateButton.Name = "Appointments_CreateButton";
-            this.Appointments_CreateButton.Size = new System.Drawing.Size(410, 66);
-            this.Appointments_CreateButton.TabIndex = 8;
-            this.Appointments_CreateButton.Text = "Create New Appointment";
-            this.Appointments_CreateButton.UseVisualStyleBackColor = false;
-            this.Appointments_CreateButton.Click += new System.EventHandler(this.createAppointmentButton_Click);
-            // 
-            // Patients_SearchButton
-            // 
-            this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Patients_SearchButton.FlatAppearance.BorderSize = 0;
-            this.Patients_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Patients_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Patients_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patients_SearchButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Patients_SearchButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_SearchButton.Location = new System.Drawing.Point(646, 578);
-            this.Patients_SearchButton.Name = "Patients_SearchButton";
-            this.Patients_SearchButton.Size = new System.Drawing.Size(280, 66);
-            this.Patients_SearchButton.TabIndex = 15;
-            this.Patients_SearchButton.Text = "Search Patient";
-            this.Patients_SearchButton.UseVisualStyleBackColor = false;
-            this.Patients_SearchButton.Visible = false;
-            this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
             // 
             // Doctors_SearchButton
             // 
@@ -600,6 +496,7 @@
             this.Appointments_TabControl.SelectedIndex = 0;
             this.Appointments_TabControl.Size = new System.Drawing.Size(889, 536);
             this.Appointments_TabControl.TabIndex = 7;
+            this.Appointments_TabControl.Visible = false;
             // 
             // Appointments_AllTab
             // 
@@ -758,6 +655,131 @@
             this.Appointments_FinishedDataGridView.Size = new System.Drawing.Size(881, 507);
             this.Appointments_FinishedDataGridView.TabIndex = 4;
             // 
+            // Patients_RegisterButton
+            // 
+            this.Patients_RegisterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_RegisterButton.FlatAppearance.BorderSize = 0;
+            this.Patients_RegisterButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_RegisterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_RegisterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_RegisterButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_RegisterButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_RegisterButton.Location = new System.Drawing.Point(36, 578);
+            this.Patients_RegisterButton.Name = "Patients_RegisterButton";
+            this.Patients_RegisterButton.Size = new System.Drawing.Size(280, 66);
+            this.Patients_RegisterButton.TabIndex = 15;
+            this.Patients_RegisterButton.Text = "Register Patient";
+            this.Patients_RegisterButton.UseVisualStyleBackColor = false;
+            this.Patients_RegisterButton.Visible = false;
+            this.Patients_RegisterButton.Click += new System.EventHandler(this.RegisterPatientButton_Click);
+            // 
+            // Appointments_CreateButton
+            // 
+            this.Appointments_CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Appointments_CreateButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_CreateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appointments_CreateButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_CreateButton.Location = new System.Drawing.Point(36, 578);
+            this.Appointments_CreateButton.Name = "Appointments_CreateButton";
+            this.Appointments_CreateButton.Size = new System.Drawing.Size(410, 66);
+            this.Appointments_CreateButton.TabIndex = 8;
+            this.Appointments_CreateButton.Text = "Create New Appointment";
+            this.Appointments_CreateButton.UseVisualStyleBackColor = false;
+            this.Appointments_CreateButton.Visible = false;
+            this.Appointments_CreateButton.Click += new System.EventHandler(this.createAppointmentButton_Click);
+            // 
+            // Appointments_UpdateButton
+            // 
+            this.Appointments_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Appointments_UpdateButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_UpdateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appointments_UpdateButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_UpdateButton.Location = new System.Drawing.Point(516, 578);
+            this.Appointments_UpdateButton.Name = "Appointments_UpdateButton";
+            this.Appointments_UpdateButton.Size = new System.Drawing.Size(410, 66);
+            this.Appointments_UpdateButton.TabIndex = 9;
+            this.Appointments_UpdateButton.Text = "Update Appointment";
+            this.Appointments_UpdateButton.UseVisualStyleBackColor = false;
+            this.Appointments_UpdateButton.Visible = false;
+            this.Appointments_UpdateButton.Click += new System.EventHandler(this.Apointments_UpdateButton_Click);
+            // 
+            // Patients_SearchButton
+            // 
+            this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_SearchButton.FlatAppearance.BorderSize = 0;
+            this.Patients_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_SearchButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_SearchButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_SearchButton.Location = new System.Drawing.Point(646, 578);
+            this.Patients_SearchButton.Name = "Patients_SearchButton";
+            this.Patients_SearchButton.Size = new System.Drawing.Size(280, 66);
+            this.Patients_SearchButton.TabIndex = 15;
+            this.Patients_SearchButton.Text = "Search Patient";
+            this.Patients_SearchButton.UseVisualStyleBackColor = false;
+            this.Patients_SearchButton.Visible = false;
+            this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
+            // 
+            // Patients_UpdateButton
+            // 
+            this.Patients_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_UpdateButton.FlatAppearance.BorderSize = 0;
+            this.Patients_UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_UpdateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_UpdateButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_UpdateButton.Location = new System.Drawing.Point(341, 578);
+            this.Patients_UpdateButton.Name = "Patients_UpdateButton";
+            this.Patients_UpdateButton.Size = new System.Drawing.Size(280, 66);
+            this.Patients_UpdateButton.TabIndex = 15;
+            this.Patients_UpdateButton.Text = "Update Patient";
+            this.Patients_UpdateButton.UseVisualStyleBackColor = false;
+            this.Patients_UpdateButton.Visible = false;
+            this.Patients_UpdateButton.Click += new System.EventHandler(this.Patients_UpdateButton_Click);
+            // 
+            // Billing_CreateButton
+            // 
+            this.Billing_CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Billing_CreateButton.FlatAppearance.BorderSize = 0;
+            this.Billing_CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Billing_CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Billing_CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Billing_CreateButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Billing_CreateButton.ForeColor = System.Drawing.Color.White;
+            this.Billing_CreateButton.Location = new System.Drawing.Point(271, 578);
+            this.Billing_CreateButton.Name = "Billing_CreateButton";
+            this.Billing_CreateButton.Size = new System.Drawing.Size(410, 66);
+            this.Billing_CreateButton.TabIndex = 10;
+            this.Billing_CreateButton.Text = "Create Bill";
+            this.Billing_CreateButton.UseVisualStyleBackColor = false;
+            this.Billing_CreateButton.Visible = false;
+            this.Billing_CreateButton.Click += new System.EventHandler(this.createBillButton_Click);
+            // 
+            // DashBoard_NavButton
+            // 
+            this.DashBoard_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.DashBoard_NavButton.FlatAppearance.BorderSize = 0;
+            this.DashBoard_NavButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.DashBoard_NavButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.DashBoard_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DashBoard_NavButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DashBoard_NavButton.ForeColor = System.Drawing.Color.White;
+            this.DashBoard_NavButton.Location = new System.Drawing.Point(20, 78);
+            this.DashBoard_NavButton.Name = "DashBoard_NavButton";
+            this.DashBoard_NavButton.Size = new System.Drawing.Size(239, 66);
+            this.DashBoard_NavButton.TabIndex = 7;
+            this.DashBoard_NavButton.Text = "Dashboard";
+            this.DashBoard_NavButton.UseVisualStyleBackColor = false;
+            this.DashBoard_NavButton.Click += new System.EventHandler(this.DashBoard_NavButton_Click);
+            // 
             // RecepView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -819,7 +841,7 @@
         private System.Windows.Forms.TabControl Appointments_TabControl;
         private System.Windows.Forms.TabPage Appointments_AllTab;
         private System.Windows.Forms.TabPage Appointments_ApprovedTab;
-        private System.Windows.Forms.Button Apointments_UpdateButton;
+        private System.Windows.Forms.Button Appointments_UpdateButton;
         private System.Windows.Forms.Button Appointments_CreateButton;
         private System.Windows.Forms.TabPage Appointments_PendingTab;
         private System.Windows.Forms.TabPage Appointments_RescheduledTab;
@@ -854,5 +876,6 @@
         private System.Windows.Forms.DataGridView Appointments_AllDataGridView;
         private System.Windows.Forms.TabPage Doctors_InactiveTab;
         private System.Windows.Forms.DataGridView Doctors_InactiveDataGridView;
+        private System.Windows.Forms.Button DashBoard_NavButton;
     }
 }

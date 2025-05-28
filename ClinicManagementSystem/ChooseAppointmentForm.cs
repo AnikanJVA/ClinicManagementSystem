@@ -29,14 +29,14 @@ namespace ClinicManagementSystem
             InitializeComponent();
             if (formType.ToUpper().Equals("SEARCH"))
             {
-                Appointments_DataGridView.DataSource = Database.GetAppointments("ALL");
+                Appointments_DataGridView.DataSource = Database.GetAppointments(status);
                 CloseButton.Visible = true;
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;
             }
             else
             {
-                Appointments_DataGridView.DataSource = Database.GetAppointments("ALL");
+                Appointments_DataGridView.DataSource = Database.GetAppointments(status);
                 CloseButton.Visible = false;
                 SelectButton.Visible = true;
                 CancelButton.Visible = true;

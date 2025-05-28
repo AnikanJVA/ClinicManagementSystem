@@ -34,23 +34,25 @@ namespace ClinicManagementSystem
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SelectServiceButton_Click(object sender, EventArgs e)
         {
-            ChooseServiceForm chooseServiceForm = new ChooseServiceForm();
-            chooseServiceForm.ShowDialog();
+            SelectedServicesForm selectedServicesForm = new SelectedServicesForm();
+            selectedServicesForm.ShowDialog();
            // ServiceIdTextBox.Text = Database.CurrentService.ID.ToString();
            // ServiceType.Text = Database.CurrentService.ServiceName.ToString() + " " +
                                //Database
+        }
+
+        private void SelectAppointmentButton_Click(object sender, EventArgs e)
+        {
+            ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("FINISHED", "BILLING");
+            chooseAppointmentForm.ShowDialog();
+            AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
+            PatientIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
+            PatientNameTextBox.Text = $"{Database.CurrentPatient.FirstName.ToString()} " +
+                                      $"{Database.CurrentPatient.MiddleName.ToString()} {Database.CurrentPatient.LastName.ToString()}";
+            ServicesPerformedTextBox.Text = "SERVICE 1, SERVICE 2, SERVICE 3, ...";
+            AmountTextBox.Text = "TOTAL AMOUTN VIA METHOD";
         }
     }
 }

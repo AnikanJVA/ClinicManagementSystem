@@ -14,9 +14,11 @@ namespace ClinicManagementSystem
     public partial class ChoosePatientsForm : Form
     {
         private long patientID;
+        private string formType;
         public ChoosePatientsForm()
         {
             InitializeComponent();
+            formType = "CHOOSE";
             Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
             CloseButton.Visible = false;
             SelectButton.Visible = true;
@@ -27,9 +29,10 @@ namespace ClinicManagementSystem
         public ChoosePatientsForm(string formType)
         {
             InitializeComponent();
+            this.formType = formType.ToUpper();
             if (formType.ToUpper().Equals("SEARCH"))
             {
-                Patients_DataGridView.DataSource = Database.GetDoctors("ALL");
+                Patients_DataGridView.DataSource = Database.GetPatients("ALL");
                 CloseButton.Visible = true;
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;
@@ -81,6 +84,10 @@ namespace ClinicManagementSystem
                         string DoB = row.Cells["DoB"].Value.ToString();
                         string sex = row.Cells["Sex"].Value.ToString();
                         string contactNumber = row.Cells["ContactNumber"].Value.ToString();
+                        string altContactNumber = row.Cells["AltContactNumber"].Value.ToString();
+                        string emailAddress = row.Cells["EmailAddress"].Value.ToString();
+                        string address = row.Cells["Address"].Value.ToString();
+                        string status = row.Cells["Status"].Value.ToString();
 
                         PatientIDTextBox.Text = Convert.ToString(patientID);
                         FirstNameTextBox.Text = fname;
@@ -89,6 +96,10 @@ namespace ClinicManagementSystem
                         DoBTextBox.Text = DoB;
                         SexTextBox.Text = sex;
                         ContactNumberTextBox.Text = contactNumber;
+                        AltContactNumberTextBox.Text = altContactNumber;
+                        EmailAddressTextBox.Text = emailAddress;
+                        AddressTextBox.Text = address;
+                        StatusTextBox.Text = status;
                     }
                     else
                     {
@@ -115,7 +126,14 @@ namespace ClinicManagementSystem
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
+            if (formType.Equals("CHOOSE"))
+            {
+                Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
+            }
+            else
+            {
+                Patients_DataGridView.DataSource = Database.GetPatients("ALL");
+            }
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -159,5 +177,9 @@ namespace ClinicManagementSystem
             }
         }
 
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

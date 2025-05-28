@@ -716,7 +716,8 @@ namespace ClinicManagementSystem
                 status = status.ToUpper();
                 if (status.Equals("ALL"))
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, Status FROM patients ORDER BY patientId DESC";
+                    query = @"SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, 
+                              Sex, ContactNumber,  AltContactNumber, EmailAddress, Address, Status FROM patients ORDER BY patientId DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -725,7 +726,11 @@ namespace ClinicManagementSystem
                         return table;
                     }
                 }
-                query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber FROM patients WHERE status = @status ORDER BY patientId DESC";
+                query = @"SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, 
+                        Sex, ContactNumber,  AltContactNumber, EmailAddress, Address, Status 
+                        FROM patients 
+                        WHERE status = @status 
+                        ORDER BY patientId DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
@@ -759,6 +764,19 @@ namespace ClinicManagementSystem
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
                     cmd.Parameters.AddWithValue("@availabilityStatus", availabilityStatus);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
+            public static DataTable GetServices()
+            {
+                string query = "SELECT * FROM services";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
                     DataTable table = new DataTable();
                     adapter.Fill(table);
                     return table;
@@ -821,6 +839,9 @@ namespace ClinicManagementSystem
                 fname = "%" + fname.Trim() + "%";
                 mname = "%" + mname.Trim() + "%";
                 lname = "%" + lname.Trim() + "%";
+
+                query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.AvailabilityStatus FROM doctors d " +
+                            "INNER JOIN users u ON d.userId = u.userId ORDER BY doctorId DESC";
 
                 if (searchType == "F")
                 {
@@ -888,37 +909,37 @@ namespace ClinicManagementSystem
 
                 if (searchType == "F")
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
                             " FROM patients WHERE firstName LIKE @fname ORDER BY patientId DESC";
                 }
                 else if (searchType == "M")
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
                             " FROM patients WHERE MiddleName LIKE @mname ORDER BY patientId DESC";
                 }
                 else if (searchType == "L")
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
                             " FROM patients WHERE lastName LIKE @lname ORDER BY patientId DESC";
                 }
                 else if (searchType == "FM")
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
                             " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname ORDER BY patientId DESC";
                 }
                 else if (searchType == "FL")
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
                             " FROM patients WHERE firstName LIKE @fname AND lastName LIKE @lname ORDER BY patientId DESC";
                 }
                 else if (searchType == "ML")
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
                             " FROM patients WHERE middleName LIKE @mname AND lastName LIKE @lname ORDER BY patientId DESC";
                 }
                 else // full name 
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber" +
+                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
                             " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname AND lastName LIKE @lname ORDER BY patientId DESC";
                 }
 
