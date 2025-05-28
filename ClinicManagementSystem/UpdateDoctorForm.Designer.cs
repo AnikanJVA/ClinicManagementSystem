@@ -99,7 +99,7 @@
             "MWF",
             "TThS"});
             this.ScheduleComboBox.Location = new System.Drawing.Point(554, 233);
-            this.ScheduleComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ScheduleComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.ScheduleComboBox.Name = "ScheduleComboBox";
             this.ScheduleComboBox.Size = new System.Drawing.Size(244, 28);
             this.ScheduleComboBox.TabIndex = 29;
@@ -144,7 +144,7 @@
             "Active",
             "Inactive"});
             this.StatusComboBox.Location = new System.Drawing.Point(554, 194);
-            this.StatusComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StatusComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.StatusComboBox.Name = "StatusComboBox";
             this.StatusComboBox.Size = new System.Drawing.Size(244, 28);
             this.StatusComboBox.TabIndex = 25;
@@ -171,7 +171,7 @@
             this.SelectUserButton.ForeColor = System.Drawing.Color.White;
             this.SelectUserButton.Location = new System.Drawing.Point(422, 30);
             this.SelectUserButton.Name = "SelectUserButton";
-            this.SelectUserButton.Size = new System.Drawing.Size(132, 24);
+            this.SelectUserButton.Size = new System.Drawing.Size(132, 26);
             this.SelectUserButton.TabIndex = 22;
             this.SelectUserButton.Text = "Select User";
             this.SelectUserButton.UseVisualStyleBackColor = false;
@@ -190,9 +190,11 @@
             // 
             // UserIDTextBox
             // 
+            this.UserIDTextBox.Enabled = false;
             this.UserIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserIDTextBox.Location = new System.Drawing.Point(152, 30);
             this.UserIDTextBox.Name = "UserIDTextBox";
+            this.UserIDTextBox.ReadOnly = true;
             this.UserIDTextBox.Size = new System.Drawing.Size(244, 26);
             this.UserIDTextBox.TabIndex = 20;
             // 
@@ -371,8 +373,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
             this.ClientSize = new System.Drawing.Size(890, 393);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UpdateDoctorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UpdateDoctorForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

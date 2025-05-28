@@ -47,12 +47,12 @@ namespace ClinicManagementSystem
             //chooseAppointmentForm.ShowDialog();
             //Database.CurrentAppointment = Database.RetrieveAppointment(3);
             Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
-            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId);
+            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
             AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
             AppointmentDateTimePicker.Text = Database.CurrentAppointment.DateTime.ToString();
             PatientIdTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
             PatientNameTextBox.Text = Database.CurrentPatient.FirstName.ToString() + " " + Database.CurrentPatient.MiddleName.ToString() + " " + Database.CurrentPatient.LastName.ToString();
-            DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString();
+            DoctorIdTextBox.Text = Database.CurrentDoctor.DoctorId.ToString();
             DoctorNameTextBox.Text = Database.CurrentDoctor.FirstName.ToString() + " " + Database.CurrentDoctor.MiddleName.ToString() + " " + Database.CurrentDoctor.LastName.ToString();
             ReasonTextBox.Text = Database.CurrentAppointment.Reason.ToString();
             StatusComboBox.Text = Database.CurrentAppointment.Status.ToString();
@@ -72,7 +72,7 @@ namespace ClinicManagementSystem
         {
             ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm();
              chooseDoctorForm.ShowDialog();
-            DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString();
+            DoctorIdTextBox.Text = Database.CurrentDoctor.DoctorId.ToString();
             DoctorNameTextBox.Text = Database.CurrentDoctor.FirstName.ToString() + " " +
                                      Database.CurrentDoctor.MiddleName.ToString() + " " +
                                      Database.CurrentDoctor.LastName.ToString();

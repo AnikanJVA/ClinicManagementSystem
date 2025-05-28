@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySqlX.XDevAPI;
+using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
@@ -57,23 +59,36 @@ namespace ClinicManagementSystem
 
         private void SelectUserButton_Click(object sender, EventArgs e)
         {
+            ChooseUser chooseUserForm = new ChooseUser();
+            chooseUserForm.ShowDialog();
+            UserIDTextBox.Text = Database.CurrentUser.UserId.ToString();
+            EmailAddressTextBox.Text = Database.CurrentUser.EmailAddress;
+            ContactNoTextBox.Text = Database.CurrentUser.ContactNumber.ToString();
+            AltContactNoTextBox.Text = Database.CurrentUser.AltContactNumber.ToString();
+            AddressTextBox.Text = Database.CurrentUser.Address;
 
+
+            LicenseNoTextBox.Text = Database.CurrentDoctor.LicenseNumber.ToString();
+            FnameTextBox.Text = Database.CurrentDoctor.FirstName;
+            MnameTextBox.Text = Database.CurrentDoctor.MiddleName;
+            LnameTextBox.Text = Database.CurrentDoctor.LastName;
+            StatusComboBox.Text = Database.CurrentUser.Status;
+            ScheduleComboBox.Text = Database.CurrentDoctor.Schedule;
         }
 
         private void UpdateDoctorButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(UserIDTextBox.Text) ||
-                string.IsNullOrWhiteSpace(EmailAddressTextBox.Text) ||
-                string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AltContactNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
                 string.IsNullOrWhiteSpace(FnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(MnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(LnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(LicenseNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(StatusComboBox.Text) ||
-                string.IsNullOrWhiteSpace(ScheduleComboBox.Text)
-                )
+                string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
+                string.IsNullOrWhiteSpace(AltContactNoTextBox.Text) ||
+                string.IsNullOrWhiteSpace(EmailAddressTextBox.Text) ||
+                string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
+                string.IsNullOrWhiteSpace(ScheduleComboBox.Text) ||
+                string.IsNullOrWhiteSpace(StatusComboBox.Text))
             {
                 MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

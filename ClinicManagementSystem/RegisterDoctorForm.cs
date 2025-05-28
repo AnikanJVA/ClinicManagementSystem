@@ -16,6 +16,7 @@ namespace ClinicManagementSystem
         public RegisterDoctorForm()
         {
             InitializeComponent();
+            keyPressHandler();
         }
         public void textOnly(object sender, KeyPressEventArgs e)
         {
@@ -68,16 +69,19 @@ namespace ClinicManagementSystem
             }
             else
             {
-                //if (Database.AddDoctor(UsernameTextBox.Text, PasswordTextBox.Text, EmailTextBox.Text, ContactNoTextBox.Text, 
-                //                        LnameTextBox.Text, AltContactNoTextBox.Text, AddressTextBox.Text))
-                //{
-                //    MessageBox.Show("Doctor registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    this.Close();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Error!\nDupplicate doctor detected.\nDoctor not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                if (Database.AddUser(UsernameTextBox.Text, PasswordTextBox.Text, "DOCTOR", EmailTextBox.Text, ContactNoTextBox.Text, AltContactNoTextBox.Text, AddressTextBox.Text))
+                {
+                    if (Database.AddDoctor(Database.CurrentUser.UserId, FnameTextBox.Text, MnameTextBox.Text, LnameTextBox.Text, LicenseNoTextBox.Text, ScheduleComboBox.Text))
+                    {
+                        MessageBox.Show("Doctor registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                }
+                    
+                else
+                {
+                    MessageBox.Show("Error!\nDupplicate doctor detected.\nDoctor not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

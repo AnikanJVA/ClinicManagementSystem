@@ -36,6 +36,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ScheduleComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.LicenseNoTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.ContactNoTextBox = new System.Windows.Forms.TextBox();
-            this.ScheduleComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,6 +165,20 @@
             this.panel1.Size = new System.Drawing.Size(835, 307);
             this.panel1.TabIndex = 0;
             // 
+            // ScheduleComboBox
+            // 
+            this.ScheduleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ScheduleComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ScheduleComboBox.FormattingEnabled = true;
+            this.ScheduleComboBox.Items.AddRange(new object[] {
+            "MWF",
+            "TThS"});
+            this.ScheduleComboBox.Location = new System.Drawing.Point(576, 150);
+            this.ScheduleComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ScheduleComboBox.Name = "ScheduleComboBox";
+            this.ScheduleComboBox.Size = new System.Drawing.Size(244, 28);
+            this.ScheduleComboBox.TabIndex = 17;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -182,7 +196,7 @@
             this.LicenseNoTextBox.Location = new System.Drawing.Point(576, 115);
             this.LicenseNoTextBox.Name = "LicenseNoTextBox";
             this.LicenseNoTextBox.Size = new System.Drawing.Size(244, 26);
-            this.LicenseNoTextBox.TabIndex = 17;
+            this.LicenseNoTextBox.TabIndex = 16;
             // 
             // label11
             // 
@@ -245,7 +259,7 @@
             this.CancelButton.Location = new System.Drawing.Point(446, 241);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(306, 38);
-            this.CancelButton.TabIndex = 9;
+            this.CancelButton.TabIndex = 19;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -262,7 +276,7 @@
             this.RegisterButton.Location = new System.Drawing.Point(104, 241);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(306, 38);
-            this.RegisterButton.TabIndex = 8;
+            this.RegisterButton.TabIndex = 18;
             this.RegisterButton.Text = "Register Doctor";
             this.RegisterButton.UseVisualStyleBackColor = false;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
@@ -281,7 +295,7 @@
             this.LnameTextBox.Location = new System.Drawing.Point(577, 83);
             this.LnameTextBox.Name = "LnameTextBox";
             this.LnameTextBox.Size = new System.Drawing.Size(244, 26);
-            this.LnameTextBox.TabIndex = 5;
+            this.LnameTextBox.TabIndex = 15;
             // 
             // UsernameTextBox
             // 
@@ -323,20 +337,6 @@
             this.ContactNoTextBox.Name = "ContactNoTextBox";
             this.ContactNoTextBox.Size = new System.Drawing.Size(244, 26);
             this.ContactNoTextBox.TabIndex = 4;
-            // 
-            // ScheduleComboBox
-            // 
-            this.ScheduleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ScheduleComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ScheduleComboBox.FormattingEnabled = true;
-            this.ScheduleComboBox.Items.AddRange(new object[] {
-            "MWF",
-            "TThS"});
-            this.ScheduleComboBox.Location = new System.Drawing.Point(576, 150);
-            this.ScheduleComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.ScheduleComboBox.Name = "ScheduleComboBox";
-            this.ScheduleComboBox.Size = new System.Drawing.Size(244, 28);
-            this.ScheduleComboBox.TabIndex = 30;
             // 
             // RegisterDoctorForm
             // 

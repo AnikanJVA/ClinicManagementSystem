@@ -18,13 +18,26 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
+            CloseButton.Visible = false;
+            SelectButton.Visible = true;
+            CancelButton.Visible = true;
+            RegisterNewPatientButton.Visible = true;
         }
 
-        public ChoosePatientsForm(string status)
+        public ChoosePatientsForm(string formType)
         {
             InitializeComponent();
-            Patients_DataGridView.DataSource = Database.GetPatients(status);
+            if (formType.ToUpper().Equals("SEARCH"))
+            {
+                Patients_DataGridView.DataSource = Database.GetDoctors("ALL");
+                CloseButton.Visible = true;
+                SelectButton.Visible = false;
+                CancelButton.Visible = false;
+                RegisterNewPatientButton.Visible = false;
+            }
+
         }
+
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -88,7 +101,6 @@ namespace ClinicManagementSystem
                         ContactNumberTextBox.Clear();
                     }
                 }
-
             }
         }
 

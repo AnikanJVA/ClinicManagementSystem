@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
 {
@@ -76,6 +80,8 @@ namespace ClinicManagementSystem
             private static Patient currentPatient;
             private static Doctor currentDoctor;
             private static Appointment currentAppointment;
+            private static User currentUser;
+            private static Receptionist currentReceptionist;
 
             private static readonly Lazy<Database> instance = new Lazy<Database>(() => new Database());
             private MySqlConnection connection;
@@ -88,6 +94,8 @@ namespace ClinicManagementSystem
                 currentPatient = new Patient();
                 currentDoctor = new Doctor();
                 currentAppointment = new Appointment();
+                currentUser = new User();
+                currentReceptionist = new Receptionist();
             }
 
             public static Database Instance => instance.Value;
@@ -128,6 +136,32 @@ namespace ClinicManagementSystem
                 } 
             }
 
+            public static User CurrentUser
+            {
+                set
+                {
+                    currentUser = value;
+                }
+
+                get
+                {
+                    return currentUser;
+                }
+            }
+
+            public static Receptionist CurrentReceptionist
+            {
+                set
+                {
+                    currentReceptionist = value;
+                }
+
+                get
+                {
+                    return currentReceptionist;
+                }
+            }
+
             public static Appointment CurrentAppointment
             {
                 set
@@ -152,12 +186,23 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static bool AddUser(string username, string password, string accType)
+            public static bool AddUser(string username,
+                                       string password,
+                                       string accType, 
+                                       string emailAddress,
+                                       string contactNumber,
+                                       string altContactNumber,
+                                       string address)
             {
-                string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username AND accType = @accType AND status = @status";
+                string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username AND accType = @accType AND " +
+                                    "(emailAddress = @emailAddress OR contactNumber = @contactNumber OR altContactNumber = @altContactNumber " +
+                                    "OR contactNumber = @altContactNumber OR altContactNumber = @contactNumber)";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
                     checkCmd.Parameters.AddWithValue("@username", username);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
                     checkCmd.Parameters.AddWithValue("@accType", accType);
                     checkCmd.Parameters.AddWithValue("@status", "ACTIVE");
                     if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
@@ -165,13 +210,20 @@ namespace ClinicManagementSystem
                         return false;
                     }
                 }
-                string insertQuery = "INSERT INTO users (username, password, accType) VALUES (@username, SHA2(@password, 256), @accType)";
+                string insertQuery = "INSERT INTO users (username, password, accType, emailAddress, contactNumber, altContactNumber, address) " +
+                                     "VALUES (@username, SHA2(@password, 256), @accType, @emailAddress, @contactNumber, @altContactNumber, @address)";
                 using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
                     cmd.Parameters.AddWithValue("@accType", accType);
-                    return cmd.ExecuteNonQuery() > 0;
+                    cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
+                    cmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                    cmd.Parameters.AddWithValue("@address", address);
+                    bool isSuccesful = cmd.ExecuteNonQuery() > 0;
+                    CurrentUser = RetrieveUser(username, accType);
+                    return isSuccesful;
                 }
             }
 
@@ -216,16 +268,15 @@ namespace ClinicManagementSystem
                 }
             }
 
-            // to update AddDoctor method
-            public static bool AddDoctor(string firstName,
+            public static bool AddDoctor(long userId,
+                                         string firstName,
                                          string middleName,
                                          string lastName,
-                                         string contactNumber, 
-                                         string emailAddress,
-                                         string address,
-                                         string licenseNumber)
+                                         string licenseNumber,
+                                         string schedule)
             {
-                string checkQuery = "SELECT COUNT(*) FROM doctors WHERE licenseNumber = @licenseNumber";
+                string checkQuery = "SELECT COUNT(*) FROM doctors " +
+                                    "WHERE licenseNumber = @licenseNumber" ;
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
                     checkCmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
@@ -234,16 +285,15 @@ namespace ClinicManagementSystem
                         return false;
                     }
                 }
-                string insertQuery = "INSERT INTO doctors (firstName, middleName, lastName, contactNumber, hireDate, emailAddress, address, licenseNumber) " +
-                                     "VALUES (@firstName, @middleName, @lastName, @contactNumber, NOW(), @emailAddress, @address, @licenseNumber)";
+                string insertQuery = "INSERT INTO doctors (userId, firstName, middleName, lastName, schedule, licenseNumber, hireDate) " +
+                                     "VALUES (@userId, @firstName, @middleName, @lastName, @schedule, @licenseNumber, NOW())";
                 using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
                 {
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     cmd.Parameters.AddWithValue("@firstName", firstName);
                     cmd.Parameters.AddWithValue("@middleName", middleName);
                     cmd.Parameters.AddWithValue("@lastName", lastName);
-                    cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
-                    cmd.Parameters.AddWithValue("@address", address);
+                    cmd.Parameters.AddWithValue("@schedule", schedule);
                     cmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -273,29 +323,6 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@reasonForAppointment", reasonForAppointment);
                     return cmd.ExecuteNonQuery() > 0;
                 }
-            }
-
-            public static bool UpdateUserStatus(long userid) // to change
-            {
-                if (GetUserStatus(userid) == "ACTIVE")
-                {
-                    string updateToInactiveQuery = "UPDATE users SET status = 'INACTIVE' WHERE userid = @userid";
-                    using (MySqlCommand cmd = new MySqlCommand(updateToInactiveQuery, Instance.connection))
-                    {
-                        cmd.Parameters.AddWithValue("@userid", userid);
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-                else
-                {
-                    string updateToActiveQuery = "UPDATE users SET status = 'ACTIVE' WHERE userid = @userid";
-                    using (MySqlCommand cmd = new MySqlCommand(updateToActiveQuery, Instance.connection))
-                    {
-                        cmd.Parameters.AddWithValue("@userid", userid);
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
-
             }
 
             public static bool UpdatePatient(long patientId,
@@ -381,25 +408,7 @@ namespace ClinicManagementSystem
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
-            
-            public static string GetUserStatus(long userid) // to change, pwede mag buhat ug user nga class same sa doctor ug patient
-            {
-                string query = "SELECT status FROM users WHERE userid = @userid";
 
-                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
-                {
-                    cmd.Parameters.AddWithValue("@userid", userid);
-
-                    object result = cmd.ExecuteScalar();
-
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return result.ToString();
-                    }
-
-                    return null;
-                }
-            }
 
             public static string GetUserAccType(string username, string password) // to change, pwede mag buhat ug user nga class same sa doctor ug patient
             {
@@ -421,13 +430,28 @@ namespace ClinicManagementSystem
                 }
             }
 
-
             public static DataTable GetUsers()
             {
-                string query = "SELECT UserID, Username, accType AS AccountType, Status FROM users WHERE accType <> 'admin'";
+                string query = "SELECT UserID, Username, accType AS AccountType, EmailAddress, ContactNumber, AltContactNumber, Address, status FROM users WHERE accType <> 'admin'";
+
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
+            public static DataTable GetUsers(string accType)
+            {
+                string query = "SELECT u.UserID, u.Username, d.DoctorID, d.FirstName, d.MiddleName, d.LastName, d.LicenseNumber, d.Schedule, u.EmailAddress, u.ContactNumber, u.AltContactNumber, u.Address, u.Status FROM users u " +
+                    "INNER JOIN doctors d ON u.UserID = d.UserID WHERE accType = @accType";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@accType", accType);
                     DataTable table = new DataTable();
                     adapter.Fill(table);
                     return table;
@@ -467,7 +491,8 @@ namespace ClinicManagementSystem
 
                 if (status.Equals("ALL"))
                 {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress, LicenseNumber, Status FROM doctors ORDER BY doctorId DESC";
+                    query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.EmailAddress, d.LicenseNumber, u.Status FROM doctors d " +
+                            "INNER JOIN users u ON d.userId = u.userId ORDER BY doctorId DESC"; // join
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -476,7 +501,8 @@ namespace ClinicManagementSystem
                         return table;
                     }
                 }
-                query = "SELECT DoctorID, FirstName, MiddleName, LastName, ContactNumber, EmailAddress, LicenseNumber FROM doctors WHERE status = @status ORDER BY doctorId DESC";
+                query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.EmailAddress, d.LicenseNumber, u.Status FROM doctors d " +
+                        "INNER JOIN users u ON d.userId = u.userId WHERE status = @status ORDER BY doctorId DESC"; // join
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
@@ -527,7 +553,71 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static DataTable GetSearchPatient(string searchType ,string fname, string mname, string lname)
+            public static DataTable GetSearchDoctor(string searchType, string fname, string mname, string lname)
+            {
+                /* search types:
+                 *   F = first name
+                 *   M = Middle name
+                 *   L = Last name
+                 */
+                string query;
+                searchType = searchType.ToUpper();
+                fname = "%" + fname.Trim() + "%";
+                mname = "%" + mname.Trim() + "%";
+                lname = "%" + lname.Trim() + "%";
+
+                if (searchType == "F")
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
+                            " FROM doctors WHERE firstName LIKE @fname ORDER BY doctorID DESC";
+                }
+                else if (searchType == "M")
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
+                            " FROM doctors WHERE middleName LIKE @mname ORDER BY doctorID DESC";
+                }
+                else if (searchType == "L")
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
+                            " FROM doctors WHERE lastName LIKE @lname ORDER BY doctorID DESC";
+                }
+                else if (searchType == "FM")
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
+                            " FROM doctors WHERE firstName LIKE @fname AND middleName LIKE @mname ORDER BY doctorID DESC";
+                }
+                else if (searchType == "FL")
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
+                            " FROM doctors WHERE firstName LIKE @fname AND lastName LIKE @lname ORDER BY doctorID DESC";
+                }
+                else if (searchType == "ML")
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
+                            " FROM doctors WHERE middleName LIKE @mname AND lastName LIKE @lname ORDER BY doctorID DESC";
+                }
+                else
+                {
+                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
+                            " FROM doctors WHERE firstName LIKE @fname AND middleName LIKE @mname AND lastName LIKE @lname ORDER BY doctorID DESC";
+
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@mname", mname);
+                    cmd.Parameters.AddWithValue("@lname", lname);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+
+            }
+        
+
+            public static DataTable GetSearchPatient(string searchType, string fname, string mname, string lname)
             {
                 /* search types:
                  *   F = first name
@@ -629,36 +719,32 @@ namespace ClinicManagementSystem
                 }
                 return null;
             }
-            
-            public static Doctor RetrieveDoctor(long doctorId)
+
+            public static User RetrieveUser(long userId) 
             {
-                Doctor doctor = new Doctor();
+                User user = new User();
                 string query;
 
-                query = "SELECT DoctorID, FirstName, MiddleName, LastName, " +
-                        "HireDate, ContactNumber, EmailAddress, Address, LicenseNumber, Status " +
-                        "FROM doctors WHERE doctorID = @doctorId";
+                query = "SELECT * FROM users WHERE userId = @userId";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 {
-                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@userId", userId);
                     try
                     {
                         MySqlDataReader reader = cmd.ExecuteReader();
                         if (reader.Read())
                         {
-                            doctor.ID = doctorId;
-                            doctor.FirstName = reader["FirstName"].ToString();
-                            doctor.MiddleName = reader["MiddleName"].ToString();
-                            doctor.LastName = reader["LastName"].ToString();
-                            doctor.HireDate = reader["HireDate"].ToString();
-                            doctor.ContactNumber = reader["ContactNumber"].ToString();
-                            doctor.EmailAddress = reader["EmailAddress"].ToString();
-                            doctor.Address = reader["Address"].ToString();
-                            doctor.LicenseNumber = reader["LicenseNumber"].ToString();
-                            doctor.Status = reader["Status"].ToString();
+                            user.UserId = userId;
+                            user.Username = reader["Username"].ToString();
+                            user.AccType = reader["AccType"].ToString();
+                            user.EmailAddress = reader["EmailAddress"].ToString();
+                            user.ContactNumber = reader["ContactNumber"].ToString();
+                            user.AltContactNumber = reader["AltContactNumber"].ToString();
+                            user.Address = reader["Address"].ToString();
+                            user.Status = reader["Status"].ToString();
 
                             reader.Close();
-                            return doctor;
+                            return user;
                         }
                     }
                     catch (Exception ex)
@@ -667,6 +753,92 @@ namespace ClinicManagementSystem
                         return null;
                     }
                 }
+                return null;
+            }
+
+            public static User RetrieveUser(string username, string accType)
+            {
+                User user = new User();
+                string query;
+
+                query = "SELECT * FROM users WHERE Username = @username AND AccType = @accType";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@accType", accType);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            user.UserId = Convert.ToInt64(reader["userId"].ToString());
+                            user.Username = reader["Username"].ToString();
+                            user.AccType = reader["AccType"].ToString();
+                            user.EmailAddress = reader["EmailAddress"].ToString();
+                            user.ContactNumber = reader["ContactNumber"].ToString();
+                            user.AltContactNumber = reader["AltContactNumber"].ToString();
+                            user.Address = reader["Address"].ToString();
+                            user.Status = reader["Status"].ToString();
+
+                            reader.Close();
+                            return user;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+                return null;
+            }
+
+    
+
+            public static Doctor RetrieveDoctor(long Id, string idType)
+            {
+                Doctor doctor = new Doctor();
+                string query;
+
+                if (idType.ToUpper().Equals("DOCTORID"))
+                {
+                    query = "SELECT * FROM doctors WHERE doctorID = @Id";
+                }
+                else
+                {
+                    query = "SELECT * FROM doctors WHERE userID = @Id";
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            doctor.DoctorId = Convert.ToInt64(reader["DoctorID"]);
+                            doctor.UserId = Convert.ToInt64(reader["UserID"]);
+                            doctor.FirstName = reader["FirstName"].ToString();
+                            doctor.MiddleName = reader["MiddleName"].ToString();
+                            doctor.LastName = reader["LastName"].ToString();
+                            doctor.HireDate = reader["HireDate"].ToString();
+                            doctor.LicenseNumber = reader["LicenseNumber"].ToString();
+                            doctor.Schedule = reader["Schedule"].ToString();
+
+                            reader.Close();
+                            return doctor;
+                        }
+
+                        reader.Close(); // Ensure it's always closed
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+
                 return null;
             }
 
@@ -705,7 +877,7 @@ namespace ClinicManagementSystem
             }
         }
 
-        public class Person
+        public class Patient
         {
             private long id;
             private string firstName;
@@ -718,10 +890,9 @@ namespace ClinicManagementSystem
             private string emailAddress;
             private string address;
             private string status;
-            private string username;
-            private string accType;
 
-            public Person()
+
+            public Patient()
             {
                 ID = 0;
                 FirstName = string.Empty;
@@ -734,8 +905,6 @@ namespace ClinicManagementSystem
                 EmailAddress = string.Empty;
                 Address = string.Empty;
                 Status = string.Empty;
-                Username = string.Empty;
-                AccType = string.Empty;
             }
 
             public long ID
@@ -803,6 +972,37 @@ namespace ClinicManagementSystem
                 get { return status; }
                 set { status = value; }
             }
+        }
+        public class User
+        {
+            private long userId;
+            private string username;
+            private string password;
+            private string accType;
+            private string emailAddress;
+            private string contactNumber;
+            private string altContactNumber;
+            private string address;
+            private string status;
+
+            public User()
+            {
+                UserId = 0;
+                username = "";
+                password = "";
+                accType = "";
+                emailAddress = "";
+                contactNumber = "";
+                altContactNumber = "";
+                address = "";
+                status = "";
+            }
+
+            public long UserId
+            {
+                get { return userId; }
+                set { userId = value; }
+            }
 
             public string Username
             {
@@ -810,23 +1010,92 @@ namespace ClinicManagementSystem
                 set { username = value; }
             }
 
+            public string Password
+            {
+                get { return password; }
+                set { password = value; }
+            }
+
             public string AccType
             {
                 get { return accType; }
                 set { accType = value; }
             }
+
+            public string EmailAddress
+            {
+                get { return emailAddress; }
+                set { emailAddress = value; }
+            }
+
+            public string ContactNumber
+            {
+                get { return contactNumber; }
+                set { contactNumber = value; }
+            }
+
+            public string AltContactNumber
+            {
+                get { return altContactNumber; }
+                set { altContactNumber = value; }
+            }
+
+            public string Address
+            {
+                get { return address; }
+                set { address = value; }
+            }
+
+            public string Status
+            {
+                get { return status; }
+                set { status = value; }
+            }
         }
 
-        public class Doctor : Person
+
+
+        public class Doctor : User
         {
+            private long doctorId;
+            private string firstName;
+            private string middleName;
+            private string lastName;
             private string hireDate;
             private string licenseNumber;
             private string schedule;
 
             public Doctor() : base()
             {
+                DoctorId = 0; ;
+                FirstName = string.Empty;
+                MiddleName = string.Empty;
+                LastName = string.Empty;
                 HireDate = string.Empty;
                 LicenseNumber = string.Empty;
+                Schedule = string.Empty;
+            }
+
+            public long DoctorId
+            {
+                get { return doctorId; }
+                set { doctorId = value;  }
+            }
+
+            public string FirstName
+            {
+                get { return firstName; }
+                set { firstName = value;  }
+            }
+            public string MiddleName
+            {
+                get { return middleName; }
+                set { middleName = value; }
+            }
+            public string LastName
+            {
+                get { return lastName; }
+                set { lastName = value; }
             }
 
             public string HireDate
@@ -845,16 +1114,49 @@ namespace ClinicManagementSystem
             {
                 get { return schedule; }
                 set { schedule = value; }
-            } 
-        }
-
-        public class Patient : Person
-        {
-            public Patient() : base()
-            {
-
             }
         }
+
+        public class Receptionist : User
+        {
+            private long receptionistId;
+            private string firstName;
+            private string middleName;
+            private string lastName;
+
+            public Receptionist() : base()
+            {
+                receptionistId = 0;
+                firstName = string.Empty;
+                middleName = string.Empty;
+                lastName = string.Empty;
+            }
+
+            public long ReceptionistId
+            {
+                get { return receptionistId; }
+                set { receptionistId = value; }
+            }
+
+            public string FirstName
+            {
+                get { return firstName; }
+                set { firstName = value; }
+            }
+
+            public string MiddleName
+            {
+                get { return middleName; }
+                set { middleName = value; }
+            }
+
+            public string LastName
+            {
+                get { return lastName; }
+                set { lastName = value; }
+            }
+        }
+
 
         public class Appointment
         {

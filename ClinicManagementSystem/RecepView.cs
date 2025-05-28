@@ -39,8 +39,7 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
 
             Doctors_TabControl.Hide();
-            Doctors_RegisterButton.Hide();
-            Doctors_UpdateButton.Hide();
+            Doctors_SearchButton.Hide();
 
             UpdateDataGrids();
         }
@@ -65,8 +64,7 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Show();
 
             Doctors_TabControl.Hide();
-            Doctors_RegisterButton.Hide();
-            Doctors_UpdateButton.Hide();
+            Doctors_SearchButton.Hide();
 
             UpdateDataGrids();
         }
@@ -91,8 +89,7 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
 
             Doctors_TabControl.Show();
-            Doctors_RegisterButton.Show();
-            Doctors_UpdateButton.Show();
+            Doctors_SearchButton.Show();
 
             UpdateDataGrids();
         }
@@ -124,16 +121,8 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
 
             Doctors_TabControl.Hide();
-            Doctors_RegisterButton.Hide();
-            Doctors_UpdateButton.Hide();
+            Doctors_SearchButton.Hide();
 
-            UpdateDataGrids();
-        }
-
-        private void RegisterDoctorButton_Click(object sender, EventArgs e)
-        {
-            RegisterDoctorForm doctorDetailsForm = new RegisterDoctorForm();
-            doctorDetailsForm.ShowDialog();
             UpdateDataGrids();
         }
 
@@ -166,7 +155,8 @@ namespace ClinicManagementSystem
 
         private void Patients_SearchButton_Click(object sender, EventArgs e)
         {
-
+            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm("Search");
+            choosePatientsForm.ShowDialog();
         }
 
         private void Patients_UpdateButton_Click(object sender, EventArgs e)
@@ -176,11 +166,10 @@ namespace ClinicManagementSystem
             UpdateDataGrids();
         }
 
-        private void Doctors_UpdateButton_Click(object sender, EventArgs e)
+        private void Doctors_SearchButton_Click(object sender, EventArgs e)
         {
-            UpdateDoctorForm updateDoctorForm = new UpdateDoctorForm();
-            updateDoctorForm.ShowDialog();
-            UpdateDataGrids();
+            ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm("Search");
+            chooseDoctorForm.ShowDialog();
         }
 
         private void Apointments_UpdateButton_Click(object sender, EventArgs e)
@@ -208,5 +197,7 @@ namespace ClinicManagementSystem
             Doctors_UnavailableDataGridView.DataSource = Database.GetDoctors("UNAVAILABLE");
             Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
         }
+
+       
     }
 }

@@ -18,16 +18,39 @@ namespace ClinicManagementSystem
         public CreateBillForm()
         {
             InitializeComponent();
+            BillingDateTimePicker.Format = DateTimePickerFormat.Custom;
+            BillingDateTimePicker.CustomFormat = "yyyy'/MM'/'dd HH':'mm";
+            BillingDateTimePicker.MinDate = DateTime.Today;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void CreateUpdateBillButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SelectServiceButton_Click(object sender, EventArgs e)
+        {
+            ChooseServiceForm chooseServiceForm = new ChooseServiceForm();
+            chooseServiceForm.ShowDialog();
+           // ServiceIdTextBox.Text = Database.CurrentService.ID.ToString();
+           // ServiceType.Text = Database.CurrentService.ServiceName.ToString() + " " +
+                               //Database
         }
     }
 }

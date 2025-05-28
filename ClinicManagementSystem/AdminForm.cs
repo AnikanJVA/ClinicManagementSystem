@@ -15,8 +15,6 @@ namespace ClinicManagementSystem
 {
     public partial class AdminForm : Form
     {
-        private long userid;
-
         public AdminForm()
         {
             InitializeComponent();
@@ -34,6 +32,7 @@ namespace ClinicManagementSystem
         {
             RegisterDoctorForm registerDoctorForm = new RegisterDoctorForm();
             registerDoctorForm.ShowDialog();
+            dataGridView1.DataSource = Database.GetUsers();
         }
 
         private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -46,12 +45,14 @@ namespace ClinicManagementSystem
         {
            UpdateDoctorForm updateDoctorForm = new UpdateDoctorForm();
            updateDoctorForm.ShowDialog();
+            dataGridView1.DataSource = Database.GetUsers();
         }
 
         private void UpdateReceptionistButton_Click(object sender, EventArgs e)
         {
             UpdateReceptionistForm updateReceptionistForm = new UpdateReceptionistForm();
             updateReceptionistForm.ShowDialog();
+            dataGridView1.DataSource = Database.GetUsers();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -63,6 +64,7 @@ namespace ClinicManagementSystem
         {
             RegisterReceptionistForm registerReceptionistForm = new RegisterReceptionistForm();
             registerReceptionistForm.ShowDialog();
+            dataGridView1.DataSource = Database.GetUsers();
         }
     }
 }

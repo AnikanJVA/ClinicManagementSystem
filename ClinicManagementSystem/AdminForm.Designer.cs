@@ -46,10 +46,10 @@
             this.RegisterDoctorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RegisterDoctorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.RegisterDoctorButton.ForeColor = System.Drawing.Color.White;
-            this.RegisterDoctorButton.Location = new System.Drawing.Point(39, 12);
+            this.RegisterDoctorButton.Location = new System.Drawing.Point(13, 12);
             this.RegisterDoctorButton.Name = "RegisterDoctorButton";
             this.RegisterDoctorButton.Size = new System.Drawing.Size(173, 33);
-            this.RegisterDoctorButton.TabIndex = 4;
+            this.RegisterDoctorButton.TabIndex = 1;
             this.RegisterDoctorButton.Text = "Register Doctor";
             this.RegisterDoctorButton.UseVisualStyleBackColor = false;
             this.RegisterDoctorButton.Click += new System.EventHandler(this.RegisterDoctorButton_Click);
@@ -60,15 +60,15 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(230, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(192, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.RowTemplate.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(681, 355);
+            this.dataGridView1.Size = new System.Drawing.Size(719, 355);
             this.dataGridView1.TabIndex = 7;
             // 
             // LogoutButton
@@ -80,10 +80,10 @@
             this.LogoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.LogoutButton.ForeColor = System.Drawing.Color.White;
-            this.LogoutButton.Location = new System.Drawing.Point(48, 334);
+            this.LogoutButton.Location = new System.Drawing.Point(22, 334);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(164, 33);
-            this.LogoutButton.TabIndex = 6;
+            this.LogoutButton.TabIndex = 5;
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
@@ -97,10 +97,10 @@
             this.RegisterReceptionistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RegisterReceptionistButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RegisterReceptionistButton.ForeColor = System.Drawing.Color.White;
-            this.RegisterReceptionistButton.Location = new System.Drawing.Point(39, 110);
+            this.RegisterReceptionistButton.Location = new System.Drawing.Point(13, 110);
             this.RegisterReceptionistButton.Name = "RegisterReceptionistButton";
             this.RegisterReceptionistButton.Size = new System.Drawing.Size(173, 33);
-            this.RegisterReceptionistButton.TabIndex = 5;
+            this.RegisterReceptionistButton.TabIndex = 3;
             this.RegisterReceptionistButton.Text = "Register Receptionist";
             this.RegisterReceptionistButton.UseVisualStyleBackColor = false;
             this.RegisterReceptionistButton.Click += new System.EventHandler(this.RegisterReceptionistButton_Click);
@@ -114,10 +114,10 @@
             this.UpdateDoctorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UpdateDoctorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.UpdateDoctorButton.ForeColor = System.Drawing.Color.White;
-            this.UpdateDoctorButton.Location = new System.Drawing.Point(39, 61);
+            this.UpdateDoctorButton.Location = new System.Drawing.Point(13, 61);
             this.UpdateDoctorButton.Name = "UpdateDoctorButton";
             this.UpdateDoctorButton.Size = new System.Drawing.Size(173, 33);
-            this.UpdateDoctorButton.TabIndex = 9;
+            this.UpdateDoctorButton.TabIndex = 2;
             this.UpdateDoctorButton.Text = "Update Doctor";
             this.UpdateDoctorButton.UseVisualStyleBackColor = false;
             this.UpdateDoctorButton.Click += new System.EventHandler(this.UpdateDoctorButton_Click);
@@ -131,10 +131,10 @@
             this.UpdateReceptionistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UpdateReceptionistButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateReceptionistButton.ForeColor = System.Drawing.Color.White;
-            this.UpdateReceptionistButton.Location = new System.Drawing.Point(39, 159);
+            this.UpdateReceptionistButton.Location = new System.Drawing.Point(13, 159);
             this.UpdateReceptionistButton.Name = "UpdateReceptionistButton";
             this.UpdateReceptionistButton.Size = new System.Drawing.Size(173, 33);
-            this.UpdateReceptionistButton.TabIndex = 10;
+            this.UpdateReceptionistButton.TabIndex = 4;
             this.UpdateReceptionistButton.Text = "Update Receptionist";
             this.UpdateReceptionistButton.UseVisualStyleBackColor = false;
             this.UpdateReceptionistButton.Click += new System.EventHandler(this.UpdateReceptionistButton_Click);

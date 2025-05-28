@@ -41,7 +41,7 @@ namespace ClinicManagementSystem
         {
             ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm();
             chooseDoctorForm.ShowDialog();
-            DoctorIdTextBox.Text = Database.CurrentDoctor.ID.ToString();
+            DoctorIdTextBox.Text = Database.CurrentDoctor.DoctorId.ToString();
             DoctorNameTextBox.Text = Database.CurrentDoctor.FirstName.ToString() + " " +
                                      Database.CurrentDoctor.MiddleName.ToString() + " " +
                                      Database.CurrentDoctor.LastName.ToString();
@@ -72,5 +72,6 @@ namespace ClinicManagementSystem
                 }
             }
         }
+
     }
 }

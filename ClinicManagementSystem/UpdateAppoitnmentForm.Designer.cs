@@ -49,6 +49,7 @@
             this.AppointmentIDTextBox = new System.Windows.Forms.TextBox();
             this.AppointmentDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
+            this.SelectPatientButton = new System.Windows.Forms.Button();
             this.v.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -206,6 +207,7 @@
             this.v.Controls.Add(this.PatientIdTextBox);
             this.v.Controls.Add(this.AppointmentIDTextBox);
             this.v.Controls.Add(this.AppointmentDateTimePicker);
+            this.v.Controls.Add(this.SelectPatientButton);
             this.v.Controls.Add(this.SelectDoctorButton);
             this.v.Controls.Add(this.CancelButton);
             this.v.Controls.Add(this.StatusComboBox);
@@ -311,6 +313,20 @@
             this.StatusComboBox.Size = new System.Drawing.Size(277, 28);
             this.StatusComboBox.TabIndex = 18;
             // 
+            // SelectPatientButton
+            // 
+            this.SelectPatientButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.SelectPatientButton.FlatAppearance.BorderSize = 0;
+            this.SelectPatientButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SelectPatientButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectPatientButton.Location = new System.Drawing.Point(494, 99);
+            this.SelectPatientButton.Name = "SelectPatientButton";
+            this.SelectPatientButton.Size = new System.Drawing.Size(137, 26);
+            this.SelectPatientButton.TabIndex = 5;
+            this.SelectPatientButton.Text = "Select Patient";
+            this.SelectPatientButton.UseVisualStyleBackColor = false;
+            this.SelectPatientButton.Click += new System.EventHandler(this.SelectPatientButton_Click);
+            // 
             // UpdateAppoitnment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,5 +369,6 @@
         private System.Windows.Forms.TextBox PatientNameTextBox;
         private System.Windows.Forms.TextBox PatientIdTextBox;
         private System.Windows.Forms.TextBox AppointmentIDTextBox;
+        private System.Windows.Forms.Button SelectPatientButton;
     }
 }

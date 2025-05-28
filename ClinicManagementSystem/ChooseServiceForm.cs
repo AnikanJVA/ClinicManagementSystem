@@ -24,7 +24,21 @@ namespace ClinicManagementSystem
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void SelectService_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(ServiceIdTextBox.Text) ||
+                string.IsNullOrWhiteSpace(ServiceNameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(ServiceDescriptionTextBox.Text))
+            {
+                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // if ()
+            }
         }
     }
 }

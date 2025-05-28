@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ServiceDesc = new System.Windows.Forms.TextBox();
-            this.ServiceName = new System.Windows.Forms.TextBox();
-            this.ServiceId = new System.Windows.Forms.TextBox();
+            this.ServiceDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.ServiceNameTextBox = new System.Windows.Forms.TextBox();
+            this.ServiceIdTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,9 +40,6 @@
             this.AddNewService = new System.Windows.Forms.Button();
             this.UpdateService = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ServiceTable)).BeginInit();
             this.SuspendLayout();
@@ -50,12 +47,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.panel1.Controls.Add(this.checkBox3);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Controls.Add(this.ServiceDesc);
-            this.panel1.Controls.Add(this.ServiceName);
-            this.panel1.Controls.Add(this.ServiceId);
+            this.panel1.Controls.Add(this.ServiceDescriptionTextBox);
+            this.panel1.Controls.Add(this.ServiceNameTextBox);
+            this.panel1.Controls.Add(this.ServiceIdTextBox);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -64,26 +58,26 @@
             this.panel1.Size = new System.Drawing.Size(409, 293);
             this.panel1.TabIndex = 0;
             // 
-            // ServiceDesc
+            // ServiceDescriptionTextBox
             // 
-            this.ServiceDesc.Location = new System.Drawing.Point(158, 129);
-            this.ServiceDesc.Name = "ServiceDesc";
-            this.ServiceDesc.Size = new System.Drawing.Size(231, 20);
-            this.ServiceDesc.TabIndex = 5;
+            this.ServiceDescriptionTextBox.Location = new System.Drawing.Point(158, 129);
+            this.ServiceDescriptionTextBox.Name = "ServiceDescriptionTextBox";
+            this.ServiceDescriptionTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ServiceDescriptionTextBox.TabIndex = 5;
             // 
-            // ServiceName
+            // ServiceNameTextBox
             // 
-            this.ServiceName.Location = new System.Drawing.Point(158, 99);
-            this.ServiceName.Name = "ServiceName";
-            this.ServiceName.Size = new System.Drawing.Size(231, 20);
-            this.ServiceName.TabIndex = 4;
+            this.ServiceNameTextBox.Location = new System.Drawing.Point(158, 99);
+            this.ServiceNameTextBox.Name = "ServiceNameTextBox";
+            this.ServiceNameTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ServiceNameTextBox.TabIndex = 4;
             // 
-            // ServiceId
+            // ServiceIdTextBox
             // 
-            this.ServiceId.Location = new System.Drawing.Point(158, 69);
-            this.ServiceId.Name = "ServiceId";
-            this.ServiceId.Size = new System.Drawing.Size(231, 20);
-            this.ServiceId.TabIndex = 3;
+            this.ServiceIdTextBox.Location = new System.Drawing.Point(158, 69);
+            this.ServiceIdTextBox.Name = "ServiceIdTextBox";
+            this.ServiceIdTextBox.Size = new System.Drawing.Size(231, 20);
+            this.ServiceIdTextBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -132,6 +126,7 @@
             this.SelectService.TabIndex = 1;
             this.SelectService.Text = "Select Service";
             this.SelectService.UseVisualStyleBackColor = false;
+            this.SelectService.Click += new System.EventHandler(this.SelectService_Click);
             // 
             // ServiceTable
             // 
@@ -184,36 +179,6 @@
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(106, 176);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(106, 216);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(80, 17);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "checkBox1";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(213, 216);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(80, 17);
-            this.checkBox3.TabIndex = 6;
-            this.checkBox3.Text = "checkBox1";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
             // ChooseServiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,19 +204,16 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox ServiceId;
+        private System.Windows.Forms.TextBox ServiceIdTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox ServiceDesc;
-        private System.Windows.Forms.TextBox ServiceName;
+        private System.Windows.Forms.TextBox ServiceDescriptionTextBox;
+        private System.Windows.Forms.TextBox ServiceNameTextBox;
         private System.Windows.Forms.Button SelectService;
         private System.Windows.Forms.DataGridView ServiceTable;
         private System.Windows.Forms.Button AddNewService;
         private System.Windows.Forms.Button UpdateService;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
