@@ -196,7 +196,6 @@ namespace ClinicManagementSystem
         { 
             Appointments_AllDataGridView.DataSource = Database.GetAppointments("ALL");
             Appointments_ApprovedDataGridView.DataSource = Database.GetAppointments("APPROVED");
-            Appointments_PendingDataGridView.DataSource = Database.GetAppointments("PENDING");
             Appointments_RescheduledDataGridView.DataSource = Database.GetAppointments("RESCHEDULED");
             Appointments_CanceledDataGridView.DataSource = Database.GetAppointments("CANCELED");
             Appointments_FinishedDataGridView.DataSource = Database.GetAppointments("FINISHED");

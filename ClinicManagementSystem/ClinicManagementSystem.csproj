@@ -165,6 +165,12 @@
       <DependentUpon>CreatePrescriptionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormProvider.cs" />
+    <Compile Include="PatientRecordsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatientRecordsForm.Designer.cs">
+      <DependentUpon>PatientRecordsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegisterDoctorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreatePrescriptionForm.resx">
       <DependentUpon>CreatePrescriptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientRecordsForm.resx">
+      <DependentUpon>PatientRecordsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterDoctorForm.resx">
       <DependentUpon>RegisterDoctorForm.cs</DependentUpon>

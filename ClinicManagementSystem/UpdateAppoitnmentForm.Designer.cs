@@ -48,8 +48,8 @@
             this.PatientIdTextBox = new System.Windows.Forms.TextBox();
             this.AppointmentIDTextBox = new System.Windows.Forms.TextBox();
             this.AppointmentDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.SelectPatientButton = new System.Windows.Forms.Button();
+            this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.v.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -296,23 +296,6 @@
             this.AppointmentDateTimePicker.Size = new System.Drawing.Size(277, 26);
             this.AppointmentDateTimePicker.TabIndex = 22;
             // 
-            // StatusComboBox
-            // 
-            this.StatusComboBox.BackColor = System.Drawing.SystemColors.Window;
-            this.StatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.StatusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusComboBox.FormattingEnabled = true;
-            this.StatusComboBox.Items.AddRange(new object[] {
-            "Approved",
-            "Pending",
-            "Rescheduled",
-            "Canceled",
-            "Finished"});
-            this.StatusComboBox.Location = new System.Drawing.Point(202, 339);
-            this.StatusComboBox.Name = "StatusComboBox";
-            this.StatusComboBox.Size = new System.Drawing.Size(277, 28);
-            this.StatusComboBox.TabIndex = 18;
-            // 
             // SelectPatientButton
             // 
             this.SelectPatientButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
@@ -326,6 +309,22 @@
             this.SelectPatientButton.Text = "Select Patient";
             this.SelectPatientButton.UseVisualStyleBackColor = false;
             this.SelectPatientButton.Click += new System.EventHandler(this.SelectPatientButton_Click);
+            // 
+            // StatusComboBox
+            // 
+            this.StatusComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.StatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusComboBox.FormattingEnabled = true;
+            this.StatusComboBox.Items.AddRange(new object[] {
+            "Approved",
+            "Rescheduled",
+            "Canceled",
+            "Finished"});
+            this.StatusComboBox.Location = new System.Drawing.Point(202, 339);
+            this.StatusComboBox.Name = "StatusComboBox";
+            this.StatusComboBox.Size = new System.Drawing.Size(277, 28);
+            this.StatusComboBox.TabIndex = 18;
             // 
             // UpdateAppoitnment
             // 

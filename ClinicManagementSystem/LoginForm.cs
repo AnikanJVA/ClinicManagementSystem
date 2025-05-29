@@ -826,7 +826,7 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static string GetUserAccType(string username, string password) // to change, pwede mag buhat ug user nga class same sa doctor ug patient
+            public static string GetUserAccType(string username, string password)
             {
                 string query = "SELECT accType FROM users WHERE username = @username AND password = SHA2(@password, 256) LIMIT 1";
 

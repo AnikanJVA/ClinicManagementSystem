@@ -59,8 +59,6 @@
             this.Appointments_AllDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_ApprovedTab = new System.Windows.Forms.TabPage();
             this.Appointments_ApprovedDataGridView = new System.Windows.Forms.DataGridView();
-            this.Appointments_PendingTab = new System.Windows.Forms.TabPage();
-            this.Appointments_PendingDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_RescheduledTab = new System.Windows.Forms.TabPage();
             this.Appointments_RescheduledDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_CanceledTab = new System.Windows.Forms.TabPage();
@@ -109,8 +107,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_AllDataGridView)).BeginInit();
             this.Appointments_ApprovedTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_ApprovedDataGridView)).BeginInit();
-            this.Appointments_PendingTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Appointments_PendingDataGridView)).BeginInit();
             this.Appointments_RescheduledTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_RescheduledDataGridView)).BeginInit();
             this.Appointments_CanceledTab.SuspendLayout();
@@ -146,7 +142,6 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.SplitContainer.Panel2.Controls.Add(this.Dashboard_panel);
             this.SplitContainer.Panel2.Controls.Add(this.Doctors_SearchButton);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_DataGridView);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_RegisterButton);
@@ -155,9 +150,10 @@
             this.SplitContainer.Panel2.Controls.Add(this.Patients_SearchButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_CreateButton);
+            this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.Dashboard_panel);
             this.SplitContainer.Panel2.Controls.Add(this.Doctors_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_TabControl);
-            this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
             this.SplitContainer.Panel2MinSize = 978;
             this.SplitContainer.Size = new System.Drawing.Size(1264, 681);
             this.SplitContainer.SplitterDistance = 282;
@@ -522,7 +518,6 @@
             // 
             this.Appointments_TabControl.Controls.Add(this.Appointments_AllTab);
             this.Appointments_TabControl.Controls.Add(this.Appointments_ApprovedTab);
-            this.Appointments_TabControl.Controls.Add(this.Appointments_PendingTab);
             this.Appointments_TabControl.Controls.Add(this.Appointments_RescheduledTab);
             this.Appointments_TabControl.Controls.Add(this.Appointments_CanceledTab);
             this.Appointments_TabControl.Controls.Add(this.Appointments_FinishedTab);
@@ -586,32 +581,6 @@
             this.Appointments_ApprovedDataGridView.ReadOnly = true;
             this.Appointments_ApprovedDataGridView.Size = new System.Drawing.Size(881, 507);
             this.Appointments_ApprovedDataGridView.TabIndex = 2;
-            // 
-            // Appointments_PendingTab
-            // 
-            this.Appointments_PendingTab.Controls.Add(this.Appointments_PendingDataGridView);
-            this.Appointments_PendingTab.Location = new System.Drawing.Point(4, 25);
-            this.Appointments_PendingTab.Name = "Appointments_PendingTab";
-            this.Appointments_PendingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Appointments_PendingTab.Size = new System.Drawing.Size(881, 507);
-            this.Appointments_PendingTab.TabIndex = 2;
-            this.Appointments_PendingTab.Text = "Pending";
-            this.Appointments_PendingTab.UseVisualStyleBackColor = true;
-            // 
-            // Appointments_PendingDataGridView
-            // 
-            this.Appointments_PendingDataGridView.AllowUserToAddRows = false;
-            this.Appointments_PendingDataGridView.AllowUserToDeleteRows = false;
-            this.Appointments_PendingDataGridView.AllowUserToResizeColumns = false;
-            this.Appointments_PendingDataGridView.AllowUserToResizeRows = false;
-            this.Appointments_PendingDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Appointments_PendingDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Appointments_PendingDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Appointments_PendingDataGridView.MultiSelect = false;
-            this.Appointments_PendingDataGridView.Name = "Appointments_PendingDataGridView";
-            this.Appointments_PendingDataGridView.ReadOnly = true;
-            this.Appointments_PendingDataGridView.Size = new System.Drawing.Size(881, 507);
-            this.Appointments_PendingDataGridView.TabIndex = 5;
             // 
             // Appointments_RescheduledTab
             // 
@@ -955,8 +924,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_AllDataGridView)).EndInit();
             this.Appointments_ApprovedTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_ApprovedDataGridView)).EndInit();
-            this.Appointments_PendingTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Appointments_PendingDataGridView)).EndInit();
             this.Appointments_RescheduledTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_RescheduledDataGridView)).EndInit();
             this.Appointments_CanceledTab.ResumeLayout(false);
@@ -986,7 +953,6 @@
         private System.Windows.Forms.TabPage Appointments_ApprovedTab;
         private System.Windows.Forms.Button Appointments_UpdateButton;
         private System.Windows.Forms.Button Appointments_CreateButton;
-        private System.Windows.Forms.TabPage Appointments_PendingTab;
         private System.Windows.Forms.TabPage Appointments_RescheduledTab;
         private System.Windows.Forms.TabPage Appointments_CanceledTab;
         private System.Windows.Forms.Button Doctors_SearchButton;
@@ -1012,7 +978,6 @@
         private System.Windows.Forms.DataGridView Doctors_UnavailableDataGridView;
         private System.Windows.Forms.TabPage Appointments_FinishedTab;
         private System.Windows.Forms.DataGridView Appointments_ApprovedDataGridView;
-        private System.Windows.Forms.DataGridView Appointments_PendingDataGridView;
         private System.Windows.Forms.DataGridView Appointments_RescheduledDataGridView;
         private System.Windows.Forms.DataGridView Appointments_CanceledDataGridView;
         private System.Windows.Forms.DataGridView Appointments_FinishedDataGridView;

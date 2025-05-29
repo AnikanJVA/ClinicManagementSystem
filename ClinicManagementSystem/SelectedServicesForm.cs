@@ -27,11 +27,6 @@ namespace ClinicManagementSystem
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void SelectServiceButton_Click(object sender, EventArgs e)
         {
             ChooseServiceForm chooseServiceForm = new ChooseServiceForm();
@@ -92,10 +87,7 @@ namespace ClinicManagementSystem
 
         private void SelectedServices_DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (SelectedServices_DataGridView.Rows.Count > 1)
-            {
-                SelectedServices_DataGridView.Rows.RemoveAt(e.RowIndex);
-            }
+            SelectedServices_DataGridView.Rows.RemoveAt(e.RowIndex);
         }
     }
 }
