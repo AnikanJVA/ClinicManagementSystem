@@ -21,5 +21,10 @@ namespace ClinicManagementSystem
         {
             this.Close();
         }
+
+        private void Patients_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -50,12 +50,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.DoBDateTimePicker);
             this.panel1.Controls.Add(this.AltContactNumberTextBox);
             this.panel1.Controls.Add(this.label4);
@@ -307,6 +309,17 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Middle Name:";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(563, 13);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(360, 15);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "EMAIL ADDRESS AND ALT CONTACT NUMBER ARE OPTIONAL";
+            // 
             // RegisterPatientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,5 +362,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label10;
     }
 }

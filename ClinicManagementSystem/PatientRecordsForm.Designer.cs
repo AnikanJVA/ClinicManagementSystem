@@ -175,6 +175,7 @@
             this.Patients_DataGridView.ReadOnly = true;
             this.Patients_DataGridView.Size = new System.Drawing.Size(803, 231);
             this.Patients_DataGridView.TabIndex = 11;
+            this.Patients_DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Patients_DataGridView_CellClick);
             // 
             // PatientRecordsForm
             // 

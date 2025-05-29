@@ -17,6 +17,7 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             AccountTypelabel.Text += "\n" + Database.CurrentLoggedDoctor.LastName;
+            Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE", Database.CurrentLoggedDoctor.DoctorId);
         }
 
         private void DocView_FormClosed(object sender, FormClosedEventArgs e)

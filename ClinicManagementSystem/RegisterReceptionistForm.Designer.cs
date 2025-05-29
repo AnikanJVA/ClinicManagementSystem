@@ -49,12 +49,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.PasswordTextBox);
             this.panel1.Controls.Add(this.label8);
@@ -157,7 +159,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(454, 191);
+            this.CancelButton.Location = new System.Drawing.Point(454, 207);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(306, 38);
             this.CancelButton.TabIndex = 11;
@@ -174,7 +176,7 @@
             this.RegisterReceptionistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RegisterReceptionistButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RegisterReceptionistButton.ForeColor = System.Drawing.Color.White;
-            this.RegisterReceptionistButton.Location = new System.Drawing.Point(119, 191);
+            this.RegisterReceptionistButton.Location = new System.Drawing.Point(119, 207);
             this.RegisterReceptionistButton.Name = "RegisterReceptionistButton";
             this.RegisterReceptionistButton.Size = new System.Drawing.Size(306, 38);
             this.RegisterReceptionistButton.TabIndex = 10;
@@ -289,6 +291,17 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Middle Name:";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(38, 174);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(360, 15);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "EMAIL ADDRESS AND ALT CONTACT NUMBER ARE OPTIONAL";
+            // 
             // RegisterReceptionistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,5 +344,6 @@
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox UsernameTextBox;
+        private System.Windows.Forms.Label label9;
     }
 }

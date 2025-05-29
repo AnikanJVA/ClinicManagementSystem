@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -404,18 +405,17 @@ namespace ClinicManagementSystem
             }
 
             public static bool AddReceptionist(string username,
-                                               string password,
-                                               string emailAddress,
-                                               string contactNumber,
-                                               string altContactNumber,
-                                               string address,
-                                               string firstName,
-                                               string middleName,
-                                               string lastName)
+                                   string password,
+                                   string emailAddress,
+                                   string contactNumber,
+                                   string altContactNumber,
+                                   string address,
+                                   string firstName,
+                                   string middleName,
+                                   string lastName)
             {
                 string accType = "RECEPTIONIST";
 
-               
                 string checkQuery = @"SELECT COUNT(*) FROM users u
                                       LEFT JOIN receptionists r ON u.UserID = r.UserID
                                       WHERE 
@@ -428,9 +428,9 @@ namespace ClinicManagementSystem
                 {
                     checkCmd.Parameters.AddWithValue("@username", username);
                     checkCmd.Parameters.AddWithValue("@accType", accType);
-                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress ?? (object)DBNull.Value);
                     checkCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber ?? (object)DBNull.Value);
 
                     if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
                     {
@@ -442,24 +442,28 @@ namespace ClinicManagementSystem
 
                 try
                 {
-                    string userInsert = @"INSERT INTO users (username, password, accType, emailAddress, contactNumber, altContactNumber, address)
-                              VALUES (@username, SHA2(@password, 256), @accType, @emailAddress, @contactNumber, @altContactNumber, @address)";
+                    string userInsert = @"INSERT INTO users 
+                                        (username, password, accType, emailAddress, contactNumber, altContactNumber, address)
+                                        VALUES 
+                                        (@username, SHA2(@password, 256), @accType, @emailAddress, @contactNumber, @altContactNumber, @address)";
 
                     using (MySqlCommand userCmd = new MySqlCommand(userInsert, Instance.connection, transaction))
                     {
                         userCmd.Parameters.AddWithValue("@username", username);
                         userCmd.Parameters.AddWithValue("@password", password);
                         userCmd.Parameters.AddWithValue("@accType", accType);
-                        userCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                        userCmd.Parameters.AddWithValue("@emailAddress", string.IsNullOrWhiteSpace(emailAddress) ? (object)DBNull.Value : emailAddress);
                         userCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                        userCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                        userCmd.Parameters.AddWithValue("@altContactNumber", string.IsNullOrWhiteSpace(altContactNumber) ? (object)DBNull.Value : altContactNumber);
                         userCmd.Parameters.AddWithValue("@address", address);
 
                         userCmd.ExecuteNonQuery();
                     }
 
-                    string receptionistInsert = @"INSERT INTO receptionists (userId, firstName, middleName, lastName)
-                                      VALUES (LAST_INSERT_ID(), @firstName, @middleName, @lastName)";
+                    string receptionistInsert = @"INSERT INTO receptionists 
+                                                (userId, firstName, middleName, lastName)
+                                                VALUES 
+                                                (LAST_INSERT_ID(), @firstName, @middleName, @lastName)";
 
                     using (MySqlCommand recCmd = new MySqlCommand(receptionistInsert, Instance.connection, transaction))
                     {
@@ -933,6 +937,28 @@ namespace ClinicManagementSystem
                 }
             }
 
+            public static DataTable GetPatients(string status, long doctorId)
+            {
+                status = status.ToUpper();
+                string query = @"SELECT DISTINCT p.PatientID, p.FirstName, p.MiddleName, p.LastName, 
+                                       CONCAT(YEAR(p.DoB), '/', MONTH(p.DoB), '/', DAY(p.DoB)) AS DoB, 
+                                       p.Sex, p.ContactNumber, p.AltContactNumber, p.EmailAddress, p.Address, p.Status 
+                                FROM patients p
+                                INNER JOIN appointments a ON p.PatientID = a.PatientID
+                                WHERE p.Status = @status AND a.DoctorID = @doctorId
+                                ORDER BY p.PatientID DESC";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
             public static DataTable GetDoctors(string availabilityStatus)
             {
                 string query;
@@ -1098,7 +1124,6 @@ namespace ClinicManagementSystem
 
             }
 
-
             public static DataTable GetSearchPatient(string searchType, string fname, string mname, string lname)
             {
                 /* search types:
@@ -1157,6 +1182,147 @@ namespace ClinicManagementSystem
                     return table;
                 }
             }
+
+            public static DataTable GetSearchAppointment(string searchType, string fname, string mname, string lname)
+            {
+                /* search types:
+                 *   F = first name
+                 *   M = middle name
+                 *   L = last name
+                 */
+                string query, where, finalQuery;
+
+                searchType = (searchType ?? "").ToUpper().Trim();
+                fname = "%" + fname.Trim() + "%";
+                mname = "%" + mname.Trim() + "%";
+                lname = "%" + lname.Trim() + "%";
+
+                query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
+                     CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                     CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                     appointments.ReasonForAppointment, 
+                     appointments.Status 
+             FROM appointments 
+             INNER JOIN patients ON appointments.patientID = patients.patientID 
+             INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
+             HAVING appointments.status = @status 
+             ORDER BY appointments.appointmentID DESC";
+
+                switch (searchType)
+                {
+                    case "F":
+                        where = "WHERE FirstName LIKE @fname";
+                        break;
+                    case "M":
+                        where = "WHERE MiddleName LIKE @mname";
+                        break;
+                    case "L":
+                        where = "WHERE LastName LIKE @lname";
+                        break;
+                    case "FM":
+                        where = "WHERE FirstName LIKE @fname AND MiddleName LIKE @mname";
+                        break;
+                    case "FL":
+                        where = "WHERE FirstName LIKE @fname AND LastName LIKE @lname";
+                        break;
+                    case "ML":
+                        where = "WHERE MiddleName LIKE @mname AND LastName LIKE @lname";
+                        break;
+                    default:
+                        where = "WHERE FirstName LIKE @fname AND MiddleName LIKE @mname AND LastName LIKE @lname";
+                        break;
+                }
+
+                finalQuery = query + " " + where + " ORDER BY PatientID DESC";
+
+                using (MySqlCommand cmd = new MySqlCommand(finalQuery, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@fname", fname);
+                    cmd.Parameters.AddWithValue("@mname", mname);
+                    cmd.Parameters.AddWithValue("@lname", lname);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
+            //public static DataTable GetSearchAppointment(string searchType, string fname, string mname, string lname, string dateTime)
+            //{
+            //    searchType = searchType.ToUpper().Trim();
+            //    fname = "%" + fname.Trim() + "%";
+            //    mname = "%" + mname.Trim() + "%";
+            //    lname = "%" + lname.Trim() + "%";
+            //    dateTime = dateTime.Trim();
+
+            //    string baseQuery = @"SELECT appointments.AppointmentID, 
+            //                               appointments.AppointmentDateTime, 
+            //                               CONCAT(patients.FirstName, ' ', patients.MiddleName, ' ', patients.LastName) AS Patient, 
+            //                               CONCAT(doctors.FirstName, ' ', doctors.MiddleName, ' ', doctors.LastName) AS Doctor, 
+            //                               appointments.ReasonForAppointment, 
+            //                               appointments.Status 
+            //                        FROM appointments 
+            //                        INNER JOIN patients ON appointments.PatientID = patients.PatientID 
+            //                        INNER JOIN doctors ON appointments.DoctorID = doctors.DoctorID";
+
+            //    string whereClause = "";
+            //    switch (searchType)
+            //    {
+            //        case "F":
+            //            whereClause = "WHERE patients.FirstName LIKE @fname";
+            //            break;
+            //        case "M":
+            //            whereClause = "WHERE patients.MiddleName LIKE @mname";
+            //            break;
+            //        case "L":
+            //            whereClause = "WHERE patients.LastName LIKE @lname";
+            //            break;
+            //        case "FM":
+            //            whereClause = "WHERE patients.FirstName LIKE @fname AND patients.MiddleName LIKE @mname";
+            //            break;
+            //        case "FL":
+            //            whereClause = "WHERE patients.FirstName LIKE @fname AND patients.LastName LIKE @lname";
+            //            break;
+            //        case "ML":
+            //            whereClause = "WHERE patients.MiddleName LIKE @mname AND patients.LastName LIKE @lname";
+            //            break;
+            //        default:
+            //            whereClause = "WHERE patients.FirstName LIKE @fname AND patients.MiddleName LIKE @mname AND patients.LastName LIKE @lname";
+            //            break;
+            //    }
+
+            //    string finalQuery = "";
+
+            //    if (searchType.Equals("D"))
+            //    {
+            //        whereClause = "WHERE DATE(appointments.AppointmentDateTime) = @appointmentDate ";
+            //        finalQuery = baseQuery + " " + whereClause + " ORDER BY appointments.AppointmentID DESC";
+            //    }
+            //    else if (searchType.Contains("D"))
+            //    {
+            //        finalQuery = baseQuery + " " + whereClause + " AND DATE(appointments.AppointmentDateTime) = @appointmentDate ORDER BY appointments.AppointmentID DESC";
+            //    }
+            //    else
+            //    {
+            //        finalQuery = baseQuery + " " + whereClause + " ORDER BY appointments.AppointmentID DESC";
+            //    }
+
+            //    using (MySqlCommand cmd = new MySqlCommand(finalQuery, Instance.Connection))
+            //    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+            //    {
+            //        cmd.Parameters.AddWithValue("@fname", fname);
+            //        cmd.Parameters.AddWithValue("@mname", mname);
+            //        cmd.Parameters.AddWithValue("@lname", lname);
+            //        if (searchType.Contains("D"))
+            //        {
+            //            cmd.Parameters.AddWithValue("@appointmentDate", dateTime);
+            //        }
+
+            //        DataTable table = new DataTable();
+            //        adapter.Fill(table);
+            //        return table;
+            //    }
+            //}
 
             public static long GetServiceTypeID(string serviceTypeName)
             {

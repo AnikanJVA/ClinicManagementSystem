@@ -87,7 +87,15 @@ namespace ClinicManagementSystem
 
         private void SelectedServices_DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            SelectedServices_DataGridView.Rows.RemoveAt(e.RowIndex);
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var clickedCell = SelectedServices_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                if (clickedCell.Value != null && clickedCell.Value.ToString().Equals("Remove"))
+                {
+                    SelectedServices_DataGridView.Rows.RemoveAt(e.RowIndex);
+                }
+            }
         }
     }
 }

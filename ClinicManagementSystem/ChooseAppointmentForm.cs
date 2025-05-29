@@ -14,6 +14,8 @@ namespace ClinicManagementSystem
 {
     public partial class ChooseAppointmentForm : Form
     {
+        private string status;
+
         private long appointmentID;
         //public ChooseAppointmentForm()
         //{
@@ -27,16 +29,19 @@ namespace ClinicManagementSystem
         public ChooseAppointmentForm(string status, string formType)
         {
             InitializeComponent();
+            this.status = status;
+            AppointmentDateTimePicker.Format = DateTimePickerFormat.Custom;
+            AppointmentDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
+            Appointments_DataGridView.DataSource = Database.GetAppointments(status);
+
             if (formType.ToUpper().Equals("SEARCH"))
             {
-                Appointments_DataGridView.DataSource = Database.GetAppointments(status);
                 CloseButton.Visible = true;
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;
             }
             else
             {
-                Appointments_DataGridView.DataSource = Database.GetAppointments(status);
                 CloseButton.Visible = false;
                 SelectButton.Visible = true;
                 CancelButton.Visible = true;
@@ -112,6 +117,86 @@ namespace ClinicManagementSystem
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(SearchFnameTextBox.Text) &&
+               string.IsNullOrWhiteSpace(SearchMnameTextBox.Text) &&
+               string.IsNullOrWhiteSpace(SearchLnameTextBox.Text))
+            {
+                MessageBox.Show("Search invalid!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                //if (DateCheckBox.Checked)
+                //{
+                //    if (string.IsNullOrWhiteSpace(SearchMnameTextBox.Text) && string.IsNullOrWhiteSpace(SearchLnameTextBox.Text))
+                //    {
+                //        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("FD", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                //    }
+                //    else if (string.IsNullOrWhiteSpace(SearchFnameTextBox.Text) && string.IsNullOrWhiteSpace(SearchLnameTextBox.Text))
+                //    {
+                //        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("MD", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                //    }
+                //    else if (string.IsNullOrWhiteSpace(SearchFnameTextBox.Text) && string.IsNullOrWhiteSpace(SearchMnameTextBox.Text))
+                //    {
+                //        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("LD", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                //    }
+                //    else if (string.IsNullOrWhiteSpace(SearchLnameTextBox.Text))
+                //    {
+                //        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("FMD", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                //    }
+                //    else if (string.IsNullOrWhiteSpace(SearchMnameTextBox.Text))
+                //    {
+                //        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("FLD", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                //    }
+                //    else if (string.IsNullOrWhiteSpace(SearchFnameTextBox.Text))
+                //    {
+                //        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("MLD", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                //    }
+                //    else
+                //    {
+                //        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("FMLD", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                //    }
+                //}
+                //else
+                //{
+                    if (string.IsNullOrWhiteSpace(SearchMnameTextBox.Text) && string.IsNullOrWhiteSpace(SearchLnameTextBox.Text))
+                    {
+                        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("F", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                    }
+                    else if (string.IsNullOrWhiteSpace(SearchFnameTextBox.Text) && string.IsNullOrWhiteSpace(SearchLnameTextBox.Text))
+                    {
+                        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("M", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                    }
+                    else if (string.IsNullOrWhiteSpace(SearchFnameTextBox.Text) && string.IsNullOrWhiteSpace(SearchMnameTextBox.Text))
+                    {
+                        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("L", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                    }
+                    else if (string.IsNullOrWhiteSpace(SearchLnameTextBox.Text))
+                    {
+                        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("FM", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                    }
+                    else if (string.IsNullOrWhiteSpace(SearchMnameTextBox.Text))
+                    {
+                        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("FL", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                    }
+                    else if (string.IsNullOrWhiteSpace(SearchFnameTextBox.Text))
+                    {
+                        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("ML", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                    }
+                    else
+                    {
+                        Appointments_DataGridView.DataSource = Database.GetSearchAppointment("FML", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
+                    }
+                //}
+            }
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            Appointments_DataGridView.DataSource = Database.GetAppointments(status);
         }
     }
 }

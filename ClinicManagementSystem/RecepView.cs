@@ -31,6 +31,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Show();
             Appointments_CreateButton.Show();
             Appointments_UpdateButton.Show();
+            Appointments_SerachButton.Show();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -59,6 +60,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
             Appointments_UpdateButton.Hide();
+            Appointments_SerachButton.Hide();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -87,6 +89,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
             Appointments_UpdateButton.Hide();
+            Appointments_SerachButton.Hide();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -122,6 +125,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
             Appointments_UpdateButton.Hide();
+            Appointments_SerachButton.Hide();
 
             Patients_TabControl.Show();
             Patients_RegisterButton.Show();
@@ -236,6 +240,12 @@ namespace ClinicManagementSystem
             Doctors_SearchButton.Hide();
 
             Dashboard_panel.Visible = true;
+        }
+
+        private void Appointments_SerachButton_Click(object sender, EventArgs e)
+        {
+            ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("ALL", "SEARCH");
+            chooseAppointmentForm.ShowDialog();
         }
     }
 }
