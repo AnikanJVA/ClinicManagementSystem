@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2025 at 04:50 PM
+-- Generation Time: May 29, 2025 at 09:50 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,6 +36,13 @@ CREATE TABLE `appointments` (
   `Status` varchar(20) DEFAULT 'APPROVED'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`AppointmentID`, `PatientID`, `DoctorID`, `AppointmentDateTime`, `ReasonForAppointment`, `Status`) VALUES
+(1, 4, 1, '2025-06-01 08:25:00', 'clean\r\n', 'FINISHED');
+
 -- --------------------------------------------------------
 
 --
@@ -67,6 +74,13 @@ CREATE TABLE `doctors` (
   `Schedule` text DEFAULT NULL,
   `AvailabilityStatus` varchar(20) DEFAULT 'AVAILABLE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`DoctorID`, `UserID`, `FirstName`, `MiddleName`, `LastName`, `HireDate`, `LicenseNumber`, `Schedule`, `AvailabilityStatus`) VALUES
+(1, 3, 'asdfxczv', 'lkjoib', 'lkjboijasdf', '2025-05-28', '12345', 'MWF', 'AVAILABLE');
 
 -- --------------------------------------------------------
 
@@ -124,6 +138,13 @@ CREATE TABLE `receptionists` (
   `MiddleName` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `receptionists`
+--
+
+INSERT INTO `receptionists` (`ReceptionistID`, `UserID`, `FirstName`, `LastName`, `MiddleName`) VALUES
+(1, 2, 'asdf', 'eqrwadsg', 'asdfzxcv');
+
 -- --------------------------------------------------------
 
 --
@@ -133,10 +154,22 @@ CREATE TABLE `receptionists` (
 CREATE TABLE `services` (
   `ServiceID` bigint(20) NOT NULL,
   `ServiceName` varchar(100) DEFAULT NULL,
-  `ServiceType` bigint(20) DEFAULT NULL,
+  `ServiceTypeID` bigint(20) DEFAULT NULL,
   `ServiceDesc` text DEFAULT NULL,
   `Price` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`ServiceID`, `ServiceName`, `ServiceTypeID`, `ServiceDesc`, `Price`) VALUES
+(1, 'Check up', 1, 'check up', 500.00),
+(2, 'Cleaning', 1, 'cleaning', 600.00),
+(3, 'Teeth Whitening', 1, 'Whitening', 200.00),
+(4, 'aaron', 2, 'john', 99999999.99),
+(5, 'test2', 1, 'testing2', 123.00),
+(6, 'test three', 1, 'testing3', 950.50);
 
 -- --------------------------------------------------------
 
@@ -161,6 +194,18 @@ CREATE TABLE `servicetypes` (
   `ServiceTypeName` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `servicetypes`
+--
+
+INSERT INTO `servicetypes` (`ServiceTypeID`, `ServiceTypeName`) VALUES
+(1, 'Preventive Services'),
+(2, 'Pediatric Dentistry'),
+(3, 'Restorative Services'),
+(4, 'Cosmetic Services'),
+(5, 'Periodontal Services'),
+(6, 'Prosthodontic Services');
+
 -- --------------------------------------------------------
 
 --
@@ -184,7 +229,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `AccType`, `EmailAddress`, `ContactNumber`, `AltContactNumber`, `Address`, `status`) VALUES
-(1, 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'admin', 'admin@admin.com', '0000000', '111111111', 'adminhome', 'ACTIVE');
+(1, 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'admin', 'admin@admin.com', '0000000', '111111111', 'adminhome', 'ACTIVE'),
+(2, 'jo', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'RECEPTIONIST', '123', '1', '23', 'asdf', 'ACTIVE'),
+(3, 'do', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', 'asdf', '123', '12342314', '123asdf', 'ACTIVE');
 
 --
 -- Indexes for dumped tables
@@ -240,7 +287,7 @@ ALTER TABLE `receptionists`
 --
 ALTER TABLE `services`
   ADD PRIMARY KEY (`ServiceID`),
-  ADD KEY `ServiceType` (`ServiceType`);
+  ADD KEY `ServiceType` (`ServiceTypeID`);
 
 --
 -- Indexes for table `servicesperformed`
@@ -272,7 +319,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `AppointmentID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `AppointmentID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bills`
@@ -284,7 +331,7 @@ ALTER TABLE `bills`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `DoctorID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `DoctorID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `patients`
@@ -302,13 +349,13 @@ ALTER TABLE `prescriptionrecords`
 -- AUTO_INCREMENT for table `receptionists`
 --
 ALTER TABLE `receptionists`
-  MODIFY `ReceptionistID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ReceptionistID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `ServiceID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ServiceID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `servicesperformed`
@@ -320,13 +367,13 @@ ALTER TABLE `servicesperformed`
 -- AUTO_INCREMENT for table `servicetypes`
 --
 ALTER TABLE `servicetypes`
-  MODIFY `ServiceTypeID` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ServiceTypeID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `UserID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -367,7 +414,7 @@ ALTER TABLE `receptionists`
 -- Constraints for table `services`
 --
 ALTER TABLE `services`
-  ADD CONSTRAINT `services_ibfk_1` FOREIGN KEY (`ServiceType`) REFERENCES `servicetypes` (`ServiceTypeID`);
+  ADD CONSTRAINT `services_ibfk_1` FOREIGN KEY (`ServiceTypeID`) REFERENCES `servicetypes` (`ServiceTypeID`);
 
 --
 -- Constraints for table `servicesperformed`
