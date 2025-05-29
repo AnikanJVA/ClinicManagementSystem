@@ -89,5 +89,13 @@ namespace ClinicManagementSystem
                 SelectedServices_DataGridView.Rows.Clear();
             }
         }
+
+        private void SelectedServices_DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (SelectedServices_DataGridView.Rows.Count > 1)
+            {
+                SelectedServices_DataGridView.Rows.RemoveAt(e.RowIndex);
+            }
+        }
     }
 }
