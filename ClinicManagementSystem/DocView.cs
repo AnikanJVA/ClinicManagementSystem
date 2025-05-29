@@ -28,7 +28,6 @@ namespace ClinicManagementSystem
             DashBoard_NavButton.BackColor = Color.FromArgb(1, 34, 79);
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
-            Prescriptions_NavButton.BackColor = Color.FromArgb(0, 148, 212);
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
@@ -36,7 +35,6 @@ namespace ClinicManagementSystem
             DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(1, 34, 79);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
-            Prescriptions_NavButton.BackColor = Color.FromArgb(0, 148, 212);
         }
 
         private void ClientsButton_Click(object sender, EventArgs e)
@@ -44,7 +42,6 @@ namespace ClinicManagementSystem
             DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(1, 34, 79);
-            Prescriptions_NavButton.BackColor = Color.FromArgb(0, 148, 212);
 
 
         }
@@ -53,7 +50,6 @@ namespace ClinicManagementSystem
             DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
-            Prescriptions_NavButton.BackColor = Color.FromArgb(1, 34, 79);
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)

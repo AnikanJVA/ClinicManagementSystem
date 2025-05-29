@@ -32,7 +32,6 @@
             this.DashBoard_NavButton = new System.Windows.Forms.Button();
             this.AccountTypelabel = new System.Windows.Forms.Label();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.Prescriptions_NavButton = new System.Windows.Forms.Button();
             this.Patients_NavButton = new System.Windows.Forms.Button();
             this.Appointments_NavButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -54,7 +53,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.DashBoard_NavButton);
             this.splitContainer1.Panel1.Controls.Add(this.AccountTypelabel);
             this.splitContainer1.Panel1.Controls.Add(this.LogoutButton);
-            this.splitContainer1.Panel1.Controls.Add(this.Prescriptions_NavButton);
             this.splitContainer1.Panel1.Controls.Add(this.Patients_NavButton);
             this.splitContainer1.Panel1.Controls.Add(this.Appointments_NavButton);
             this.splitContainer1.Panel1MinSize = 282;
@@ -114,23 +112,6 @@
             this.LogoutButton.Text = "Logout";
             this.LogoutButton.UseVisualStyleBackColor = false;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
-            // 
-            // Prescriptions_NavButton
-            // 
-            this.Prescriptions_NavButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Prescriptions_NavButton.FlatAppearance.BorderSize = 0;
-            this.Prescriptions_NavButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Prescriptions_NavButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Prescriptions_NavButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Prescriptions_NavButton.Font = new System.Drawing.Font("BDO Grotesk Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Prescriptions_NavButton.ForeColor = System.Drawing.Color.White;
-            this.Prescriptions_NavButton.Location = new System.Drawing.Point(20, 317);
-            this.Prescriptions_NavButton.Name = "Prescriptions_NavButton";
-            this.Prescriptions_NavButton.Size = new System.Drawing.Size(239, 66);
-            this.Prescriptions_NavButton.TabIndex = 4;
-            this.Prescriptions_NavButton.Text = "Prescriptions";
-            this.Prescriptions_NavButton.UseVisualStyleBackColor = false;
-            this.Prescriptions_NavButton.Click += new System.EventHandler(this.Prescriptions_NavButton_Click);
             // 
             // Patients_NavButton
             // 
@@ -193,7 +174,6 @@
         private System.Windows.Forms.Button Patients_NavButton;
         private System.Windows.Forms.Button Appointments_NavButton;
         private System.Windows.Forms.Label AccountTypelabel;
-        private System.Windows.Forms.Button Prescriptions_NavButton;
         private System.Windows.Forms.Button DashBoard_NavButton;
     }
 }

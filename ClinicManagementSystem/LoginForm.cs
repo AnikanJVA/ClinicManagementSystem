@@ -82,6 +82,8 @@ namespace ClinicManagementSystem
             private static Appointment currentAppointment;
             private static User currentUser;
             private static Receptionist currentReceptionist;
+            private static Service currentService;
+            private static List<Service> servicesPerformedList;
 
             private static readonly Lazy<Database> instance = new Lazy<Database>(() => new Database());
             private MySqlConnection connection;
@@ -96,6 +98,8 @@ namespace ClinicManagementSystem
                 currentAppointment = new Appointment();
                 currentUser = new User();
                 currentReceptionist = new Receptionist();
+                currentService = new Service();
+                servicesPerformedList = new List<Service>();
             }
 
             public static Database Instance => instance.Value;
@@ -174,6 +178,30 @@ namespace ClinicManagementSystem
                 }
             }
 
+            public static Service CurrentService
+            {
+                set
+                {
+                    currentService = value;
+                }
+                get
+                {
+                    return currentService;
+                }
+            }
+
+            public static List<Service> ServicesPerformedList
+            {
+                set
+                {
+                    servicesPerformedList = value;
+                }
+                get
+                {
+                    return servicesPerformedList;
+                }
+            }
+
             public static bool AuthenticateUser(string username, string password)
             {
                 string query = "SELECT COUNT(*) FROM users WHERE username = @username AND password = SHA2(@password, 256) AND status = @status";
@@ -223,6 +251,36 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
                     cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
                     cmd.Parameters.AddWithValue("@address", address);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
+            public static bool AddService(string serviceName,
+                                          long serviceTypeID,
+                                          string serviceDesc,
+                                          double price)
+            {
+                string checkQuery = @"SELECT COUNT(*) AS DuplicateCount
+                                      FROM services
+                                      WHERE ServiceName = @serviceName;";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@serviceName", serviceName);
+                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
+                    {
+                        return false; 
+                    }
+                }
+
+                string insertQuery = @"INSERT INTO services (ServiceName, ServiceTypeID, ServiceDesc, Price)
+                                       VALUES (@serviceName, @serviceTypeID, @serviceDesc, @price);";
+                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@serviceName", serviceName);
+                    cmd.Parameters.AddWithValue("@serviceTypeID", serviceTypeID);
+                    cmd.Parameters.AddWithValue("@serviceDesc", serviceDesc);
+                    cmd.Parameters.AddWithValue("@price", price);
+
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
@@ -717,7 +775,7 @@ namespace ClinicManagementSystem
                 if (status.Equals("ALL"))
                 {
                     query = @"SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, 
-                              Sex, ContactNumber,  AltContactNumber, EmailAddress, Address, Status FROM patients ORDER BY patientId DESC";
+                                     Sex, ContactNumber,  AltContactNumber, EmailAddress, Address, Status FROM patients ORDER BY patientId DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -727,7 +785,7 @@ namespace ClinicManagementSystem
                     }
                 }
                 query = @"SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, 
-                        Sex, ContactNumber,  AltContactNumber, EmailAddress, Address, Status 
+                                 Sex, ContactNumber,  AltContactNumber, EmailAddress, Address, Status 
                         FROM patients 
                         WHERE status = @status 
                         ORDER BY patientId DESC";
@@ -772,7 +830,27 @@ namespace ClinicManagementSystem
 
             public static DataTable GetServices()
             {
-                string query = "SELECT * FROM services";
+                string query = @"SELECT s.ServiceID,
+                                        s.ServiceName,
+                                        st.serviceTypeName AS ServiceType,
+                                        s.ServiceDesc,
+                                        s.Price
+                                FROM services s
+                                INNER JOIN servicetypes st ON s.serviceTypeID = st.serviceTypeID;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
+            public static DataTable GetServiceTypeNames()
+            {
+                string query = @"SELECT ServiceTypeName
+                                FROM serviceTypes;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -790,9 +868,9 @@ namespace ClinicManagementSystem
                 if (status.Equals("ALL"))
                 {
                     query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
-                            CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
-                            CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
-                            appointments.ReasonForAppointment, appointments.Status 
+                                     CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                                     CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                                     appointments.ReasonForAppointment, appointments.Status 
                             FROM appointments 
                             INNER JOIN patients ON appointments.patientID = patients.patientID 
                             INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
@@ -807,10 +885,10 @@ namespace ClinicManagementSystem
                 }
 
                 query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
-                         CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
-                         CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
-                         appointments.ReasonForAppointment, 
-                         appointments.Status 
+                                 CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                                 CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                                 appointments.ReasonForAppointment, 
+                                 appointments.Status 
                          FROM appointments 
                          INNER JOIN patients ON appointments.patientID = patients.patientID 
                          INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
@@ -834,53 +912,46 @@ namespace ClinicManagementSystem
                  *   M = Middle name
                  *   L = Last name
                  */
-                string query;
+                string query, where, finalQuery;
+
                 searchType = searchType.ToUpper();
                 fname = "%" + fname.Trim() + "%";
                 mname = "%" + mname.Trim() + "%";
                 lname = "%" + lname.Trim() + "%";
 
-                query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.AvailabilityStatus FROM doctors d " +
-                            "INNER JOIN users u ON d.userId = u.userId ORDER BY doctorId DESC";
+                query = @"SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, 
+                                u.ContactNumber, u.AltContactNumber, u.EmailAddress, 
+                                d.LicenseNumber, u.Address, d.AvailabilityStatus
+                         FROM doctors d
+                         INNER JOIN users u ON d.userId = u.userId";
 
-                if (searchType == "F")
+                switch (searchType)
                 {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
-                            " FROM doctors WHERE firstName LIKE @fname ORDER BY doctorID DESC";
-                }
-                else if (searchType == "M")
-                {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
-                            " FROM doctors WHERE middleName LIKE @mname ORDER BY doctorID DESC";
-                }
-                else if (searchType == "L")
-                {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
-                            " FROM doctors WHERE lastName LIKE @lname ORDER BY doctorID DESC";
-                }
-                else if (searchType == "FM")
-                {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
-                            " FROM doctors WHERE firstName LIKE @fname AND middleName LIKE @mname ORDER BY doctorID DESC";
-                }
-                else if (searchType == "FL")
-                {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
-                            " FROM doctors WHERE firstName LIKE @fname AND lastName LIKE @lname ORDER BY doctorID DESC";
-                }
-                else if (searchType == "ML")
-                {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
-                            " FROM doctors WHERE middleName LIKE @mname AND lastName LIKE @lname ORDER BY doctorID DESC";
-                }
-                else
-                {
-                    query = "SELECT DoctorID, FirstName, MiddleName, LastName, HireDate, LicenseNumber, Schedule " +
-                            " FROM doctors WHERE firstName LIKE @fname AND middleName LIKE @mname AND lastName LIKE @lname ORDER BY doctorID DESC";
-
+                    case "F":
+                        where = "WHERE d.FirstName LIKE @fname";
+                        break;
+                    case "M":
+                        where = "WHERE d.MiddleName LIKE @mname";
+                        break;
+                    case "L":
+                        where = "WHERE d.LastName LIKE @lname";
+                        break;
+                    case "FM":
+                        where = "WHERE d.FirstName LIKE @fname AND d.MiddleName LIKE @mname";
+                        break;
+                    case "FL":
+                        where = "WHERE d.FirstName LIKE @fname AND d.LastName LIKE @lname";
+                        break;
+                    case "ML":
+                        where = "WHERE d.MiddleName LIKE @mname AND d.LastName LIKE @lname";
+                        break;
+                    default:
+                        where = "WHERE d.FirstName LIKE @fname AND d.MiddleName LIKE @mname AND d.LastName LIKE @lname";
+                        break;
                 }
 
-                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                finalQuery = query + " " + where + " ORDER BY d.DoctorID DESC";
+                using (MySqlCommand cmd = new MySqlCommand(finalQuery, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
                     cmd.Parameters.AddWithValue("@fname", fname);
@@ -892,58 +963,56 @@ namespace ClinicManagementSystem
                 }
 
             }
-        
+
 
             public static DataTable GetSearchPatient(string searchType, string fname, string mname, string lname)
             {
                 /* search types:
                  *   F = first name
-                 *   M = Middle name
-                 *   L = Last name
-                 */     
-                string query;
-                searchType = searchType.ToUpper();
+                 *   M = middle name
+                 *   L = last name
+                 */
+                string query, where, finalQuery;
+
+                searchType = (searchType ?? "").ToUpper().Trim();
                 fname = "%" + fname.Trim() + "%";
                 mname = "%" + mname.Trim() + "%";
                 lname = "%" + lname.Trim() + "%";
 
-                if (searchType == "F")
+                query = @"SELECT PatientID, FirstName, MiddleName, LastName, 
+                                 CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, 
+                                 Sex, ContactNumber, AltContactNumber, 
+                                 EmailAddress, Address, Status 
+                          FROM patients";
+
+                switch (searchType)
                 {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
-                            " FROM patients WHERE firstName LIKE @fname ORDER BY patientId DESC";
-                }
-                else if (searchType == "M")
-                {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
-                            " FROM patients WHERE MiddleName LIKE @mname ORDER BY patientId DESC";
-                }
-                else if (searchType == "L")
-                {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
-                            " FROM patients WHERE lastName LIKE @lname ORDER BY patientId DESC";
-                }
-                else if (searchType == "FM")
-                {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
-                            " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname ORDER BY patientId DESC";
-                }
-                else if (searchType == "FL")
-                {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
-                            " FROM patients WHERE firstName LIKE @fname AND lastName LIKE @lname ORDER BY patientId DESC";
-                }
-                else if (searchType == "ML")
-                {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
-                            " FROM patients WHERE middleName LIKE @mname AND lastName LIKE @lname ORDER BY patientId DESC";
-                }
-                else // full name 
-                {
-                    query = "SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, Sex, ContactNumber, AltContactNumber, EmailAddress, Address, Status" +
-                            " FROM patients WHERE firstName LIKE @fname AND middleName LIKE @mname AND lastName LIKE @lname ORDER BY patientId DESC";
+                    case "F":
+                        where = "WHERE FirstName LIKE @fname";
+                        break;
+                    case "M":
+                        where = "WHERE MiddleName LIKE @mname";
+                        break;
+                    case "L":
+                        where = "WHERE LastName LIKE @lname";
+                        break;
+                    case "FM":
+                        where = "WHERE FirstName LIKE @fname AND MiddleName LIKE @mname";
+                        break;
+                    case "FL":
+                        where = "WHERE FirstName LIKE @fname AND LastName LIKE @lname";
+                        break;
+                    case "ML":
+                        where = "WHERE MiddleName LIKE @mname AND LastName LIKE @lname";
+                        break;
+                    default:
+                        where = "WHERE FirstName LIKE @fname AND MiddleName LIKE @mname AND LastName LIKE @lname";
+                        break;
                 }
 
-                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                finalQuery = query + " " + where + " ORDER BY PatientID DESC";
+
+                using (MySqlCommand cmd = new MySqlCommand(finalQuery, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
                     cmd.Parameters.AddWithValue("@fname", fname);
@@ -953,7 +1022,23 @@ namespace ClinicManagementSystem
                     adapter.Fill(table);
                     return table;
                 }
+            }
 
+            public static long GetServiceTypeID(string serviceTypeName)
+            {
+                string query = "SELECT ServiceTypeID FROM serviceTypes WHERE serviceTypeName = @serviceTypeName";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@serviceTypeName", serviceTypeName);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt64(result);
+                    }
+                }
+                return 0; // Return null if not found
             }
 
             public static Patient RetrievePatient(long patientId) 
@@ -1033,42 +1118,42 @@ namespace ClinicManagementSystem
                 return null;
             }
 
-            public static User RetrieveUser(string username, string accType)
-            {
-                User user = new User();
-                string query;
+            //public static User RetrieveUser(string username, string accType)
+            //{
+            //    User user = new User();
+            //    string query;
 
-                query = "SELECT * FROM users WHERE Username = @username AND AccType = @accType";
-                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
-                {
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@accType", accType);
-                    try
-                    {
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        if (reader.Read())
-                        {
-                            user.UserId = Convert.ToInt64(reader["userId"].ToString());
-                            user.Username = reader["Username"].ToString();
-                            user.AccType = reader["AccType"].ToString();
-                            user.EmailAddress = reader["EmailAddress"].ToString();
-                            user.ContactNumber = reader["ContactNumber"].ToString();
-                            user.AltContactNumber = reader["AltContactNumber"].ToString();
-                            user.Address = reader["Address"].ToString();
-                            user.Status = reader["Status"].ToString();
+            //    query = "SELECT * FROM users WHERE Username = @username AND AccType = @accType";
+            //    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+            //    {
+            //        cmd.Parameters.AddWithValue("@username", username);
+            //        cmd.Parameters.AddWithValue("@accType", accType);
+            //        try
+            //        {
+            //            MySqlDataReader reader = cmd.ExecuteReader();
+            //            if (reader.Read())
+            //            {
+            //                user.UserId = Convert.ToInt64(reader["userId"].ToString());
+            //                user.Username = reader["Username"].ToString();
+            //                user.AccType = reader["AccType"].ToString();
+            //                user.EmailAddress = reader["EmailAddress"].ToString();
+            //                user.ContactNumber = reader["ContactNumber"].ToString();
+            //                user.AltContactNumber = reader["AltContactNumber"].ToString();
+            //                user.Address = reader["Address"].ToString();
+            //                user.Status = reader["Status"].ToString();
 
-                            reader.Close();
-                            return user;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return null;
-                    }
-                }
-                return null;
-            }
+            //                reader.Close();
+            //                return user;
+            //            }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            return null;
+            //        }
+            //    }
+            //    return null;
+            //}
 
             public static Receptionist RetrieveReceptionist(long Id)
             {
@@ -1177,6 +1262,45 @@ namespace ClinicManagementSystem
 
                             reader.Close();
                             return appointment;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+                return null;
+            }
+
+            public static Service RetrieveService(long serviceId)
+            {
+                Service service = new Service();
+                string query;
+                query = @"SELECT s.ServiceID,
+                                 s.ServiceName,
+                                 st.serviceTypeName AS ServiceType,
+                                 s.ServiceDesc,
+                                 s.Price
+                          FROM services s
+                          INNER JOIN servicetypes st ON s.serviceTypeID = st.serviceTypeID
+                          WHERE s.serviceID = @serviceId;";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            service.ServiceID = serviceId;
+                            service.ServiceName = reader["ServiceName"].ToString();
+                            service.ServiceType = reader["ServiceType"].ToString();
+                            service.ServiceDesc = reader["ServiceDesc"].ToString();
+                            service.Price = Convert.ToDouble(reader["Price"].ToString());
+
+                            reader.Close();
+                            return service;
                         }
                     }
                     catch (Exception ex)
@@ -1533,5 +1657,55 @@ namespace ClinicManagementSystem
                 set { status = value; }
             }
         }
+
+        public class Service
+        {
+            private long serviceID;
+            private string serviceName;
+            private string serviceType;
+            private string serviceDesc;
+            private double price;
+
+            public Service()
+            {
+                serviceID = 0;
+                ServiceName = string.Empty;
+                ServiceType = string.Empty;
+                ServiceDesc = string.Empty;
+                Price = 0; 
+            }
+
+            // Public properties with encapsulation
+            public long ServiceID
+            {
+                get { return serviceID; }
+                set { serviceID = value; }
+            }
+
+            public string ServiceName
+            {
+                get { return serviceName; }
+                set { serviceName = value; }
+            }
+
+            public string ServiceType
+            {
+                get { return serviceType; }
+                set { serviceType = value; }
+            }
+
+            public string ServiceDesc
+            {
+                get { return serviceDesc; }
+                set { serviceDesc = value; }
+            }
+
+            public double Price
+            {
+                get { return price; }
+                set {  price = value; }
+            }
+        }
+
     }
 }

@@ -30,8 +30,12 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.ServiceDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.PriceTextBox = new System.Windows.Forms.TextBox();
+            this.ServiceTypeTextBox = new System.Windows.Forms.TextBox();
             this.ServiceNameTextBox = new System.Windows.Forms.TextBox();
             this.ServiceIdTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,10 +44,6 @@
             this.AddNewServiceButton = new System.Windows.Forms.Button();
             this.UpdateServiceButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.PriceTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ServiceTypeTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Services_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -77,6 +77,26 @@
             this.ServiceDescriptionTextBox.Size = new System.Drawing.Size(257, 82);
             this.ServiceDescriptionTextBox.TabIndex = 5;
             // 
+            // PriceTextBox
+            // 
+            this.PriceTextBox.Enabled = false;
+            this.PriceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.PriceTextBox.Location = new System.Drawing.Point(158, 246);
+            this.PriceTextBox.Name = "PriceTextBox";
+            this.PriceTextBox.ReadOnly = true;
+            this.PriceTextBox.Size = new System.Drawing.Size(257, 26);
+            this.PriceTextBox.TabIndex = 4;
+            // 
+            // ServiceTypeTextBox
+            // 
+            this.ServiceTypeTextBox.Enabled = false;
+            this.ServiceTypeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ServiceTypeTextBox.Location = new System.Drawing.Point(158, 106);
+            this.ServiceTypeTextBox.Name = "ServiceTypeTextBox";
+            this.ServiceTypeTextBox.ReadOnly = true;
+            this.ServiceTypeTextBox.Size = new System.Drawing.Size(257, 26);
+            this.ServiceTypeTextBox.TabIndex = 4;
+            // 
             // ServiceNameTextBox
             // 
             this.ServiceNameTextBox.Enabled = false;
@@ -96,6 +116,28 @@
             this.ServiceIdTextBox.ReadOnly = true;
             this.ServiceIdTextBox.Size = new System.Drawing.Size(257, 26);
             this.ServiceIdTextBox.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label4.Location = new System.Drawing.Point(110, 249);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 20);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Price:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label5.Location = new System.Drawing.Point(55, 109);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 20);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Service Type:";
             // 
             // label3
             // 
@@ -148,9 +190,16 @@
             // 
             // Services_DataGridView
             // 
+            this.Services_DataGridView.AllowUserToAddRows = false;
+            this.Services_DataGridView.AllowUserToDeleteRows = false;
+            this.Services_DataGridView.AllowUserToResizeColumns = false;
+            this.Services_DataGridView.AllowUserToResizeRows = false;
+            this.Services_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.Services_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Services_DataGridView.Location = new System.Drawing.Point(461, 14);
+            this.Services_DataGridView.MultiSelect = false;
             this.Services_DataGridView.Name = "Services_DataGridView";
+            this.Services_DataGridView.ReadOnly = true;
             this.Services_DataGridView.Size = new System.Drawing.Size(427, 293);
             this.Services_DataGridView.TabIndex = 2;
             this.Services_DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Services_DataGridView_CellClick);
@@ -201,48 +250,6 @@
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(110, 249);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 20);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Price:";
-            // 
-            // PriceTextBox
-            // 
-            this.PriceTextBox.Enabled = false;
-            this.PriceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PriceTextBox.Location = new System.Drawing.Point(158, 246);
-            this.PriceTextBox.Name = "PriceTextBox";
-            this.PriceTextBox.ReadOnly = true;
-            this.PriceTextBox.Size = new System.Drawing.Size(257, 26);
-            this.PriceTextBox.TabIndex = 4;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(55, 109);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 20);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Service Type:";
-            // 
-            // ServiceTypeTextBox
-            // 
-            this.ServiceTypeTextBox.Enabled = false;
-            this.ServiceTypeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ServiceTypeTextBox.Location = new System.Drawing.Point(158, 106);
-            this.ServiceTypeTextBox.Name = "ServiceTypeTextBox";
-            this.ServiceTypeTextBox.ReadOnly = true;
-            this.ServiceTypeTextBox.Size = new System.Drawing.Size(257, 26);
-            this.ServiceTypeTextBox.TabIndex = 4;
-            // 
             // ChooseServiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,6 +263,7 @@
             this.Controls.Add(this.SelectService);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "ChooseServiceForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choose Service";

@@ -58,11 +58,23 @@ namespace ClinicManagementSystem
 
                         }
                         string serviceName = row.Cells["ServiceName"].Value.ToString();
-                        string serviceDescription= row.Cells["ServiceDescription"].Value.ToString();
+                        string serviceType = row.Cells["ServiceType"].Value.ToString();
+                        string serviceDescription= row.Cells["ServiceDesc"].Value.ToString();
+                        double price = 0;
+                        try
+                        {
+                            price = Convert.ToDouble(row.Cells["Price"].Value.ToString());
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
 
                         ServiceIdTextBox.Text = Convert.ToString(serviceID);
                         ServiceNameTextBox.Text = serviceName;
+                        ServiceTypeTextBox.Text = serviceType;
                         ServiceDescriptionTextBox.Text = serviceDescription;
+                        PriceTextBox.Text = price.ToString();
                     }
                     else
                     {
@@ -80,12 +92,12 @@ namespace ClinicManagementSystem
                 string.IsNullOrWhiteSpace(ServiceNameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ServiceDescriptionTextBox.Text))
             {
-                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Select a service first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
+            else 
             {
-                //Database.CurrentService = Database.RetrieveService(Convert.ToInt64(ServiceIdTextBox.Text));
-                //this.Close();
+                Database.CurrentService = Database.RetrieveService(Convert.ToInt64(ServiceIdTextBox.Text));
+                this.Close();
             }
         }
 
@@ -98,13 +110,14 @@ namespace ClinicManagementSystem
         {
             AddNewServiceForm addNewServiceForm = new AddNewServiceForm();
             addNewServiceForm.ShowDialog();
-
+            Services_DataGridView.DataSource = Database.GetServices();
         }
 
         private void UpdateService_Click(object sender, EventArgs e)
         {
             AddNewServiceForm addNewServiceForm = new AddNewServiceForm("UPDATE");
             addNewServiceForm.ShowDialog();
+            Services_DataGridView.DataSource = Database.GetServices();
         }
     }
 }

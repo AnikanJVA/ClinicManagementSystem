@@ -19,7 +19,7 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             BillingDateTimePicker.Format = DateTimePickerFormat.Custom;
-            BillingDateTimePicker.CustomFormat = "yyyy'/MM'/'dd HH':'mm";
+            BillingDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
             BillingDateTimePicker.MinDate = DateTime.Today;
         }
 
@@ -38,9 +38,13 @@ namespace ClinicManagementSystem
         {
             SelectedServicesForm selectedServicesForm = new SelectedServicesForm();
             selectedServicesForm.ShowDialog();
-           // ServiceIdTextBox.Text = Database.CurrentService.ID.ToString();
-           // ServiceType.Text = Database.CurrentService.ServiceName.ToString() + " " +
-                               //Database
+            string servicesPerformed = "";
+            foreach (Service service in Database.ServicesPerformedList)
+            {
+                servicesPerformed += service.ServiceName + ", ";
+            }
+            
+            ServicesPerformedTextBox.Text = servicesPerformed;
         }
 
         private void SelectAppointmentButton_Click(object sender, EventArgs e)
@@ -51,8 +55,6 @@ namespace ClinicManagementSystem
             PatientIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
             PatientNameTextBox.Text = $"{Database.CurrentPatient.FirstName.ToString()} " +
                                       $"{Database.CurrentPatient.MiddleName.ToString()} {Database.CurrentPatient.LastName.ToString()}";
-            ServicesPerformedTextBox.Text = "SERVICE 1, SERVICE 2, SERVICE 3, ...";
-            AmountTextBox.Text = "TOTAL AMOUTN VIA METHOD";
         }
     }
 }
