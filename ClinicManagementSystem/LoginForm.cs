@@ -376,8 +376,8 @@ namespace ClinicManagementSystem
                             userId = Convert.ToInt64(userCmd.ExecuteScalar());
                         }
 
-                        string doctorInsert = @"INSERT INTO doctors (userId, firstName, middleName, lastName, schedule, licenseNumber, hireDate)
-                                                 VALUES (@userId, @firstName, @middleName, @lastName, @schedule, @licenseNumber, NOW())";
+                        string doctorInsert = @"INSERT INTO doctors (userId, firstName, middleName, lastName, schedule, licenseNumber)
+                                                 VALUES (@userId, @firstName, @middleName, @lastName, @schedule, @licenseNumber)";
 
                         using (MySqlCommand doctorCmd = new MySqlCommand(doctorInsert, Instance.connection, transaction))
                         {
@@ -1388,7 +1388,6 @@ namespace ClinicManagementSystem
                             doctor.FirstName = reader["FirstName"].ToString();
                             doctor.MiddleName = reader["MiddleName"].ToString();
                             doctor.LastName = reader["LastName"].ToString();
-                            doctor.HireDate = reader["HireDate"].ToString();
                             doctor.LicenseNumber = reader["LicenseNumber"].ToString();
                             doctor.Schedule = reader["Schedule"].ToString();
 
@@ -1711,7 +1710,6 @@ namespace ClinicManagementSystem
             private string firstName;
             private string middleName;
             private string lastName;
-            private string hireDate;
             private string licenseNumber;
             private string schedule;
             private string availabilityStatus;
@@ -1722,7 +1720,6 @@ namespace ClinicManagementSystem
                 FirstName = string.Empty;
                 MiddleName = string.Empty;
                 LastName = string.Empty;
-                HireDate = string.Empty;
                 LicenseNumber = string.Empty;
                 Schedule = string.Empty;
                 AvailabilityStatus = string.Empty;
@@ -1748,12 +1745,6 @@ namespace ClinicManagementSystem
             {
                 get { return lastName; }
                 set { lastName = value; }
-            }
-
-            public string HireDate
-            {
-                get { return hireDate; }
-                set { hireDate = value; }
             }
 
             public string LicenseNumber
