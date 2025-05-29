@@ -31,7 +31,6 @@
             this.CreateUpdateBillButton = new System.Windows.Forms.Button();
             this.AppointmentIDTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.ServicesPerformedTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -40,7 +39,6 @@
             this.AmountTextBox = new System.Windows.Forms.TextBox();
             this.SelectAppointmentButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.BillingDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.cancelButton = new System.Windows.Forms.Button();
             this.patientIDLabel = new System.Windows.Forms.Label();
             this.PatientIDTextBox = new System.Windows.Forms.TextBox();
@@ -60,7 +58,7 @@
             this.CreateUpdateBillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateUpdateBillButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateUpdateBillButton.ForeColor = System.Drawing.Color.White;
-            this.CreateUpdateBillButton.Location = new System.Drawing.Point(28, 354);
+            this.CreateUpdateBillButton.Location = new System.Drawing.Point(28, 299);
             this.CreateUpdateBillButton.Name = "CreateUpdateBillButton";
             this.CreateUpdateBillButton.Size = new System.Drawing.Size(306, 26);
             this.CreateUpdateBillButton.TabIndex = 6;
@@ -88,17 +86,6 @@
             this.label1.Size = new System.Drawing.Size(109, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Patient Name:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Menu;
-            this.label2.Location = new System.Drawing.Point(95, 295);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 20);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Billing Date:";
             // 
             // ServicesPerformedTextBox
             // 
@@ -131,7 +118,6 @@
             this.panel1.Controls.Add(this.AmountTextBox);
             this.panel1.Controls.Add(this.SelectAppointmentButton);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.BillingDateTimePicker);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.patientIDLabel);
@@ -142,11 +128,10 @@
             this.panel1.Controls.Add(this.PatientNameTextBox);
             this.panel1.Controls.Add(this.AppointmentIDTextBox);
             this.panel1.Controls.Add(this.ServicesPerformedTextBox);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(715, 421);
+            this.panel1.Size = new System.Drawing.Size(715, 347);
             this.panel1.TabIndex = 14;
             // 
             // SelectServiceButton
@@ -215,16 +200,6 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Appointment ID:";
             // 
-            // BillingDateTimePicker
-            // 
-            this.BillingDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BillingDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.BillingDateTimePicker.Location = new System.Drawing.Point(194, 290);
-            this.BillingDateTimePicker.Name = "BillingDateTimePicker";
-            this.BillingDateTimePicker.Size = new System.Drawing.Size(306, 26);
-            this.BillingDateTimePicker.TabIndex = 3;
-            this.BillingDateTimePicker.Value = new System.DateTime(2025, 5, 15, 1, 14, 27, 0);
-            // 
             // cancelButton
             // 
             this.cancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
@@ -232,7 +207,7 @@
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.ForeColor = System.Drawing.Color.White;
-            this.cancelButton.Location = new System.Drawing.Point(377, 354);
+            this.cancelButton.Location = new System.Drawing.Point(377, 299);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(306, 26);
             this.cancelButton.TabIndex = 7;
@@ -314,7 +289,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(739, 443);
+            this.ClientSize = new System.Drawing.Size(739, 369);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -333,12 +308,10 @@
         private System.Windows.Forms.Button CreateUpdateBillButton;
         private System.Windows.Forms.TextBox AppointmentIDTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox ServicesPerformedTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.DateTimePicker BillingDateTimePicker;
         private System.Windows.Forms.Label patientIDLabel;
         private System.Windows.Forms.Button SelectAppointmentButton;
         private System.Windows.Forms.Label label5;

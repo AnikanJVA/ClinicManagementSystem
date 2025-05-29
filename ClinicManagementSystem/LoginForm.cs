@@ -507,47 +507,55 @@ namespace ClinicManagementSystem
                 }
             }
 
-            // TO DO AddBill
-            //public static bool AddBill(long appoinmentId,
-            //                           string billingDate,
-            //                           double totalAmount)
-            //{
-            //    string insertQuery = "INSERT INTO bill VALUES ()";
-            //    using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
-            //    {
-            //        cmd.Parameters.AddWithValue("@patientId", patientId);
-            //        cmd.Parameters.AddWithValue("@doctorId", doctorId);
-            //        cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
-            //        cmd.Parameters.AddWithValue("@reasonForAppointment", reasonForAppointment);
-            //        return cmd.ExecuteNonQuery() > 0;
-            //    }
-            //}
-
-            // TO DO AddServicesPerformed
-            public static bool AddServicesPerformed(long patientId,
-                                              long doctorId,
-                                              string appointmentDateTime,
-                                              string reasonForAppointment)
+            public static bool AddBill(long appoinmentId, double totalAmount, List<Service> servicesPerformed)
             {
-                string checkQuery = "SELECT COUNT(*) FROM appointments WHERE AppointmentDateTime = @appointmentDateTime";
-                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
-                {
-                    checkCmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
-                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
-                    {
-                        return false;
-                    }
-                }
-                string insertQuery = "INSERT INTO appointments (patientId, doctorId, appointmentDateTime, reasonForAppointment) " +
-                                     "VALUES (@patientId, @doctorId, @appointmentDateTime, @reasonForAppointment)";
+                bool flag;
+                string insertQuery = @"INSERT INTO bills (AppointmentID, BillingDate, TotalAmount) 
+                                       VALUES (@appoinmentId, NOW(), @totalAmount)";
                 using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
                 {
-                    cmd.Parameters.AddWithValue("@patientId", patientId);
-                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
-                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
-                    cmd.Parameters.AddWithValue("@reasonForAppointment", reasonForAppointment);
-                    return cmd.ExecuteNonQuery() > 0;
+                    cmd.Parameters.AddWithValue("@appoinmentId", appoinmentId);
+                    cmd.Parameters.AddWithValue("@totalAmount", totalAmount);
+                    flag = cmd.ExecuteNonQuery() > 0;
+                    
                 }
+
+                if (flag)
+                {
+                    if(AddServicesPerformed(appoinmentId, servicesPerformed))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            public static bool AddServicesPerformed(long appointmentId, List<Service> servicesPerformed)
+            {
+                if (servicesPerformed == null || servicesPerformed.Count == 0)
+                    return false;
+
+                string insertQuery = @"INSERT INTO servicesperformed (AppointmentID, ServiceID)
+                           VALUES (@appointmentId, @serviceId)";
+
+                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+                {
+                    cmd.Parameters.Add("@appointmentId", MySqlDbType.Int64);
+                    cmd.Parameters.Add("@serviceId", MySqlDbType.Int64);
+
+                    foreach (Service service in servicesPerformed)
+                    {
+                        cmd.Parameters["@appointmentId"].Value = appointmentId;
+                        cmd.Parameters["@serviceId"].Value = service.ServiceID;
+
+                        if (cmd.ExecuteNonQuery() <= 0)
+                        {
+                            return false; 
+                        }
+                    }
+                }
+
+                return true;
             }
 
             public static bool UpdatePatient(long patientId,

@@ -148,16 +148,16 @@
             this.SplitContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
             this.SplitContainer.Panel2.Controls.Add(this.Dashboard_panel);
             this.SplitContainer.Panel2.Controls.Add(this.Doctors_SearchButton);
-            this.SplitContainer.Panel2.Controls.Add(this.Doctors_TabControl);
-            this.SplitContainer.Panel2.Controls.Add(this.Patients_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_DataGridView);
-            this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_RegisterButton);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_CreateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_SearchButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_CreateButton);
+            this.SplitContainer.Panel2.Controls.Add(this.Doctors_TabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.Patients_TabControl);
+            this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
             this.SplitContainer.Panel2MinSize = 978;
             this.SplitContainer.Size = new System.Drawing.Size(1264, 681);
             this.SplitContainer.SplitterDistance = 282;
@@ -505,10 +505,14 @@
             // 
             // Billing_DataGridView
             // 
+            this.Billing_DataGridView.AllowUserToAddRows = false;
+            this.Billing_DataGridView.AllowUserToDeleteRows = false;
+            this.Billing_DataGridView.AllowUserToResizeColumns = false;
+            this.Billing_DataGridView.AllowUserToResizeRows = false;
             this.Billing_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Billing_DataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.Billing_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Billing_DataGridView.Location = new System.Drawing.Point(37, 38);
+            this.Billing_DataGridView.Location = new System.Drawing.Point(41, 37);
             this.Billing_DataGridView.Name = "Billing_DataGridView";
             this.Billing_DataGridView.Size = new System.Drawing.Size(881, 507);
             this.Billing_DataGridView.TabIndex = 13;
@@ -801,11 +805,11 @@
             this.Dashboard_panel.Controls.Add(this.panel4);
             this.Dashboard_panel.Controls.Add(this.panel3);
             this.Dashboard_panel.Controls.Add(this.panel2);
-            this.Dashboard_panel.Location = new System.Drawing.Point(13, 22);
+            this.Dashboard_panel.Location = new System.Drawing.Point(12, 23);
             this.Dashboard_panel.Margin = new System.Windows.Forms.Padding(2);
             this.Dashboard_panel.Name = "Dashboard_panel";
             this.Dashboard_panel.Size = new System.Drawing.Size(953, 632);
-            this.Dashboard_panel.TabIndex = 16;
+            this.Dashboard_panel.TabIndex = 17;
             // 
             // panel4
             // 

@@ -18,9 +18,6 @@ namespace ClinicManagementSystem
         public CreateBillForm()
         {
             InitializeComponent();
-            BillingDateTimePicker.Format = DateTimePickerFormat.Custom;
-            BillingDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
-            BillingDateTimePicker.MinDate = DateTime.Today;
         }
 
 
@@ -49,7 +46,15 @@ namespace ClinicManagementSystem
                     }
                     else
                     {
-                        // create bill method
+                        if (Database.AddBill(Convert.ToInt64(AppointmentIDTextBox.Text), Convert.ToDouble(AmountTextBox.Text), Database.ServicesPerformedList))
+                        {
+                            MessageBox.Show("Bill created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error!\nDatabse error.\nBill not udpated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }

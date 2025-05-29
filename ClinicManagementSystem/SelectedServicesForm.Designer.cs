@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CancelButton = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.ServiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelectedServices_DataGridView)).BeginInit();
             this.SuspendLayout();
@@ -149,24 +151,26 @@
             this.SelectedServices_DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ServiceID,
             this.ServiceName,
-            this.Price});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.InfoText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SelectedServices_DataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Price,
+            this.DeleteButton});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InfoText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SelectedServices_DataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.SelectedServices_DataGridView.Location = new System.Drawing.Point(18, 79);
             this.SelectedServices_DataGridView.Name = "SelectedServices_DataGridView";
             this.SelectedServices_DataGridView.ReadOnly = true;
             this.SelectedServices_DataGridView.Size = new System.Drawing.Size(473, 286);
             this.SelectedServices_DataGridView.TabIndex = 16;
+            this.SelectedServices_DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SelectedServices_DataGridView_CellContentClick);
             // 
             // ServiceID
             // 
-            this.ServiceID.FillWeight = 75.56384F;
+            this.ServiceID.FillWeight = 80.29458F;
             this.ServiceID.HeaderText = "ServiceID";
             this.ServiceID.Name = "ServiceID";
             this.ServiceID.ReadOnly = true;
@@ -174,7 +178,7 @@
             // ServiceName
             // 
             this.ServiceName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ServiceName.FillWeight = 148.294F;
+            this.ServiceName.FillWeight = 157.5781F;
             this.ServiceName.HeaderText = "ServiceName";
             this.ServiceName.Name = "ServiceName";
             this.ServiceName.ReadOnly = true;
@@ -182,11 +186,25 @@
             // 
             // Price
             // 
-            this.Price.FillWeight = 76.14214F;
+            this.Price.FillWeight = 80.90909F;
             this.Price.HeaderText = "Price";
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
             this.Price.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // DeleteButton
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            this.DeleteButton.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DeleteButton.FillWeight = 81.21828F;
+            this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DeleteButton.HeaderText = "Delete";
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.ReadOnly = true;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseColumnTextForButtonValue = true;
             // 
             // SelectedServicesForm
             // 
@@ -220,5 +238,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ServiceID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ServiceName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewButtonColumn DeleteButton;
     }
 }
