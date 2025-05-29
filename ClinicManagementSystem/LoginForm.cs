@@ -620,6 +620,47 @@ namespace ClinicManagementSystem
                 }
             }
 
+            public static bool UpdateService(long serviceId,
+                                             string serviceName,
+                                             string serviceDesc,
+                                             string serviceType,
+                                             double price)
+            {
+                string checkQuery = @"SELECT COUNT(*) 
+                                        FROM services
+                                        WHERE serviceId <> @serviceId
+                                        AND serviceName = @serviceName";
+
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@serviceId", serviceId);
+                    checkCmd.Parameters.AddWithValue("@serviceName", serviceName);
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        return false;
+                    }
+                }
+                long serviceTypeId = GetServiceTypeID(serviceType);
+                string updateQuery = @"UPDATE services
+                                       SET serviceName = @serviceName,
+                                           serviceDesc = @serviceDesc,
+                                           serviceDesc = @serviceDesc,
+                                           serviceTypeID = @serviceTypeId,
+                                           price = @price
+                                       WHERE serviceId = @serviceId";
+
+                using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@serviceName", serviceName);
+                    cmd.Parameters.AddWithValue("@serviceDesc", serviceDesc);
+                    cmd.Parameters.AddWithValue("@serviceTypeId", serviceTypeId);
+                    cmd.Parameters.AddWithValue("@price", price);
+                    cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
             public static bool UpdateUserReceptionist(long userId,
                                       long receptionistId,
                                       string emailAddress,

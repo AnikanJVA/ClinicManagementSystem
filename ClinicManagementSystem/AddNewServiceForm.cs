@@ -70,7 +70,30 @@ namespace ClinicManagementSystem
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            // update service method
+            if (string.IsNullOrWhiteSpace(ServiceIDTextBox.Text) || 
+                string.IsNullOrWhiteSpace(ServiceNameTextBox.Text) ||
+                string.IsNullOrWhiteSpace(ServiceDescriptionTextBox.Text) ||
+                string.IsNullOrWhiteSpace(ServiceTypeComboBox.Text) ||
+                string.IsNullOrWhiteSpace(PriceTextBox.Text))
+            {
+                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (Database.UpdateService(Convert.ToInt64(ServiceIDTextBox.Text),
+                                           ServiceNameTextBox.Text,
+                                           ServiceDescriptionTextBox.Text,
+                                           ServiceTypeComboBox.Text,
+                                           Convert.ToDouble(PriceTextBox.Text)))
+                {
+                    MessageBox.Show("Service updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error!\nDuplicate service name detected.\nService not updated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
