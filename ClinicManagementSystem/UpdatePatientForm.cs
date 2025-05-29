@@ -104,7 +104,7 @@ namespace ClinicManagementSystem
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm("SEARCH");
+            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm();
             choosePatientsForm.ShowDialog();
             PatientIdTextBox.Text = Database.CurrentPatient.ID.ToString();
             FnameTextBox.Text = Database.CurrentPatient.FirstName.ToString();
