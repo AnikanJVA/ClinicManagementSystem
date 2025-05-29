@@ -31,6 +31,28 @@ namespace ClinicManagementSystem
 
         private void CreateUpdateBillButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(AppointmentIDTextBox.Text))
+            {
+                MessageBox.Show("Select appoinment first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(ServicesPerformedTextBox.Text))
+                {
+                    MessageBox.Show("Select a service first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    if (AmountTextBox.Text.Equals("0") || string.IsNullOrWhiteSpace(AmountTextBox.Text))
+                    {
+                        MessageBox.Show("Calculate total amount first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        // create bill method
+                    }
+                }
+            }
 
         }
 
@@ -55,6 +77,12 @@ namespace ClinicManagementSystem
             PatientIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
             PatientNameTextBox.Text = $"{Database.CurrentPatient.FirstName.ToString()} " +
                                       $"{Database.CurrentPatient.MiddleName.ToString()} {Database.CurrentPatient.LastName.ToString()}";
+            AppointmentDateTimeTextBox.Text = Database.CurrentAppointment.DateTime;
+        }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            AmountTextBox.Text = Database.GetTotalAmount(Database.ServicesPerformedList).ToString();
         }
     }
 }

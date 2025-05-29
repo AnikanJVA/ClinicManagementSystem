@@ -39,7 +39,6 @@ namespace ClinicManagementSystem
                 if (Database.AuthenticateUser(username, password))
                 {
                     MessageBox.Show("Login Successful!", "Success");
-
                     switch (Database.GetUserAccType(username, password).ToUpper())
                     {
                         case "ADMIN":
@@ -51,6 +50,7 @@ namespace ClinicManagementSystem
                             break;
 
                         case "DOCTOR":
+                            Database.CurrentLoggedDoctor = Database.RetrieveDoctor(Database.RetrieveUserID(username, "DOCTOR"), "USERID");
                             DocView docView = new DocView();
                             docView.Show();
                             FormProvider.Login.Hide();
@@ -59,6 +59,7 @@ namespace ClinicManagementSystem
                             break;
 
                         case "RECEPTIONIST":
+                            Database.CurrentLoggedReceptionist = Database.RetrieveReceptionist(Database.RetrieveUserID(username, "RECEPTIONIST"));
                             RecepView recepView = new RecepView();
                             recepView.Show();
                             FormProvider.Login.Hide();
@@ -77,6 +78,9 @@ namespace ClinicManagementSystem
 
         public sealed class Database
         {
+            private static Doctor currentLoggedDoctor;
+            private static Receptionist currentLoggedReceptionist;
+
             private static Patient currentPatient;
             private static Doctor currentDoctor;
             private static Appointment currentAppointment;
@@ -100,6 +104,8 @@ namespace ClinicManagementSystem
                 currentReceptionist = new Receptionist();
                 currentService = new Service();
                 servicesPerformedList = new List<Service>();
+                currentLoggedDoctor = new Doctor();
+                currentLoggedReceptionist = new Receptionist();
             }
 
             public static Database Instance => instance.Value;
@@ -113,6 +119,30 @@ namespace ClinicManagementSystem
                         connection.Open();
                     }
                     return connection;
+                }
+            }
+
+            public static Doctor CurrentLoggedDoctor
+            {
+                set
+                {
+                    currentLoggedDoctor = value;
+                }
+                get
+                {
+                    return currentLoggedDoctor; 
+                }
+            }
+
+            public static Receptionist CurrentLoggedReceptionist
+            {
+                set
+                {
+                    currentLoggedReceptionist = value;
+                }
+                get
+                {
+                    return currentLoggedReceptionist;
                 }
             }
 
@@ -451,8 +481,50 @@ namespace ClinicManagementSystem
                 }
             }
 
-
             public static bool AddAppointment(long patientId,
+                                              long doctorId,
+                                              string appointmentDateTime,
+                                              string reasonForAppointment)
+            {
+                string checkQuery = "SELECT COUNT(*) FROM appointments WHERE AppointmentDateTime = @appointmentDateTime";
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
+                {
+                    checkCmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+                    if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
+                    {
+                        return false;
+                    }
+                }
+                string insertQuery = "INSERT INTO appointments (patientId, doctorId, appointmentDateTime, reasonForAppointment) " +
+                                     "VALUES (@patientId, @doctorId, @appointmentDateTime, @reasonForAppointment)";
+                using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+                    cmd.Parameters.AddWithValue("@reasonForAppointment", reasonForAppointment);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
+            // TO DO AddBill
+            //public static bool AddBill(long appoinmentId,
+            //                           string billingDate,
+            //                           double totalAmount)
+            //{
+            //    string insertQuery = "INSERT INTO bill VALUES ()";
+            //    using (MySqlCommand cmd = new MySqlCommand(insertQuery, Instance.connection))
+            //    {
+            //        cmd.Parameters.AddWithValue("@patientId", patientId);
+            //        cmd.Parameters.AddWithValue("@doctorId", doctorId);
+            //        cmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
+            //        cmd.Parameters.AddWithValue("@reasonForAppointment", reasonForAppointment);
+            //        return cmd.ExecuteNonQuery() > 0;
+            //    }
+            //}
+
+            // TO DO AddServicesPerformed
+            public static bool AddServicesPerformed(long patientId,
                                               long doctorId,
                                               string appointmentDateTime,
                                               string reasonForAppointment)
@@ -763,6 +835,19 @@ namespace ClinicManagementSystem
                     }
 
                     return null;
+                }
+            }
+
+            public static DataTable GetBills()
+            {
+                string query = "SELECT * FROM bills";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
                 }
             }
 
@@ -1079,7 +1164,42 @@ namespace ClinicManagementSystem
                         return Convert.ToInt64(result);
                     }
                 }
-                return 0; // Return null if not found
+                return 0; 
+            }
+
+            public static double GetTotalAmount(List<Service> ServicesPerformed)
+            {
+                List<string> parameterNames = new List<string>();
+                List<long> serviceIds = new List<long>();
+
+                if (ServicesPerformed == null || ServicesPerformed.Count == 0)
+                {
+                    return 0;
+                }
+
+                for (int i = 0; i < ServicesPerformed.Count; i++)
+                {
+                    serviceIds.Add(ServicesPerformed[i].ServiceID);
+                    parameterNames.Add("@id" + i);
+                }
+
+                string parameterString = string.Join(", ", parameterNames);
+
+                string query = $"SELECT SUM(price) FROM services WHERE serviceId IN ({parameterString})";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.connection))
+                {
+                    for (int i = 0; i < ServicesPerformed.Count; i++)
+                    {
+                        cmd.Parameters.AddWithValue("@id" + i, ServicesPerformed[i].ServiceID);
+                    }
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDouble(result);
+                    }
+                }
+                return 0;
             }
 
             public static Patient RetrievePatient(long patientId) 
@@ -1351,6 +1471,51 @@ namespace ClinicManagementSystem
                     }
                 }
                 return null;
+            }
+
+            public static long RetrieveUserID(string username, string accType)
+            {
+                string query = "";
+
+                if (accType.ToUpper() == "DOCTOR")
+                {
+                    query = @"SELECT u.userId 
+                  FROM users u 
+                  INNER JOIN doctors d ON u.userId = d.userId 
+                  WHERE u.username = @username";
+                }
+                else if (accType.ToUpper() == "RECEPTIONIST")
+                {
+                    query = @"SELECT u.userId 
+                  FROM users u 
+                  INNER JOIN receptionists r ON u.userId = r.userId 
+                  WHERE u.username = @username";
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid account type. Expected 'doctor' or 'receptionist'.");
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@username", username);
+
+                    try
+                    {
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                        {
+                            return Convert.ToInt64(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                return -1; 
             }
         }
 

@@ -17,6 +17,7 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             UpdateDataGrids();
+            AccountTypelabel.Text += "\n" + Database.CurrentLoggedReceptionist.FirstName;
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
@@ -41,6 +42,8 @@ namespace ClinicManagementSystem
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
+
+            Dashboard_panel.Visible = false;
 
             UpdateDataGrids();
         }
@@ -68,6 +71,8 @@ namespace ClinicManagementSystem
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
 
+            Dashboard_panel.Visible = false;
+
             UpdateDataGrids();
         }
 
@@ -93,6 +98,8 @@ namespace ClinicManagementSystem
 
             Doctors_TabControl.Show();
             Doctors_SearchButton.Show();
+
+            Dashboard_panel.Visible = false;
 
             UpdateDataGrids();
         }
@@ -126,6 +133,8 @@ namespace ClinicManagementSystem
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
+
+            Dashboard_panel.Visible = false;
 
             UpdateDataGrids();
         }
@@ -200,6 +209,8 @@ namespace ClinicManagementSystem
             Doctors_AvailableDataGridView.DataSource = Database.GetDoctors("AVAILABLE");
             Doctors_UnavailableDataGridView.DataSource = Database.GetDoctors("UNAVAILABLE");
             Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
+
+            Billing_DataGridView.DataSource = Database.GetBills();
         }
 
         private void DashBoard_NavButton_Click(object sender, EventArgs e)
@@ -224,6 +235,8 @@ namespace ClinicManagementSystem
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
+
+            Dashboard_panel.Visible = true;
         }
     }
 }

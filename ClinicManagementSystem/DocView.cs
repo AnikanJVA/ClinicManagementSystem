@@ -16,6 +16,8 @@ namespace ClinicManagementSystem
         public DocView()
         {
             InitializeComponent();
+            AccountTypelabel.Text += "\n" + Database.CurrentLoggedReceptionist.LastName;
+
         }
         private void DocView_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -28,6 +30,8 @@ namespace ClinicManagementSystem
             DashBoard_NavButton.BackColor = Color.FromArgb(1, 34, 79);
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+
+            Dashboard_panel.Visible = true;
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
@@ -35,6 +39,8 @@ namespace ClinicManagementSystem
             DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(1, 34, 79);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+
+            Dashboard_panel.Visible = false;
         }
 
         private void ClientsButton_Click(object sender, EventArgs e)
@@ -43,13 +49,15 @@ namespace ClinicManagementSystem
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(1, 34, 79);
 
-
+            Dashboard_panel.Visible = false;
         }
         private void Prescriptions_NavButton_Click(object sender, EventArgs e)
         {
             DashBoard_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
             Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+
+            Dashboard_panel.Visible = false;
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -58,7 +66,6 @@ namespace ClinicManagementSystem
             FormProvider.Login.Show();
             this.Close();
         }
-
 
     }
 }
