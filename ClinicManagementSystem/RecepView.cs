@@ -22,6 +22,15 @@ namespace ClinicManagementSystem
             Appointments_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             Appointments_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Appointments_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            greetingsLabel.Text += " " + Database.CurrentLoggedReceptionist.LastName;
+            TotalAppointmentsLabel.Text = Database.GetTotalAppointments().ToString();
+            TotalDoctorsLabel.Text = Database.GetTotalDoctors().ToString();
+            TotalPatientsLabel.Text = Database.GetTotalPatients().ToString();
+
+            NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
+            NextAppointment_DoctorNameLabel.Text += " " + Database.GetNextAppointmentDoctor();
+            NextAppointment_PatientNameLabel.Text = Database.GetNextAppointmentPatient();
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
@@ -244,6 +253,9 @@ namespace ClinicManagementSystem
             Doctors_SearchButton.Hide();
 
             Dashboard_panel.Visible = true;
+            NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
+            NextAppointment_DoctorNameLabel.Text += " " + Database.GetNextAppointmentDoctor();
+            NextAppointment_PatientNameLabel.Text = Database.GetNextAppointmentPatient();
         }
 
         private void Appointments_SerachButton_Click(object sender, EventArgs e)

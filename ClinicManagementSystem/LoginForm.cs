@@ -1486,6 +1486,148 @@ namespace ClinicManagementSystem
                 return 0; 
             }
 
+            public static int GetTotalAppointments()
+            {
+                string query = "SELECT COUNT(*) FROM appointments";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+
+            public static int GetTotalPatients()
+            {
+                string query = "SELECT COUNT(*) FROM patients";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+
+            public static int GetTotalDoctors()
+            {
+                string query = "SELECT COUNT(*) FROM doctors";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+
+            public static DateTime? GetNextAppointmentDateTime()
+            {
+                string query = @"SELECT AppointmentDateTime 
+                                 FROM appointments 
+                                 WHERE AppointmentDateTime > NOW() 
+                                 AND status IN (@APPROVED, @RESCHEDULED)
+                                 ORDER BY AppointmentDateTime ASC 
+                                 LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@APPROVED", "APPROVED");
+                    cmd.Parameters.AddWithValue("@RESCHEDULED", "RESCHEDULED");
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                        return Convert.ToDateTime(result);
+                    return null;
+                }
+            }
+
+            public static string GetNextAppointmentDoctor()
+            {
+                string query = @"SELECT CONCAT(d.FirstName, ' ', d.MiddleName, ' ', d.LastName) AS DoctorName
+                     FROM appointments a
+                     INNER JOIN doctors d ON a.DoctorID = d.DoctorID
+                     WHERE a.AppointmentDateTime > NOW()
+                     ORDER BY a.AppointmentDateTime ASC
+                     LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    object result = cmd.ExecuteScalar();
+                    return result?.ToString() ?? string.Empty;
+                }
+            }
+
+            public static string GetNextAppointmentPatient()
+            {
+                string query = @"SELECT CONCAT(p.FirstName, ' ', p.MiddleName, ' ', p.LastName) AS PatientName
+                     FROM appointments a
+                     INNER JOIN patients p ON a.PatientID = p.PatientID
+                     WHERE a.AppointmentDateTime > NOW()
+                     ORDER BY a.AppointmentDateTime ASC
+                     LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    object result = cmd.ExecuteScalar();
+                    return result?.ToString() ?? string.Empty;
+                }
+            }
+            //TO IMPELMENT 
+            public static string GetNextPatientNameByDoctor(long doctorId)
+            {
+                string query = @"SELECT CONCAT(p.FirstName, ' ', p.MiddleName, ' ', p.LastName) AS PatientName
+                     FROM appointments a
+                     INNER JOIN patients p ON a.PatientID = p.PatientID
+                     WHERE a.DoctorID = @doctorId AND a.AppointmentDateTime > NOW()
+                     ORDER BY a.AppointmentDateTime ASC 
+                     LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    object result = cmd.ExecuteScalar();
+                    return result != DBNull.Value && result != null ? result.ToString() : "No upcoming patient";
+                }
+            }
+
+            public static int GetTotalAppointmentsByDoctor(long doctorId)
+            {
+                string query = "SELECT COUNT(*) FROM appointments WHERE DoctorID = @doctorId";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : 0;
+                }
+            }
+
+            public static int GetTotalPatientsByDoctor(long doctorId)
+            {
+                string query = "SELECT COUNT(DISTINCT PatientID) FROM appointments WHERE DoctorID = @doctorId";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : 0;
+                }
+            }
+
+            public static DateTime? GetNextAppointmentDateByDoctor(long doctorId)
+            {
+                string query = @"SELECT AppointmentDateTime 
+                     FROM appointments 
+                     WHERE DoctorID = @doctorId AND AppointmentDateTime > NOW()
+                     ORDER BY AppointmentDateTime ASC 
+                     LIMIT 1";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    object result = cmd.ExecuteScalar();
+                    return result != DBNull.Value ? Convert.ToDateTime(result) : (DateTime?)null;
+                }
+            }
+
+            //TO IMPELMENT 
+
             public static double GetTotalAmount(List<Service> ServicesPerformed)
             {
                 List<string> parameterNames = new List<string>();
