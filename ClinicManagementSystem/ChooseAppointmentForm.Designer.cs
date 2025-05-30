@@ -50,10 +50,13 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.DateCheckBox = new System.Windows.Forms.CheckBox();
+            this.AppointmentDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SearchFnameTextBox = new System.Windows.Forms.TextBox();
             this.SearchLnameTextBox = new System.Windows.Forms.TextBox();
             this.SearchMnameTextBox = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -61,9 +64,6 @@
             this.ResetButton = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.AppointmentDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.DateCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_DataGridView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -88,7 +88,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(24, 146);
+            this.panel1.Location = new System.Drawing.Point(24, 105);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(422, 307);
@@ -287,7 +287,7 @@
             this.Appointments_DataGridView.AllowUserToResizeRows = false;
             this.Appointments_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Appointments_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Appointments_DataGridView.Location = new System.Drawing.Point(462, 146);
+            this.Appointments_DataGridView.Location = new System.Drawing.Point(462, 105);
             this.Appointments_DataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.Appointments_DataGridView.Name = "Appointments_DataGridView";
             this.Appointments_DataGridView.ReadOnly = true;
@@ -304,7 +304,7 @@
             this.SelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.SelectButton.ForeColor = System.Drawing.Color.White;
-            this.SelectButton.Location = new System.Drawing.Point(197, 479);
+            this.SelectButton.Location = new System.Drawing.Point(197, 438);
             this.SelectButton.Margin = new System.Windows.Forms.Padding(2);
             this.SelectButton.Name = "SelectButton";
             this.SelectButton.Size = new System.Drawing.Size(383, 38);
@@ -321,7 +321,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(605, 479);
+            this.CancelButton.Location = new System.Drawing.Point(605, 438);
             this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(383, 38);
@@ -338,7 +338,7 @@
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.CloseButton.ForeColor = System.Drawing.Color.White;
-            this.CloseButton.Location = new System.Drawing.Point(400, 479);
+            this.CloseButton.Location = new System.Drawing.Point(400, 438);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(2);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(383, 38);
@@ -364,8 +364,30 @@
             this.panel2.Controls.Add(this.label9);
             this.panel2.Location = new System.Drawing.Point(24, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1133, 81);
+            this.panel2.Size = new System.Drawing.Size(1133, 45);
             this.panel2.TabIndex = 5;
+            // 
+            // DateCheckBox
+            // 
+            this.DateCheckBox.AutoSize = true;
+            this.DateCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.DateCheckBox.ForeColor = System.Drawing.Color.White;
+            this.DateCheckBox.Location = new System.Drawing.Point(970, 45);
+            this.DateCheckBox.Name = "DateCheckBox";
+            this.DateCheckBox.Size = new System.Drawing.Size(153, 21);
+            this.DateCheckBox.TabIndex = 10;
+            this.DateCheckBox.Text = "With Date And Time";
+            this.DateCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // AppointmentDateTimePicker
+            // 
+            this.AppointmentDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AppointmentDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.AppointmentDateTimePicker.Location = new System.Drawing.Point(198, 45);
+            this.AppointmentDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
+            this.AppointmentDateTimePicker.Name = "AppointmentDateTimePicker";
+            this.AppointmentDateTimePicker.Size = new System.Drawing.Size(177, 26);
+            this.AppointmentDateTimePicker.TabIndex = 9;
             // 
             // SearchFnameTextBox
             // 
@@ -405,6 +427,17 @@
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
             this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(75, 50);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(117, 20);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Date and Time:";
             // 
             // label13
             // 
@@ -457,7 +490,7 @@
             this.ResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.ResetButton.ForeColor = System.Drawing.Color.White;
-            this.ResetButton.Location = new System.Drawing.Point(1001, 117);
+            this.ResetButton.Location = new System.Drawing.Point(1001, 76);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.Size = new System.Drawing.Size(156, 26);
             this.ResetButton.TabIndex = 7;
@@ -470,7 +503,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(600, 119);
+            this.label10.Location = new System.Drawing.Point(600, 78);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(311, 25);
             this.label10.TabIndex = 6;
@@ -481,51 +514,18 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(104, 115);
+            this.label14.Location = new System.Drawing.Point(104, 74);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(228, 29);
             this.label14.TabIndex = 8;
             this.label14.Text = "Appointment Details";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(75, 43);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(117, 20);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Date and Time:";
-            // 
-            // AppointmentDateTimePicker
-            // 
-            this.AppointmentDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AppointmentDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.AppointmentDateTimePicker.Location = new System.Drawing.Point(198, 38);
-            this.AppointmentDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
-            this.AppointmentDateTimePicker.Name = "AppointmentDateTimePicker";
-            this.AppointmentDateTimePicker.Size = new System.Drawing.Size(177, 26);
-            this.AppointmentDateTimePicker.TabIndex = 9;
-            // 
-            // DateCheckBox
-            // 
-            this.DateCheckBox.AutoSize = true;
-            this.DateCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.DateCheckBox.ForeColor = System.Drawing.Color.White;
-            this.DateCheckBox.Location = new System.Drawing.Point(970, 45);
-            this.DateCheckBox.Name = "DateCheckBox";
-            this.DateCheckBox.Size = new System.Drawing.Size(153, 21);
-            this.DateCheckBox.TabIndex = 10;
-            this.DateCheckBox.Text = "With Date And Time";
-            this.DateCheckBox.UseVisualStyleBackColor = true;
             // 
             // ChooseAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(1183, 549);
+            this.ClientSize = new System.Drawing.Size(1183, 491);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.label10);
