@@ -61,13 +61,11 @@ namespace ClinicManagementSystem
                 string.IsNullOrWhiteSpace(LnameTextBox.Text) ||
                 !MaleRadioButton.Checked && !FemaleRadioButton.Checked ||
                 string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AltContactNumberTextBox.Text) ||
-                string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
                 string.IsNullOrWhiteSpace(PatientIdTextBox.Text) || 
                 string.IsNullOrWhiteSpace(StatusComboBox.Text))
             {
-                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Only Email Address and Alternate Contact Number are optional. All other fields must be filled out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

@@ -261,9 +261,9 @@ namespace ClinicManagementSystem
                                     "OR altContactNumber = @AltContactNumber";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
-                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
-                    checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress ?? (object)DBNull.Value);
+                    checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber ?? (object)DBNull.Value);
+                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber ?? (object)DBNull.Value);
                     if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
                     {
                         return false;
@@ -279,8 +279,8 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@dob", dob);
                     cmd.Parameters.AddWithValue("@sex", sex);
                     cmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    cmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
-                    cmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@altContactNumber", string.IsNullOrWhiteSpace(altContactNumber) ? (object)DBNull.Value : altContactNumber);
+                    cmd.Parameters.AddWithValue("@emailAddress", string.IsNullOrWhiteSpace(emailAddress) ? (object)DBNull.Value : emailAddress);
                     cmd.Parameters.AddWithValue("@address", address);
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -587,9 +587,9 @@ namespace ClinicManagementSystem
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
                     checkCmd.Parameters.AddWithValue("@patientId", patientId);
-                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
-                    checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress ?? (object)DBNull.Value);
+                    checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber ?? (object)DBNull.Value);
+                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber ?? (object)DBNull.Value);
 
                     int count = Convert.ToInt32(checkCmd.ExecuteScalar());
                     if (count > 0)
@@ -619,8 +619,8 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@DoB", dob);
                     cmd.Parameters.AddWithValue("@Sex", sex);
                     cmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                    cmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
-                    cmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@AltContactNumber", string.IsNullOrWhiteSpace(altContactNumber) ? (object)DBNull.Value : altContactNumber);
+                    cmd.Parameters.AddWithValue("@EmailAddress", string.IsNullOrWhiteSpace(emailAddress) ? (object)DBNull.Value : emailAddress);
                     cmd.Parameters.AddWithValue("@Address", address);
                     cmd.Parameters.AddWithValue("@Status", status);
                     cmd.Parameters.AddWithValue("@PatientId", patientId);
@@ -659,9 +659,9 @@ namespace ClinicManagementSystem
                 {
                     checkCmd.Parameters.AddWithValue("@userId", userId);
                     checkCmd.Parameters.AddWithValue("@doctorId", doctorId);
-                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress ?? (object)DBNull.Value);
                     checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber ?? (object)DBNull.Value);
                     checkCmd.Parameters.AddWithValue("@LicenseNumber", licenseNumber);
 
                     int count = Convert.ToInt32(checkCmd.ExecuteScalar());
@@ -691,8 +691,8 @@ namespace ClinicManagementSystem
                 {
                     cmd.Parameters.AddWithValue("@userId", userId);
                     cmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                    cmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
-                    cmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@AltContactNumber", string.IsNullOrWhiteSpace(altContactNumber) ? (object)DBNull.Value : altContactNumber);
+                    cmd.Parameters.AddWithValue("@EmailAddress", string.IsNullOrWhiteSpace(emailAddress) ? (object)DBNull.Value : emailAddress);
                     cmd.Parameters.AddWithValue("@Address", address);
                     cmd.Parameters.AddWithValue("@Status", status);
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
@@ -884,8 +884,7 @@ namespace ClinicManagementSystem
             public static DataTable GetBills()
             {
                 string query = @"SELECT bills.BillID, 
-                                        appointments.AppointmentID,
-                                        appointments.AppointmentDateTime,
+                                        appointments.AppointmentDateTime, 
                                         bills.BillingDate, 
                                         bills.TotalAmount
                                  FROM bills

@@ -295,6 +295,7 @@
             this.AppointmentDateTimePicker.Name = "AppointmentDateTimePicker";
             this.AppointmentDateTimePicker.Size = new System.Drawing.Size(277, 26);
             this.AppointmentDateTimePicker.TabIndex = 22;
+            this.AppointmentDateTimePicker.ValueChanged += new System.EventHandler(this.AppointmentDateTimePicker_ValueChanged);
             // 
             // SelectPatientButton
             // 

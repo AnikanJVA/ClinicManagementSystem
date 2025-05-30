@@ -84,13 +84,11 @@ namespace ClinicManagementSystem
                 string.IsNullOrWhiteSpace(LnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(LicenseNoTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AltContactNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(EmailAddressTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ScheduleComboBox.Text) ||
                 string.IsNullOrWhiteSpace(StatusComboBox.Text))
             {
-                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Only Email Address and Alternate Contact Number are optional. All other fields must be filled out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

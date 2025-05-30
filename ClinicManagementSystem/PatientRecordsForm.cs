@@ -94,14 +94,12 @@ namespace ClinicManagementSystem
                     DataGridViewRow row = ServicesPerformed_DataGridView.Rows[e.RowIndex];
                     try
                     {
-                        serviceID = Convert.ToInt64(row.Cells["ServiceID"].Value.ToString());
+                        Database.CurrentService = Database.RetrieveService(Convert.ToInt64(row.Cells["ServiceID"].Value.ToString()));
                     }
                     catch (Exception ex) 
                     {
 
-                    }
-                    string serviceName = row.Cells["ServiceName"].Value.ToString();
-                    string serviceType = row.Cells["ServiceType"].Value.ToString();
+                    }              
                 }
             }
         }
