@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.SelectUserButton = new System.Windows.Forms.Button();
@@ -50,7 +51,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +84,17 @@
             this.panel1.Size = new System.Drawing.Size(867, 318);
             this.panel1.TabIndex = 2;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(68, 231);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(368, 15);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "\"EMAIL ADDRESS AND ALT CONTACT NUMBER ARE OPTIONAL\"";
+            // 
             // StatusComboBox
             // 
             this.StatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -105,9 +116,9 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(515, 199);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(60, 20);
+            this.label9.Size = new System.Drawing.Size(66, 20);
             this.label9.TabIndex = 24;
-            this.label9.Text = "Status:";
+            this.label9.Text = "*Status:";
             // 
             // SelectUserButton
             // 
@@ -141,7 +152,7 @@
             // 
             this.UserIDTextBox.Enabled = false;
             this.UserIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserIDTextBox.Location = new System.Drawing.Point(170, 30);
+            this.UserIDTextBox.Location = new System.Drawing.Point(178, 30);
             this.UserIDTextBox.Name = "UserIDTextBox";
             this.UserIDTextBox.ReadOnly = true;
             this.UserIDTextBox.Size = new System.Drawing.Size(244, 26);
@@ -154,9 +165,9 @@
             this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(94, 196);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 20);
+            this.label11.Size = new System.Drawing.Size(78, 20);
             this.label11.TabIndex = 16;
-            this.label11.Text = "Address:";
+            this.label11.Text = "*Address:";
             // 
             // FnameTextBox
             // 
@@ -212,7 +223,7 @@
             // AltContactNoTextBox
             // 
             this.AltContactNoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AltContactNoTextBox.Location = new System.Drawing.Point(170, 158);
+            this.AltContactNoTextBox.Location = new System.Drawing.Point(178, 155);
             this.AltContactNoTextBox.Name = "AltContactNoTextBox";
             this.AltContactNoTextBox.Size = new System.Drawing.Size(244, 26);
             this.AltContactNoTextBox.TabIndex = 6;
@@ -228,7 +239,7 @@
             // AddressTextBox
             // 
             this.AddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddressTextBox.Location = new System.Drawing.Point(170, 193);
+            this.AddressTextBox.Location = new System.Drawing.Point(178, 190);
             this.AddressTextBox.Name = "AddressTextBox";
             this.AddressTextBox.Size = new System.Drawing.Size(244, 26);
             this.AddressTextBox.TabIndex = 7;
@@ -236,7 +247,7 @@
             // EmailAddressTextBox
             // 
             this.EmailAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmailAddressTextBox.Location = new System.Drawing.Point(170, 89);
+            this.EmailAddressTextBox.Location = new System.Drawing.Point(178, 86);
             this.EmailAddressTextBox.Name = "EmailAddressTextBox";
             this.EmailAddressTextBox.Size = new System.Drawing.Size(244, 26);
             this.EmailAddressTextBox.TabIndex = 3;
@@ -244,7 +255,7 @@
             // ContactNoTextBox
             // 
             this.ContactNoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ContactNoTextBox.Location = new System.Drawing.Point(170, 124);
+            this.ContactNoTextBox.Location = new System.Drawing.Point(178, 121);
             this.ContactNoTextBox.Name = "ContactNoTextBox";
             this.ContactNoTextBox.Size = new System.Drawing.Size(244, 26);
             this.ContactNoTextBox.TabIndex = 4;
@@ -267,9 +278,9 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(42, 126);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 20);
+            this.label5.Size = new System.Drawing.Size(135, 20);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Contact Number:";
+            this.label5.Text = "*Contact Number:";
             // 
             // label3
             // 
@@ -278,9 +289,9 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(487, 164);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 20);
+            this.label3.Size = new System.Drawing.Size(96, 20);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Last Name:";
+            this.label3.Text = "*Last Name:";
             // 
             // label6
             // 
@@ -289,9 +300,9 @@
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(59, 89);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(115, 20);
+            this.label6.Size = new System.Drawing.Size(121, 20);
             this.label6.TabIndex = 0;
-            this.label6.Text = "Email Address:";
+            this.label6.Text = "*Email Address:";
             // 
             // label1
             // 
@@ -300,9 +311,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(487, 93);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 20);
+            this.label1.Size = new System.Drawing.Size(96, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "First Name:";
+            this.label1.Text = "*First Name:";
             // 
             // label2
             // 
@@ -311,20 +322,9 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(472, 132);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 20);
+            this.label2.Size = new System.Drawing.Size(111, 20);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Middle Name:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(54, 222);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(360, 15);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "EMAIL ADDRESS AND ALT CONTACT NUMBER ARE OPTIONAL";
+            this.label2.Text = "*Middle Name:";
             // 
             // UpdateReceptionistForm
             // 

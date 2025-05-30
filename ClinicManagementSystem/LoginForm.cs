@@ -884,6 +884,7 @@ namespace ClinicManagementSystem
             public static DataTable GetBills()
             {
                 string query = @"SELECT bills.BillID, 
+                                        appointments.AppointmentID,
                                         appointments.AppointmentDateTime, 
                                         bills.BillingDate, 
                                         bills.TotalAmount
