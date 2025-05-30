@@ -17,7 +17,7 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             UpdateDataGrids();
-            AccountTypelabel.Text += "\n" + Database.CurrentLoggedReceptionist.FirstName;
+            AccountTypelabel.Text += "\n" + Database.CurrentLoggedReceptionist.LastName;
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)

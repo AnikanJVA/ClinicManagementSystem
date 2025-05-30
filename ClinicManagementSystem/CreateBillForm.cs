@@ -46,7 +46,7 @@ namespace ClinicManagementSystem
                     }
                     else
                     {
-                        if (Database.AddBill(Convert.ToInt64(AppointmentIDTextBox.Text), Convert.ToDouble(AmountTextBox.Text), Database.ServicesPerformedList))
+                        if (Database.AddBill(Convert.ToInt64(AppointmentIDTextBox.Text), Database.GetTotalAmount(Database.ServicesPerformedList), Database.ServicesPerformedList))
                         {
                             MessageBox.Show("Bill created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
@@ -65,10 +65,21 @@ namespace ClinicManagementSystem
         {
             SelectedServicesForm selectedServicesForm = new SelectedServicesForm();
             selectedServicesForm.ShowDialog();
+
             string servicesPerformed = "";
+            int count = Database.ServicesPerformedList.Count;
+            int index = 0;
+
             foreach (Service service in Database.ServicesPerformedList)
             {
-                servicesPerformed += service.ServiceName + ", ";
+                servicesPerformed += service.ServiceName;
+                index++;
+
+                if (index < count)
+                {
+                    servicesPerformed += ", ";
+                }
+                
             }
             
             ServicesPerformedTextBox.Text = servicesPerformed;
@@ -87,7 +98,8 @@ namespace ClinicManagementSystem
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
-            AmountTextBox.Text = Database.GetTotalAmount(Database.ServicesPerformedList).ToString();
+            AmountTextBox.Text = Database.GetTotalAmount(Database.ServicesPerformedList).ToString("C");
+            MessageBox.Show(AmountTextBox.Text);
         }
     }
 }

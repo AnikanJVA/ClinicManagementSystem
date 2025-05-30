@@ -850,6 +850,41 @@ namespace ClinicManagementSystem
                 }
             }
 
+            public static DataTable GetPatientRecords(long patientId)
+            {
+                string query = @"SELECT
+                            p.PatientID,
+                            CONCAT(p.FirstName, ' ', p.MiddleName, ' ', p.LastName) AS PatientName,
+                            CONCAT(d.FirstName, ' ', d.MiddleName, ' ', d.LastName) AS AttendingDoctor,
+                            a.AppointmentDateTime,
+                            s.ServiceName AS Service
+                        FROM
+                            Patients p
+                        INNER JOIN
+                            Appointments a ON p.PatientID = a.PatientID
+                        INNER JOIN
+                            Doctors d ON a.DoctorID = d.DoctorID
+                        INNER JOIN
+                            ServicesPerformed sp ON a.AppointmentID = sp.AppointmentID
+                        INNER JOIN
+                            Services s ON sp.ServiceID = s.ServiceID
+                        WHERE
+                            p.PatientID = @PatientID;";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@PatientID", patientId);
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd)) 
+                    {
+                        DataTable table = new DataTable(); 
+                        adapter.Fill(table); 
+                        return table; 
+                    }
+                }
+            }
+
+
             public static DataTable GetBills()
             {
                 string query = "SELECT * FROM bills";
@@ -941,12 +976,12 @@ namespace ClinicManagementSystem
             {
                 status = status.ToUpper();
                 string query = @"SELECT DISTINCT p.PatientID, p.FirstName, p.MiddleName, p.LastName, 
-                                       CONCAT(YEAR(p.DoB), '/', MONTH(p.DoB), '/', DAY(p.DoB)) AS DoB, 
-                                       p.Sex, p.ContactNumber, p.AltContactNumber, p.EmailAddress, p.Address, p.Status 
-                                FROM patients p
-                                INNER JOIN appointments a ON p.PatientID = a.PatientID
-                                WHERE p.Status = @status AND a.DoctorID = @doctorId
-                                ORDER BY p.PatientID DESC";
+                                        CONCAT(YEAR(p.DoB), '/', MONTH(p.DoB), '/', DAY(p.DoB)) AS DoB, 
+                                        p.Sex, p.ContactNumber, p.AltContactNumber, p.EmailAddress, p.Address, p.Status 
+                                 FROM patients p
+                                 INNER JOIN appointments a ON p.PatientID = a.PatientID
+                                 WHERE p.Status = @status AND a.DoctorID = @doctorId
+                                 ORDER BY p.PatientID DESC";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -1064,6 +1099,55 @@ namespace ClinicManagementSystem
                     return table;
                 }
             }
+
+            public static DataTable GetAppointments(string status, long doctorId)
+            {
+                string query;
+                status = status.ToUpper();
+
+                if (status.Equals("ALL"))
+                {
+                    query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
+                                     CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                                     CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                                     appointments.ReasonForAppointment, appointments.Status 
+                              FROM appointments 
+                              INNER JOIN patients ON appointments.patientID = patients.patientID 
+                              INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
+                              WHERE appointments.doctorID = @doctorId
+                              ORDER BY appointments.appointmentID DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+
+                query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
+                                 CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                                 CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                                 appointments.ReasonForAppointment, appointments.Status 
+                          FROM appointments 
+                          INNER JOIN patients ON appointments.patientID = patients.patientID 
+                          INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
+                          WHERE appointments.status = @status AND appointments.doctorID = @doctorId
+                          ORDER BY appointments.appointmentID DESC";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
 
             public static DataTable GetSearchDoctor(string searchType, string fname, string mname, string lname)
             {

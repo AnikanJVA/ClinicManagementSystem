@@ -17,13 +17,13 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             AccountTypelabel.Text += "\n" + Database.CurrentLoggedDoctor.LastName;
-            Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE", Database.CurrentLoggedDoctor.DoctorId);
         }
 
         private void DocView_FormClosed(object sender, FormClosedEventArgs e)
         {
             Database.Instance.Connection.Close();
             FormProvider.Login.Show();
+            UpdateDataGrids();
         }
 
         private void DashBoard_NavButton_Click(object sender, EventArgs e)
@@ -39,6 +39,7 @@ namespace ClinicManagementSystem
 
             Patients_DataGridView.Visible = false;
             Patients_SearchButton.Visible = false;
+            UpdateDataGrids();
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace ClinicManagementSystem
 
             Patients_DataGridView.Visible = false;
             Patients_SearchButton.Visible = false;
+            UpdateDataGrids();
         }
 
         private void ClientsButton_Click(object sender, EventArgs e)
@@ -69,7 +71,8 @@ namespace ClinicManagementSystem
 
             Patients_DataGridView.Visible = true;
             Patients_SearchButton.Visible = true;
-            
+            UpdateDataGrids();
+
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -81,12 +84,22 @@ namespace ClinicManagementSystem
 
         private void Patients_SearchButton_Click(object sender, EventArgs e)
         {
-
+            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm("RECORDS");
+            choosePatientsForm.ShowDialog();
         }
 
         private void Appointment_SearchButton_Click(object sender, EventArgs e)
         {
+            ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("APPROVED", "SEARCH");
+            chooseAppointmentForm.ShowDialog();
+        }
 
+        public void UpdateDataGrids()
+        {
+            Appointments_AllDataGridView.DataSource = Database.GetAppointments("ALL", Database.CurrentLoggedDoctor.DoctorId);
+            Appointments_FinishedDataGridView.DataSource = Database.GetAppointments("FINISHED", Database.CurrentLoggedDoctor.DoctorId);
+
+            Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE", Database.CurrentLoggedDoctor.DoctorId);
         }
     }
 }

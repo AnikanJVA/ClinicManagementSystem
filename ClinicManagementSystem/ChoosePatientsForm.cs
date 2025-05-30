@@ -23,6 +23,8 @@ namespace ClinicManagementSystem
             CloseButton.Visible = false;
             SelectButton.Visible = true;
             CancelButton.Visible = true;
+            ViewRecordButton.Visible = false;
+            DocViewCancelButton.Visible = false;
             RegisterNewPatientButton.Visible = true;
         }
 
@@ -37,8 +39,19 @@ namespace ClinicManagementSystem
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;
                 RegisterNewPatientButton.Visible = false;
+                ViewRecordButton.Visible = false;
+                DocViewCancelButton.Visible = false;
             }
-
+            if (formType.ToUpper().Equals("RECORDS"))
+            {
+                Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE", Database.CurrentLoggedDoctor.DoctorId);
+                CloseButton.Visible = false;
+                SelectButton.Visible = false;
+                CancelButton.Visible = false;
+                RegisterNewPatientButton.Visible = false;
+                ViewRecordButton.Visible = true;
+                DocViewCancelButton.Visible = true;
+            }
         }
 
 
@@ -130,6 +143,10 @@ namespace ClinicManagementSystem
             {
                 Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
             }
+            else if (formType.Equals("RECORDS"))
+            {
+                Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE", Database.CurrentLoggedDoctor.DoctorId);
+            }
             else
             {
                 Patients_DataGridView.DataSource = Database.GetPatients("ALL");
@@ -180,6 +197,30 @@ namespace ClinicManagementSystem
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void DocViewCancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ViewRecordButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(PatientIDTextBox.Text))
+            { 
+                MessageBox.Show("Please select a patient first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Database.CurrentPatient = Database.RetrievePatient(Convert.ToInt64(PatientIDTextBox.Text));
+                PatientRecordsForm patientRecordsForm = new PatientRecordsForm();
+                patientRecordsForm.ShowDialog();
+            }
+        }
+
+        private void Patients_DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
