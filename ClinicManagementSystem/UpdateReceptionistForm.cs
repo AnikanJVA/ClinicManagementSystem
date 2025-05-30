@@ -56,9 +56,7 @@ namespace ClinicManagementSystem
 
         private void RegisterDoctorButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(EmailAddressTextBox.Text) ||
-                string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AltContactNoTextBox.Text) ||
+            if (string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
                 string.IsNullOrWhiteSpace(FnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(MnameTextBox.Text) ||

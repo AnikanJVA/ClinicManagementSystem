@@ -15,7 +15,6 @@ namespace ClinicManagementSystem
 {
     public partial class PatientRecordsForm : Form
     {
-        private long patientID;
         public PatientRecordsForm()
         {
             InitializeComponent();
@@ -27,6 +26,7 @@ namespace ClinicManagementSystem
             SexTextBox.Text = Database.CurrentPatient.Sex.ToString();
             Patients_DataGridView.DataSource = Database.GetPatientRecords(Database.CurrentPatient.ID);
         }
+      
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
@@ -50,20 +50,13 @@ namespace ClinicManagementSystem
                         DataGridViewRow row = Patients_DataGridView.Rows[e.RowIndex];
                         try
                         {
-                            patientID = Convert.ToInt64(row.Cells["PatientID"].Value.ToString());
+                                Database.CurrentAppointment = Database.RetrieveAppointment(Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString()));
                         }
                         catch (Exception ex)
                         {
 
                         }
-                        string patientName = row.Cells["PatientName"].Value.ToString();
-                        string DoB = row.Cells["DoB"].Value.ToString();
-                        string sex = row.Cells["Sex"].Value.ToString();
-
-                        PatientIDTextBox.Text = Convert.ToString(patientID);
-                        PatientNameTextBox.Text = patientName;
-                        DoBTextBox.Text = DoB;
-                        SexTextBox.Text = sex;
+                        ServicesPerformed_DataGridView.DataSource = Database.GetServices(Database.CurrentAppointment.AppointmentId);
                     }
                     else
                     {
@@ -80,5 +73,39 @@ namespace ClinicManagementSystem
         {
 
         }
+
+        private void PastAppointmentRecords_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ServicesPerformed_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = ServicesPerformed_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell != null)
+                {
+                    DataGridViewRow row = ServicesPerformed_DataGridView.Rows[e.RowIndex];
+                    try
+                    {
+                        serviceID = Convert.ToInt64(row.Cells["ServiceID"].Value.ToString());
+                    }
+                    catch (Exception ex) 
+                    {
+
+                    }
+                    string serviceName = row.Cells["ServiceName"].Value.ToString();
+                    string serviceType = row.Cells["ServiceType"].Value.ToString();
+                }
+            }
+        }
     }
 }
+
+

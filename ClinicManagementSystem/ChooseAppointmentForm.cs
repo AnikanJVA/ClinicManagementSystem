@@ -32,19 +32,29 @@ namespace ClinicManagementSystem
             this.status = status;
             AppointmentDateTimePicker.Format = DateTimePickerFormat.Custom;
             AppointmentDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
-            Appointments_DataGridView.DataSource = Database.GetAppointments(status);
 
             if (formType.ToUpper().Equals("SEARCH"))
             {
                 CloseButton.Visible = true;
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;
+                Appointments_DataGridView.DataSource = Database.GetAppointments(status);
+
+            }
+            else if (formType.ToUpper().Equals("BILLING"))
+            {
+                CloseButton.Visible = false;
+                SelectButton.Visible = true;
+                CancelButton.Visible = true;
+                Appointments_DataGridView.DataSource = Database.GetAppointments(status, false);
             }
             else
             {
                 CloseButton.Visible = false;
                 SelectButton.Visible = true;
                 CancelButton.Visible = true;
+                Appointments_DataGridView.DataSource = Database.GetAppointments(status);
+
             }
         }
 

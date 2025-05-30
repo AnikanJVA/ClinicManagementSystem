@@ -50,12 +50,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.StatusComboBox);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.SelectUserButton);
@@ -313,6 +315,17 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Middle Name:";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(54, 222);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(360, 15);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "EMAIL ADDRESS AND ALT CONTACT NUMBER ARE OPTIONAL";
+            // 
             // UpdateReceptionistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,5 +369,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -99,7 +99,6 @@ namespace ClinicManagementSystem
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             AmountTextBox.Text = Database.GetTotalAmount(Database.ServicesPerformedList).ToString("C");
-            MessageBox.Show(AmountTextBox.Text);
         }
     }
 }

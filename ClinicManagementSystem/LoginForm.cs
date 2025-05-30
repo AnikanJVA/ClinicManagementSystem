@@ -343,9 +343,9 @@ namespace ClinicManagementSystem
                 {
                     checkCmd.Parameters.AddWithValue("@username", username);
                     checkCmd.Parameters.AddWithValue("@accType", accType);
-                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@emailAddress", emailAddress ?? (object)DBNull.Value);
                     checkCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                    checkCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber ?? (object)DBNull.Value);
                     checkCmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
 
                     if (Convert.ToInt32(checkCmd.ExecuteScalar()) > 0)
@@ -369,9 +369,9 @@ namespace ClinicManagementSystem
                             userCmd.Parameters.AddWithValue("@username", username);
                             userCmd.Parameters.AddWithValue("@password", password);
                             userCmd.Parameters.AddWithValue("@accType", accType);
-                            userCmd.Parameters.AddWithValue("@emailAddress", emailAddress);
+                            userCmd.Parameters.AddWithValue("@emailAddress", string.IsNullOrWhiteSpace(emailAddress) ? (object)DBNull.Value : emailAddress);
                             userCmd.Parameters.AddWithValue("@contactNumber", contactNumber);
-                            userCmd.Parameters.AddWithValue("@altContactNumber", altContactNumber);
+                            userCmd.Parameters.AddWithValue("@altContactNumber", string.IsNullOrWhiteSpace(altContactNumber) ? (object)DBNull.Value : altContactNumber);
                             userCmd.Parameters.AddWithValue("@address", address);
 
                             userId = Convert.ToInt64(userCmd.ExecuteScalar());
@@ -770,9 +770,9 @@ namespace ClinicManagementSystem
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
                     checkCmd.Parameters.AddWithValue("@userId", userId);
-                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    checkCmd.Parameters.AddWithValue("@EmailAddress", emailAddress ?? (object)DBNull.Value);
                     checkCmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
+                    checkCmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber ?? (object)DBNull.Value);
 
                     int count = Convert.ToInt32(checkCmd.ExecuteScalar());
                     if (count > 0)
@@ -801,8 +801,8 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@userId", userId);
                     cmd.Parameters.AddWithValue("@receptionistId", receptionistId);
                     cmd.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                    cmd.Parameters.AddWithValue("@AltContactNumber", altContactNumber);
-                    cmd.Parameters.AddWithValue("@EmailAddress", emailAddress);
+                    cmd.Parameters.AddWithValue("@AltContactNumber", string.IsNullOrWhiteSpace(altContactNumber) ? (object)DBNull.Value : altContactNumber);
+                    cmd.Parameters.AddWithValue("@EmailAddress", string.IsNullOrWhiteSpace(emailAddress) ? (object)DBNull.Value : emailAddress);
                     cmd.Parameters.AddWithValue("@Address", address);
                     cmd.Parameters.AddWithValue("@Status", status);
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
@@ -852,34 +852,30 @@ namespace ClinicManagementSystem
 
             public static DataTable GetPatientRecords(long patientId)
             {
-                string query = @"SELECT
-                            p.PatientID,
-                            CONCAT(p.FirstName, ' ', p.MiddleName, ' ', p.LastName) AS PatientName,
-                            CONCAT(d.FirstName, ' ', d.MiddleName, ' ', d.LastName) AS AttendingDoctor,
-                            a.AppointmentDateTime,
-                            s.ServiceName AS Service
-                        FROM
-                            Patients p
-                        INNER JOIN
-                            Appointments a ON p.PatientID = a.PatientID
-                        INNER JOIN
-                            Doctors d ON a.DoctorID = d.DoctorID
-                        INNER JOIN
-                            ServicesPerformed sp ON a.AppointmentID = sp.AppointmentID
-                        INNER JOIN
-                            Services s ON sp.ServiceID = s.ServiceID
-                        WHERE
-                            p.PatientID = @PatientID;";
+                string query = @"SELECT a.AppointmentID,
+                             a.AppointmentDateTime,
+                             CONCAT(d.FirstName, ' ', d.MiddleName, ' ', d.LastName) AS AttendingDoctor
+                      FROM
+                         Patients p
+                      INNER JOIN
+                         Appointments a ON p.PatientID = a.PatientID
+                      INNER JOIN
+                         Doctors d ON a.DoctorID = d.DoctorID
+                      WHERE
+                         p.PatientID = @PatientID
+                      AND 
+                         a.Status = @status;";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 {
                     cmd.Parameters.AddWithValue("@PatientID", patientId);
+                    cmd.Parameters.AddWithValue("@status", "FINISHED");
 
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd)) 
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
-                        DataTable table = new DataTable(); 
-                        adapter.Fill(table); 
-                        return table; 
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
                     }
                 }
             }
@@ -887,7 +883,14 @@ namespace ClinicManagementSystem
 
             public static DataTable GetBills()
             {
-                string query = "SELECT * FROM bills";
+                string query = @"SELECT bills.BillID, 
+                                        appointments.AppointmentDateTime, 
+                                        bills.BillingDate, 
+                                        bills.TotalAmount,
+                                        bills.status
+                                 FROM bills
+                                 INNER JOIN appointments ON bills.AppointmentID = appointments.AppointmentID
+                                 ORDER BY bills.BillID DESC";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -1056,6 +1059,29 @@ namespace ClinicManagementSystem
                 }
             }
 
+            public static DataTable GetServices(long appointmentId)
+            {
+                string query = @"SELECT s.ServiceName,
+                        st.ServiceTypeName AS ServiceType
+                    FROM
+                        servicesperformed sp 
+                    INNER JOIN
+                        services s ON sp.ServiceID = s.ServiceID 
+                    INNER JOIN
+                        servicetypes st ON s.ServiceTypeID = st.ServiceTypeID 
+                    WHERE
+                        sp.AppointmentID = @appointmentId; ";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
             public static DataTable GetAppointments(string status)
             {
                 string query;
@@ -1089,6 +1115,41 @@ namespace ClinicManagementSystem
                          INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
                          HAVING appointments.status = @status 
                          ORDER BY appointments.appointmentID DESC";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                {
+                    cmd.Parameters.AddWithValue("@status", status);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    return table;
+                }
+            }
+
+            public static DataTable GetAppointments(string status, bool hasBill) 
+            {
+                string query;
+                status = status.ToUpper();
+                query = @"SELECT
+                                appointments.AppointmentID,
+                                appointments.AppointmentDateTime,
+                                CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient,
+                                CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor,
+                                appointments.ReasonForAppointment,
+                                appointments.Status
+                            FROM
+                                appointments
+                            INNER JOIN
+                                patients ON appointments.patientID = patients.patientID
+                            INNER JOIN
+                                doctors ON appointments.doctorID = doctors.doctorID
+                            LEFT JOIN
+                                bills ON appointments.AppointmentID = bills.AppointmentID 
+                            WHERE
+                                appointments.status = 'FINISHED'
+                                AND bills.BillID IS NULL
+                            ORDER BY
+                                appointments.AppointmentID DESC"; 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
 
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -2162,5 +2223,6 @@ namespace ClinicManagementSystem
             }
         }
 
+        
     }
 }
