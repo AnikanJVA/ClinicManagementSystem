@@ -34,8 +34,8 @@
             this.LogoutButton = new System.Windows.Forms.Button();
             this.Patients_NavButton = new System.Windows.Forms.Button();
             this.Appointments_NavButton = new System.Windows.Forms.Button();
-            this.Patients_DataGridView = new System.Windows.Forms.DataGridView();
             this.Patients_SearchButton = new System.Windows.Forms.Button();
+            this.Appointments_SearchButton = new System.Windows.Forms.Button();
             this.Appointments_TabControl = new System.Windows.Forms.TabControl();
             this.Appointments_AllTab = new System.Windows.Forms.TabPage();
             this.Appointments_AllDataGridView = new System.Windows.Forms.DataGridView();
@@ -43,6 +43,7 @@
             this.Appointments_UpcomingDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_FinishedTab = new System.Windows.Forms.TabPage();
             this.Appointments_FinishedDataGridView = new System.Windows.Forms.DataGridView();
+            this.Patients_DataGridView = new System.Windows.Forms.DataGridView();
             this.Dashboard_panel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,12 +54,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Appointments_SearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_DataGridView)).BeginInit();
             this.Appointments_TabControl.SuspendLayout();
             this.Appointments_AllTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_AllDataGridView)).BeginInit();
@@ -66,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_UpcomingDataGridView)).BeginInit();
             this.Appointments_FinishedTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_FinishedDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_DataGridView)).BeginInit();
             this.Dashboard_panel.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -185,23 +185,6 @@
             this.Appointments_NavButton.UseVisualStyleBackColor = false;
             this.Appointments_NavButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
             // 
-            // Patients_DataGridView
-            // 
-            this.Patients_DataGridView.AllowUserToAddRows = false;
-            this.Patients_DataGridView.AllowUserToDeleteRows = false;
-            this.Patients_DataGridView.AllowUserToResizeColumns = false;
-            this.Patients_DataGridView.AllowUserToResizeRows = false;
-            this.Patients_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Patients_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Patients_DataGridView.Location = new System.Drawing.Point(54, 46);
-            this.Patients_DataGridView.MultiSelect = false;
-            this.Patients_DataGridView.Name = "Patients_DataGridView";
-            this.Patients_DataGridView.ReadOnly = true;
-            this.Patients_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            this.Patients_DataGridView.Size = new System.Drawing.Size(881, 507);
-            this.Patients_DataGridView.TabIndex = 4;
-            this.Patients_DataGridView.Visible = false;
-            // 
             // Patients_SearchButton
             // 
             this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
@@ -219,6 +202,24 @@
             this.Patients_SearchButton.UseVisualStyleBackColor = false;
             this.Patients_SearchButton.Visible = false;
             this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
+            // 
+            // Appointments_SearchButton
+            // 
+            this.Appointments_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Appointments_SearchButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appointments_SearchButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_SearchButton.Location = new System.Drawing.Point(271, 578);
+            this.Appointments_SearchButton.Name = "Appointments_SearchButton";
+            this.Appointments_SearchButton.Size = new System.Drawing.Size(410, 66);
+            this.Appointments_SearchButton.TabIndex = 13;
+            this.Appointments_SearchButton.Text = "Search Appointment";
+            this.Appointments_SearchButton.UseVisualStyleBackColor = false;
+            this.Appointments_SearchButton.Visible = false;
+            this.Appointments_SearchButton.Click += new System.EventHandler(this.Appointment_SearchButton_Click);
             // 
             // Appointments_TabControl
             // 
@@ -238,7 +239,7 @@
             this.Appointments_AllTab.Controls.Add(this.Appointments_AllDataGridView);
             this.Appointments_AllTab.Location = new System.Drawing.Point(4, 25);
             this.Appointments_AllTab.Name = "Appointments_AllTab";
-            this.Appointments_AllTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Appointments_AllTab.Padding = new System.Windows.Forms.Padding(3);
             this.Appointments_AllTab.Size = new System.Drawing.Size(881, 507);
             this.Appointments_AllTab.TabIndex = 0;
             this.Appointments_AllTab.Text = "All";
@@ -265,7 +266,7 @@
             this.Appointments_UpcomingTab.Controls.Add(this.Appointments_UpcomingDataGridView);
             this.Appointments_UpcomingTab.Location = new System.Drawing.Point(4, 25);
             this.Appointments_UpcomingTab.Name = "Appointments_UpcomingTab";
-            this.Appointments_UpcomingTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Appointments_UpcomingTab.Padding = new System.Windows.Forms.Padding(3);
             this.Appointments_UpcomingTab.Size = new System.Drawing.Size(881, 507);
             this.Appointments_UpcomingTab.TabIndex = 1;
             this.Appointments_UpcomingTab.Text = "Upcoming";
@@ -292,7 +293,7 @@
             this.Appointments_FinishedTab.Controls.Add(this.Appointments_FinishedDataGridView);
             this.Appointments_FinishedTab.Location = new System.Drawing.Point(4, 25);
             this.Appointments_FinishedTab.Name = "Appointments_FinishedTab";
-            this.Appointments_FinishedTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Appointments_FinishedTab.Padding = new System.Windows.Forms.Padding(3);
             this.Appointments_FinishedTab.Size = new System.Drawing.Size(881, 507);
             this.Appointments_FinishedTab.TabIndex = 3;
             this.Appointments_FinishedTab.Text = "Finished";
@@ -314,6 +315,23 @@
             this.Appointments_FinishedDataGridView.Size = new System.Drawing.Size(881, 507);
             this.Appointments_FinishedDataGridView.TabIndex = 5;
             // 
+            // Patients_DataGridView
+            // 
+            this.Patients_DataGridView.AllowUserToAddRows = false;
+            this.Patients_DataGridView.AllowUserToDeleteRows = false;
+            this.Patients_DataGridView.AllowUserToResizeColumns = false;
+            this.Patients_DataGridView.AllowUserToResizeRows = false;
+            this.Patients_DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Patients_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Patients_DataGridView.Location = new System.Drawing.Point(54, 46);
+            this.Patients_DataGridView.MultiSelect = false;
+            this.Patients_DataGridView.Name = "Patients_DataGridView";
+            this.Patients_DataGridView.ReadOnly = true;
+            this.Patients_DataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+            this.Patients_DataGridView.Size = new System.Drawing.Size(881, 507);
+            this.Patients_DataGridView.TabIndex = 4;
+            this.Patients_DataGridView.Visible = false;
+            // 
             // Dashboard_panel
             // 
             this.Dashboard_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
@@ -321,7 +339,7 @@
             this.Dashboard_panel.Controls.Add(this.panel3);
             this.Dashboard_panel.Controls.Add(this.panel2);
             this.Dashboard_panel.Location = new System.Drawing.Point(13, 12);
-            this.Dashboard_panel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Dashboard_panel.Margin = new System.Windows.Forms.Padding(2);
             this.Dashboard_panel.Name = "Dashboard_panel";
             this.Dashboard_panel.Size = new System.Drawing.Size(953, 632);
             this.Dashboard_panel.TabIndex = 1;
@@ -332,7 +350,7 @@
             this.panel4.Controls.Add(this.label6);
             this.panel4.Controls.Add(this.label5);
             this.panel4.Location = new System.Drawing.Point(337, 352);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(299, 123);
             this.panel4.TabIndex = 2;
@@ -367,7 +385,7 @@
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(568, 154);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(254, 104);
             this.panel3.TabIndex = 1;
@@ -402,7 +420,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(155, 154);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(254, 104);
             this.panel2.TabIndex = 0;
@@ -431,24 +449,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "1234";
             // 
-            // Appointments_SearchButton
-            // 
-            this.Appointments_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Appointments_SearchButton.FlatAppearance.BorderSize = 0;
-            this.Appointments_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Appointments_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Appointments_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Appointments_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Appointments_SearchButton.ForeColor = System.Drawing.Color.White;
-            this.Appointments_SearchButton.Location = new System.Drawing.Point(271, 578);
-            this.Appointments_SearchButton.Name = "Appointments_SearchButton";
-            this.Appointments_SearchButton.Size = new System.Drawing.Size(410, 66);
-            this.Appointments_SearchButton.TabIndex = 13;
-            this.Appointments_SearchButton.Text = "Search Appointment";
-            this.Appointments_SearchButton.UseVisualStyleBackColor = false;
-            this.Appointments_SearchButton.Visible = false;
-            this.Appointments_SearchButton.Click += new System.EventHandler(this.Appointment_SearchButton_Click);
-            // 
             // DocView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,7 +466,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_DataGridView)).EndInit();
             this.Appointments_TabControl.ResumeLayout(false);
             this.Appointments_AllTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_AllDataGridView)).EndInit();
@@ -474,6 +473,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_UpcomingDataGridView)).EndInit();
             this.Appointments_FinishedTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_FinishedDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_DataGridView)).EndInit();
             this.Dashboard_panel.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();

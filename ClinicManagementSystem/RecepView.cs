@@ -18,6 +18,10 @@ namespace ClinicManagementSystem
             InitializeComponent();
             UpdateDataGrids();
             AccountTypelabel.Text += "\n" + Database.CurrentLoggedReceptionist.LastName;
+
+            Appointments_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Appointments_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)

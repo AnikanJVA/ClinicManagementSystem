@@ -884,10 +884,10 @@ namespace ClinicManagementSystem
             public static DataTable GetBills()
             {
                 string query = @"SELECT bills.BillID, 
-                                        appointments.AppointmentDateTime, 
+                                        appointments.AppointmentID,
+                                        appointments.AppointmentDateTime,
                                         bills.BillingDate, 
-                                        bills.TotalAmount,
-                                        bills.status
+                                        bills.TotalAmount
                                  FROM bills
                                  INNER JOIN appointments ON bills.AppointmentID = appointments.AppointmentID
                                  ORDER BY bills.BillID DESC";
