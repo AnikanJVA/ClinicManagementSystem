@@ -185,13 +185,13 @@
             this.SplitContainer.Panel2.Controls.Add(this.Billing_CreateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_CreateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_RegisterButton);
-            this.SplitContainer.Panel2.Controls.Add(this.Appointments_SerachButton);
-            this.SplitContainer.Panel2.Controls.Add(this.Patients_SearchButton);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_Deletebutton);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Doctors_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_TabControl);
             this.SplitContainer.Panel2.Controls.Add(this.Dashboard_panel);
+            this.SplitContainer.Panel2.Controls.Add(this.Appointments_SerachButton);
+            this.SplitContainer.Panel2.Controls.Add(this.Patients_SearchButton);
             this.SplitContainer.Panel2MinSize = 978;
             this.SplitContainer.Size = new System.Drawing.Size(1264, 681);
             this.SplitContainer.SplitterDistance = 282;

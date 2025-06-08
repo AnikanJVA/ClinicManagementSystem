@@ -395,12 +395,17 @@ namespace ClinicManagementSystem
 
         private void Billing_Deletebutton_Click(object sender, EventArgs e)
         {
+            string filename = $"Bill_{Database.CurrentBill.BillID.ToString()}.pdf";
             long billID = Database.CurrentBill.BillID;
             var choice = MessageBox.Show("Are you sure you want to delete Bill: " + billID + " ?", "Delete Bill?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (choice == DialogResult.Yes)
             {
                 if (Database.DeleteBill(billID, Database.CurrentBill.AppointmentID))
                 {
+                    if (File.Exists(filename))
+                    {
+                        File.Delete(filename);
+                    }
                     MessageBox.Show("Bill " + billID + " has beed deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
