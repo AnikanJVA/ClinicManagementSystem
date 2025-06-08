@@ -39,7 +39,7 @@ namespace ClinicManagementSystem
             TotalPatientsLabel.Text = Database.GetTotalPatients().ToString();
 
             NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
-            NextAppointment_DoctorNameLabel.Text += " " + Database.GetNextAppointmentDoctor();
+            NextAppointment_DoctorNameLabel.Text = "Dr. " + Database.GetNextAppointmentDoctor();
             NextAppointment_PatientNameLabel.Text = Database.GetNextAppointmentPatient();
 
             FormatDataGridViews();
@@ -67,13 +67,14 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
             Billing_Deletebutton.Hide();
             Billing_GetButton.Hide();
+            Billing_BillDetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
 
             Dashboard_panel.Visible = false;
 
-            UpdateDataGrids();
+            //UpdateDataGrids();
         }
 
         private void BillingButton_Click(object sender, EventArgs e)
@@ -98,13 +99,14 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Show();
             Billing_Deletebutton.Show();
             Billing_GetButton.Show();
+            Billing_BillDetailsPanel.Show();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
 
             Dashboard_panel.Visible = false;
 
-            UpdateDataGrids();
+            //UpdateDataGrids();
         }
 
         private void DoctorsButton_Click(object sender, EventArgs e)
@@ -129,13 +131,14 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
             Billing_Deletebutton.Hide();
             Billing_GetButton.Hide();
+            Billing_BillDetailsPanel.Hide();
 
             Doctors_TabControl.Show();
             Doctors_SearchButton.Show();
 
             Dashboard_panel.Visible = false;
 
-            UpdateDataGrids();
+            //UpdateDataGrids();
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -167,17 +170,19 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
             Billing_Deletebutton.Hide();
             Billing_GetButton.Hide();
+            Billing_BillDetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
 
             Dashboard_panel.Visible = false;
 
-            UpdateDataGrids();
+            //UpdateDataGrids();
         }
 
-        private void createBillButton_Click(object sender, EventArgs e)
+        private void Billing_CreateButton_Click(object sender, EventArgs e)
         {
+            Database.ServicesPerformedList.Clear();
             CreateBillForm createBillForm = new CreateBillForm();
             createBillForm.ShowDialog();
             UpdateDataGrids();
@@ -251,13 +256,14 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
             Billing_Deletebutton.Hide();
             Billing_GetButton.Hide();
+            Billing_BillDetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
 
             Dashboard_panel.Visible = true;
             NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
-            NextAppointment_DoctorNameLabel.Text += " " + Database.GetNextAppointmentDoctor();
+            NextAppointment_DoctorNameLabel.Text = "Dr. " + Database.GetNextAppointmentDoctor();
             NextAppointment_PatientNameLabel.Text = Database.GetNextAppointmentPatient();
         }
 
@@ -266,6 +272,7 @@ namespace ClinicManagementSystem
             ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("ALL", "SEARCH");
             chooseAppointmentForm.ShowDialog();
         }
+
         private void Billing_GetButton_Click(object sender, EventArgs e)
         {
             // TO DO
@@ -626,11 +633,38 @@ namespace ClinicManagementSystem
                             Database.CurrentBill = Database.RetrieveBill(billID);
                             Database.CurrentAppointment = Database.RetrieveAppointment(Database.CurrentBill.AppointmentID);
                             Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.ServicesPerformedList = Database.RetrieveServicesPerformed(Database.CurrentAppointment.AppointmentId);
                         }
                         catch (Exception ex)
                         {
 
                         }
+
+                        string servicesPerformed = "";
+                        int count = Database.ServicesPerformedList.Count;
+                        int index = 0;
+
+                        foreach (Service service in Database.ServicesPerformedList)
+                        {
+                            servicesPerformed += service.ServiceName;
+                            index++;
+
+                            if (index < count)
+                            {
+                                servicesPerformed += ", ";
+                            }
+
+                        }
+
+                        Billing_BillIDTextBox.Text = billID.ToString();
+                        Billing_PatientNameTextBox.Text = $"{Database.CurrentPatient.FirstName.ToString()} " +
+                                                          $"{Database.CurrentPatient.MiddleName.ToString()} " +
+                                                          $"{Database.CurrentPatient.LastName.ToString()}";
+                        Billing_AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
+                        Billing_AppointmentDateTimeTextBox.Text = Database.CurrentAppointment.DateTime;
+                        BIlling_BillingDateTextBox.Text = Database.CurrentBill.BillingDate;
+                        Billing_ServicesPerformedTextBox.Text = servicesPerformed;
+                        Billing_AmountTextBox.Text = Database.CurrentBill.TotalAmount.ToString();
                     }
 
                 }

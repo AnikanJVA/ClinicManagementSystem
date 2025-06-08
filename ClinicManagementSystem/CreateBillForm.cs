@@ -49,6 +49,7 @@ namespace ClinicManagementSystem
                         if (Database.AddBill(Convert.ToInt64(AppointmentIDTextBox.Text), Database.GetTotalAmount(Database.ServicesPerformedList), Database.ServicesPerformedList))
                         {
                             MessageBox.Show("Bill created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Database.ServicesPerformedList.Clear();
                             this.Close();
                         }
                         else

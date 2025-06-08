@@ -50,7 +50,7 @@ namespace ClinicManagementSystem
                         DataGridViewRow row = Patients_DataGridView.Rows[e.RowIndex];
                         try
                         {
-                                Database.CurrentAppointment = Database.RetrieveAppointment(Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString()));
+                            Database.CurrentAppointment = Database.RetrieveAppointment(Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString()));
                         }
                         catch (Exception ex)
                         {

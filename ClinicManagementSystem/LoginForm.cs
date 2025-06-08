@@ -1140,15 +1140,15 @@ namespace ClinicManagementSystem
             public static DataTable GetServices(long appointmentId)
             {
                 string query = @"SELECT s.ServiceName,
-                        st.ServiceTypeName AS ServiceType
-                    FROM
-                        servicesperformed sp 
-                    INNER JOIN
-                        services s ON sp.ServiceID = s.ServiceID 
-                    INNER JOIN
-                        servicetypes st ON s.ServiceTypeID = st.ServiceTypeID 
-                    WHERE
-                        sp.AppointmentID = @appointmentId; ";
+                                    st.ServiceTypeName AS ServiceType
+                                FROM
+                                    servicesperformed sp 
+                                INNER JOIN
+                                    services s ON sp.ServiceID = s.ServiceID 
+                                INNER JOIN
+                                    servicetypes st ON s.ServiceTypeID = st.ServiceTypeID 
+                                WHERE
+                                    sp.AppointmentID = @appointmentId; ";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -1930,6 +1930,9 @@ namespace ClinicManagementSystem
                         {
                             bill.BillID = Convert.ToInt64(reader["BillID"]);
                             bill.AppointmentID = Convert.ToInt64(reader["AppointmentID"]);
+                            DateTime billingDate = Convert.ToDateTime(reader["BillingDate"]);
+                            bill.BillingDate = billingDate.ToString("MM/dd/yyyy");
+                            //bill.BillingDate = billingDate.ToString("MMM dd, yyyy");
                             bill.TotalAmount= Convert.ToDouble(reader["TotalAmount"]);
 
                             reader.Close();
@@ -1947,7 +1950,6 @@ namespace ClinicManagementSystem
 
                 return null;
             }
-
 
             public static Doctor RetrieveDoctor(long Id, string idType)
             {
@@ -1994,6 +1996,50 @@ namespace ClinicManagementSystem
 
                 return null;
             }
+
+            public static List<Service> RetrieveServicesPerformed(long appointmentId)
+            {
+                Service service = new Service();
+                List<Service> servicesPerformed = new List<Service>();
+                List<long> serviceIds = new List<long>();
+                string query;
+                int numberOfServices = 0;
+
+                query = "SELECT COUNT(*) FROM servicesPerformed WHERE AppointmentID = @appointmentId";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+
+                    numberOfServices = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                query = "SELECT serviceID FROM servicesPerformed WHERE AppointmentID = @appointmentId";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            serviceIds.Add(Convert.ToInt64(reader["ServiceID"]));
+                        }
+                        reader.Close();
+
+                        foreach (long id in serviceIds)
+                        {
+                            service = RetrieveService(id);
+                            servicesPerformed.Add(service);
+                        }
+                        return servicesPerformed;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+            } 
 
             public static Appointment RetrieveAppointment(long appointmentId)
             {
@@ -2506,12 +2552,14 @@ namespace ClinicManagementSystem
             private long billID;
             private long appointmentID;
             private double totalAmount;
+            private string billingDate;
 
             public Bill()
             {
                 BillID = 0;
                 AppointmentID = 0;
                 TotalAmount = 0;
+                BillingDate = string.Empty;
             }
 
             public long BillID 
@@ -2530,6 +2578,12 @@ namespace ClinicManagementSystem
             {
                 get { return totalAmount; }
                 set { totalAmount = value; }
+            }
+
+            public string BillingDate
+            {
+                get { return billingDate; }
+                set { billingDate = value; }
             }
         }
     }
