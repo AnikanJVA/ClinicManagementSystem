@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
@@ -89,6 +91,7 @@ namespace ClinicManagementSystem
             private static Receptionist currentReceptionist;
             private static Service currentService;
             private static List<Service> servicesPerformedList;
+            private static Bill currentBill;
 
             private static readonly Lazy<Database> instance = new Lazy<Database>(() => new Database());
             private MySqlConnection connection;
@@ -107,6 +110,7 @@ namespace ClinicManagementSystem
                 servicesPerformedList = new List<Service>();
                 currentLoggedDoctor = new Doctor();
                 currentLoggedReceptionist = new Receptionist();
+                currentBill = new Bill();
             }
 
             public static Database Instance => instance.Value;
@@ -218,6 +222,18 @@ namespace ClinicManagementSystem
                 get
                 {
                     return currentService;
+                }
+            }
+
+            public static Bill CurrentBill
+            {
+                set
+                {
+                    currentBill = value;
+                }
+                get
+                {
+                    return currentBill;
                 }
             }
 
@@ -490,7 +506,10 @@ namespace ClinicManagementSystem
                                               string appointmentDateTime,
                                               string reasonForAppointment)
             {
-                string checkQuery = "SELECT COUNT(*) FROM appointments WHERE AppointmentDateTime = @appointmentDateTime";
+                string checkQuery = @"SELECT COUNT(*) FROM appointments 
+                                      WHERE AppointmentDateTime = @appointmentDateTime 
+                                      OR 
+                                      @appointmentDateTime BETWEEN DATE_SUB(AppointmentDateTime, INTERVAL 1 HOUR) AND DATE_ADD(AppointmentDateTime, INTERVAL 1 HOUR)";
                 using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, Instance.connection))
                 {
                     checkCmd.Parameters.AddWithValue("@appointmentDateTime", appointmentDateTime);
@@ -559,6 +578,43 @@ namespace ClinicManagementSystem
                     }
                 }
 
+                return true;
+            }
+
+            public static bool DeleteBill(long billId, long appointmentId)
+            {
+                bool flag;
+                string deleteQuery = @"DELETE FROM bills
+                                       WHERE BillID = @billId";
+                using (MySqlCommand cmd = new MySqlCommand(deleteQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@billId", billId);
+                    flag = cmd.ExecuteNonQuery() > 0;
+                }
+
+                if (flag)
+                {
+                    if (DeleteServicesPerformed(appointmentId))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            public static bool DeleteServicesPerformed(long appointmentId)
+            {
+                string deleteQuery = @"DELETE FROM servicesPerformed 
+                                       WHERE appointmentId = @appointmentId";
+
+                using (MySqlCommand cmd = new MySqlCommand(deleteQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+                    if (cmd.ExecuteNonQuery() <= 0)
+                    {
+                        return false;
+                    }
+                }
                 return true;
             }
 
@@ -700,6 +756,25 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@LastName", lastName);
                     cmd.Parameters.AddWithValue("@LicenseNumber", licenseNumber);
                     cmd.Parameters.AddWithValue("@Schedule", schedule);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
+            public static bool UpdateDoctorAvailabilityStatus(string currentDay)
+            {
+                currentDay = "%" + currentDay + "%";
+                string updateQuery = @"UPDATE doctors SET
+                                       AvailabilityStatus = @availabilityStatus1
+                                       WHERE Schedule LIKE @currentDay;
+                                        
+                                       UPDATE doctors SET
+                                       AvailabilityStatus = @availabilityStatus2
+                                       WHERE Schedule NOT LIKE @currentDay";
+                using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@availabilityStatus1", "AVAILABLE");
+                    cmd.Parameters.AddWithValue("@availabilityStatus2", "UNAVAILABLE");
+                    cmd.Parameters.AddWithValue("@currentDay", currentDay);
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
@@ -886,10 +961,12 @@ namespace ClinicManagementSystem
                 string query = @"SELECT bills.BillID, 
                                         appointments.AppointmentID,
                                         appointments.AppointmentDateTime, 
+                                         CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient,
                                         bills.BillingDate, 
                                         bills.TotalAmount
                                  FROM bills
                                  INNER JOIN appointments ON bills.AppointmentID = appointments.AppointmentID
+                                 INNER JOIN patients ON appointments.patientID = patients.patientID
                                  ORDER BY bills.BillID DESC";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
@@ -951,7 +1028,8 @@ namespace ClinicManagementSystem
                 if (status.Equals("ALL"))
                 {
                     query = @"SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, 
-                                     Sex, ContactNumber,  AltContactNumber, EmailAddress, Address, Status FROM patients ORDER BY patientId DESC";
+                                     Sex, ContactNumber, COALESCE(AltContactNumber, 'N/A') AS AltContactNumber, COALESCE(EmailAddress, 'N/A') AS EmailAddress, 
+                                     Address, Status FROM patients ORDER BY patientId DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
@@ -1004,7 +1082,7 @@ namespace ClinicManagementSystem
 
                 if (availabilityStatus.Equals("ALL"))
                 {
-                    query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.AvailabilityStatus FROM doctors d " +
+                    query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.Schedule, d.AvailabilityStatus FROM doctors d " +
                             "INNER JOIN users u ON d.userId = u.userId ORDER BY doctorId DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -1014,7 +1092,7 @@ namespace ClinicManagementSystem
                         return table;
                     }
                 }
-                query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.AvailabilityStatus FROM doctors d " +
+                query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.Schedule, d.AvailabilityStatus FROM doctors d " +
                         "INNER JOIN users u ON d.userId = u.userId WHERE availabilityStatus = @availabilityStatus ORDER BY doctorId DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -1187,6 +1265,29 @@ namespace ClinicManagementSystem
                         return table;
                     }
                 }
+                else if (status.Equals("UPCOMING"))
+                {
+                    query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
+                                     CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                                     CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                                     appointments.ReasonForAppointment, appointments.Status 
+                              FROM appointments 
+                              INNER JOIN patients ON appointments.patientID = patients.patientID 
+                              INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
+                              WHERE appointments.doctorID = @doctorId AND appointments.status = @status AND AppointmentDateTime > NOW()
+                              ORDER BY appointments.appointmentID DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@status", "Approved");
+                        cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+                
 
                 query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
                                  CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
@@ -1343,42 +1444,40 @@ namespace ClinicManagementSystem
                 lname = "%" + lname.Trim() + "%";
 
                 query = @"SELECT appointments.AppointmentID, appointments.AppointmentDateTime, 
-                     CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
-                     CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
-                     appointments.ReasonForAppointment, 
-                     appointments.Status 
-             FROM appointments 
-             INNER JOIN patients ON appointments.patientID = patients.patientID 
-             INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
-             HAVING appointments.status = @status 
-             ORDER BY appointments.appointmentID DESC";
+                             CONCAT(patients.firstName, ' ', patients.middleName, ' ', patients.lastName) AS Patient, 
+                             CONCAT(doctors.firstName, ' ', doctors.middleName, ' ', doctors.lastName) AS Doctor, 
+                             appointments.ReasonForAppointment, 
+                             appointments.Status 
+                         FROM appointments 
+                         INNER JOIN patients ON appointments.patientID = patients.patientID 
+                         INNER JOIN doctors ON appointments.doctorID = doctors.doctorID";
 
                 switch (searchType)
                 {
                     case "F":
-                        where = "WHERE FirstName LIKE @fname";
+                        where = "WHERE patients.FirstName LIKE @fname";
                         break;
                     case "M":
-                        where = "WHERE MiddleName LIKE @mname";
+                        where = "WHERE patients.MiddleName LIKE @mname";
                         break;
                     case "L":
-                        where = "WHERE LastName LIKE @lname";
+                        where = "WHERE patients.LastName LIKE @lname";
                         break;
                     case "FM":
-                        where = "WHERE FirstName LIKE @fname AND MiddleName LIKE @mname";
+                        where = "WHERE patients.FirstName LIKE @fname AND patients.MiddleName LIKE @mname";
                         break;
                     case "FL":
-                        where = "WHERE FirstName LIKE @fname AND LastName LIKE @lname";
+                        where = "WHERE patients.FirstName LIKE @fname AND patients.LastName LIKE @lname";
                         break;
                     case "ML":
-                        where = "WHERE MiddleName LIKE @mname AND LastName LIKE @lname";
+                        where = "WHERE patients.MiddleName LIKE @mname AND patients.LastName LIKE @lname";
                         break;
                     default:
-                        where = "WHERE FirstName LIKE @fname AND MiddleName LIKE @mname AND LastName LIKE @lname";
+                        where = "WHERE patients.FirstName LIKE @fname AND patients.MiddleName LIKE @mname AND patients.LastName LIKE @lname";
                         break;
                 }
 
-                finalQuery = query + " " + where + " ORDER BY PatientID DESC";
+                finalQuery = query + " " + where;
 
                 using (MySqlCommand cmd = new MySqlCommand(finalQuery, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
@@ -1532,7 +1631,10 @@ namespace ClinicManagementSystem
 
                     object result = cmd.ExecuteScalar();
                     if (result != null && result != DBNull.Value)
+                    {
                         return Convert.ToDateTime(result);
+                    }
+                    
                     return null;
                 }
             }
@@ -1568,8 +1670,7 @@ namespace ClinicManagementSystem
                     return result?.ToString() ?? string.Empty;
                 }
             }
-            //TO IMPELMENT 
-            public static string GetNextPatientNameByDoctor(long doctorId)
+                        public static string GetNextPatientNameByDoctor(long doctorId)
             {
                 string query = @"SELECT CONCAT(p.FirstName, ' ', p.MiddleName, ' ', p.LastName) AS PatientName
                      FROM appointments a
@@ -1625,8 +1726,6 @@ namespace ClinicManagementSystem
                     return result != DBNull.Value ? Convert.ToDateTime(result) : (DateTime?)null;
                 }
             }
-
-            //TO IMPELMENT 
 
             public static double GetTotalAmount(List<Service> ServicesPerformed)
             {
@@ -1814,6 +1913,42 @@ namespace ClinicManagementSystem
                 return null;
             }
 
+            public static Bill RetrieveBill(long billId)
+            {
+                Bill bill = new Bill();
+                string query;
+
+                query = "SELECT * FROM bills WHERE BillID = @billId";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@billId", billId);
+                    try
+                    {
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            bill.BillID = Convert.ToInt64(reader["BillID"]);
+                            bill.AppointmentID = Convert.ToInt64(reader["AppointmentID"]);
+                            bill.TotalAmount= Convert.ToDouble(reader["TotalAmount"]);
+
+                            reader.Close();
+                            return bill;
+                        }
+
+                        reader.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+
+                return null;
+            }
+
+
             public static Doctor RetrieveDoctor(long Id, string idType)
             {
                 Doctor doctor = new Doctor();
@@ -1932,6 +2067,8 @@ namespace ClinicManagementSystem
                 }
                 return null;
             }
+
+
 
             public static long RetrieveUserID(string username, string accType)
             {
@@ -2326,14 +2463,13 @@ namespace ClinicManagementSystem
 
             public Service()
             {
-                serviceID = 0;
+                ServiceID = 0;
                 ServiceName = string.Empty;
                 ServiceType = string.Empty;
                 ServiceDesc = string.Empty;
                 Price = 0; 
             }
 
-            // Public properties with encapsulation
             public long ServiceID
             {
                 get { return serviceID; }
@@ -2365,6 +2501,36 @@ namespace ClinicManagementSystem
             }
         }
 
-        
+        public class Bill
+        {
+            private long billID;
+            private long appointmentID;
+            private double totalAmount;
+
+            public Bill()
+            {
+                BillID = 0;
+                AppointmentID = 0;
+                TotalAmount = 0;
+            }
+
+            public long BillID 
+            {
+                get { return billID; }
+                set { billID = value; }
+            }
+
+            public long AppointmentID 
+            { 
+                get { return appointmentID; }
+                set {  appointmentID = value; }
+            }
+
+            public double TotalAmount
+            {
+                get { return totalAmount; }
+                set { totalAmount = value; }
+            }
+        }
     }
 }

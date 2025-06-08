@@ -54,35 +54,61 @@ namespace ClinicManagementSystem
         {
             if (string.IsNullOrWhiteSpace(UsernameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(PasswordTextBox.Text) ||
+                string.IsNullOrWhiteSpace(EmailTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
+                string.IsNullOrWhiteSpace(AltContactNoTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
                 string.IsNullOrWhiteSpace(FnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(MnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(LnameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(LicenseNoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(ScheduleComboBox.Text)
+                (!MCheckBox.Checked && !TCheckBox.Checked && !WCheckBox.Checked &&
+                !ThCheckBox.Checked && !FCheckBox.Checked && !SCheckBox.Checked)
                 )
             {
-                MessageBox.Show("Only Email Address and Alternate Contact Number are optional. All other fields must be filled out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                if (Database.AddDoctor(UsernameTextBox.Text, 
-                                       PasswordTextBox.Text, 
-                                       EmailTextBox.Text, 
-                                       ContactNoTextBox.Text, 
-                                       AltContactNoTextBox.Text, 
-                                       AddressTextBox.Text, 
-                                       LicenseNoTextBox.Text, 
-                                       FnameTextBox.Text, 
-                                       MnameTextBox.Text, 
-                                       LnameTextBox.Text, 
-                                       ScheduleComboBox.Text))
+                string schedule = "";
+                List<String> selectedDays = new List<String>();
+                if (MCheckBox.Checked) { selectedDays.Add("M"); }
+                if (TCheckBox.Checked) { selectedDays.Add("T"); }
+                if (WCheckBox.Checked) { selectedDays.Add("W"); }
+                if (ThCheckBox.Checked) { selectedDays.Add("Th"); }
+                if (FCheckBox.Checked) { selectedDays.Add("F"); }
+                if (SCheckBox.Checked) { selectedDays.Add("S"); }
+
+
+
+                for (int i = 0; i < selectedDays.Count(); i++)
+                {
+                    if (i != (selectedDays.Count() - 1))
+                    {
+                        schedule += selectedDays[i] + ", ";
+                    }
+                    else
+                    {
+                        schedule += selectedDays[i];
+                    }
+                }
+
+                if (Database.AddDoctor(UsernameTextBox.Text,
+                                       PasswordTextBox.Text,
+                                       EmailTextBox.Text,
+                                       ContactNoTextBox.Text,
+                                       AltContactNoTextBox.Text,
+                                       AddressTextBox.Text,
+                                       LicenseNoTextBox.Text,
+                                       FnameTextBox.Text,
+                                       MnameTextBox.Text,
+                                       LnameTextBox.Text,
+                                       schedule))
                 {
                     MessageBox.Show("Doctor registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
-                    
+
                 else
                 {
                     MessageBox.Show("Error!\nDupplicate doctor information detected.\nDoctor not registered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -17,6 +17,18 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             keyPressHandler();
+
+            UserIDTextBox.Text = Database.CurrentUser.UserId.ToString();
+            EmailAddressTextBox.Text = Database.CurrentUser.EmailAddress;
+            ContactNoTextBox.Text = Database.CurrentUser.ContactNumber.ToString();
+            AltContactNoTextBox.Text = Database.CurrentUser.AltContactNumber.ToString();
+            AddressTextBox.Text = Database.CurrentUser.Address;
+
+
+            FnameTextBox.Text = Database.CurrentReceptionist.FirstName;
+            MnameTextBox.Text = Database.CurrentReceptionist.MiddleName;
+            LnameTextBox.Text = Database.CurrentReceptionist.LastName;
+            StatusComboBox.Text = Database.CurrentUser.Status;
         }
         public void textOnly(object sender, KeyPressEventArgs e)
         {
@@ -89,21 +101,5 @@ namespace ClinicManagementSystem
             }
         }
 
-        private void SelectUserButton_Click(object sender, EventArgs e)
-        {
-            ChooseUserForm chooseUserForm = new ChooseUserForm("RECEPTIONIST");
-            chooseUserForm.ShowDialog();
-            UserIDTextBox.Text = Database.CurrentUser.UserId.ToString();
-            EmailAddressTextBox.Text = Database.CurrentUser.EmailAddress;
-            ContactNoTextBox.Text = Database.CurrentUser.ContactNumber.ToString();
-            AltContactNoTextBox.Text = Database.CurrentUser.AltContactNumber.ToString();
-            AddressTextBox.Text = Database.CurrentUser.Address;
-
-
-            FnameTextBox.Text = Database.CurrentReceptionist.FirstName;
-            MnameTextBox.Text = Database.CurrentReceptionist.MiddleName;
-            LnameTextBox.Text = Database.CurrentReceptionist.LastName;
-            StatusComboBox.Text = Database.CurrentUser.Status;
-        }
     }
 }

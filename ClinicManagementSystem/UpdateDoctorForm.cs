@@ -18,6 +18,27 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             keyPressHandler();
+
+            UserIDTextBox.Text = Database.CurrentUser.UserId.ToString();
+            EmailAddressTextBox.Text = Database.CurrentUser.EmailAddress;
+            ContactNoTextBox.Text = Database.CurrentUser.ContactNumber.ToString();
+            AltContactNoTextBox.Text = Database.CurrentUser.AltContactNumber.ToString();
+            AddressTextBox.Text = Database.CurrentUser.Address;
+
+
+            LicenseNoTextBox.Text = Database.CurrentDoctor.LicenseNumber.ToString();
+            FnameTextBox.Text = Database.CurrentDoctor.FirstName;
+            MnameTextBox.Text = Database.CurrentDoctor.MiddleName;
+            LnameTextBox.Text = Database.CurrentDoctor.LastName;
+            StatusComboBox.Text = Database.CurrentUser.Status;
+
+            if (Database.CurrentDoctor.Schedule.Contains("M")) { MCheckBox.Checked = true; }
+            if (Database.CurrentDoctor.Schedule.Contains("T")) { TCheckBox.Checked = true; }
+            if (Database.CurrentDoctor.Schedule.Contains("W")) { WCheckBox.Checked = true; }
+            if (Database.CurrentDoctor.Schedule.Contains("Th")) { ThCheckBox.Checked = true; }
+            if (Database.CurrentDoctor.Schedule.Contains("F")) { FCheckBox.Checked = true; }
+            if (Database.CurrentDoctor.Schedule.Contains("S")) { SCheckBox.Checked = true; }
+
         }
         public void textOnly(object sender, KeyPressEventArgs e)
         {
@@ -57,25 +78,6 @@ namespace ClinicManagementSystem
             this.Close();
         }
 
-        private void SelectUserButton_Click(object sender, EventArgs e)
-        {
-            ChooseUserForm chooseUserForm = new ChooseUserForm("DOCTOR");
-            chooseUserForm.ShowDialog();
-            UserIDTextBox.Text = Database.CurrentUser.UserId.ToString();
-            EmailAddressTextBox.Text = Database.CurrentUser.EmailAddress;
-            ContactNoTextBox.Text = Database.CurrentUser.ContactNumber.ToString();
-            AltContactNoTextBox.Text = Database.CurrentUser.AltContactNumber.ToString();
-            AddressTextBox.Text = Database.CurrentUser.Address;
-
-
-            LicenseNoTextBox.Text = Database.CurrentDoctor.LicenseNumber.ToString();
-            FnameTextBox.Text = Database.CurrentDoctor.FirstName;
-            MnameTextBox.Text = Database.CurrentDoctor.MiddleName;
-            LnameTextBox.Text = Database.CurrentDoctor.LastName;
-            StatusComboBox.Text = Database.CurrentUser.Status;
-            ScheduleComboBox.Text = Database.CurrentDoctor.Schedule;
-        }
-
         private void UpdateDoctorButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(UserIDTextBox.Text) ||
@@ -85,13 +87,36 @@ namespace ClinicManagementSystem
                 string.IsNullOrWhiteSpace(LicenseNoTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ContactNoTextBox.Text) ||
                 string.IsNullOrWhiteSpace(AddressTextBox.Text) ||
-                string.IsNullOrWhiteSpace(ScheduleComboBox.Text) ||
+                (!MCheckBox.Checked && !TCheckBox.Checked && !WCheckBox.Checked && 
+                !ThCheckBox.Checked && !FCheckBox.Checked && !SCheckBox.Checked) ||
                 string.IsNullOrWhiteSpace(StatusComboBox.Text))
             {
-                MessageBox.Show("Only Email Address and Alternate Contact Number are optional. All other fields must be filled out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Don't leave anything empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
+                string schedule = "";
+                List<String> selectedDays = new List<String>();
+                if (MCheckBox.Checked) { selectedDays.Add("M"); }
+                if (TCheckBox.Checked) { selectedDays.Add("T"); }
+                if (WCheckBox.Checked) { selectedDays.Add("W"); }
+                if (ThCheckBox.Checked) { selectedDays.Add("Th"); }
+                if (FCheckBox.Checked) { selectedDays.Add("F"); }
+                if (SCheckBox.Checked) { selectedDays.Add("S"); }
+
+                for (int i = 0; i < selectedDays.Count(); i++)
+                {
+                    if (i != (selectedDays.Count() - 1))
+                    {
+                        schedule += selectedDays[i] + ", ";
+                    }
+                    else
+                    {
+                        schedule += selectedDays[i];
+                    }
+                }
+                
+
                 if (Database.UpdateUserDoctor(Database.CurrentUser.UserId, 
                                               Database.CurrentDoctor.DoctorId, 
                                               EmailAddressTextBox.Text, 
@@ -103,7 +128,7 @@ namespace ClinicManagementSystem
                                               MnameTextBox.Text,
                                               LnameTextBox.Text,
                                               StatusComboBox.Text.ToUpper(),
-                                              ScheduleComboBox.Text
+                                              schedule
                                               ))
                 {
                     MessageBox.Show("Doctor updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

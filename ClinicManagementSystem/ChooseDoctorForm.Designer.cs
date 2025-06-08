@@ -65,6 +65,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.ResetButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.ScheduleTextBox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Doctors_DataGridView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -75,11 +77,13 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.panel1.Controls.Add(this.StatusComboBox);
             this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.EmailAddressTextBox);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.AltContactNumberTextBox);
             this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.ScheduleTextBox);
             this.panel1.Controls.Add(this.AddressTextBox);
             this.panel1.Controls.Add(this.LicenseNumberTextBox);
             this.panel1.Controls.Add(this.label6);
@@ -96,7 +100,7 @@
             this.panel1.Location = new System.Drawing.Point(7, 90);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(484, 331);
+            this.panel1.Size = new System.Drawing.Size(484, 364);
             this.panel1.TabIndex = 0;
             // 
             // StatusComboBox
@@ -108,7 +112,7 @@
             this.StatusComboBox.Items.AddRange(new object[] {
             "AVAILABLE",
             "UNAVAILABLE"});
-            this.StatusComboBox.Location = new System.Drawing.Point(166, 289);
+            this.StatusComboBox.Location = new System.Drawing.Point(166, 323);
             this.StatusComboBox.Name = "StatusComboBox";
             this.StatusComboBox.Size = new System.Drawing.Size(287, 28);
             this.StatusComboBox.TabIndex = 22;
@@ -118,7 +122,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(101, 292);
+            this.label16.Location = new System.Drawing.Point(101, 326);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(60, 20);
@@ -130,7 +134,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(93, 266);
+            this.label15.Location = new System.Drawing.Point(93, 258);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(72, 20);
@@ -153,7 +157,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(50, 234);
+            this.label14.Location = new System.Drawing.Point(50, 231);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(115, 20);
@@ -176,7 +180,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(13, 204);
+            this.label9.Location = new System.Drawing.Point(13, 201);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(152, 20);
@@ -210,7 +214,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(34, 174);
+            this.label6.Location = new System.Drawing.Point(36, 171);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(129, 20);
@@ -233,7 +237,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(33, 141);
+            this.label5.Location = new System.Drawing.Point(37, 141);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(128, 20);
@@ -256,7 +260,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(72, 114);
+            this.label4.Location = new System.Drawing.Point(72, 111);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 20);
@@ -279,7 +283,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(57, 84);
+            this.label3.Location = new System.Drawing.Point(60, 81);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 20);
@@ -302,7 +306,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(72, 54);
+            this.label2.Location = new System.Drawing.Point(72, 51);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 20);
@@ -325,7 +329,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(80, 20);
+            this.label1.Location = new System.Drawing.Point(83, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 20);
@@ -339,7 +343,7 @@
             this.SelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.SelectButton.ForeColor = System.Drawing.Color.White;
-            this.SelectButton.Location = new System.Drawing.Point(108, 444);
+            this.SelectButton.Location = new System.Drawing.Point(108, 478);
             this.SelectButton.Margin = new System.Windows.Forms.Padding(2);
             this.SelectButton.Name = "SelectButton";
             this.SelectButton.Size = new System.Drawing.Size(383, 38);
@@ -356,7 +360,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(529, 444);
+            this.CancelButton.Location = new System.Drawing.Point(529, 478);
             this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(383, 38);
@@ -377,7 +381,7 @@
             this.Doctors_DataGridView.Location = new System.Drawing.Point(509, 90);
             this.Doctors_DataGridView.Name = "Doctors_DataGridView";
             this.Doctors_DataGridView.ReadOnly = true;
-            this.Doctors_DataGridView.Size = new System.Drawing.Size(519, 331);
+            this.Doctors_DataGridView.Size = new System.Drawing.Size(519, 364);
             this.Doctors_DataGridView.TabIndex = 5;
             this.Doctors_DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Doctors_DataGridView_CellClick);
             // 
@@ -402,7 +406,6 @@
             this.label10.Size = new System.Drawing.Size(164, 29);
             this.label10.TabIndex = 7;
             this.label10.Text = "Doctor Details";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // panel2
             // 
@@ -525,7 +528,7 @@
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.CloseButton.ForeColor = System.Drawing.Color.White;
-            this.CloseButton.Location = new System.Drawing.Point(329, 444);
+            this.CloseButton.Location = new System.Drawing.Point(329, 478);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(2);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(383, 38);
@@ -535,12 +538,35 @@
             this.CloseButton.Visible = false;
             this.CloseButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // ScheduleTextBox
+            // 
+            this.ScheduleTextBox.Enabled = false;
+            this.ScheduleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScheduleTextBox.Location = new System.Drawing.Point(166, 292);
+            this.ScheduleTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ScheduleTextBox.Name = "ScheduleTextBox";
+            this.ScheduleTextBox.ReadOnly = true;
+            this.ScheduleTextBox.Size = new System.Drawing.Size(287, 26);
+            this.ScheduleTextBox.TabIndex = 14;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(83, 295);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(80, 20);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "Schedule:";
+            // 
             // ChooseDoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(1041, 493);
+            this.ClientSize = new System.Drawing.Size(1041, 542);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label10);
@@ -605,6 +631,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button ResetButton;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox ScheduleTextBox;
     }
 }
 

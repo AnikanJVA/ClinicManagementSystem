@@ -29,13 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ScheduleComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.LicenseNoTextBox = new System.Windows.Forms.TextBox();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.SelectUserButton = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.UserIDTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -54,21 +52,29 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.MCheckBox = new System.Windows.Forms.CheckBox();
+            this.ThCheckBox = new System.Windows.Forms.CheckBox();
+            this.TCheckBox = new System.Windows.Forms.CheckBox();
+            this.FCheckBox = new System.Windows.Forms.CheckBox();
+            this.WCheckBox = new System.Windows.Forms.CheckBox();
+            this.SCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.ScheduleComboBox);
+            this.panel1.Controls.Add(this.WCheckBox);
+            this.panel1.Controls.Add(this.SCheckBox);
+            this.panel1.Controls.Add(this.FCheckBox);
+            this.panel1.Controls.Add(this.TCheckBox);
+            this.panel1.Controls.Add(this.ThCheckBox);
+            this.panel1.Controls.Add(this.MCheckBox);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.LicenseNoTextBox);
             this.panel1.Controls.Add(this.StatusComboBox);
             this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.SelectUserButton);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.UserIDTextBox);
             this.panel1.Controls.Add(this.label11);
@@ -89,22 +95,8 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(867, 370);
+            this.panel1.Size = new System.Drawing.Size(867, 376);
             this.panel1.TabIndex = 3;
-            // 
-            // ScheduleComboBox
-            // 
-            this.ScheduleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ScheduleComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ScheduleComboBox.FormattingEnabled = true;
-            this.ScheduleComboBox.Items.AddRange(new object[] {
-            "MWF",
-            "TThS"});
-            this.ScheduleComboBox.Location = new System.Drawing.Point(554, 233);
-            this.ScheduleComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ScheduleComboBox.Name = "ScheduleComboBox";
-            this.ScheduleComboBox.Size = new System.Drawing.Size(244, 28);
-            this.ScheduleComboBox.TabIndex = 29;
             // 
             // label4
             // 
@@ -145,8 +137,8 @@
             this.StatusComboBox.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.StatusComboBox.Location = new System.Drawing.Point(554, 194);
-            this.StatusComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StatusComboBox.Location = new System.Drawing.Point(566, 194);
+            this.StatusComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.StatusComboBox.Name = "StatusComboBox";
             this.StatusComboBox.Size = new System.Drawing.Size(244, 28);
             this.StatusComboBox.TabIndex = 25;
@@ -161,23 +153,6 @@
             this.label9.Size = new System.Drawing.Size(66, 20);
             this.label9.TabIndex = 24;
             this.label9.Text = "*Status:";
-            // 
-            // SelectUserButton
-            // 
-            this.SelectUserButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.SelectUserButton.FlatAppearance.BorderSize = 0;
-            this.SelectUserButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.SelectUserButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(66)))), ((int)(((byte)(115)))));
-            this.SelectUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SelectUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectUserButton.ForeColor = System.Drawing.Color.White;
-            this.SelectUserButton.Location = new System.Drawing.Point(439, 31);
-            this.SelectUserButton.Name = "SelectUserButton";
-            this.SelectUserButton.Size = new System.Drawing.Size(132, 26);
-            this.SelectUserButton.TabIndex = 22;
-            this.SelectUserButton.Text = "Select User";
-            this.SelectUserButton.UseVisualStyleBackColor = false;
-            this.SelectUserButton.Click += new System.EventHandler(this.SelectUserButton_Click);
             // 
             // label12
             // 
@@ -214,7 +189,7 @@
             // FnameTextBox
             // 
             this.FnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FnameTextBox.Location = new System.Drawing.Point(554, 89);
+            this.FnameTextBox.Location = new System.Drawing.Point(566, 89);
             this.FnameTextBox.Name = "FnameTextBox";
             this.FnameTextBox.Size = new System.Drawing.Size(244, 26);
             this.FnameTextBox.TabIndex = 13;
@@ -222,7 +197,7 @@
             // MnameTextBox
             // 
             this.MnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MnameTextBox.Location = new System.Drawing.Point(554, 123);
+            this.MnameTextBox.Location = new System.Drawing.Point(566, 123);
             this.MnameTextBox.Name = "MnameTextBox";
             this.MnameTextBox.Size = new System.Drawing.Size(244, 26);
             this.MnameTextBox.TabIndex = 14;
@@ -236,7 +211,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(454, 304);
+            this.CancelButton.Location = new System.Drawing.Point(454, 310);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(306, 38);
             this.CancelButton.TabIndex = 9;
@@ -253,7 +228,7 @@
             this.UpdateDoctorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UpdateDoctorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateDoctorButton.ForeColor = System.Drawing.Color.White;
-            this.UpdateDoctorButton.Location = new System.Drawing.Point(104, 304);
+            this.UpdateDoctorButton.Location = new System.Drawing.Point(104, 310);
             this.UpdateDoctorButton.Name = "UpdateDoctorButton";
             this.UpdateDoctorButton.Size = new System.Drawing.Size(306, 38);
             this.UpdateDoctorButton.TabIndex = 8;
@@ -273,7 +248,7 @@
             // LnameTextBox
             // 
             this.LnameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LnameTextBox.Location = new System.Drawing.Point(554, 158);
+            this.LnameTextBox.Location = new System.Drawing.Point(566, 158);
             this.LnameTextBox.Name = "LnameTextBox";
             this.LnameTextBox.Size = new System.Drawing.Size(244, 26);
             this.LnameTextBox.TabIndex = 5;
@@ -368,25 +343,87 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "*Middle Name:";
             // 
-            // label10
+            // MCheckBox
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(29, 274);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(368, 15);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "\"EMAIL ADDRESS AND ALT CONTACT NUMBER ARE OPTIONAL\"";
+            this.MCheckBox.AutoSize = true;
+            this.MCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.MCheckBox.ForeColor = System.Drawing.Color.White;
+            this.MCheckBox.Location = new System.Drawing.Point(568, 239);
+            this.MCheckBox.Name = "MCheckBox";
+            this.MCheckBox.Size = new System.Drawing.Size(77, 21);
+            this.MCheckBox.TabIndex = 29;
+            this.MCheckBox.Text = "Monday";
+            this.MCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ThCheckBox
+            // 
+            this.ThCheckBox.AutoSize = true;
+            this.ThCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.ThCheckBox.ForeColor = System.Drawing.Color.White;
+            this.ThCheckBox.Location = new System.Drawing.Point(568, 266);
+            this.ThCheckBox.Name = "ThCheckBox";
+            this.ThCheckBox.Size = new System.Drawing.Size(87, 21);
+            this.ThCheckBox.TabIndex = 29;
+            this.ThCheckBox.Text = "Thursday";
+            this.ThCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TCheckBox
+            // 
+            this.TCheckBox.AutoSize = true;
+            this.TCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.TCheckBox.ForeColor = System.Drawing.Color.White;
+            this.TCheckBox.Location = new System.Drawing.Point(661, 239);
+            this.TCheckBox.Name = "TCheckBox";
+            this.TCheckBox.Size = new System.Drawing.Size(82, 21);
+            this.TCheckBox.TabIndex = 29;
+            this.TCheckBox.Text = "Tuesday";
+            this.TCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // FCheckBox
+            // 
+            this.FCheckBox.AutoSize = true;
+            this.FCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.FCheckBox.ForeColor = System.Drawing.Color.White;
+            this.FCheckBox.Location = new System.Drawing.Point(661, 266);
+            this.FCheckBox.Name = "FCheckBox";
+            this.FCheckBox.Size = new System.Drawing.Size(66, 21);
+            this.FCheckBox.TabIndex = 29;
+            this.FCheckBox.Text = "Friday";
+            this.FCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // WCheckBox
+            // 
+            this.WCheckBox.AutoSize = true;
+            this.WCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.WCheckBox.ForeColor = System.Drawing.Color.White;
+            this.WCheckBox.Location = new System.Drawing.Point(745, 239);
+            this.WCheckBox.Name = "WCheckBox";
+            this.WCheckBox.Size = new System.Drawing.Size(102, 21);
+            this.WCheckBox.TabIndex = 29;
+            this.WCheckBox.Text = "Wednesday";
+            this.WCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // SCheckBox
+            // 
+            this.SCheckBox.AutoSize = true;
+            this.SCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.SCheckBox.ForeColor = System.Drawing.Color.White;
+            this.SCheckBox.Location = new System.Drawing.Point(745, 266);
+            this.SCheckBox.Name = "SCheckBox";
+            this.SCheckBox.Size = new System.Drawing.Size(84, 21);
+            this.SCheckBox.TabIndex = 29;
+            this.SCheckBox.Text = "Saturday";
+            this.SCheckBox.UseVisualStyleBackColor = true;
             // 
             // UpdateDoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(890, 393);
+            this.ClientSize = new System.Drawing.Size(890, 399);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UpdateDoctorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UpdateDoctorForm";
@@ -401,7 +438,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox StatusComboBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button SelectUserButton;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox UserIDTextBox;
         private System.Windows.Forms.Label label11;
@@ -420,10 +456,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox ScheduleComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox LicenseNoTextBox;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox WCheckBox;
+        private System.Windows.Forms.CheckBox SCheckBox;
+        private System.Windows.Forms.CheckBox FCheckBox;
+        private System.Windows.Forms.CheckBox TCheckBox;
+        private System.Windows.Forms.CheckBox ThCheckBox;
+        private System.Windows.Forms.CheckBox MCheckBox;
     }
 }

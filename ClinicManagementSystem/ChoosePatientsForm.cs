@@ -26,12 +26,19 @@ namespace ClinicManagementSystem
             ViewRecordButton.Visible = false;
             DocViewCancelButton.Visible = false;
             RegisterNewPatientButton.Visible = true;
+
+            Patients_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Patients_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Patients_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         public ChoosePatientsForm(string formType)
         {
             InitializeComponent();
             this.formType = formType.ToUpper();
+            Patients_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Patients_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Patients_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             if (formType.ToUpper().Equals("SEARCH"))
             {
                 Patients_DataGridView.DataSource = Database.GetPatients("ALL");
@@ -42,7 +49,7 @@ namespace ClinicManagementSystem
                 ViewRecordButton.Visible = false;
                 DocViewCancelButton.Visible = false;
             }
-            if (formType.ToUpper().Equals("RECORDS"))
+            else if (formType.ToUpper().Equals("RECORDS"))
             {
                 Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE", Database.CurrentLoggedDoctor.DoctorId);
                 CloseButton.Visible = false;
@@ -51,6 +58,16 @@ namespace ClinicManagementSystem
                 RegisterNewPatientButton.Visible = false;
                 ViewRecordButton.Visible = true;
                 DocViewCancelButton.Visible = true;
+            }
+            else if (formType.ToUpper().Equals("UPDATE"))
+            {
+                Patients_DataGridView.DataSource = Database.GetPatients("ALL");
+                CloseButton.Visible = false;
+                SelectButton.Visible = true;
+                CancelButton.Visible = true;
+                ViewRecordButton.Visible = false;
+                DocViewCancelButton.Visible = false;
+                RegisterNewPatientButton.Visible = true;
             }
         }
 
@@ -132,7 +149,14 @@ namespace ClinicManagementSystem
         {
             RegisterPatientForm registerPatientForm = new RegisterPatientForm();
             registerPatientForm.ShowDialog();
-            Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
+            if (formType.Equals("SEARCH"))
+            {
+                Patients_DataGridView.DataSource = Database.GetPatients("ALL");
+            }
+            else
+            {
+                Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE");
+            }
         }
 
 

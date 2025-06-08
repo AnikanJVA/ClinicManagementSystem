@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -56,7 +55,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.PasswordTextBox);
             this.panel1.Controls.Add(this.label8);
@@ -79,19 +77,8 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(867, 259);
+            this.panel1.Size = new System.Drawing.Size(867, 244);
             this.panel1.TabIndex = 4;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(70, 178);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(368, 15);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "\"EMAIL ADDRESS AND ALT CONTACT NUMBER ARE OPTIONAL\"";
             // 
             // label4
             // 
@@ -108,7 +95,7 @@
             // 
             this.PasswordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.PasswordTextBox.Location = new System.Drawing.Point(163, 50);
-            this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '•';
             this.PasswordTextBox.Size = new System.Drawing.Size(244, 26);
@@ -129,7 +116,7 @@
             // 
             this.UsernameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.UsernameTextBox.Location = new System.Drawing.Point(163, 20);
-            this.UsernameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UsernameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(244, 26);
             this.UsernameTextBox.TabIndex = 1;
@@ -170,7 +157,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(454, 207);
+            this.CancelButton.Location = new System.Drawing.Point(454, 185);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(306, 38);
             this.CancelButton.TabIndex = 11;
@@ -187,7 +174,7 @@
             this.RegisterReceptionistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RegisterReceptionistButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RegisterReceptionistButton.ForeColor = System.Drawing.Color.White;
-            this.RegisterReceptionistButton.Location = new System.Drawing.Point(119, 207);
+            this.RegisterReceptionistButton.Location = new System.Drawing.Point(119, 185);
             this.RegisterReceptionistButton.Name = "RegisterReceptionistButton";
             this.RegisterReceptionistButton.Size = new System.Drawing.Size(306, 38);
             this.RegisterReceptionistButton.TabIndex = 10;
@@ -243,9 +230,9 @@
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(5, 146);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(152, 20);
+            this.label7.Size = new System.Drawing.Size(158, 20);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Alt Contact Number:";
+            this.label7.Text = "*Alt Contact Number:";
             // 
             // label5
             // 
@@ -307,10 +294,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(890, 280);
+            this.ClientSize = new System.Drawing.Size(890, 265);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "RegisterReceptionistForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -344,6 +331,5 @@
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox UsernameTextBox;
-        private System.Windows.Forms.Label label9;
     }
 }

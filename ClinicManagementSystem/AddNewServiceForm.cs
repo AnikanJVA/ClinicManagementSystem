@@ -18,13 +18,35 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             keyPressHandler();
-            SelectButton.Visible = false;
             ServiceIDTextBox.Visible = false;
             UpdateButton.Visible = false;
             AddServiceButton.Visible = true;
             ServiceTypeComboBox.DataSource = Database.GetServiceTypeNames();
             ServiceTypeComboBox.DisplayMember = "serviceTypeName";
+            this.Text = "Add Service";
         }
+
+        public AddNewServiceForm(string formType)
+        {
+            InitializeComponent();
+            ServiceTypeComboBox.DataSource = Database.GetServiceTypeNames();
+            ServiceTypeComboBox.DisplayMember = "serviceTypeName";
+            if (formType.ToUpper().Equals("UPDATE"))
+            {
+                this.Text = "Update Service";
+                ServiceIdLabel.Visible = true;
+                ServiceIDTextBox.Visible = true;
+                UpdateButton.Visible = true;
+                AddServiceButton.Visible = false;
+
+                ServiceIDTextBox.Text = Database.CurrentService.ServiceID.ToString();
+                ServiceNameTextBox.Text = Database.CurrentService.ServiceName;
+                ServiceDescriptionTextBox.Text = Database.CurrentService.ServiceDesc;
+                ServiceTypeComboBox.Text = Database.CurrentService.ServiceType;
+                PriceTextBox.Text = Database.CurrentService.Price.ToString();
+            }
+        }
+
         public void textOnly(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) &&
@@ -51,21 +73,6 @@ namespace ClinicManagementSystem
             ServiceNameTextBox.KeyPress += textOnly;
 
             PriceTextBox.KeyPress += numOnly;
-        }
-
-        public AddNewServiceForm(string formType)
-        {
-            InitializeComponent();
-            ServiceTypeComboBox.DataSource = Database.GetServiceTypeNames();
-            ServiceTypeComboBox.DisplayMember = "serviceTypeName";
-            if (formType.ToUpper().Equals("UPDATE"))
-            {
-                label1.Visible = true;
-                ServiceIDTextBox.Visible = true;
-                SelectButton.Visible = true;
-                UpdateButton.Visible = true;
-                AddServiceButton.Visible = false;
-            }
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
@@ -99,17 +106,6 @@ namespace ClinicManagementSystem
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void SelectButton_Click(object sender, EventArgs e)
-        {
-            ChooseServiceForm chooseServiceForm = new ChooseServiceForm("UPDATE");
-            chooseServiceForm.ShowDialog();
-            ServiceIDTextBox.Text = Database.CurrentService.ServiceID.ToString();
-            ServiceNameTextBox.Text = Database.CurrentService.ServiceName;
-            ServiceDescriptionTextBox.Text = Database.CurrentService.ServiceDesc;
-            ServiceTypeComboBox.Text = Database.CurrentService.ServiceType;
-            PriceTextBox.Text = Database.CurrentService.Price.ToString();
         }
 
         private void AddServiceButton_Click(object sender, EventArgs e)

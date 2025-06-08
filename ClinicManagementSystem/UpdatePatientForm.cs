@@ -20,6 +20,28 @@ namespace ClinicManagementSystem
             DoBDateTimePicker.Format = DateTimePickerFormat.Custom;
             DoBDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd";
 
+            PatientIdTextBox.Text = Database.CurrentPatient.ID.ToString();
+            FnameTextBox.Text = Database.CurrentPatient.FirstName.ToString();
+            MnameTextBox.Text = Database.CurrentPatient.MiddleName.ToString();
+            LnameTextBox.Text = Database.CurrentPatient.LastName.ToString();
+            DoBDateTimePicker.Text = Database.CurrentPatient.DoB.ToString();
+
+            if (Database.CurrentPatient.Sex.ToString().Equals("M"))
+            {
+                MaleRadioButton.Checked = true;
+                FemaleRadioButton.Checked = false;
+            }
+            else
+            {
+                MaleRadioButton.Checked = false;
+                FemaleRadioButton.Checked = true;
+            }
+            ContactNoTextBox.Text = Database.CurrentPatient.ContactNumber.ToString();
+            AltContactNumberTextBox.Text = Database.CurrentPatient.AltContactNumber.ToString();
+            EmailTextBox.Text = Database.CurrentPatient.EmailAddress.ToString();
+            AddressTextBox.Text = Database.CurrentPatient.Address.ToString();
+            StatusComboBox.Text = Database.CurrentPatient.Status.ToString();
+
         }
         public void textOnly(object sender, KeyPressEventArgs e)
         {
@@ -102,7 +124,7 @@ namespace ClinicManagementSystem
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
-            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm();
+            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm("UPDATE");
             choosePatientsForm.ShowDialog();
             PatientIdTextBox.Text = Database.CurrentPatient.ID.ToString();
             FnameTextBox.Text = Database.CurrentPatient.FirstName.ToString();

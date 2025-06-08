@@ -36,7 +36,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ScheduleComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.LicenseNoTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -53,7 +52,12 @@
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.ContactNoTextBox = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.WCheckBox = new System.Windows.Forms.CheckBox();
+            this.SCheckBox = new System.Windows.Forms.CheckBox();
+            this.FCheckBox = new System.Windows.Forms.CheckBox();
+            this.TCheckBox = new System.Windows.Forms.CheckBox();
+            this.ThCheckBox = new System.Windows.Forms.CheckBox();
+            this.MCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,8 +141,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.ScheduleComboBox);
+            this.panel1.Controls.Add(this.WCheckBox);
+            this.panel1.Controls.Add(this.SCheckBox);
+            this.panel1.Controls.Add(this.FCheckBox);
+            this.panel1.Controls.Add(this.TCheckBox);
+            this.panel1.Controls.Add(this.ThCheckBox);
+            this.panel1.Controls.Add(this.MCheckBox);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.LicenseNoTextBox);
             this.panel1.Controls.Add(this.label11);
@@ -164,22 +172,8 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(835, 307);
+            this.panel1.Size = new System.Drawing.Size(857, 282);
             this.panel1.TabIndex = 0;
-            // 
-            // ScheduleComboBox
-            // 
-            this.ScheduleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ScheduleComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ScheduleComboBox.FormattingEnabled = true;
-            this.ScheduleComboBox.Items.AddRange(new object[] {
-            "MWF",
-            "TThS"});
-            this.ScheduleComboBox.Location = new System.Drawing.Point(576, 150);
-            this.ScheduleComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ScheduleComboBox.Name = "ScheduleComboBox";
-            this.ScheduleComboBox.Size = new System.Drawing.Size(244, 28);
-            this.ScheduleComboBox.TabIndex = 17;
             // 
             // label8
             // 
@@ -258,7 +252,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.Color.White;
-            this.CancelButton.Location = new System.Drawing.Point(446, 241);
+            this.CancelButton.Location = new System.Drawing.Point(445, 221);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(306, 38);
             this.CancelButton.TabIndex = 19;
@@ -275,7 +269,7 @@
             this.RegisterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RegisterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RegisterButton.ForeColor = System.Drawing.Color.White;
-            this.RegisterButton.Location = new System.Drawing.Point(104, 241);
+            this.RegisterButton.Location = new System.Drawing.Point(103, 221);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(306, 38);
             this.RegisterButton.TabIndex = 18;
@@ -340,23 +334,84 @@
             this.ContactNoTextBox.Size = new System.Drawing.Size(244, 26);
             this.ContactNoTextBox.TabIndex = 4;
             // 
-            // label12
+            // WCheckBox
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(43, 209);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(368, 15);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "\"EMAIL ADDRESS AND ALT CONTACT NUMBER ARE OPTIONAL\"";
+            this.WCheckBox.AutoSize = true;
+            this.WCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.WCheckBox.ForeColor = System.Drawing.Color.White;
+            this.WCheckBox.Location = new System.Drawing.Point(752, 155);
+            this.WCheckBox.Name = "WCheckBox";
+            this.WCheckBox.Size = new System.Drawing.Size(102, 21);
+            this.WCheckBox.TabIndex = 30;
+            this.WCheckBox.Text = "Wednesday";
+            this.WCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // SCheckBox
+            // 
+            this.SCheckBox.AutoSize = true;
+            this.SCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.SCheckBox.ForeColor = System.Drawing.Color.White;
+            this.SCheckBox.Location = new System.Drawing.Point(752, 182);
+            this.SCheckBox.Name = "SCheckBox";
+            this.SCheckBox.Size = new System.Drawing.Size(84, 21);
+            this.SCheckBox.TabIndex = 31;
+            this.SCheckBox.Text = "Saturday";
+            this.SCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // FCheckBox
+            // 
+            this.FCheckBox.AutoSize = true;
+            this.FCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.FCheckBox.ForeColor = System.Drawing.Color.White;
+            this.FCheckBox.Location = new System.Drawing.Point(668, 182);
+            this.FCheckBox.Name = "FCheckBox";
+            this.FCheckBox.Size = new System.Drawing.Size(66, 21);
+            this.FCheckBox.TabIndex = 32;
+            this.FCheckBox.Text = "Friday";
+            this.FCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // TCheckBox
+            // 
+            this.TCheckBox.AutoSize = true;
+            this.TCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.TCheckBox.ForeColor = System.Drawing.Color.White;
+            this.TCheckBox.Location = new System.Drawing.Point(668, 155);
+            this.TCheckBox.Name = "TCheckBox";
+            this.TCheckBox.Size = new System.Drawing.Size(82, 21);
+            this.TCheckBox.TabIndex = 33;
+            this.TCheckBox.Text = "Tuesday";
+            this.TCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ThCheckBox
+            // 
+            this.ThCheckBox.AutoSize = true;
+            this.ThCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.ThCheckBox.ForeColor = System.Drawing.Color.White;
+            this.ThCheckBox.Location = new System.Drawing.Point(575, 182);
+            this.ThCheckBox.Name = "ThCheckBox";
+            this.ThCheckBox.Size = new System.Drawing.Size(87, 21);
+            this.ThCheckBox.TabIndex = 34;
+            this.ThCheckBox.Text = "Thursday";
+            this.ThCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // MCheckBox
+            // 
+            this.MCheckBox.AutoSize = true;
+            this.MCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.MCheckBox.ForeColor = System.Drawing.Color.White;
+            this.MCheckBox.Location = new System.Drawing.Point(575, 155);
+            this.MCheckBox.Name = "MCheckBox";
+            this.MCheckBox.Size = new System.Drawing.Size(77, 21);
+            this.MCheckBox.TabIndex = 35;
+            this.MCheckBox.Text = "Monday";
+            this.MCheckBox.UseVisualStyleBackColor = true;
             // 
             // RegisterDoctorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(860, 330);
+            this.ClientSize = new System.Drawing.Size(882, 305);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -396,7 +451,11 @@
         private System.Windows.Forms.TextBox LicenseNoTextBox;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox ScheduleComboBox;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox WCheckBox;
+        private System.Windows.Forms.CheckBox SCheckBox;
+        private System.Windows.Forms.CheckBox FCheckBox;
+        private System.Windows.Forms.CheckBox TCheckBox;
+        private System.Windows.Forms.CheckBox ThCheckBox;
+        private System.Windows.Forms.CheckBox MCheckBox;
     }
 }

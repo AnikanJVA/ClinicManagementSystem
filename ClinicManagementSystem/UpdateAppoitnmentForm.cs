@@ -21,7 +21,6 @@ namespace ClinicManagementSystem
 
             AppointmentDateTimePicker.Format = DateTimePickerFormat.Custom;
             AppointmentDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
-            AppointmentDateTimePicker.MinDate = DateTime.Today;
 
             DateTime now = DateTime.Now;
             if (now.Hour < 9)
@@ -36,6 +35,15 @@ namespace ClinicManagementSystem
             {
                 AppointmentDateTimePicker.Value = now;
             }
+
+            AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
+            AppointmentDateTimePicker.Text = Database.CurrentAppointment.DateTime.ToString();
+            PatientIdTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
+            PatientNameTextBox.Text = Database.CurrentPatient.FirstName.ToString() + " " + Database.CurrentPatient.MiddleName.ToString() + " " + Database.CurrentPatient.LastName.ToString();
+            DoctorIdTextBox.Text = Database.CurrentDoctor.DoctorId.ToString();
+            DoctorNameTextBox.Text = Database.CurrentDoctor.FirstName.ToString() + " " + Database.CurrentDoctor.MiddleName.ToString() + " " + Database.CurrentDoctor.LastName.ToString();
+            ReasonTextBox.Text = Database.CurrentAppointment.Reason.ToString();
+            StatusComboBox.Text = Database.CurrentAppointment.Status.ToString();
         }
 
         private void AppointmentDateTimePicker_ValueChanged(object sender, EventArgs e)
@@ -59,6 +67,7 @@ namespace ClinicManagementSystem
             }
 
         }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();

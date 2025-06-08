@@ -225,12 +225,6 @@
     <Compile Include="UpdateDoctorForm.Designer.cs">
       <DependentUpon>UpdateDoctorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdateMedicineForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UpdateMedicineForm.Designer.cs">
-      <DependentUpon>UpdateMedicineForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="RecepView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,9 +302,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateDoctorForm.resx">
       <DependentUpon>UpdateDoctorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateMedicineForm.resx">
-      <DependentUpon>UpdateMedicineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecepView.resx">
       <DependentUpon>RecepView.cs</DependentUpon>

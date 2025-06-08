@@ -24,14 +24,20 @@ namespace ClinicManagementSystem
             CloseButton.Visible = false;
             SelectButton.Visible = true;
             CancelButton.Visible = true;
+            Doctors_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         public ChooseDoctorForm(string formType)
         {
             InitializeComponent();
+            Doctors_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             if (formType.ToUpper().Equals("SEARCH"))
             {
-                Doctors_DataGridView.DataSource = Database.GetDoctors("AVAILABLE");
+                Doctors_DataGridView.DataSource = Database.GetDoctors("ALL");
                 CloseButton.Visible = true;
                 SelectButton.Visible = false;
                 CancelButton.Visible = false;
@@ -82,6 +88,7 @@ namespace ClinicManagementSystem
                         string altContactNumber = row.Cells["AltContactNumber"].Value.ToString();
                         string emailAddress = row.Cells["emailAddress"].Value.ToString();
                         string address = row.Cells["address"].Value.ToString();
+                        string schedule = row.Cells["Schedule"].Value.ToString();
                         string availabilityStatus = row.Cells["AvailabilityStatus"].Value.ToString();
 
                         DoctorIDTextBox.Text = Convert.ToString(doctorID);
@@ -93,6 +100,7 @@ namespace ClinicManagementSystem
                         AltContactNumberTextBox.Text = altContactNumber;
                         EmailAddressTextBox.Text = emailAddress;
                         AddressTextBox.Text = address;
+                        ScheduleTextBox.Text = schedule;
                         StatusComboBox.Text = availabilityStatus;
                     }
                     else
@@ -114,7 +122,7 @@ namespace ClinicManagementSystem
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            Doctors_DataGridView.DataSource = Database.GetDoctors("AVAILABLE");
+            Doctors_DataGridView.DataSource = Database.GetDoctors("ALL");
         }
 
         private void SearchButton_Click(Object sender, EventArgs e)
@@ -156,11 +164,6 @@ namespace ClinicManagementSystem
                     Doctors_DataGridView.DataSource = Database.GetSearchDoctor("FML", SearchFnameTextBox.Text, SearchMnameTextBox.Text, SearchLnameTextBox.Text);
                 }
             }
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

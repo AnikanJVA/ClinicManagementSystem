@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,11 +18,17 @@ namespace ClinicManagementSystem
         {
             InitializeComponent();
             UpdateDataGrids();
-            AccountTypelabel.Text += "\n" + Database.CurrentLoggedReceptionist.LastName;
 
-            Appointments_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Appointments_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Appointments_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            string currentDay = DateTime.Now.ToString("dddd");
+            if (currentDay.Equals("Monday")) { currentDay = "M"; }
+            else if (currentDay.Equals("Tuesday")) { currentDay = "T"; }
+            else if (currentDay.Equals("Wednesday")) { currentDay = "W"; }
+            else if (currentDay.Equals("Thursday")) { currentDay = "Th"; }
+            else if (currentDay.Equals("Friday")) { currentDay = "F"; }
+            else if (currentDay.Equals("Saturday")) { currentDay = "S"; }
+            Database.UpdateDoctorAvailabilityStatus(currentDay);
+
+            AccountTypelabel.Text += "\n" + Database.CurrentLoggedReceptionist.LastName;
 
             greetingsLabel.Text += " " + Database.CurrentLoggedReceptionist.LastName;
             TotalAppointmentsLabel.Text = Database.GetTotalAppointments().ToString();
@@ -31,6 +38,8 @@ namespace ClinicManagementSystem
             NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
             NextAppointment_DoctorNameLabel.Text += " " + Database.GetNextAppointmentDoctor();
             NextAppointment_PatientNameLabel.Text = Database.GetNextAppointmentPatient();
+
+            FormatDataGridViews();
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
@@ -53,6 +62,8 @@ namespace ClinicManagementSystem
 
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
+            Billing_Deletebutton.Hide();
+            Billing_GetButton.Hide();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
@@ -82,6 +93,8 @@ namespace ClinicManagementSystem
 
             Billing_DataGridView.Show();
             Billing_CreateButton.Show();
+            Billing_Deletebutton.Show();
+            Billing_GetButton.Show();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
@@ -111,6 +124,8 @@ namespace ClinicManagementSystem
 
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
+            Billing_Deletebutton.Hide();
+            Billing_GetButton.Hide();
 
             Doctors_TabControl.Show();
             Doctors_SearchButton.Show();
@@ -147,6 +162,8 @@ namespace ClinicManagementSystem
 
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
+            Billing_Deletebutton.Hide();
+            Billing_GetButton.Hide();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
@@ -185,7 +202,7 @@ namespace ClinicManagementSystem
 
         private void Patients_SearchButton_Click(object sender, EventArgs e)
         {
-            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm("Search");
+            ChoosePatientsForm choosePatientsForm = new ChoosePatientsForm("SEARCH");
             choosePatientsForm.ShowDialog();
         }
 
@@ -198,7 +215,7 @@ namespace ClinicManagementSystem
 
         private void Doctors_SearchButton_Click(object sender, EventArgs e)
         {
-            ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm("Search");
+            ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm("SEARCH");
             chooseDoctorForm.ShowDialog();
         }
 
@@ -209,8 +226,68 @@ namespace ClinicManagementSystem
             UpdateDataGrids();
         }
 
+        private void DashBoard_NavButton_Click(object sender, EventArgs e)
+        {
+            DashBoard_NavButton.BackColor = Color.FromArgb(1, 34, 79);
+            Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+            Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+            Billing_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+            Doctors_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+
+            Appointments_TabControl.Hide();
+            Appointments_CreateButton.Hide();
+            Appointments_UpdateButton.Hide();
+            Appointments_SerachButton.Hide();
+
+            Patients_TabControl.Hide();
+            Patients_RegisterButton.Hide();
+            Patients_UpdateButton.Hide();
+            Patients_SearchButton.Hide();
+
+            Billing_DataGridView.Hide();
+            Billing_CreateButton.Hide();
+            Billing_Deletebutton.Hide();
+            Billing_GetButton.Hide();
+
+            Doctors_TabControl.Hide();
+            Doctors_SearchButton.Hide();
+
+            Dashboard_panel.Visible = true;
+            NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
+            NextAppointment_DoctorNameLabel.Text += " " + Database.GetNextAppointmentDoctor();
+            NextAppointment_PatientNameLabel.Text = Database.GetNextAppointmentPatient();
+        }
+
+        private void Appointments_SerachButton_Click(object sender, EventArgs e)
+        {
+            ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("ALL", "SEARCH");
+            chooseAppointmentForm.ShowDialog();
+        }
+        private void Billing_GetButton_Click(object sender, EventArgs e)
+        {
+            // TO DO
+        }
+
+        private void Billing_Deletebutton_Click(object sender, EventArgs e)
+        {
+            long billID = Database.CurrentBill.BillID;
+            var choice = MessageBox.Show("Are you sure you want to delete Bill: " + billID + " ?", "Delete Bill?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (choice == DialogResult.Yes)
+            {
+                if (Database.DeleteBill(billID, Database.CurrentBill.AppointmentID))
+                {
+                    MessageBox.Show("Bill " + billID + " has beed deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error!\nDatabse error.\nBill not deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            UpdateDataGrids();
+        }
+
         public void UpdateDataGrids()
-        { 
+        {
             Appointments_AllDataGridView.DataSource = Database.GetAppointments("ALL");
             Appointments_ApprovedDataGridView.DataSource = Database.GetAppointments("APPROVED");
             Appointments_RescheduledDataGridView.DataSource = Database.GetAppointments("RESCHEDULED");
@@ -229,39 +306,326 @@ namespace ClinicManagementSystem
             Billing_DataGridView.DataSource = Database.GetBills();
         }
 
-        private void DashBoard_NavButton_Click(object sender, EventArgs e)
+        public void FormatDataGridViews()
         {
-            DashBoard_NavButton.BackColor = Color.FromArgb(1, 34, 79);
-            Appointments_NavButton.BackColor = Color.FromArgb(0, 148, 212);
-            Patients_NavButton.BackColor = Color.FromArgb(0, 148, 212);
-            Billing_NavButton.BackColor = Color.FromArgb(0, 148, 212);
-            Doctors_NavButton.BackColor = Color.FromArgb(0, 148, 212);
+            Appointments_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Patients_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 
-            Appointments_TabControl.Hide();
-            Appointments_CreateButton.Hide();
-            Appointments_UpdateButton.Hide();
+            Appointments_ApprovedDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_ApprovedDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_ApprovedDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Appointments_ApprovedDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 
-            Patients_TabControl.Hide();
-            Patients_RegisterButton.Hide();
-            Patients_UpdateButton.Hide();
-            Patients_SearchButton.Hide();
+            Appointments_RescheduledDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_RescheduledDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_RescheduledDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Appointments_RescheduledDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 
-            Billing_DataGridView.Hide();
-            Billing_CreateButton.Hide();
+            Appointments_CanceledDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_CanceledDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_CanceledDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Appointments_CanceledDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 
-            Doctors_TabControl.Hide();
-            Doctors_SearchButton.Hide();
+            Appointments_FinishedDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_FinishedDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_FinishedDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Appointments_FinishedDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
 
-            Dashboard_panel.Visible = true;
-            NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
-            NextAppointment_DoctorNameLabel.Text += " " + Database.GetNextAppointmentDoctor();
-            NextAppointment_PatientNameLabel.Text = Database.GetNextAppointmentPatient();
+            Patients_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Patients_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Patients_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Patients_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Patients_ActiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Patients_ActiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Patients_ActiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Patients_ActiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Patients_InactiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Patients_InactiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Patients_InactiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Patients_InactiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Doctors_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Doctors_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Doctors_AvailableDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_AvailableDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_AvailableDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Doctors_AvailableDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Doctors_UnavailableDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_UnavailableDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_UnavailableDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Doctors_UnavailableDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Doctors_InactiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_InactiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_InactiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Doctors_InactiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Billing_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Billing_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Billing_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Billing_DataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
         }
 
-        private void Appointments_SerachButton_Click(object sender, EventArgs e)
+        private void Appointments_AllDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("ALL", "SEARCH");
-            chooseAppointmentForm.ShowDialog();
+            long appointmentID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Appointments_AllDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Appointments_AllDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            appointmentID = Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString());
+                            Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                    
+                }
+            }
+        }
+
+        private void Appointments_RescheduledDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long appointmentID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Appointments_RescheduledDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Appointments_RescheduledDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            appointmentID = Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString());
+                            Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void Appointments_CanceledDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long appointmentID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Appointments_CanceledDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Appointments_CanceledDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            appointmentID = Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString());
+                            Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void Appointments_ApprovedDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long appointmentID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Appointments_ApprovedDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Appointments_ApprovedDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            appointmentID = Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString());
+                            Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void Appointments_FinishedDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long appointmentID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Appointments_FinishedDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Appointments_FinishedDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            appointmentID = Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString());
+                            Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+        private void Patients_AllDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long patientID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Patients_AllDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Patients_AllDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            patientID = Convert.ToInt64(row.Cells["PatientID"].Value.ToString());
+                            Database.CurrentPatient = Database.RetrievePatient(patientID);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void Patients_ActiveDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long patientID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Patients_ActiveDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Patients_ActiveDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            patientID = Convert.ToInt64(row.Cells["PatientID"].Value.ToString());
+                            Database.CurrentPatient = Database.RetrievePatient(patientID);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void Patients_InactiveDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long patientID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Patients_InactiveDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Patients_InactiveDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            patientID = Convert.ToInt64(row.Cells["PatientID"].Value.ToString());
+                            Database.CurrentPatient = Database.RetrievePatient(patientID);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                }
+            }
+        }
+
+        private void Billing_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long billID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Billing_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Billing_DataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            billID = Convert.ToInt64(row.Cells["BillID"].Value.ToString());
+                            Database.CurrentBill = Database.RetrieveBill(billID);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+
+                }
+            }
         }
     }
 }
