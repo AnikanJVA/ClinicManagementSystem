@@ -8,6 +8,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PdfSharp.Drawing;
+using PdfSharp.Fonts;
+using PdfSharp.Pdf;
 using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
@@ -372,6 +375,10 @@ namespace ClinicManagementSystem
             Billing_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Billing_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             Billing_DataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+
+            Billing_DataGridView.ReadOnly = true;
+            Billing_DataGridView.AllowUserToAddRows = false;
+            Billing_DataGridView.AllowUserToDeleteRows = false;
         }
 
         private void Appointments_AllDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -617,6 +624,8 @@ namespace ClinicManagementSystem
                         {
                             billID = Convert.ToInt64(row.Cells["BillID"].Value.ToString());
                             Database.CurrentBill = Database.RetrieveBill(billID);
+                            Database.CurrentAppointment = Database.RetrieveAppointment(Database.CurrentBill.AppointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
                         }
                         catch (Exception ex)
                         {
