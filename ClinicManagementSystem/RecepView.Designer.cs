@@ -36,18 +36,32 @@
             this.Billing_NavButton = new System.Windows.Forms.Button();
             this.Patients_NavButton = new System.Windows.Forms.Button();
             this.Appointments_NavButton = new System.Windows.Forms.Button();
+            this.Billing_BillDetailsPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Billing_AmountTextBox = new System.Windows.Forms.TextBox();
+            this.Billing_ServicesPerformedTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.BIlling_BillingDateTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Billing_AppointmentDateTimeTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.Billing_AppointmentIDTextBox = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Billing_PatientNameTextBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.Billing_BillIDTextBox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.Billing_GetButton = new System.Windows.Forms.Button();
-            this.Billing_Deletebutton = new System.Windows.Forms.Button();
             this.Billing_DataGridView = new System.Windows.Forms.DataGridView();
-            this.Billing_CreateButton = new System.Windows.Forms.Button();
-            this.Patients_TabControl = new System.Windows.Forms.TabControl();
-            this.Patients_AllTab = new System.Windows.Forms.TabPage();
-            this.Patients_AllDataGridView = new System.Windows.Forms.DataGridView();
-            this.Patients_ActiveTab = new System.Windows.Forms.TabPage();
-            this.Patients_ActiveDataGridView = new System.Windows.Forms.DataGridView();
-            this.Patients_InactiveTab = new System.Windows.Forms.TabPage();
-            this.Patients_InactiveDataGridView = new System.Windows.Forms.DataGridView();
             this.Patients_UpdateButton = new System.Windows.Forms.Button();
+            this.Appointments_UpdateButton = new System.Windows.Forms.Button();
+            this.Doctors_SearchButton = new System.Windows.Forms.Button();
+            this.Billing_CreateButton = new System.Windows.Forms.Button();
+            this.Appointments_CreateButton = new System.Windows.Forms.Button();
+            this.Patients_RegisterButton = new System.Windows.Forms.Button();
+            this.Appointments_SerachButton = new System.Windows.Forms.Button();
+            this.Patients_SearchButton = new System.Windows.Forms.Button();
+            this.Billing_Deletebutton = new System.Windows.Forms.Button();
             this.Appointments_TabControl = new System.Windows.Forms.TabControl();
             this.Appointments_AllTab = new System.Windows.Forms.TabPage();
             this.Appointments_AllDataGridView = new System.Windows.Forms.DataGridView();
@@ -68,11 +82,13 @@
             this.Doctors_UnavailableDataGridView = new System.Windows.Forms.DataGridView();
             this.Doctors_InactiveTab = new System.Windows.Forms.TabPage();
             this.Doctors_InactiveDataGridView = new System.Windows.Forms.DataGridView();
-            this.Appointments_UpdateButton = new System.Windows.Forms.Button();
-            this.Appointments_SerachButton = new System.Windows.Forms.Button();
-            this.Patients_SearchButton = new System.Windows.Forms.Button();
-            this.Appointments_CreateButton = new System.Windows.Forms.Button();
-            this.Patients_RegisterButton = new System.Windows.Forms.Button();
+            this.Patients_TabControl = new System.Windows.Forms.TabControl();
+            this.Patients_AllTab = new System.Windows.Forms.TabPage();
+            this.Patients_AllDataGridView = new System.Windows.Forms.DataGridView();
+            this.Patients_ActiveTab = new System.Windows.Forms.TabPage();
+            this.Patients_ActiveDataGridView = new System.Windows.Forms.DataGridView();
+            this.Patients_InactiveTab = new System.Windows.Forms.TabPage();
+            this.Patients_InactiveDataGridView = new System.Windows.Forms.DataGridView();
             this.Dashboard_panel = new System.Windows.Forms.Panel();
             this.greetingsLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -95,34 +111,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.TotalAppointmentsLabel = new System.Windows.Forms.Label();
-            this.Doctors_SearchButton = new System.Windows.Forms.Button();
-            this.Billing_BillDetailsPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Billing_AmountTextBox = new System.Windows.Forms.TextBox();
-            this.Billing_ServicesPerformedTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.BIlling_BillingDateTextBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.Billing_AppointmentDateTimeTextBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.Billing_AppointmentIDTextBox = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.Billing_PatientNameTextBox = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.Billing_BillIDTextBox = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
             this.SplitContainer.SuspendLayout();
+            this.Billing_BillDetailsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Billing_DataGridView)).BeginInit();
-            this.Patients_TabControl.SuspendLayout();
-            this.Patients_AllTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_AllDataGridView)).BeginInit();
-            this.Patients_ActiveTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_ActiveDataGridView)).BeginInit();
-            this.Patients_InactiveTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).BeginInit();
             this.Appointments_TabControl.SuspendLayout();
             this.Appointments_AllTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_AllDataGridView)).BeginInit();
@@ -143,6 +137,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.Doctors_UnavailableDataGridView)).BeginInit();
             this.Doctors_InactiveTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Doctors_InactiveDataGridView)).BeginInit();
+            this.Patients_TabControl.SuspendLayout();
+            this.Patients_AllTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_AllDataGridView)).BeginInit();
+            this.Patients_ActiveTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_ActiveDataGridView)).BeginInit();
+            this.Patients_InactiveTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).BeginInit();
             this.Dashboard_panel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -150,7 +151,6 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.Billing_BillDetailsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // SplitContainer
@@ -314,6 +314,187 @@
             this.Appointments_NavButton.UseVisualStyleBackColor = false;
             this.Appointments_NavButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
             // 
+            // Billing_BillDetailsPanel
+            // 
+            this.Billing_BillDetailsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Billing_BillDetailsPanel.Controls.Add(this.label1);
+            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_AmountTextBox);
+            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_ServicesPerformedTextBox);
+            this.Billing_BillDetailsPanel.Controls.Add(this.label6);
+            this.Billing_BillDetailsPanel.Controls.Add(this.BIlling_BillingDateTextBox);
+            this.Billing_BillDetailsPanel.Controls.Add(this.label9);
+            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_AppointmentDateTimeTextBox);
+            this.Billing_BillDetailsPanel.Controls.Add(this.label10);
+            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_AppointmentIDTextBox);
+            this.Billing_BillDetailsPanel.Controls.Add(this.label11);
+            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_PatientNameTextBox);
+            this.Billing_BillDetailsPanel.Controls.Add(this.label12);
+            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_BillIDTextBox);
+            this.Billing_BillDetailsPanel.Controls.Add(this.label13);
+            this.Billing_BillDetailsPanel.Location = new System.Drawing.Point(41, 341);
+            this.Billing_BillDetailsPanel.Name = "Billing_BillDetailsPanel";
+            this.Billing_BillDetailsPanel.Size = new System.Drawing.Size(881, 227);
+            this.Billing_BillDetailsPanel.TabIndex = 21;
+            this.Billing_BillDetailsPanel.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Menu;
+            this.label1.Location = new System.Drawing.Point(538, 162);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 20);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Total Amount:";
+            // 
+            // Billing_AmountTextBox
+            // 
+            this.Billing_AmountTextBox.Enabled = false;
+            this.Billing_AmountTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Billing_AmountTextBox.Location = new System.Drawing.Point(542, 185);
+            this.Billing_AmountTextBox.Name = "Billing_AmountTextBox";
+            this.Billing_AmountTextBox.ReadOnly = true;
+            this.Billing_AmountTextBox.Size = new System.Drawing.Size(306, 26);
+            this.Billing_AmountTextBox.TabIndex = 33;
+            // 
+            // Billing_ServicesPerformedTextBox
+            // 
+            this.Billing_ServicesPerformedTextBox.Enabled = false;
+            this.Billing_ServicesPerformedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Billing_ServicesPerformedTextBox.Location = new System.Drawing.Point(542, 37);
+            this.Billing_ServicesPerformedTextBox.Multiline = true;
+            this.Billing_ServicesPerformedTextBox.Name = "Billing_ServicesPerformedTextBox";
+            this.Billing_ServicesPerformedTextBox.ReadOnly = true;
+            this.Billing_ServicesPerformedTextBox.Size = new System.Drawing.Size(306, 122);
+            this.Billing_ServicesPerformedTextBox.TabIndex = 31;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.Menu;
+            this.label6.Location = new System.Drawing.Point(538, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(151, 20);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Services Performed:";
+            // 
+            // BIlling_BillingDateTextBox
+            // 
+            this.BIlling_BillingDateTextBox.Enabled = false;
+            this.BIlling_BillingDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.BIlling_BillingDateTextBox.Location = new System.Drawing.Point(199, 185);
+            this.BIlling_BillingDateTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.BIlling_BillingDateTextBox.Name = "BIlling_BillingDateTextBox";
+            this.BIlling_BillingDateTextBox.ReadOnly = true;
+            this.BIlling_BillingDateTextBox.Size = new System.Drawing.Size(287, 26);
+            this.BIlling_BillingDateTextBox.TabIndex = 30;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(102, 188);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 20);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "Billing Date:";
+            // 
+            // Billing_AppointmentDateTimeTextBox
+            // 
+            this.Billing_AppointmentDateTimeTextBox.Enabled = false;
+            this.Billing_AppointmentDateTimeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Billing_AppointmentDateTimeTextBox.Location = new System.Drawing.Point(198, 138);
+            this.Billing_AppointmentDateTimeTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.Billing_AppointmentDateTimeTextBox.Name = "Billing_AppointmentDateTimeTextBox";
+            this.Billing_AppointmentDateTimeTextBox.ReadOnly = true;
+            this.Billing_AppointmentDateTimeTextBox.Size = new System.Drawing.Size(287, 26);
+            this.Billing_AppointmentDateTimeTextBox.TabIndex = 28;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(16, 139);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(181, 20);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Appointment Date Time:";
+            // 
+            // Billing_AppointmentIDTextBox
+            // 
+            this.Billing_AppointmentIDTextBox.Enabled = false;
+            this.Billing_AppointmentIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Billing_AppointmentIDTextBox.Location = new System.Drawing.Point(199, 97);
+            this.Billing_AppointmentIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.Billing_AppointmentIDTextBox.Name = "Billing_AppointmentIDTextBox";
+            this.Billing_AppointmentIDTextBox.ReadOnly = true;
+            this.Billing_AppointmentIDTextBox.Size = new System.Drawing.Size(287, 26);
+            this.Billing_AppointmentIDTextBox.TabIndex = 28;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(70, 100);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(125, 20);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Appointment ID:";
+            // 
+            // Billing_PatientNameTextBox
+            // 
+            this.Billing_PatientNameTextBox.Enabled = false;
+            this.Billing_PatientNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Billing_PatientNameTextBox.Location = new System.Drawing.Point(199, 56);
+            this.Billing_PatientNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.Billing_PatientNameTextBox.Name = "Billing_PatientNameTextBox";
+            this.Billing_PatientNameTextBox.ReadOnly = true;
+            this.Billing_PatientNameTextBox.Size = new System.Drawing.Size(287, 26);
+            this.Billing_PatientNameTextBox.TabIndex = 28;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(132, 59);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 20);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Patient:";
+            // 
+            // Billing_BillIDTextBox
+            // 
+            this.Billing_BillIDTextBox.Enabled = false;
+            this.Billing_BillIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Billing_BillIDTextBox.Location = new System.Drawing.Point(198, 15);
+            this.Billing_BillIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.Billing_BillIDTextBox.Name = "Billing_BillIDTextBox";
+            this.Billing_BillIDTextBox.ReadOnly = true;
+            this.Billing_BillIDTextBox.Size = new System.Drawing.Size(287, 26);
+            this.Billing_BillIDTextBox.TabIndex = 26;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(141, 18);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(54, 20);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Bill ID:";
+            // 
             // Billing_GetButton
             // 
             this.Billing_GetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
@@ -332,24 +513,6 @@
             this.Billing_GetButton.Visible = false;
             this.Billing_GetButton.Click += new System.EventHandler(this.Billing_GetButton_Click);
             // 
-            // Billing_Deletebutton
-            // 
-            this.Billing_Deletebutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Billing_Deletebutton.FlatAppearance.BorderSize = 0;
-            this.Billing_Deletebutton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Billing_Deletebutton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Billing_Deletebutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Billing_Deletebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Billing_Deletebutton.ForeColor = System.Drawing.Color.White;
-            this.Billing_Deletebutton.Location = new System.Drawing.Point(641, 578);
-            this.Billing_Deletebutton.Name = "Billing_Deletebutton";
-            this.Billing_Deletebutton.Size = new System.Drawing.Size(280, 66);
-            this.Billing_Deletebutton.TabIndex = 19;
-            this.Billing_Deletebutton.Text = "Delete Bill";
-            this.Billing_Deletebutton.UseVisualStyleBackColor = false;
-            this.Billing_Deletebutton.Visible = false;
-            this.Billing_Deletebutton.Click += new System.EventHandler(this.Billing_Deletebutton_Click);
-            // 
             // Billing_DataGridView
             // 
             this.Billing_DataGridView.AllowUserToAddRows = false;
@@ -366,6 +529,60 @@
             this.Billing_DataGridView.TabIndex = 13;
             this.Billing_DataGridView.Visible = false;
             this.Billing_DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Billing_DataGridView_CellClick);
+            // 
+            // Patients_UpdateButton
+            // 
+            this.Patients_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_UpdateButton.FlatAppearance.BorderSize = 0;
+            this.Patients_UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_UpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_UpdateButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_UpdateButton.Location = new System.Drawing.Point(341, 578);
+            this.Patients_UpdateButton.Name = "Patients_UpdateButton";
+            this.Patients_UpdateButton.Size = new System.Drawing.Size(280, 66);
+            this.Patients_UpdateButton.TabIndex = 15;
+            this.Patients_UpdateButton.Text = "Update Patient";
+            this.Patients_UpdateButton.UseVisualStyleBackColor = false;
+            this.Patients_UpdateButton.Visible = false;
+            this.Patients_UpdateButton.Click += new System.EventHandler(this.Patients_UpdateButton_Click);
+            // 
+            // Appointments_UpdateButton
+            // 
+            this.Appointments_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Appointments_UpdateButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_UpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.Appointments_UpdateButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_UpdateButton.Location = new System.Drawing.Point(341, 578);
+            this.Appointments_UpdateButton.Name = "Appointments_UpdateButton";
+            this.Appointments_UpdateButton.Size = new System.Drawing.Size(280, 66);
+            this.Appointments_UpdateButton.TabIndex = 9;
+            this.Appointments_UpdateButton.Text = "Update Appointment";
+            this.Appointments_UpdateButton.UseVisualStyleBackColor = false;
+            this.Appointments_UpdateButton.Visible = false;
+            this.Appointments_UpdateButton.Click += new System.EventHandler(this.Apointments_UpdateButton_Click);
+            // 
+            // Doctors_SearchButton
+            // 
+            this.Doctors_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Doctors_SearchButton.FlatAppearance.BorderSize = 0;
+            this.Doctors_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Doctors_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Doctors_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Doctors_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Doctors_SearchButton.ForeColor = System.Drawing.Color.White;
+            this.Doctors_SearchButton.Location = new System.Drawing.Point(271, 578);
+            this.Doctors_SearchButton.Name = "Doctors_SearchButton";
+            this.Doctors_SearchButton.Size = new System.Drawing.Size(410, 66);
+            this.Doctors_SearchButton.TabIndex = 11;
+            this.Doctors_SearchButton.Text = "Search Doctor";
+            this.Doctors_SearchButton.UseVisualStyleBackColor = false;
+            this.Doctors_SearchButton.Visible = false;
+            this.Doctors_SearchButton.Click += new System.EventHandler(this.Doctors_SearchButton_Click);
             // 
             // Billing_CreateButton
             // 
@@ -385,120 +602,95 @@
             this.Billing_CreateButton.Visible = false;
             this.Billing_CreateButton.Click += new System.EventHandler(this.Billing_CreateButton_Click);
             // 
-            // Patients_TabControl
+            // Appointments_CreateButton
             // 
-            this.Patients_TabControl.Controls.Add(this.Patients_AllTab);
-            this.Patients_TabControl.Controls.Add(this.Patients_ActiveTab);
-            this.Patients_TabControl.Controls.Add(this.Patients_InactiveTab);
-            this.Patients_TabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Patients_TabControl.Location = new System.Drawing.Point(37, 12);
-            this.Patients_TabControl.Name = "Patients_TabControl";
-            this.Patients_TabControl.SelectedIndex = 0;
-            this.Patients_TabControl.Size = new System.Drawing.Size(889, 536);
-            this.Patients_TabControl.TabIndex = 14;
-            this.Patients_TabControl.Visible = false;
+            this.Appointments_CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Appointments_CreateButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_CreateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.Appointments_CreateButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_CreateButton.Location = new System.Drawing.Point(41, 578);
+            this.Appointments_CreateButton.Name = "Appointments_CreateButton";
+            this.Appointments_CreateButton.Size = new System.Drawing.Size(280, 66);
+            this.Appointments_CreateButton.TabIndex = 8;
+            this.Appointments_CreateButton.Text = "Create New Appointment";
+            this.Appointments_CreateButton.UseVisualStyleBackColor = false;
+            this.Appointments_CreateButton.Visible = false;
+            this.Appointments_CreateButton.Click += new System.EventHandler(this.createAppointmentButton_Click);
             // 
-            // Patients_AllTab
+            // Patients_RegisterButton
             // 
-            this.Patients_AllTab.Controls.Add(this.Patients_AllDataGridView);
-            this.Patients_AllTab.Location = new System.Drawing.Point(4, 25);
-            this.Patients_AllTab.Name = "Patients_AllTab";
-            this.Patients_AllTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Patients_AllTab.Size = new System.Drawing.Size(881, 507);
-            this.Patients_AllTab.TabIndex = 0;
-            this.Patients_AllTab.Text = "All";
-            this.Patients_AllTab.UseVisualStyleBackColor = true;
+            this.Patients_RegisterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_RegisterButton.FlatAppearance.BorderSize = 0;
+            this.Patients_RegisterButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_RegisterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_RegisterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_RegisterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_RegisterButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_RegisterButton.Location = new System.Drawing.Point(42, 578);
+            this.Patients_RegisterButton.Name = "Patients_RegisterButton";
+            this.Patients_RegisterButton.Size = new System.Drawing.Size(280, 66);
+            this.Patients_RegisterButton.TabIndex = 15;
+            this.Patients_RegisterButton.Text = "Register Patient";
+            this.Patients_RegisterButton.UseVisualStyleBackColor = false;
+            this.Patients_RegisterButton.Visible = false;
+            this.Patients_RegisterButton.Click += new System.EventHandler(this.RegisterPatientButton_Click);
             // 
-            // Patients_AllDataGridView
+            // Appointments_SerachButton
             // 
-            this.Patients_AllDataGridView.AllowUserToAddRows = false;
-            this.Patients_AllDataGridView.AllowUserToDeleteRows = false;
-            this.Patients_AllDataGridView.AllowUserToResizeColumns = false;
-            this.Patients_AllDataGridView.AllowUserToResizeRows = false;
-            this.Patients_AllDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Patients_AllDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Patients_AllDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Patients_AllDataGridView.Name = "Patients_AllDataGridView";
-            this.Patients_AllDataGridView.ReadOnly = true;
-            this.Patients_AllDataGridView.RowHeadersWidth = 51;
-            this.Patients_AllDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.Patients_AllDataGridView.Size = new System.Drawing.Size(881, 507);
-            this.Patients_AllDataGridView.TabIndex = 0;
-            this.Patients_AllDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Patients_AllDataGridView_CellClick);
+            this.Appointments_SerachButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Appointments_SerachButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_SerachButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_SerachButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_SerachButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_SerachButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.Appointments_SerachButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_SerachButton.Location = new System.Drawing.Point(641, 578);
+            this.Appointments_SerachButton.Name = "Appointments_SerachButton";
+            this.Appointments_SerachButton.Size = new System.Drawing.Size(280, 66);
+            this.Appointments_SerachButton.TabIndex = 18;
+            this.Appointments_SerachButton.Text = "Search Appointment";
+            this.Appointments_SerachButton.UseVisualStyleBackColor = false;
+            this.Appointments_SerachButton.Visible = false;
+            this.Appointments_SerachButton.Click += new System.EventHandler(this.Appointments_SerachButton_Click);
             // 
-            // Patients_ActiveTab
+            // Patients_SearchButton
             // 
-            this.Patients_ActiveTab.Controls.Add(this.Patients_ActiveDataGridView);
-            this.Patients_ActiveTab.Location = new System.Drawing.Point(4, 25);
-            this.Patients_ActiveTab.Name = "Patients_ActiveTab";
-            this.Patients_ActiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Patients_ActiveTab.Size = new System.Drawing.Size(881, 507);
-            this.Patients_ActiveTab.TabIndex = 1;
-            this.Patients_ActiveTab.Text = "Active";
-            this.Patients_ActiveTab.UseVisualStyleBackColor = true;
+            this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_SearchButton.FlatAppearance.BorderSize = 0;
+            this.Patients_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_SearchButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_SearchButton.Location = new System.Drawing.Point(641, 577);
+            this.Patients_SearchButton.Name = "Patients_SearchButton";
+            this.Patients_SearchButton.Size = new System.Drawing.Size(280, 66);
+            this.Patients_SearchButton.TabIndex = 15;
+            this.Patients_SearchButton.Text = "Search Patient";
+            this.Patients_SearchButton.UseVisualStyleBackColor = false;
+            this.Patients_SearchButton.Visible = false;
+            this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
             // 
-            // Patients_ActiveDataGridView
+            // Billing_Deletebutton
             // 
-            this.Patients_ActiveDataGridView.AllowUserToAddRows = false;
-            this.Patients_ActiveDataGridView.AllowUserToDeleteRows = false;
-            this.Patients_ActiveDataGridView.AllowUserToResizeColumns = false;
-            this.Patients_ActiveDataGridView.AllowUserToResizeRows = false;
-            this.Patients_ActiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Patients_ActiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Patients_ActiveDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Patients_ActiveDataGridView.Name = "Patients_ActiveDataGridView";
-            this.Patients_ActiveDataGridView.ReadOnly = true;
-            this.Patients_ActiveDataGridView.RowHeadersWidth = 51;
-            this.Patients_ActiveDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.Patients_ActiveDataGridView.Size = new System.Drawing.Size(881, 507);
-            this.Patients_ActiveDataGridView.TabIndex = 1;
-            this.Patients_ActiveDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Patients_ActiveDataGridView_CellClick);
-            // 
-            // Patients_InactiveTab
-            // 
-            this.Patients_InactiveTab.Controls.Add(this.Patients_InactiveDataGridView);
-            this.Patients_InactiveTab.Location = new System.Drawing.Point(4, 25);
-            this.Patients_InactiveTab.Name = "Patients_InactiveTab";
-            this.Patients_InactiveTab.Padding = new System.Windows.Forms.Padding(3);
-            this.Patients_InactiveTab.Size = new System.Drawing.Size(881, 507);
-            this.Patients_InactiveTab.TabIndex = 2;
-            this.Patients_InactiveTab.Text = "Inactive";
-            this.Patients_InactiveTab.UseVisualStyleBackColor = true;
-            // 
-            // Patients_InactiveDataGridView
-            // 
-            this.Patients_InactiveDataGridView.AllowUserToAddRows = false;
-            this.Patients_InactiveDataGridView.AllowUserToDeleteRows = false;
-            this.Patients_InactiveDataGridView.AllowUserToResizeColumns = false;
-            this.Patients_InactiveDataGridView.AllowUserToResizeRows = false;
-            this.Patients_InactiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Patients_InactiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Patients_InactiveDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.Patients_InactiveDataGridView.Name = "Patients_InactiveDataGridView";
-            this.Patients_InactiveDataGridView.ReadOnly = true;
-            this.Patients_InactiveDataGridView.RowHeadersWidth = 51;
-            this.Patients_InactiveDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.Patients_InactiveDataGridView.Size = new System.Drawing.Size(881, 507);
-            this.Patients_InactiveDataGridView.TabIndex = 2;
-            this.Patients_InactiveDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Patients_InactiveDataGridView_CellClick);
-            // 
-            // Patients_UpdateButton
-            // 
-            this.Patients_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Patients_UpdateButton.FlatAppearance.BorderSize = 0;
-            this.Patients_UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Patients_UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Patients_UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patients_UpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Patients_UpdateButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_UpdateButton.Location = new System.Drawing.Point(341, 578);
-            this.Patients_UpdateButton.Name = "Patients_UpdateButton";
-            this.Patients_UpdateButton.Size = new System.Drawing.Size(280, 66);
-            this.Patients_UpdateButton.TabIndex = 15;
-            this.Patients_UpdateButton.Text = "Update Patient";
-            this.Patients_UpdateButton.UseVisualStyleBackColor = false;
-            this.Patients_UpdateButton.Visible = false;
-            this.Patients_UpdateButton.Click += new System.EventHandler(this.Patients_UpdateButton_Click);
+            this.Billing_Deletebutton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Billing_Deletebutton.FlatAppearance.BorderSize = 0;
+            this.Billing_Deletebutton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Billing_Deletebutton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Billing_Deletebutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Billing_Deletebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Billing_Deletebutton.ForeColor = System.Drawing.Color.White;
+            this.Billing_Deletebutton.Location = new System.Drawing.Point(641, 578);
+            this.Billing_Deletebutton.Name = "Billing_Deletebutton";
+            this.Billing_Deletebutton.Size = new System.Drawing.Size(280, 66);
+            this.Billing_Deletebutton.TabIndex = 19;
+            this.Billing_Deletebutton.Text = "Delete Bill";
+            this.Billing_Deletebutton.UseVisualStyleBackColor = false;
+            this.Billing_Deletebutton.Visible = false;
+            this.Billing_Deletebutton.Click += new System.EventHandler(this.Billing_Deletebutton_Click);
             // 
             // Appointments_TabControl
             // 
@@ -774,95 +966,102 @@
             this.Doctors_InactiveDataGridView.Size = new System.Drawing.Size(881, 507);
             this.Doctors_InactiveDataGridView.TabIndex = 1;
             // 
-            // Appointments_UpdateButton
+            // Patients_TabControl
             // 
-            this.Appointments_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Appointments_UpdateButton.FlatAppearance.BorderSize = 0;
-            this.Appointments_UpdateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Appointments_UpdateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Appointments_UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Appointments_UpdateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Appointments_UpdateButton.ForeColor = System.Drawing.Color.White;
-            this.Appointments_UpdateButton.Location = new System.Drawing.Point(341, 578);
-            this.Appointments_UpdateButton.Name = "Appointments_UpdateButton";
-            this.Appointments_UpdateButton.Size = new System.Drawing.Size(280, 66);
-            this.Appointments_UpdateButton.TabIndex = 9;
-            this.Appointments_UpdateButton.Text = "Update Appointment";
-            this.Appointments_UpdateButton.UseVisualStyleBackColor = false;
-            this.Appointments_UpdateButton.Visible = false;
-            this.Appointments_UpdateButton.Click += new System.EventHandler(this.Apointments_UpdateButton_Click);
+            this.Patients_TabControl.Controls.Add(this.Patients_AllTab);
+            this.Patients_TabControl.Controls.Add(this.Patients_ActiveTab);
+            this.Patients_TabControl.Controls.Add(this.Patients_InactiveTab);
+            this.Patients_TabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.Patients_TabControl.Location = new System.Drawing.Point(37, 12);
+            this.Patients_TabControl.Name = "Patients_TabControl";
+            this.Patients_TabControl.SelectedIndex = 0;
+            this.Patients_TabControl.Size = new System.Drawing.Size(889, 536);
+            this.Patients_TabControl.TabIndex = 14;
+            this.Patients_TabControl.Visible = false;
             // 
-            // Appointments_SerachButton
+            // Patients_AllTab
             // 
-            this.Appointments_SerachButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Appointments_SerachButton.FlatAppearance.BorderSize = 0;
-            this.Appointments_SerachButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Appointments_SerachButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Appointments_SerachButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Appointments_SerachButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Appointments_SerachButton.ForeColor = System.Drawing.Color.White;
-            this.Appointments_SerachButton.Location = new System.Drawing.Point(641, 578);
-            this.Appointments_SerachButton.Name = "Appointments_SerachButton";
-            this.Appointments_SerachButton.Size = new System.Drawing.Size(280, 66);
-            this.Appointments_SerachButton.TabIndex = 18;
-            this.Appointments_SerachButton.Text = "Search Appointment";
-            this.Appointments_SerachButton.UseVisualStyleBackColor = false;
-            this.Appointments_SerachButton.Visible = false;
-            this.Appointments_SerachButton.Click += new System.EventHandler(this.Appointments_SerachButton_Click);
+            this.Patients_AllTab.Controls.Add(this.Patients_AllDataGridView);
+            this.Patients_AllTab.Location = new System.Drawing.Point(4, 25);
+            this.Patients_AllTab.Name = "Patients_AllTab";
+            this.Patients_AllTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Patients_AllTab.Size = new System.Drawing.Size(881, 507);
+            this.Patients_AllTab.TabIndex = 0;
+            this.Patients_AllTab.Text = "All";
+            this.Patients_AllTab.UseVisualStyleBackColor = true;
             // 
-            // Patients_SearchButton
+            // Patients_AllDataGridView
             // 
-            this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Patients_SearchButton.FlatAppearance.BorderSize = 0;
-            this.Patients_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Patients_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Patients_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patients_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Patients_SearchButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_SearchButton.Location = new System.Drawing.Point(641, 577);
-            this.Patients_SearchButton.Name = "Patients_SearchButton";
-            this.Patients_SearchButton.Size = new System.Drawing.Size(280, 66);
-            this.Patients_SearchButton.TabIndex = 15;
-            this.Patients_SearchButton.Text = "Search Patient";
-            this.Patients_SearchButton.UseVisualStyleBackColor = false;
-            this.Patients_SearchButton.Visible = false;
-            this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
+            this.Patients_AllDataGridView.AllowUserToAddRows = false;
+            this.Patients_AllDataGridView.AllowUserToDeleteRows = false;
+            this.Patients_AllDataGridView.AllowUserToResizeColumns = false;
+            this.Patients_AllDataGridView.AllowUserToResizeRows = false;
+            this.Patients_AllDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Patients_AllDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Patients_AllDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Patients_AllDataGridView.Name = "Patients_AllDataGridView";
+            this.Patients_AllDataGridView.ReadOnly = true;
+            this.Patients_AllDataGridView.RowHeadersWidth = 51;
+            this.Patients_AllDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.Patients_AllDataGridView.Size = new System.Drawing.Size(881, 507);
+            this.Patients_AllDataGridView.TabIndex = 0;
+            this.Patients_AllDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Patients_AllDataGridView_CellClick);
             // 
-            // Appointments_CreateButton
+            // Patients_ActiveTab
             // 
-            this.Appointments_CreateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Appointments_CreateButton.FlatAppearance.BorderSize = 0;
-            this.Appointments_CreateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Appointments_CreateButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Appointments_CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Appointments_CreateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.Appointments_CreateButton.ForeColor = System.Drawing.Color.White;
-            this.Appointments_CreateButton.Location = new System.Drawing.Point(41, 578);
-            this.Appointments_CreateButton.Name = "Appointments_CreateButton";
-            this.Appointments_CreateButton.Size = new System.Drawing.Size(280, 66);
-            this.Appointments_CreateButton.TabIndex = 8;
-            this.Appointments_CreateButton.Text = "Create New Appointment";
-            this.Appointments_CreateButton.UseVisualStyleBackColor = false;
-            this.Appointments_CreateButton.Visible = false;
-            this.Appointments_CreateButton.Click += new System.EventHandler(this.createAppointmentButton_Click);
+            this.Patients_ActiveTab.Controls.Add(this.Patients_ActiveDataGridView);
+            this.Patients_ActiveTab.Location = new System.Drawing.Point(4, 25);
+            this.Patients_ActiveTab.Name = "Patients_ActiveTab";
+            this.Patients_ActiveTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Patients_ActiveTab.Size = new System.Drawing.Size(881, 507);
+            this.Patients_ActiveTab.TabIndex = 1;
+            this.Patients_ActiveTab.Text = "Active";
+            this.Patients_ActiveTab.UseVisualStyleBackColor = true;
             // 
-            // Patients_RegisterButton
+            // Patients_ActiveDataGridView
             // 
-            this.Patients_RegisterButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Patients_RegisterButton.FlatAppearance.BorderSize = 0;
-            this.Patients_RegisterButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Patients_RegisterButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Patients_RegisterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patients_RegisterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Patients_RegisterButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_RegisterButton.Location = new System.Drawing.Point(42, 578);
-            this.Patients_RegisterButton.Name = "Patients_RegisterButton";
-            this.Patients_RegisterButton.Size = new System.Drawing.Size(280, 66);
-            this.Patients_RegisterButton.TabIndex = 15;
-            this.Patients_RegisterButton.Text = "Register Patient";
-            this.Patients_RegisterButton.UseVisualStyleBackColor = false;
-            this.Patients_RegisterButton.Visible = false;
-            this.Patients_RegisterButton.Click += new System.EventHandler(this.RegisterPatientButton_Click);
+            this.Patients_ActiveDataGridView.AllowUserToAddRows = false;
+            this.Patients_ActiveDataGridView.AllowUserToDeleteRows = false;
+            this.Patients_ActiveDataGridView.AllowUserToResizeColumns = false;
+            this.Patients_ActiveDataGridView.AllowUserToResizeRows = false;
+            this.Patients_ActiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Patients_ActiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Patients_ActiveDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Patients_ActiveDataGridView.Name = "Patients_ActiveDataGridView";
+            this.Patients_ActiveDataGridView.ReadOnly = true;
+            this.Patients_ActiveDataGridView.RowHeadersWidth = 51;
+            this.Patients_ActiveDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.Patients_ActiveDataGridView.Size = new System.Drawing.Size(881, 507);
+            this.Patients_ActiveDataGridView.TabIndex = 1;
+            this.Patients_ActiveDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Patients_ActiveDataGridView_CellClick);
+            // 
+            // Patients_InactiveTab
+            // 
+            this.Patients_InactiveTab.Controls.Add(this.Patients_InactiveDataGridView);
+            this.Patients_InactiveTab.Location = new System.Drawing.Point(4, 25);
+            this.Patients_InactiveTab.Name = "Patients_InactiveTab";
+            this.Patients_InactiveTab.Padding = new System.Windows.Forms.Padding(3);
+            this.Patients_InactiveTab.Size = new System.Drawing.Size(881, 507);
+            this.Patients_InactiveTab.TabIndex = 2;
+            this.Patients_InactiveTab.Text = "Inactive";
+            this.Patients_InactiveTab.UseVisualStyleBackColor = true;
+            // 
+            // Patients_InactiveDataGridView
+            // 
+            this.Patients_InactiveDataGridView.AllowUserToAddRows = false;
+            this.Patients_InactiveDataGridView.AllowUserToDeleteRows = false;
+            this.Patients_InactiveDataGridView.AllowUserToResizeColumns = false;
+            this.Patients_InactiveDataGridView.AllowUserToResizeRows = false;
+            this.Patients_InactiveDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Patients_InactiveDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Patients_InactiveDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.Patients_InactiveDataGridView.Name = "Patients_InactiveDataGridView";
+            this.Patients_InactiveDataGridView.ReadOnly = true;
+            this.Patients_InactiveDataGridView.RowHeadersWidth = 51;
+            this.Patients_InactiveDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.Patients_InactiveDataGridView.Size = new System.Drawing.Size(881, 507);
+            this.Patients_InactiveDataGridView.TabIndex = 2;
+            this.Patients_InactiveDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Patients_InactiveDataGridView_CellClick);
             // 
             // Dashboard_panel
             // 
@@ -1141,205 +1340,6 @@
             this.TotalAppointmentsLabel.TabIndex = 0;
             this.TotalAppointmentsLabel.Text = "1234";
             // 
-            // Doctors_SearchButton
-            // 
-            this.Doctors_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Doctors_SearchButton.FlatAppearance.BorderSize = 0;
-            this.Doctors_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Doctors_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Doctors_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Doctors_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Doctors_SearchButton.ForeColor = System.Drawing.Color.White;
-            this.Doctors_SearchButton.Location = new System.Drawing.Point(271, 578);
-            this.Doctors_SearchButton.Name = "Doctors_SearchButton";
-            this.Doctors_SearchButton.Size = new System.Drawing.Size(410, 66);
-            this.Doctors_SearchButton.TabIndex = 11;
-            this.Doctors_SearchButton.Text = "Search Doctor";
-            this.Doctors_SearchButton.UseVisualStyleBackColor = false;
-            this.Doctors_SearchButton.Visible = false;
-            this.Doctors_SearchButton.Click += new System.EventHandler(this.Doctors_SearchButton_Click);
-            // 
-            // Billing_BillDetailsPanel
-            // 
-            this.Billing_BillDetailsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Billing_BillDetailsPanel.Controls.Add(this.label1);
-            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_AmountTextBox);
-            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_ServicesPerformedTextBox);
-            this.Billing_BillDetailsPanel.Controls.Add(this.label6);
-            this.Billing_BillDetailsPanel.Controls.Add(this.BIlling_BillingDateTextBox);
-            this.Billing_BillDetailsPanel.Controls.Add(this.label9);
-            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_AppointmentDateTimeTextBox);
-            this.Billing_BillDetailsPanel.Controls.Add(this.label10);
-            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_AppointmentIDTextBox);
-            this.Billing_BillDetailsPanel.Controls.Add(this.label11);
-            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_PatientNameTextBox);
-            this.Billing_BillDetailsPanel.Controls.Add(this.label12);
-            this.Billing_BillDetailsPanel.Controls.Add(this.Billing_BillIDTextBox);
-            this.Billing_BillDetailsPanel.Controls.Add(this.label13);
-            this.Billing_BillDetailsPanel.Location = new System.Drawing.Point(41, 341);
-            this.Billing_BillDetailsPanel.Name = "Billing_BillDetailsPanel";
-            this.Billing_BillDetailsPanel.Size = new System.Drawing.Size(881, 227);
-            this.Billing_BillDetailsPanel.TabIndex = 21;
-            this.Billing_BillDetailsPanel.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Menu;
-            this.label1.Location = new System.Drawing.Point(538, 162);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 20);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "Total Amount:";
-            // 
-            // Billing_AmountTextBox
-            // 
-            this.Billing_AmountTextBox.Enabled = false;
-            this.Billing_AmountTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Billing_AmountTextBox.Location = new System.Drawing.Point(542, 185);
-            this.Billing_AmountTextBox.Name = "Billing_AmountTextBox";
-            this.Billing_AmountTextBox.ReadOnly = true;
-            this.Billing_AmountTextBox.Size = new System.Drawing.Size(306, 26);
-            this.Billing_AmountTextBox.TabIndex = 33;
-            // 
-            // Billing_ServicesPerformedTextBox
-            // 
-            this.Billing_ServicesPerformedTextBox.Enabled = false;
-            this.Billing_ServicesPerformedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Billing_ServicesPerformedTextBox.Location = new System.Drawing.Point(542, 37);
-            this.Billing_ServicesPerformedTextBox.Multiline = true;
-            this.Billing_ServicesPerformedTextBox.Name = "Billing_ServicesPerformedTextBox";
-            this.Billing_ServicesPerformedTextBox.ReadOnly = true;
-            this.Billing_ServicesPerformedTextBox.Size = new System.Drawing.Size(306, 122);
-            this.Billing_ServicesPerformedTextBox.TabIndex = 31;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.Menu;
-            this.label6.Location = new System.Drawing.Point(538, 14);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 20);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Services Performed:";
-            // 
-            // BIlling_BillingDateTextBox
-            // 
-            this.BIlling_BillingDateTextBox.Enabled = false;
-            this.BIlling_BillingDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.BIlling_BillingDateTextBox.Location = new System.Drawing.Point(199, 185);
-            this.BIlling_BillingDateTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.BIlling_BillingDateTextBox.Name = "BIlling_BillingDateTextBox";
-            this.BIlling_BillingDateTextBox.ReadOnly = true;
-            this.BIlling_BillingDateTextBox.Size = new System.Drawing.Size(287, 26);
-            this.BIlling_BillingDateTextBox.TabIndex = 30;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(102, 188);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 20);
-            this.label9.TabIndex = 29;
-            this.label9.Text = "Billing Date:";
-            // 
-            // Billing_AppointmentDateTimeTextBox
-            // 
-            this.Billing_AppointmentDateTimeTextBox.Enabled = false;
-            this.Billing_AppointmentDateTimeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Billing_AppointmentDateTimeTextBox.Location = new System.Drawing.Point(198, 138);
-            this.Billing_AppointmentDateTimeTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.Billing_AppointmentDateTimeTextBox.Name = "Billing_AppointmentDateTimeTextBox";
-            this.Billing_AppointmentDateTimeTextBox.ReadOnly = true;
-            this.Billing_AppointmentDateTimeTextBox.Size = new System.Drawing.Size(287, 26);
-            this.Billing_AppointmentDateTimeTextBox.TabIndex = 28;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(16, 139);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(181, 20);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Appointment Date Time:";
-            // 
-            // Billing_AppointmentIDTextBox
-            // 
-            this.Billing_AppointmentIDTextBox.Enabled = false;
-            this.Billing_AppointmentIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Billing_AppointmentIDTextBox.Location = new System.Drawing.Point(199, 97);
-            this.Billing_AppointmentIDTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.Billing_AppointmentIDTextBox.Name = "Billing_AppointmentIDTextBox";
-            this.Billing_AppointmentIDTextBox.ReadOnly = true;
-            this.Billing_AppointmentIDTextBox.Size = new System.Drawing.Size(287, 26);
-            this.Billing_AppointmentIDTextBox.TabIndex = 28;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(70, 100);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(125, 20);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Appointment ID:";
-            // 
-            // Billing_PatientNameTextBox
-            // 
-            this.Billing_PatientNameTextBox.Enabled = false;
-            this.Billing_PatientNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Billing_PatientNameTextBox.Location = new System.Drawing.Point(199, 56);
-            this.Billing_PatientNameTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.Billing_PatientNameTextBox.Name = "Billing_PatientNameTextBox";
-            this.Billing_PatientNameTextBox.ReadOnly = true;
-            this.Billing_PatientNameTextBox.Size = new System.Drawing.Size(287, 26);
-            this.Billing_PatientNameTextBox.TabIndex = 28;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(132, 59);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(63, 20);
-            this.label12.TabIndex = 27;
-            this.label12.Text = "Patient:";
-            // 
-            // Billing_BillIDTextBox
-            // 
-            this.Billing_BillIDTextBox.Enabled = false;
-            this.Billing_BillIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Billing_BillIDTextBox.Location = new System.Drawing.Point(198, 15);
-            this.Billing_BillIDTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.Billing_BillIDTextBox.Name = "Billing_BillIDTextBox";
-            this.Billing_BillIDTextBox.ReadOnly = true;
-            this.Billing_BillIDTextBox.Size = new System.Drawing.Size(287, 26);
-            this.Billing_BillIDTextBox.TabIndex = 26;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(141, 18);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(54, 20);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "Bill ID:";
-            // 
             // RecepView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1357,14 +1357,9 @@
             this.SplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).EndInit();
             this.SplitContainer.ResumeLayout(false);
+            this.Billing_BillDetailsPanel.ResumeLayout(false);
+            this.Billing_BillDetailsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Billing_DataGridView)).EndInit();
-            this.Patients_TabControl.ResumeLayout(false);
-            this.Patients_AllTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_AllDataGridView)).EndInit();
-            this.Patients_ActiveTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_ActiveDataGridView)).EndInit();
-            this.Patients_InactiveTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).EndInit();
             this.Appointments_TabControl.ResumeLayout(false);
             this.Appointments_AllTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_AllDataGridView)).EndInit();
@@ -1385,6 +1380,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.Doctors_UnavailableDataGridView)).EndInit();
             this.Doctors_InactiveTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Doctors_InactiveDataGridView)).EndInit();
+            this.Patients_TabControl.ResumeLayout(false);
+            this.Patients_AllTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_AllDataGridView)).EndInit();
+            this.Patients_ActiveTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_ActiveDataGridView)).EndInit();
+            this.Patients_InactiveTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Patients_InactiveDataGridView)).EndInit();
             this.Dashboard_panel.ResumeLayout(false);
             this.Dashboard_panel.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1399,8 +1401,6 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.Billing_BillDetailsPanel.ResumeLayout(false);
-            this.Billing_BillDetailsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }

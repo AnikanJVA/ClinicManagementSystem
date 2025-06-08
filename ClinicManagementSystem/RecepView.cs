@@ -5,12 +5,15 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PdfSharp.Drawing;
 using PdfSharp.Fonts;
 using PdfSharp.Pdf;
+using PdfSharp.Quality;
+using System.IO;
 using static ClinicManagementSystem.LoginForm;
 
 namespace ClinicManagementSystem
@@ -275,7 +278,119 @@ namespace ClinicManagementSystem
 
         private void Billing_GetButton_Click(object sender, EventArgs e)
         {
-            // TO DO
+            Bill bill = Database.CurrentBill;
+            Patient patient = Database.CurrentPatient;
+            Appointment appointment = Database.CurrentAppointment;
+
+            if (Database.CurrentBill.BillID == 0 || Database.CurrentBill == null ||
+                Database.CurrentPatient == null || Database.CurrentAppointment == null)
+            {
+                MessageBox.Show("Select a bill first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string filename = $"Bill_{Database.CurrentBill.BillID.ToString()}.pdf";
+                if (File.Exists(filename))
+                {
+                    PdfFileUtility.ShowDocument(filename);
+                }
+                else
+                {
+                    GlobalFontSettings.UseWindowsFontsUnderWindows = true;
+                    var doc = new PdfDocument();
+                    var page = doc.AddPage();
+                    var gfx = XGraphics.FromPdfPage(page);
+
+                    var fontTitle = new XFont("Times New Roman", 20, XFontStyleEx.Bold);
+                    var font = new XFont("Arial", 10, XFontStyleEx.Regular);
+                    var fontLabel = new XFont("Arial", 10, XFontStyleEx.Bold);
+                    var fontBold = new XFont("Arial", 11, XFontStyleEx.Bold);
+
+                    double margin = 40;
+                    double y = margin + 20;
+                    double leftX = margin;
+                    double rightX = page.Width / 2 + 10;
+                    double labelOffset = 130;
+                    double lineHeight = 18;
+
+                    // Header
+                    gfx.DrawString("RECEIPT", fontTitle, XBrushes.Black, new XRect(0, y, page.Width, 0), XStringFormats.TopCenter);
+                    y += 30;
+                    gfx.DrawString("Dental Clinic", fontBold, XBrushes.Black, new XRect(0, y, page.Width, 0), XStringFormats.TopCenter);
+                    y += 40;
+
+                    string middleName = patient.MiddleName;
+                    char middleInitial = middleName[0];
+                    string patientName = $"{patient.FirstName} {middleInitial.ToString().ToUpper()}. {patient.LastName}";
+                    // Appointment info
+                    gfx.DrawString("Patient Name: ", fontLabel, XBrushes.Black, leftX, y);
+                    gfx.DrawString(patientName, font, XBrushes.Black, leftX + labelOffset, y);
+                    gfx.DrawString("Receipt No: ", fontLabel, XBrushes.Black, rightX, y);
+                    gfx.DrawString(bill.BillID.ToString(), font, XBrushes.Black, rightX + labelOffset, y);
+                    y += lineHeight;
+
+                    gfx.DrawString("Address: ", fontLabel, XBrushes.Black, leftX, y);
+                    gfx.DrawString(patient.Address, font, XBrushes.Black, leftX + labelOffset, y);
+                    gfx.DrawString("Appointment Date and Time: ", fontLabel, XBrushes.Black, rightX, y);
+                    gfx.DrawString(appointment.DateTime, font, XBrushes.Black, rightX + (labelOffset + 10), y);
+                    //y += lineHeight;
+
+                    //gfx.DrawString("Pay Period:", fontLabel, XBrushes.Black, leftX, y);
+                    //gfx.DrawString(periodDisplay, font, XBrushes.Black, leftX + labelOffset, y);
+                    //gfx.DrawString("Worked Days:", fontLabel, XBrushes.Black, rightX, y);
+                    //gfx.DrawString(workDays.ToString(), font, XBrushes.Black, rightX + labelOffset, y);
+                    y += 30;
+
+                    // Section Titles
+                    gfx.DrawString("EARNINGS", fontBold, XBrushes.Black, leftX, y);
+                    gfx.DrawString("DEDUCTIONS", fontBold, XBrushes.Black, rightX, y);
+                    y += lineHeight;
+
+                    // Earnings
+                    //gfx.DrawString("Basic", font, XBrushes.Black, leftX, y);
+                    //gfx.DrawString(grossPay, font, XBrushes.Black, leftX + labelOffset, y);
+
+                    // Deductions
+                    double dedY = y;
+                    void DrawDeduction(string label, string value)
+                    {
+                        gfx.DrawString(label, font, XBrushes.Black, rightX, dedY);
+                        gfx.DrawString(value, font, XBrushes.Black, rightX + labelOffset, dedY);
+                        dedY += lineHeight;
+                    }
+
+                    //DrawDeduction("SSS", sss);
+                    //DrawDeduction("PhilHealth", philhealth);
+                    //DrawDeduction("Pag-IBIG", pagibig);
+                    //dedY += 20;
+                    //DrawDeduction("Total Deductions", $"₱{totalDeduction:N2}");
+
+                    y = Math.Max(y + lineHeight, dedY + 25);
+
+                    //// Net Pay
+                    //gfx.DrawLine(XPens.Black, margin, y, page.Width - margin, y);
+                    //y += 10;
+                    //y += lineHeight + 1;
+                    //gfx.DrawString("Net Pay:", fontBold, XBrushes.Black, leftX, y);
+                    //gfx.DrawString(netPay, fontBold, XBrushes.Black, leftX + labelOffset, y);
+                    //y += lineHeight + 1;
+                    //gfx.DrawString(netInWords, font, XBrushes.Black, leftX, y);
+                    //y += 40;
+
+                    // Signatures
+                    gfx.DrawLine(XPens.Black, leftX, y, leftX + 150, y);
+                    gfx.DrawLine(XPens.Black, rightX, y, rightX + 150, y);
+                    y += 15;
+                    gfx.DrawString("Employer Signature", font, XBrushes.Black, leftX, y);
+                    gfx.DrawString("Employee Signature", font, XBrushes.Black, rightX, y);
+                    y += 30;
+
+                    gfx.DrawString("This is a system-generated payslip.", font, XBrushes.Gray, new XRect(0, y, page.Width, 0), XStringFormats.TopCenter);
+
+                    doc.Save(filename);
+                    PdfFileUtility.ShowDocument(filename);
+                }
+            }
         }
 
         private void Billing_Deletebutton_Click(object sender, EventArgs e)
