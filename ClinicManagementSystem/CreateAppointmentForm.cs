@@ -90,17 +90,25 @@ namespace ClinicManagementSystem
             }
             else
             {
-                if(Database.AddAppointment(Convert.ToInt64(PatientIdTextBox.Text),
-                                           Convert.ToInt64(DoctorIdTextBox.Text),
-                                           AppointmentDateTimePicker.Text,
-                                           ReasonTextBox.Text))
+                DateTime date = AppointmentDateTimePicker.Value;
+                if (Database.isDoctorAvailble(Convert.ToInt64(DoctorIdTextBox.Text), date))
                 {
-                    MessageBox.Show("Appointment created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    if (Database.AddAppointment(Convert.ToInt64(PatientIdTextBox.Text),
+                                                Convert.ToInt64(DoctorIdTextBox.Text),
+                                                AppointmentDateTimePicker.Text,
+                                                ReasonTextBox.Text))
+                    {
+                        MessageBox.Show("Appointment created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error!\nAppointment date and time not available.\nAppointment not created.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Error!\nAppointment date and time not available.\nAppointment not created.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Doctor is not available on chosen date.\nPlease choose another date or doctor.", "Doctor unavailable", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

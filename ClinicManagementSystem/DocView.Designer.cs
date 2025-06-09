@@ -35,9 +35,24 @@
             this.Services_NavButton = new System.Windows.Forms.Button();
             this.Patients_NavButton = new System.Windows.Forms.Button();
             this.Appointments_NavButton = new System.Windows.Forms.Button();
+            this.Services_DeleteButton = new System.Windows.Forms.Button();
+            this.Services_AddButton = new System.Windows.Forms.Button();
+            this.Services_ServiceDetailsPanel = new System.Windows.Forms.Panel();
+            this.Services_ServiceIDTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Services_ServiceDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.Services_ServiceTypeTextBox = new System.Windows.Forms.TextBox();
+            this.Services_PriceTextBox = new System.Windows.Forms.TextBox();
+            this.Services_ServiceNameTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ServiceIdLabel = new System.Windows.Forms.Label();
             this.Services_UpdateButton = new System.Windows.Forms.Button();
             this.Services_DataGridView = new System.Windows.Forms.DataGridView();
             this.Patients_DataGridView = new System.Windows.Forms.DataGridView();
+            this.Patients_SearchButton = new System.Windows.Forms.Button();
+            this.Appointments_SearchButton = new System.Windows.Forms.Button();
             this.Appointments_TabControl = new System.Windows.Forms.TabControl();
             this.Appointments_AllTab = new System.Windows.Forms.TabPage();
             this.Appointments_AllDataGridView = new System.Windows.Forms.DataGridView();
@@ -45,8 +60,6 @@
             this.Appointments_UpcomingDataGridView = new System.Windows.Forms.DataGridView();
             this.Appointments_FinishedTab = new System.Windows.Forms.TabPage();
             this.Appointments_FinishedDataGridView = new System.Windows.Forms.DataGridView();
-            this.Patients_SearchButton = new System.Windows.Forms.Button();
-            this.Appointments_SearchButton = new System.Windows.Forms.Button();
             this.Dashboard_panel = new System.Windows.Forms.Panel();
             this.greetingsLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,23 +72,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.TotalAppointmentsLabel = new System.Windows.Forms.Label();
-            this.Services_ServiceDetailsPanel = new System.Windows.Forms.Panel();
-            this.Services_ServiceIDTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Services_ServiceDescriptionTextBox = new System.Windows.Forms.TextBox();
-            this.Services_PriceTextBox = new System.Windows.Forms.TextBox();
-            this.Services_ServiceNameTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ServiceIdLabel = new System.Windows.Forms.Label();
-            this.Services_AddButton = new System.Windows.Forms.Button();
-            this.Services_DeleteButton = new System.Windows.Forms.Button();
-            this.Services_ServiceTypeTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.Services_ServiceDetailsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Services_DataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Patients_DataGridView)).BeginInit();
             this.Appointments_TabControl.SuspendLayout();
@@ -89,7 +90,6 @@
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.Services_ServiceDetailsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -228,6 +228,163 @@
             this.Appointments_NavButton.UseVisualStyleBackColor = false;
             this.Appointments_NavButton.Click += new System.EventHandler(this.AppointmentsButton_Click);
             // 
+            // Services_DeleteButton
+            // 
+            this.Services_DeleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Services_DeleteButton.FlatAppearance.BorderSize = 0;
+            this.Services_DeleteButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Services_DeleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Services_DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Services_DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Services_DeleteButton.ForeColor = System.Drawing.Color.White;
+            this.Services_DeleteButton.Location = new System.Drawing.Point(658, 578);
+            this.Services_DeleteButton.Name = "Services_DeleteButton";
+            this.Services_DeleteButton.Size = new System.Drawing.Size(280, 66);
+            this.Services_DeleteButton.TabIndex = 24;
+            this.Services_DeleteButton.Text = "Delete Service";
+            this.Services_DeleteButton.UseVisualStyleBackColor = false;
+            this.Services_DeleteButton.Visible = false;
+            this.Services_DeleteButton.Click += new System.EventHandler(this.Services_DeleteButton_Click);
+            // 
+            // Services_AddButton
+            // 
+            this.Services_AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Services_AddButton.FlatAppearance.BorderSize = 0;
+            this.Services_AddButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Services_AddButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Services_AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Services_AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Services_AddButton.ForeColor = System.Drawing.Color.White;
+            this.Services_AddButton.Location = new System.Drawing.Point(46, 578);
+            this.Services_AddButton.Name = "Services_AddButton";
+            this.Services_AddButton.Size = new System.Drawing.Size(280, 66);
+            this.Services_AddButton.TabIndex = 23;
+            this.Services_AddButton.Text = "Add service";
+            this.Services_AddButton.UseVisualStyleBackColor = false;
+            this.Services_AddButton.Visible = false;
+            this.Services_AddButton.Click += new System.EventHandler(this.Services_AddButton_Click);
+            // 
+            // Services_ServiceDetailsPanel
+            // 
+            this.Services_ServiceDetailsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_ServiceIDTextBox);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.label5);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.label1);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_ServiceDescriptionTextBox);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_ServiceTypeTextBox);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_PriceTextBox);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_ServiceNameTextBox);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.label3);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.label6);
+            this.Services_ServiceDetailsPanel.Controls.Add(this.ServiceIdLabel);
+            this.Services_ServiceDetailsPanel.Location = new System.Drawing.Point(55, 368);
+            this.Services_ServiceDetailsPanel.Name = "Services_ServiceDetailsPanel";
+            this.Services_ServiceDetailsPanel.Size = new System.Drawing.Size(881, 184);
+            this.Services_ServiceDetailsPanel.TabIndex = 22;
+            this.Services_ServiceDetailsPanel.Visible = false;
+            // 
+            // Services_ServiceIDTextBox
+            // 
+            this.Services_ServiceIDTextBox.Enabled = false;
+            this.Services_ServiceIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Services_ServiceIDTextBox.Location = new System.Drawing.Point(184, 29);
+            this.Services_ServiceIDTextBox.Name = "Services_ServiceIDTextBox";
+            this.Services_ServiceIDTextBox.ReadOnly = true;
+            this.Services_ServiceIDTextBox.Size = new System.Drawing.Size(277, 26);
+            this.Services_ServiceIDTextBox.TabIndex = 26;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label5.Location = new System.Drawing.Point(528, 67);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 20);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Price:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label1.Location = new System.Drawing.Point(477, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 20);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Service type:";
+            // 
+            // Services_ServiceDescriptionTextBox
+            // 
+            this.Services_ServiceDescriptionTextBox.Enabled = false;
+            this.Services_ServiceDescriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Services_ServiceDescriptionTextBox.Location = new System.Drawing.Point(184, 91);
+            this.Services_ServiceDescriptionTextBox.Multiline = true;
+            this.Services_ServiceDescriptionTextBox.Name = "Services_ServiceDescriptionTextBox";
+            this.Services_ServiceDescriptionTextBox.Size = new System.Drawing.Size(277, 55);
+            this.Services_ServiceDescriptionTextBox.TabIndex = 22;
+            // 
+            // Services_ServiceTypeTextBox
+            // 
+            this.Services_ServiceTypeTextBox.Enabled = false;
+            this.Services_ServiceTypeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Services_ServiceTypeTextBox.Location = new System.Drawing.Point(582, 30);
+            this.Services_ServiceTypeTextBox.Name = "Services_ServiceTypeTextBox";
+            this.Services_ServiceTypeTextBox.Size = new System.Drawing.Size(277, 26);
+            this.Services_ServiceTypeTextBox.TabIndex = 20;
+            // 
+            // Services_PriceTextBox
+            // 
+            this.Services_PriceTextBox.Enabled = false;
+            this.Services_PriceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Services_PriceTextBox.Location = new System.Drawing.Point(582, 64);
+            this.Services_PriceTextBox.Name = "Services_PriceTextBox";
+            this.Services_PriceTextBox.Size = new System.Drawing.Size(277, 26);
+            this.Services_PriceTextBox.TabIndex = 20;
+            // 
+            // Services_ServiceNameTextBox
+            // 
+            this.Services_ServiceNameTextBox.Enabled = false;
+            this.Services_ServiceNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Services_ServiceNameTextBox.Location = new System.Drawing.Point(184, 59);
+            this.Services_ServiceNameTextBox.Name = "Services_ServiceNameTextBox";
+            this.Services_ServiceNameTextBox.Size = new System.Drawing.Size(277, 26);
+            this.Services_ServiceNameTextBox.TabIndex = 21;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label3.Location = new System.Drawing.Point(32, 94);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(146, 20);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Service description:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label6.Location = new System.Drawing.Point(69, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 20);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Service name:";
+            // 
+            // ServiceIdLabel
+            // 
+            this.ServiceIdLabel.AutoSize = true;
+            this.ServiceIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.ServiceIdLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.ServiceIdLabel.Location = new System.Drawing.Point(97, 32);
+            this.ServiceIdLabel.Name = "ServiceIdLabel";
+            this.ServiceIdLabel.Size = new System.Drawing.Size(81, 20);
+            this.ServiceIdLabel.TabIndex = 17;
+            this.ServiceIdLabel.Text = "Service id:";
+            // 
             // Services_UpdateButton
             // 
             this.Services_UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
@@ -282,6 +439,42 @@
             this.Patients_DataGridView.TabIndex = 0;
             this.Patients_DataGridView.TabStop = false;
             this.Patients_DataGridView.Visible = false;
+            // 
+            // Patients_SearchButton
+            // 
+            this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_SearchButton.FlatAppearance.BorderSize = 0;
+            this.Patients_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_SearchButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_SearchButton.Location = new System.Drawing.Point(271, 578);
+            this.Patients_SearchButton.Name = "Patients_SearchButton";
+            this.Patients_SearchButton.Size = new System.Drawing.Size(410, 66);
+            this.Patients_SearchButton.TabIndex = 12;
+            this.Patients_SearchButton.Text = "Search Patient";
+            this.Patients_SearchButton.UseVisualStyleBackColor = false;
+            this.Patients_SearchButton.Visible = false;
+            this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
+            // 
+            // Appointments_SearchButton
+            // 
+            this.Appointments_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Appointments_SearchButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appointments_SearchButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_SearchButton.Location = new System.Drawing.Point(271, 578);
+            this.Appointments_SearchButton.Name = "Appointments_SearchButton";
+            this.Appointments_SearchButton.Size = new System.Drawing.Size(410, 66);
+            this.Appointments_SearchButton.TabIndex = 13;
+            this.Appointments_SearchButton.Text = "Search Appointment";
+            this.Appointments_SearchButton.UseVisualStyleBackColor = false;
+            this.Appointments_SearchButton.Visible = false;
+            this.Appointments_SearchButton.Click += new System.EventHandler(this.Appointment_SearchButton_Click);
             // 
             // Appointments_TabControl
             // 
@@ -379,42 +572,6 @@
             this.Appointments_FinishedDataGridView.Size = new System.Drawing.Size(881, 507);
             this.Appointments_FinishedDataGridView.TabIndex = 0;
             this.Appointments_FinishedDataGridView.TabStop = false;
-            // 
-            // Patients_SearchButton
-            // 
-            this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Patients_SearchButton.FlatAppearance.BorderSize = 0;
-            this.Patients_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Patients_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Patients_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patients_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Patients_SearchButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_SearchButton.Location = new System.Drawing.Point(271, 578);
-            this.Patients_SearchButton.Name = "Patients_SearchButton";
-            this.Patients_SearchButton.Size = new System.Drawing.Size(410, 66);
-            this.Patients_SearchButton.TabIndex = 12;
-            this.Patients_SearchButton.Text = "Search Patient";
-            this.Patients_SearchButton.UseVisualStyleBackColor = false;
-            this.Patients_SearchButton.Visible = false;
-            this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
-            // 
-            // Appointments_SearchButton
-            // 
-            this.Appointments_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Appointments_SearchButton.FlatAppearance.BorderSize = 0;
-            this.Appointments_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Appointments_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Appointments_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Appointments_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Appointments_SearchButton.ForeColor = System.Drawing.Color.White;
-            this.Appointments_SearchButton.Location = new System.Drawing.Point(271, 578);
-            this.Appointments_SearchButton.Name = "Appointments_SearchButton";
-            this.Appointments_SearchButton.Size = new System.Drawing.Size(410, 66);
-            this.Appointments_SearchButton.TabIndex = 13;
-            this.Appointments_SearchButton.Text = "Search Appointment";
-            this.Appointments_SearchButton.UseVisualStyleBackColor = false;
-            this.Appointments_SearchButton.Visible = false;
-            this.Appointments_SearchButton.Click += new System.EventHandler(this.Appointment_SearchButton_Click);
             // 
             // Dashboard_panel
             // 
@@ -568,163 +725,6 @@
             this.TotalAppointmentsLabel.Text = "1234";
             this.TotalAppointmentsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Services_ServiceDetailsPanel
-            // 
-            this.Services_ServiceDetailsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_ServiceIDTextBox);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.label5);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.label1);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_ServiceDescriptionTextBox);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_ServiceTypeTextBox);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_PriceTextBox);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.Services_ServiceNameTextBox);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.label3);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.label6);
-            this.Services_ServiceDetailsPanel.Controls.Add(this.ServiceIdLabel);
-            this.Services_ServiceDetailsPanel.Location = new System.Drawing.Point(55, 368);
-            this.Services_ServiceDetailsPanel.Name = "Services_ServiceDetailsPanel";
-            this.Services_ServiceDetailsPanel.Size = new System.Drawing.Size(881, 184);
-            this.Services_ServiceDetailsPanel.TabIndex = 22;
-            this.Services_ServiceDetailsPanel.Visible = false;
-            // 
-            // Services_ServiceIDTextBox
-            // 
-            this.Services_ServiceIDTextBox.Enabled = false;
-            this.Services_ServiceIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Services_ServiceIDTextBox.Location = new System.Drawing.Point(184, 29);
-            this.Services_ServiceIDTextBox.Name = "Services_ServiceIDTextBox";
-            this.Services_ServiceIDTextBox.ReadOnly = true;
-            this.Services_ServiceIDTextBox.Size = new System.Drawing.Size(277, 26);
-            this.Services_ServiceIDTextBox.TabIndex = 26;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(528, 67);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 20);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Price:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(477, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 20);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Service type:";
-            // 
-            // Services_ServiceDescriptionTextBox
-            // 
-            this.Services_ServiceDescriptionTextBox.Enabled = false;
-            this.Services_ServiceDescriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Services_ServiceDescriptionTextBox.Location = new System.Drawing.Point(184, 91);
-            this.Services_ServiceDescriptionTextBox.Multiline = true;
-            this.Services_ServiceDescriptionTextBox.Name = "Services_ServiceDescriptionTextBox";
-            this.Services_ServiceDescriptionTextBox.Size = new System.Drawing.Size(277, 55);
-            this.Services_ServiceDescriptionTextBox.TabIndex = 22;
-            // 
-            // Services_PriceTextBox
-            // 
-            this.Services_PriceTextBox.Enabled = false;
-            this.Services_PriceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Services_PriceTextBox.Location = new System.Drawing.Point(582, 64);
-            this.Services_PriceTextBox.Name = "Services_PriceTextBox";
-            this.Services_PriceTextBox.Size = new System.Drawing.Size(277, 26);
-            this.Services_PriceTextBox.TabIndex = 20;
-            // 
-            // Services_ServiceNameTextBox
-            // 
-            this.Services_ServiceNameTextBox.Enabled = false;
-            this.Services_ServiceNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Services_ServiceNameTextBox.Location = new System.Drawing.Point(184, 59);
-            this.Services_ServiceNameTextBox.Name = "Services_ServiceNameTextBox";
-            this.Services_ServiceNameTextBox.Size = new System.Drawing.Size(277, 26);
-            this.Services_ServiceNameTextBox.TabIndex = 21;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(32, 94);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(146, 20);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Service description:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label6.Location = new System.Drawing.Point(69, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 20);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Service name:";
-            // 
-            // ServiceIdLabel
-            // 
-            this.ServiceIdLabel.AutoSize = true;
-            this.ServiceIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ServiceIdLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ServiceIdLabel.Location = new System.Drawing.Point(97, 32);
-            this.ServiceIdLabel.Name = "ServiceIdLabel";
-            this.ServiceIdLabel.Size = new System.Drawing.Size(81, 20);
-            this.ServiceIdLabel.TabIndex = 17;
-            this.ServiceIdLabel.Text = "Service id:";
-            // 
-            // Services_AddButton
-            // 
-            this.Services_AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Services_AddButton.FlatAppearance.BorderSize = 0;
-            this.Services_AddButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Services_AddButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Services_AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Services_AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Services_AddButton.ForeColor = System.Drawing.Color.White;
-            this.Services_AddButton.Location = new System.Drawing.Point(46, 578);
-            this.Services_AddButton.Name = "Services_AddButton";
-            this.Services_AddButton.Size = new System.Drawing.Size(280, 66);
-            this.Services_AddButton.TabIndex = 23;
-            this.Services_AddButton.Text = "Add service";
-            this.Services_AddButton.UseVisualStyleBackColor = false;
-            this.Services_AddButton.Visible = false;
-            this.Services_AddButton.Click += new System.EventHandler(this.Services_AddButton_Click);
-            // 
-            // Services_DeleteButton
-            // 
-            this.Services_DeleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Services_DeleteButton.FlatAppearance.BorderSize = 0;
-            this.Services_DeleteButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Services_DeleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Services_DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Services_DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Services_DeleteButton.ForeColor = System.Drawing.Color.White;
-            this.Services_DeleteButton.Location = new System.Drawing.Point(658, 578);
-            this.Services_DeleteButton.Name = "Services_DeleteButton";
-            this.Services_DeleteButton.Size = new System.Drawing.Size(280, 66);
-            this.Services_DeleteButton.TabIndex = 24;
-            this.Services_DeleteButton.Text = "Delete Service";
-            this.Services_DeleteButton.UseVisualStyleBackColor = false;
-            this.Services_DeleteButton.Visible = false;
-            this.Services_DeleteButton.Click += new System.EventHandler(this.Services_DeleteButton_Click);
-            // 
-            // Services_ServiceTypeTextBox
-            // 
-            this.Services_ServiceTypeTextBox.Enabled = false;
-            this.Services_ServiceTypeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Services_ServiceTypeTextBox.Location = new System.Drawing.Point(582, 30);
-            this.Services_ServiceTypeTextBox.Name = "Services_ServiceTypeTextBox";
-            this.Services_ServiceTypeTextBox.Size = new System.Drawing.Size(277, 26);
-            this.Services_ServiceTypeTextBox.TabIndex = 20;
-            // 
             // DocView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -742,6 +742,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.Services_ServiceDetailsPanel.ResumeLayout(false);
+            this.Services_ServiceDetailsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Services_DataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Patients_DataGridView)).EndInit();
             this.Appointments_TabControl.ResumeLayout(false);
@@ -759,8 +761,6 @@
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.Services_ServiceDetailsPanel.ResumeLayout(false);
-            this.Services_ServiceDetailsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }

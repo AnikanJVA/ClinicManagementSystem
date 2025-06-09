@@ -2160,6 +2160,60 @@ namespace ClinicManagementSystem
 
                 return -1; 
             }
+
+            public static bool isDoctorAvailble(long doctorId, DateTime date)
+            {
+                string day = "";
+                switch (date.DayOfWeek)
+                {
+                    case DayOfWeek.Monday:
+                        day = "%M%";
+                        break;
+
+                    case DayOfWeek.Tuesday:
+                        day = "%T%";
+                        break;
+
+                    case DayOfWeek.Wednesday:
+                        day = "%W%";
+                        break;
+
+                    case DayOfWeek.Thursday:
+                        day = "%Th%";
+                        break;
+
+                    case DayOfWeek.Friday:
+                        day = "%F%";
+                        break;
+
+                    case DayOfWeek.Saturday:
+                        day = "%S%";
+                        break;
+
+                    default:
+                        day = string.Empty;
+                        break;
+                }
+
+                string query = @"SELECT COUNT(*) 
+                                 FROM doctors 
+                                 WHERE DoctorID = @doctorId AND Schedule = @day";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                {
+                    cmd.Parameters.AddWithValue("@doctorId", doctorId);
+                    cmd.Parameters.AddWithValue("@day", day);
+
+                    try
+                    {
+                        return Convert.ToInt32(cmd.ExecuteScalar()) > 0; 
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                return false;
+            }
         }
 
         public class Patient
