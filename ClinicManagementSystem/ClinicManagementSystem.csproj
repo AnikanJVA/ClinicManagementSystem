@@ -205,12 +205,6 @@
     <Compile Include="ChooseServiceForm.Designer.cs">
       <DependentUpon>ChooseServiceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddServiceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddServiceForm.Designer.cs">
-      <DependentUpon>AddServiceForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CreatePrescriptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -325,9 +319,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChooseServiceForm.resx">
       <DependentUpon>ChooseServiceForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddServiceForm.resx">
-      <DependentUpon>AddServiceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreatePrescriptionForm.resx">
       <DependentUpon>CreatePrescriptionForm.cs</DependentUpon>

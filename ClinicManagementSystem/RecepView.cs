@@ -318,7 +318,7 @@ namespace ClinicManagementSystem
                     gfx.DrawString("RECEIPT", fontTitle, XBrushes.Black, new XRect(0, y, page.Width, 0), XStringFormats.TopCenter);
                     y += 30;
                     gfx.DrawString("Dental Clinic", fontBold, XBrushes.Black, new XRect(0, y, page.Width, 0), XStringFormats.TopCenter);
-                    y += 40;
+                    y += 70;
 
                     string middleName = patient.MiddleName;
                     char middleInitial = middleName[0];

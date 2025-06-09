@@ -50,9 +50,10 @@ namespace ClinicManagementSystem
             Patients_SearchButton.Visible = false;
 
             Services_DataGridView.Visible = false;
-            Services_EditButton.Visible = false;
-
-            UpdateDataGrids();
+            Services_UpdateButton.Visible = false;
+            Services_AddButton.Visible = false;
+            Services_DeleteButton.Visible = false;
+            Services_ServiceDetailsPanel.Visible = false;
         }
 
         private void AppointmentsButton_Click(object sender, EventArgs e)
@@ -71,9 +72,10 @@ namespace ClinicManagementSystem
             Patients_SearchButton.Visible = false;
 
             Services_DataGridView.Visible = false;
-            Services_EditButton.Visible = false;
-
-            UpdateDataGrids();
+            Services_UpdateButton.Visible = false;
+            Services_AddButton.Visible = false;
+            Services_DeleteButton.Visible = false;
+            Services_ServiceDetailsPanel.Visible = false;
         }
 
         private void ClientsButton_Click(object sender, EventArgs e)
@@ -92,10 +94,10 @@ namespace ClinicManagementSystem
             Patients_SearchButton.Visible = true;
 
             Services_DataGridView.Visible = false;
-            Services_EditButton.Visible = false;
-
-            UpdateDataGrids();
-
+            Services_UpdateButton.Visible = false;
+            Services_AddButton.Visible = false;
+            Services_DeleteButton.Visible = false;
+            Services_ServiceDetailsPanel.Visible = false;
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -115,6 +117,7 @@ namespace ClinicManagementSystem
         {
             ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("APPROVED", "SEARCH");
             chooseAppointmentForm.ShowDialog();
+            UpdateDataGrids();
         }
 
         private void ServicesButton_Click(object sender, EventArgs e)
@@ -133,7 +136,10 @@ namespace ClinicManagementSystem
             Patients_SearchButton.Visible = false;
 
             Services_DataGridView.Visible = true;
-            Services_EditButton.Visible = true;
+            Services_UpdateButton.Visible = true;
+            Services_AddButton.Visible = true;
+            Services_DeleteButton.Visible = true;
+            Services_ServiceDetailsPanel.Visible = true;
 
             UpdateDataGrids();
         }
@@ -148,12 +154,31 @@ namespace ClinicManagementSystem
 
             Services_DataGridView.DataSource = Database.GetServices();
         }
-
-        private void Services_EditButton_Click(object sender, EventArgs e)
+       
+        private void Services_AddButton_Click(object sender, EventArgs e)
         {
-            ChooseServiceForm chooseServiceForm = new ChooseServiceForm("DOCTOR");
-            chooseServiceForm.ShowDialog();
+            AddNewServiceForm addNewServiceForm = new AddNewServiceForm();
+            addNewServiceForm.ShowDialog();
             UpdateDataGrids();
+        }
+
+        private void Services_UpdateButton_Click(object sender, EventArgs e)
+        {
+            if (Database.CurrentService.ServiceID == 0 || Database.CurrentService == null)
+            {
+                MessageBox.Show("Select a bill first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                AddNewServiceForm addNewServiceForm = new AddNewServiceForm("UPDATE");
+                addNewServiceForm.ShowDialog();
+                UpdateDataGrids();
+            }
+        }
+
+        private void Services_DeleteButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         public void FormatDataGridViews()
@@ -182,6 +207,38 @@ namespace ClinicManagementSystem
             Services_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Services_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             Services_DataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+        }
+
+        private void Services_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long serviceID = -1;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Services_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Services_DataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            serviceID = Convert.ToInt64(row.Cells["ServiceID"].Value.ToString());
+                            Database.CurrentService = Database.RetrieveService(serviceID);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
+                        Services_ServiceIDTextBox.Text = serviceID.ToString();
+                        Services_ServiceNameTextBox.Text = Database.CurrentService.ServiceName;
+                        Services_ServiceDescriptionTextBox.Text = Database.CurrentService.ServiceDesc;
+                        Services_ServiceTypeTextBox.Text = Database.CurrentService.ServiceType;
+                        Services_PriceTextBox.Text = Database.CurrentService.Price.ToString();
+                    }
+                }
+            }
         }
     }
 }
