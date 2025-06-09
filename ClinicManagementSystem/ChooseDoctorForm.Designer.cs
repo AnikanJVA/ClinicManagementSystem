@@ -31,11 +31,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.EmailAddressTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.AltContactNumberTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.ScheduleTextBox = new System.Windows.Forms.TextBox();
             this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.LicenseNumberTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,8 +67,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.ResetButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
-            this.ScheduleTextBox = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Doctors_DataGridView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -129,6 +129,18 @@
             this.label16.TabIndex = 21;
             this.label16.Text = "Status:";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(83, 295);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(80, 20);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "Schedule:";
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -186,6 +198,17 @@
             this.label9.Size = new System.Drawing.Size(152, 20);
             this.label9.TabIndex = 15;
             this.label9.Text = "Alt Contact Number:";
+            // 
+            // ScheduleTextBox
+            // 
+            this.ScheduleTextBox.Enabled = false;
+            this.ScheduleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScheduleTextBox.Location = new System.Drawing.Point(166, 292);
+            this.ScheduleTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ScheduleTextBox.Name = "ScheduleTextBox";
+            this.ScheduleTextBox.ReadOnly = true;
+            this.ScheduleTextBox.Size = new System.Drawing.Size(287, 26);
+            this.ScheduleTextBox.TabIndex = 14;
             // 
             // AddressTextBox
             // 
@@ -537,29 +560,6 @@
             this.CloseButton.UseVisualStyleBackColor = false;
             this.CloseButton.Visible = false;
             this.CloseButton.Click += new System.EventHandler(this.CancelButton_Click);
-            // 
-            // ScheduleTextBox
-            // 
-            this.ScheduleTextBox.Enabled = false;
-            this.ScheduleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScheduleTextBox.Location = new System.Drawing.Point(166, 292);
-            this.ScheduleTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.ScheduleTextBox.Name = "ScheduleTextBox";
-            this.ScheduleTextBox.ReadOnly = true;
-            this.ScheduleTextBox.Size = new System.Drawing.Size(287, 26);
-            this.ScheduleTextBox.TabIndex = 14;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(83, 295);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(80, 20);
-            this.label17.TabIndex = 19;
-            this.label17.Text = "Schedule:";
             // 
             // ChooseDoctorForm
             // 

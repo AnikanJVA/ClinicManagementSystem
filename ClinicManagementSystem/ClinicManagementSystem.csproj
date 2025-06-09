@@ -294,6 +294,7 @@
     </Compile>
     <EmbeddedResource Include="AddNewServiceForm.resx">
       <DependentUpon>AddNewServiceForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>

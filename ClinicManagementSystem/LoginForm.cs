@@ -402,7 +402,7 @@ namespace ClinicManagementSystem
                             doctorCmd.Parameters.AddWithValue("@firstName", firstName);
                             doctorCmd.Parameters.AddWithValue("@middleName", middleName);
                             doctorCmd.Parameters.AddWithValue("@lastName", lastName);
-                            doctorCmd.Parameters.AddWithValue("@schedule", schedule);
+                            doctorCmd.Parameters.AddWithValue("@schedule", schedule + ",");
                             doctorCmd.Parameters.AddWithValue("@licenseNumber", licenseNumber);
 
                             doctorCmd.ExecuteNonQuery();
@@ -760,22 +760,30 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static bool UpdateDoctorAvailabilityStatus(string currentDay)
+            public static void UpdateDoctorAvailabilityStatus(string currentDay)
             {
-                currentDay = "%" + currentDay + "%";
-                string updateQuery = @"UPDATE doctors SET
-                                       AvailabilityStatus = @availabilityStatus1
-                                       WHERE Schedule LIKE @currentDay;
-                                        
-                                       UPDATE doctors SET
-                                       AvailabilityStatus = @availabilityStatus2
-                                       WHERE Schedule NOT LIKE @currentDay";
-                using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
+                currentDay = "%" + currentDay + ",%";
+
+                string updateAvailable = @"UPDATE doctors 
+                               SET AvailabilityStatus = @availabilityStatus 
+                               WHERE Schedule LIKE @currentDay";
+
+                string updateUnavailable = @"UPDATE doctors 
+                                 SET AvailabilityStatus = @availabilityStatus 
+                                 WHERE Schedule NOT LIKE @currentDay";
+
+                using (MySqlCommand cmd1 = new MySqlCommand(updateAvailable, Instance.connection))
                 {
-                    cmd.Parameters.AddWithValue("@availabilityStatus1", "AVAILABLE");
-                    cmd.Parameters.AddWithValue("@availabilityStatus2", "UNAVAILABLE");
-                    cmd.Parameters.AddWithValue("@currentDay", currentDay);
-                    return cmd.ExecuteNonQuery() > 0;
+                    cmd1.Parameters.AddWithValue("@availabilityStatus", "AVAILABLE");
+                    cmd1.Parameters.AddWithValue("@currentDay", currentDay);
+                    cmd1.ExecuteNonQuery();
+                }
+
+                using (MySqlCommand cmd2 = new MySqlCommand(updateUnavailable, Instance.connection))
+                {
+                    cmd2.Parameters.AddWithValue("@availabilityStatus", "UNAVAILABLE");
+                    cmd2.Parameters.AddWithValue("@currentDay", currentDay);
+                    cmd2.ExecuteNonQuery();
                 }
             }
 
@@ -1980,7 +1988,7 @@ namespace ClinicManagementSystem
                             doctor.LastName = reader["LastName"].ToString();
                             doctor.LicenseNumber = reader["LicenseNumber"].ToString();
                             doctor.Schedule = reader["Schedule"].ToString();
-
+                            doctor.AvailabilityStatus = reader["AvailabilityStatus"].ToString();
                             reader.Close();
                             return doctor;
                         }

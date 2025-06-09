@@ -33,7 +33,7 @@ namespace ClinicManagementSystem
             StatusComboBox.Text = Database.CurrentUser.Status;
 
             if (Database.CurrentDoctor.Schedule.Contains("M")) { MCheckBox.Checked = true; }
-            if (Database.CurrentDoctor.Schedule.Contains("T")) { TCheckBox.Checked = true; }
+            if (Database.CurrentDoctor.Schedule.Contains("T,")) { TCheckBox.Checked = true; }
             if (Database.CurrentDoctor.Schedule.Contains("W")) { WCheckBox.Checked = true; }
             if (Database.CurrentDoctor.Schedule.Contains("Th")) { ThCheckBox.Checked = true; }
             if (Database.CurrentDoctor.Schedule.Contains("F")) { FCheckBox.Checked = true; }

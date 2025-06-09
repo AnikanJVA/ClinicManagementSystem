@@ -15,6 +15,7 @@ using PdfSharp.Pdf;
 using PdfSharp.Quality;
 using System.IO;
 using static ClinicManagementSystem.LoginForm;
+using System.Net.Mail;
 
 namespace ClinicManagementSystem
 {
@@ -76,7 +77,7 @@ namespace ClinicManagementSystem
             Billing_DetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
-            Doctors_SearchButton.Hide();
+            Doctors_DetailsPanel.Hide();
 
             Dashboard_panel.Visible = false;
 
@@ -108,7 +109,7 @@ namespace ClinicManagementSystem
             Billing_DetailsPanel.Show();
 
             Doctors_TabControl.Hide();
-            Doctors_SearchButton.Hide();
+            Doctors_DetailsPanel.Hide();
 
             Dashboard_panel.Visible = false;
 
@@ -140,11 +141,11 @@ namespace ClinicManagementSystem
             Billing_DetailsPanel.Hide();
 
             Doctors_TabControl.Show();
-            Doctors_SearchButton.Show();
+            Doctors_DetailsPanel.Show();
 
             Dashboard_panel.Visible = false;
 
-            //UpdateDataGrids();
+            UpdateDataGrids();
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -179,7 +180,7 @@ namespace ClinicManagementSystem
             Billing_DetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
-            Doctors_SearchButton.Hide();
+            Doctors_DetailsPanel.Hide();
 
             Dashboard_panel.Visible = false;
 
@@ -234,12 +235,6 @@ namespace ClinicManagementSystem
             }
         }
 
-        private void Doctors_SearchButton_Click(object sender, EventArgs e)
-        {
-            ChooseDoctorForm chooseDoctorForm = new ChooseDoctorForm("SEARCH");
-            chooseDoctorForm.ShowDialog();
-        }
-
         private void Appointments_UpdateButton_Click(object sender, EventArgs e)
         {
             if (Database.CurrentAppointment.AppointmentId == 0 || Database.CurrentAppointment == null)
@@ -279,7 +274,7 @@ namespace ClinicManagementSystem
             Billing_DetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
-            Doctors_SearchButton.Hide();
+            Doctors_DetailsPanel.Hide();
 
             Dashboard_panel.Visible = true;
             NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
@@ -412,7 +407,7 @@ namespace ClinicManagementSystem
 
         private void Appointments_AllDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long appointmentID = -1;
+            long appointmentID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -448,7 +443,7 @@ namespace ClinicManagementSystem
 
         private void Appointments_RescheduledDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long appointmentID = -1;
+            long appointmentID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -484,7 +479,7 @@ namespace ClinicManagementSystem
 
         private void Appointments_CanceledDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long appointmentID = -1;
+            long appointmentID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -520,7 +515,7 @@ namespace ClinicManagementSystem
 
         private void Appointments_ApprovedDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long appointmentID = -1;
+            long appointmentID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -556,7 +551,7 @@ namespace ClinicManagementSystem
 
         private void Appointments_FinishedDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long appointmentID = -1;
+            long appointmentID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -593,7 +588,7 @@ namespace ClinicManagementSystem
 
         private void Patients_AllDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long patientID = -1;
+            long patientID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -624,7 +619,7 @@ namespace ClinicManagementSystem
 
         private void Patients_ActiveDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long patientID = -1;
+            long patientID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -655,7 +650,7 @@ namespace ClinicManagementSystem
 
         private void Patients_InactiveDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long patientID = -1;
+            long patientID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -686,7 +681,7 @@ namespace ClinicManagementSystem
 
         private void Billing_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            long billID = -1;
+            long billID = 0;
 
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -740,6 +735,149 @@ namespace ClinicManagementSystem
             }
         }
 
+        private void Doctors_AllDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long doctorID = 0;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Doctors_AllDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Doctors_AllDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            doctorID = Convert.ToInt64(row.Cells["DoctorID"].Value.ToString());
+                            Database.CurrentDoctor = Database.RetrieveDoctor(doctorID, "DOCTORID");
+                            Database.CurrentUser = Database.RetrieveUser(Database.CurrentDoctor.UserId);
+                            Database.CurrentDoctor.Address = Database.CurrentUser.Address;
+                            Database.CurrentDoctor.ContactNumber = Database.CurrentUser.ContactNumber;
+                            Database.CurrentDoctor.AltContactNumber = Database.CurrentUser.AltContactNumber;
+                            Database.CurrentDoctor.EmailAddress = Database.CurrentUser.EmailAddress;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        Doctors_AutoFill();
+                    }
+                    else
+                    {
+                        Doctors_ClearAutoFill();
+                    }
+                }
+            }
+        }
+        private void Doctors_AvailableDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long doctorID = 0;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Doctors_AvailableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Doctors_AvailableDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            doctorID = Convert.ToInt64(row.Cells["DoctorID"].Value.ToString());
+                            Database.CurrentDoctor = Database.RetrieveDoctor(doctorID, "DOCTORID");
+                            Database.CurrentUser = Database.RetrieveUser(Database.CurrentDoctor.UserId);
+                            Database.CurrentDoctor.Address = Database.CurrentUser.Address;
+                            Database.CurrentDoctor.ContactNumber = Database.CurrentUser.ContactNumber;
+                            Database.CurrentDoctor.AltContactNumber = Database.CurrentUser.AltContactNumber;
+                            Database.CurrentDoctor.EmailAddress = Database.CurrentUser.EmailAddress;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        Doctors_AutoFill();
+                    }
+                    else
+                    {
+                        Doctors_ClearAutoFill();
+                    }
+                }
+            }
+        }
+
+        private void Doctors_UnavailableDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long doctorID = 0;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Doctors_UnavailableDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Doctors_UnavailableDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            doctorID = Convert.ToInt64(row.Cells["DoctorID"].Value.ToString());
+                            Database.CurrentDoctor = Database.RetrieveDoctor(doctorID, "DOCTORID");
+                            Database.CurrentUser = Database.RetrieveUser(Database.CurrentDoctor.UserId);
+                            Database.CurrentDoctor.Address = Database.CurrentUser.Address;
+                            Database.CurrentDoctor.ContactNumber = Database.CurrentUser.ContactNumber;
+                            Database.CurrentDoctor.AltContactNumber = Database.CurrentUser.AltContactNumber;
+                            Database.CurrentDoctor.EmailAddress = Database.CurrentUser.EmailAddress;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        Doctors_AutoFill();
+                    }
+                    else
+                    {
+                        Doctors_ClearAutoFill();
+                    }
+                }
+            }
+        }
+
+        private void Doctors_InactiveDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long doctorID = 0;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Doctors_InactiveDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Doctors_InactiveDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            doctorID = Convert.ToInt64(row.Cells["DoctorID"].Value.ToString());
+                            Database.CurrentDoctor = Database.RetrieveDoctor(doctorID, "DOCTORID");
+                            Database.CurrentUser = Database.RetrieveUser(Database.CurrentDoctor.UserId);
+                            Database.CurrentDoctor.Address = Database.CurrentUser.Address;
+                            Database.CurrentDoctor.ContactNumber = Database.CurrentUser.ContactNumber;
+                            Database.CurrentDoctor.AltContactNumber = Database.CurrentUser.AltContactNumber;
+                            Database.CurrentDoctor.EmailAddress = Database.CurrentUser.EmailAddress;
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        Doctors_AutoFill();
+                    }
+                    else
+                    {
+                        Doctors_ClearAutoFill();
+                    }
+                }
+            }
+        }
+
         public void Appointments_AutoFill()
         {
             Appointments_AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
@@ -766,34 +904,63 @@ namespace ClinicManagementSystem
 
         public void Patients_AutoFill()
         {
-            PatientIDTextBox.Text = Database.CurrentPatient.ID.ToString();
-            FirstNameTextBox.Text = Database.CurrentPatient.FirstName;
-            MiddleNameTextBox.Text = Database.CurrentPatient.MiddleName;
-            LastNameTextBox.Text = Database.CurrentPatient.LastName;
-            DoBTextBox.Text = Database.CurrentPatient.DoB;
-            SexTextBox.Text = Database.CurrentPatient.Sex;
-            ContactNumberTextBox.Text = Database.CurrentPatient.ContactNumber;
-            AltContactNumberTextBox.Text = Database.CurrentPatient.AltContactNumber;
-            EmailAddressTextBox.Text = Database.CurrentPatient.EmailAddress;
-            AddressTextBox.Text = Database.CurrentPatient.Address;
-            StatusTextBox.Text = Database.CurrentPatient.Status;
+            Patients_PatientIDTextBox.Text = Database.CurrentPatient.ID.ToString();
+            Patients_FirstNameTextBox.Text = Database.CurrentPatient.FirstName;
+            Patients_MiddleNameTextBox.Text = Database.CurrentPatient.MiddleName;
+            Patients_LastNameTextBox.Text = Database.CurrentPatient.LastName;
+            Patients_DoBTextBox.Text = Database.CurrentPatient.DoB;
+            Patients_SexTextBox.Text = Database.CurrentPatient.Sex;
+            Patients_ContactNumberTextBox.Text = Database.CurrentPatient.ContactNumber;
+            Patients_AltContactNumberTextBox.Text = Database.CurrentPatient.AltContactNumber;
+            Patients_EmailAddressTextBox.Text = Database.CurrentPatient.EmailAddress;
+            Patients_AddressTextBox.Text = Database.CurrentPatient.Address;
+            Patients_StatusTextBox.Text = Database.CurrentPatient.Status;
         }
 
         public void Patients_ClearAutoFill()
         {
-            PatientIDTextBox.Clear();
+            Patients_PatientIDTextBox.Clear();
+            Patients_FirstNameTextBox.Clear();
+            Patients_MiddleNameTextBox.Clear();
+            Patients_LastNameTextBox.Clear();
+            Patients_DoBTextBox.Clear();
+            Patients_SexTextBox.Clear();
+            Patients_ContactNumberTextBox.Clear(); 
+            Patients_AltContactNumberTextBox.Clear();
+            Patients_EmailAddressTextBox.Clear();
+            Patients_AddressTextBox.Clear();
+            Patients_StatusTextBox.Clear();
+        }
+
+        public void Doctors_AutoFill()
+        {
+            DoctorIDTextBox.Text = Database.CurrentDoctor.DoctorId.ToString();
+            FirstNameTextBox.Text = Database.CurrentDoctor.FirstName;
+            MiddleNameTextBox.Text = Database.CurrentDoctor.LastName;
+            LastNameTextBox.Text = Database.CurrentDoctor.MiddleName;
+            LicenseNumberTextBox.Text = Database.CurrentDoctor.LicenseNumber;
+            ContactNumberTextBox.Text = Database.CurrentDoctor.ContactNumber;
+            AltContactNumberTextBox.Text = Database.CurrentDoctor.AltContactNumber;
+            EmailAddressTextBox.Text = Database.CurrentDoctor.EmailAddress;
+            AddressTextBox.Text = Database.CurrentDoctor.Address;
+            ScheduleTextBox.Text = Database.CurrentDoctor.Schedule;
+            StatusTextBox.Text = Database.CurrentDoctor.AvailabilityStatus;
+        }
+
+        public void Doctors_ClearAutoFill()
+        {
+            DoctorIDTextBox.Clear();
             FirstNameTextBox.Clear();
             MiddleNameTextBox.Clear();
             LastNameTextBox.Clear();
-            DoBTextBox.Clear();
-            SexTextBox.Clear();
-            ContactNumberTextBox.Clear(); 
+            LicenseNumberTextBox.Clear();
+            ContactNumberTextBox.Clear();
             AltContactNumberTextBox.Clear();
             EmailAddressTextBox.Clear();
             AddressTextBox.Clear();
+            ScheduleTextBox.Clear();
             StatusTextBox.Clear();
         }
-
 
         public void UpdateDataGrids()
         {
