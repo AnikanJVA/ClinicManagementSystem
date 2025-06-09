@@ -281,6 +281,7 @@ namespace ClinicManagementSystem
             Bill bill = Database.CurrentBill;
             Patient patient = Database.CurrentPatient;
             Appointment appointment = Database.CurrentAppointment;
+            List<Service> servicesPerformed = Database.ServicesPerformedList;
 
             if (Database.CurrentBill.BillID == 0 || Database.CurrentBill == null ||
                 Database.CurrentPatient == null || Database.CurrentAppointment == null)
@@ -322,70 +323,50 @@ namespace ClinicManagementSystem
                     string middleName = patient.MiddleName;
                     char middleInitial = middleName[0];
                     string patientName = $"{patient.FirstName} {middleInitial.ToString().ToUpper()}. {patient.LastName}";
+
                     // Appointment info
                     gfx.DrawString("Patient Name: ", fontLabel, XBrushes.Black, leftX, y);
-                    gfx.DrawString(patientName, font, XBrushes.Black, leftX + labelOffset, y);
+                    gfx.DrawString(patientName, font, XBrushes.Black, leftX + (labelOffset - 50), y);
                     gfx.DrawString("Receipt No: ", fontLabel, XBrushes.Black, rightX, y);
-                    gfx.DrawString(bill.BillID.ToString(), font, XBrushes.Black, rightX + labelOffset, y);
+                    gfx.DrawString(bill.BillID.ToString(), font, XBrushes.Black, rightX + (labelOffset + 10), y);
                     y += lineHeight;
 
                     gfx.DrawString("Address: ", fontLabel, XBrushes.Black, leftX, y);
-                    gfx.DrawString(patient.Address, font, XBrushes.Black, leftX + labelOffset, y);
+                    gfx.DrawString(patient.Address, font, XBrushes.Black, leftX + (labelOffset - 50), y);
                     gfx.DrawString("Appointment Date and Time: ", fontLabel, XBrushes.Black, rightX, y);
                     gfx.DrawString(appointment.DateTime, font, XBrushes.Black, rightX + (labelOffset + 10), y);
-                    //y += lineHeight;
-
-                    //gfx.DrawString("Pay Period:", fontLabel, XBrushes.Black, leftX, y);
-                    //gfx.DrawString(periodDisplay, font, XBrushes.Black, leftX + labelOffset, y);
-                    //gfx.DrawString("Worked Days:", fontLabel, XBrushes.Black, rightX, y);
-                    //gfx.DrawString(workDays.ToString(), font, XBrushes.Black, rightX + labelOffset, y);
-                    y += 30;
-
-                    // Section Titles
-                    gfx.DrawString("EARNINGS", fontBold, XBrushes.Black, leftX, y);
-                    gfx.DrawString("DEDUCTIONS", fontBold, XBrushes.Black, rightX, y);
                     y += lineHeight;
 
-                    // Earnings
-                    //gfx.DrawString("Basic", font, XBrushes.Black, leftX, y);
-                    //gfx.DrawString(grossPay, font, XBrushes.Black, leftX + labelOffset, y);
+                    gfx.DrawLine(XPens.Black, 38, y, rightX + 252, y);
+                    y += lineHeight + 10;
 
-                    // Deductions
-                    double dedY = y;
-                    void DrawDeduction(string label, string value)
+                    gfx.DrawString("Services Performed", fontLabel, XBrushes.Black, leftX, y);
+                    gfx.DrawString("Price", fontLabel, XBrushes.Black, rightX + (labelOffset), y);
+
+                    y += 10;
+                    foreach (Service service in servicesPerformed)
                     {
-                        gfx.DrawString(label, font, XBrushes.Black, rightX, dedY);
-                        gfx.DrawString(value, font, XBrushes.Black, rightX + labelOffset, dedY);
-                        dedY += lineHeight;
+                        y += 20;
+                        gfx.DrawString(service.ServiceName, font, XBrushes.Black, leftX, y);
+                        gfx.DrawString(service.Price.ToString(), font, XBrushes.Black, rightX + (labelOffset), y);
                     }
-
-                    //DrawDeduction("SSS", sss);
-                    //DrawDeduction("PhilHealth", philhealth);
-                    //DrawDeduction("Pag-IBIG", pagibig);
-                    //dedY += 20;
-                    //DrawDeduction("Total Deductions", $"₱{totalDeduction:N2}");
-
-                    y = Math.Max(y + lineHeight, dedY + 25);
-
-                    //// Net Pay
-                    //gfx.DrawLine(XPens.Black, margin, y, page.Width - margin, y);
-                    //y += 10;
-                    //y += lineHeight + 1;
-                    //gfx.DrawString("Net Pay:", fontBold, XBrushes.Black, leftX, y);
-                    //gfx.DrawString(netPay, fontBold, XBrushes.Black, leftX + labelOffset, y);
-                    //y += lineHeight + 1;
-                    //gfx.DrawString(netInWords, font, XBrushes.Black, leftX, y);
-                    //y += 40;
-
-                    // Signatures
-                    gfx.DrawLine(XPens.Black, leftX, y, leftX + 150, y);
-                    gfx.DrawLine(XPens.Black, rightX, y, rightX + 150, y);
-                    y += 15;
-                    gfx.DrawString("Employer Signature", font, XBrushes.Black, leftX, y);
-                    gfx.DrawString("Employee Signature", font, XBrushes.Black, rightX, y);
                     y += 30;
 
-                    gfx.DrawString("This is a system-generated payslip.", font, XBrushes.Gray, new XRect(0, y, page.Width, 0), XStringFormats.TopCenter);
+                    gfx.DrawLine(XPens.Black, rightX + (labelOffset - 35), 585, 552, 585);
+                    y += lineHeight;
+                    gfx.DrawString("Total: ", fontLabel, XBrushes.Black, rightX + (labelOffset - 30), 600);
+                    gfx.DrawString(Database.GetTotalAmount(servicesPerformed).ToString(), fontLabel, XBrushes.Black, rightX + (labelOffset), 600);
+
+                    // Signatures
+                    y = 750;
+                    gfx.DrawLine(XPens.Black, leftX, y, leftX + 150, y);
+                    gfx.DrawLine(XPens.Black, rightX + 95, y, rightX + 235, y);
+                    y += 15;
+                    gfx.DrawString("Doctor Signature", font, XBrushes.Black, leftX + 35, y);
+                    gfx.DrawString("Receptionist Signature", font, XBrushes.Black, rightX + 115, y);
+
+                    y += 30;
+                    gfx.DrawString("This is a system-generated receipt.", font, XBrushes.Gray, new XRect(0, y, page.Width, 0), XStringFormats.TopCenter);
 
                     doc.Save(filename);
                     PdfFileUtility.ShowDocument(filename);

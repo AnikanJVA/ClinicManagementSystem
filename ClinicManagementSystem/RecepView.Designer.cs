@@ -59,8 +59,6 @@
             this.Billing_CreateButton = new System.Windows.Forms.Button();
             this.Appointments_CreateButton = new System.Windows.Forms.Button();
             this.Patients_RegisterButton = new System.Windows.Forms.Button();
-            this.Appointments_SerachButton = new System.Windows.Forms.Button();
-            this.Patients_SearchButton = new System.Windows.Forms.Button();
             this.Billing_Deletebutton = new System.Windows.Forms.Button();
             this.Appointments_TabControl = new System.Windows.Forms.TabControl();
             this.Appointments_AllTab = new System.Windows.Forms.TabPage();
@@ -111,6 +109,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.TotalAppointmentsLabel = new System.Windows.Forms.Label();
+            this.Appointments_SerachButton = new System.Windows.Forms.Button();
+            this.Patients_SearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer)).BeginInit();
             this.SplitContainer.Panel1.SuspendLayout();
             this.SplitContainer.Panel2.SuspendLayout();
@@ -637,42 +637,6 @@
             this.Patients_RegisterButton.UseVisualStyleBackColor = false;
             this.Patients_RegisterButton.Visible = false;
             this.Patients_RegisterButton.Click += new System.EventHandler(this.RegisterPatientButton_Click);
-            // 
-            // Appointments_SerachButton
-            // 
-            this.Appointments_SerachButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Appointments_SerachButton.FlatAppearance.BorderSize = 0;
-            this.Appointments_SerachButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Appointments_SerachButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Appointments_SerachButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Appointments_SerachButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Appointments_SerachButton.ForeColor = System.Drawing.Color.White;
-            this.Appointments_SerachButton.Location = new System.Drawing.Point(641, 578);
-            this.Appointments_SerachButton.Name = "Appointments_SerachButton";
-            this.Appointments_SerachButton.Size = new System.Drawing.Size(280, 66);
-            this.Appointments_SerachButton.TabIndex = 18;
-            this.Appointments_SerachButton.Text = "Search Appointment";
-            this.Appointments_SerachButton.UseVisualStyleBackColor = false;
-            this.Appointments_SerachButton.Visible = false;
-            this.Appointments_SerachButton.Click += new System.EventHandler(this.Appointments_SerachButton_Click);
-            // 
-            // Patients_SearchButton
-            // 
-            this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.Patients_SearchButton.FlatAppearance.BorderSize = 0;
-            this.Patients_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
-            this.Patients_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
-            this.Patients_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patients_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Patients_SearchButton.ForeColor = System.Drawing.Color.White;
-            this.Patients_SearchButton.Location = new System.Drawing.Point(641, 577);
-            this.Patients_SearchButton.Name = "Patients_SearchButton";
-            this.Patients_SearchButton.Size = new System.Drawing.Size(280, 66);
-            this.Patients_SearchButton.TabIndex = 15;
-            this.Patients_SearchButton.Text = "Search Patient";
-            this.Patients_SearchButton.UseVisualStyleBackColor = false;
-            this.Patients_SearchButton.Visible = false;
-            this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
             // 
             // Billing_Deletebutton
             // 
@@ -1339,6 +1303,42 @@
             this.TotalAppointmentsLabel.Size = new System.Drawing.Size(108, 46);
             this.TotalAppointmentsLabel.TabIndex = 0;
             this.TotalAppointmentsLabel.Text = "1234";
+            // 
+            // Appointments_SerachButton
+            // 
+            this.Appointments_SerachButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Appointments_SerachButton.FlatAppearance.BorderSize = 0;
+            this.Appointments_SerachButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Appointments_SerachButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Appointments_SerachButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Appointments_SerachButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.Appointments_SerachButton.ForeColor = System.Drawing.Color.White;
+            this.Appointments_SerachButton.Location = new System.Drawing.Point(641, 578);
+            this.Appointments_SerachButton.Name = "Appointments_SerachButton";
+            this.Appointments_SerachButton.Size = new System.Drawing.Size(280, 66);
+            this.Appointments_SerachButton.TabIndex = 18;
+            this.Appointments_SerachButton.Text = "Search Appointment";
+            this.Appointments_SerachButton.UseVisualStyleBackColor = false;
+            this.Appointments_SerachButton.Visible = false;
+            this.Appointments_SerachButton.Click += new System.EventHandler(this.Appointments_SerachButton_Click);
+            // 
+            // Patients_SearchButton
+            // 
+            this.Patients_SearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.Patients_SearchButton.FlatAppearance.BorderSize = 0;
+            this.Patients_SearchButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(52)))), ((int)(((byte)(122)))));
+            this.Patients_SearchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
+            this.Patients_SearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patients_SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Patients_SearchButton.ForeColor = System.Drawing.Color.White;
+            this.Patients_SearchButton.Location = new System.Drawing.Point(641, 577);
+            this.Patients_SearchButton.Name = "Patients_SearchButton";
+            this.Patients_SearchButton.Size = new System.Drawing.Size(280, 66);
+            this.Patients_SearchButton.TabIndex = 15;
+            this.Patients_SearchButton.Text = "Search Patient";
+            this.Patients_SearchButton.UseVisualStyleBackColor = false;
+            this.Patients_SearchButton.Visible = false;
+            this.Patients_SearchButton.Click += new System.EventHandler(this.Patients_SearchButton_Click);
             // 
             // RecepView
             // 
