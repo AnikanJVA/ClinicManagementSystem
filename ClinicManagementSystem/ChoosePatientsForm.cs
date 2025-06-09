@@ -140,6 +140,10 @@ namespace ClinicManagementSystem
                         DoBTextBox.Clear();
                         SexTextBox.Clear();
                         ContactNumberTextBox.Clear();
+                        AltContactNumberTextBox.Clear();
+                        EmailAddressTextBox.Clear();
+                        AddressTextBox.Clear();
+                        StatusTextBox.Clear();
                     }
                 }
             }

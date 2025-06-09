@@ -1039,7 +1039,7 @@ namespace ClinicManagementSystem
                     }
                 }
                 query = @"SELECT PatientID, FirstName, MiddleName, LastName, CONCAT(YEAR(`DoB`), '/', MONTH(`DoB`), '/', DAY(`DoB`)) AS DoB, 
-                                 Sex, ContactNumber,  AltContactNumber, EmailAddress, Address, Status 
+                                 Sex, ContactNumber,  COALESCE(AltContactNumber, 'N/A') AS AltContactNumber, COALESCE(EmailAddress, 'N/A') AS EmailAddress, Address, Status 
                         FROM patients 
                         WHERE status = @status 
                         ORDER BY patientId DESC";
@@ -1058,7 +1058,7 @@ namespace ClinicManagementSystem
                 status = status.ToUpper();
                 string query = @"SELECT DISTINCT p.PatientID, p.FirstName, p.MiddleName, p.LastName, 
                                         CONCAT(YEAR(p.DoB), '/', MONTH(p.DoB), '/', DAY(p.DoB)) AS DoB, 
-                                        p.Sex, p.ContactNumber, p.AltContactNumber, p.EmailAddress, p.Address, p.Status 
+                                        p.Sex, p.ContactNumber, COALESCE(p.AltContactNumber, 'N/A') AS AltContactNumber, COALESCE(p.EmailAddress, 'N/A') AS EmailAddress, p.Address, p.Status 
                                  FROM patients p
                                  INNER JOIN appointments a ON p.PatientID = a.PatientID
                                  WHERE p.Status = @status AND a.DoctorID = @doctorId

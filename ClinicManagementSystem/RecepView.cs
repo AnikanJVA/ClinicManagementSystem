@@ -67,7 +67,7 @@ namespace ClinicManagementSystem
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
             Patients_UpdateButton.Hide();
-            Patients_SearchButton.Hide();
+            Patients_DetailsPanel.Hide();
 
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
@@ -99,7 +99,7 @@ namespace ClinicManagementSystem
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
             Patients_UpdateButton.Hide();
-            Patients_SearchButton.Hide();
+            Patients_DetailsPanel.Hide();
 
             Billing_DataGridView.Show();
             Billing_CreateButton.Show();
@@ -131,7 +131,7 @@ namespace ClinicManagementSystem
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
             Patients_UpdateButton.Hide();
-            Patients_SearchButton.Hide();
+            Patients_DetailsPanel.Hide();
 
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
@@ -170,7 +170,7 @@ namespace ClinicManagementSystem
             Patients_TabControl.Show();
             Patients_RegisterButton.Show();
             Patients_UpdateButton.Show();
-            Patients_SearchButton.Show();
+            Patients_DetailsPanel.Show();
 
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
@@ -222,9 +222,16 @@ namespace ClinicManagementSystem
 
         private void Patients_UpdateButton_Click(object sender, EventArgs e)
         {
-            UpdatePatientForm updatePatientForm = new UpdatePatientForm();
-            updatePatientForm.ShowDialog();
-            UpdateDataGrids();
+            if (Database.CurrentPatient.ID == 0 || Database.CurrentPatient == null)
+            {
+                MessageBox.Show("Select a patient first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                UpdatePatientForm updatePatientForm = new UpdatePatientForm();
+                updatePatientForm.ShowDialog();
+                UpdateDataGrids();
+            }
         }
 
         private void Doctors_SearchButton_Click(object sender, EventArgs e)
@@ -233,9 +240,8 @@ namespace ClinicManagementSystem
             chooseDoctorForm.ShowDialog();
         }
 
-        private void Apointments_UpdateButton_Click(object sender, EventArgs e)
+        private void Appointments_UpdateButton_Click(object sender, EventArgs e)
         {
-
             if (Database.CurrentAppointment.AppointmentId == 0 || Database.CurrentAppointment == null)
             {
                 MessageBox.Show("Select an appointment first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -264,7 +270,7 @@ namespace ClinicManagementSystem
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
             Patients_UpdateButton.Hide();
-            Patients_SearchButton.Hide();
+            Patients_DetailsPanel.Hide();
 
             Billing_DataGridView.Hide();
             Billing_CreateButton.Hide();
@@ -279,12 +285,6 @@ namespace ClinicManagementSystem
             NextAppointment_DateTimeLabel.Text = Database.GetNextAppointmentDateTime().ToString();
             NextAppointment_DoctorNameLabel.Text = "Dr. " + Database.GetNextAppointmentDoctor();
             NextAppointment_PatientNameLabel.Text = Database.GetNextAppointmentPatient();
-        }
-
-        private void Appointments_SerachButton_Click(object sender, EventArgs e)
-        {
-            ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("ALL", "SEARCH");
-            chooseAppointmentForm.ShowDialog();
         }
 
         private void Billing_GetButton_Click(object sender, EventArgs e)
@@ -612,8 +612,12 @@ namespace ClinicManagementSystem
                         {
 
                         }
+                        Patients_AutoFill();
                     }
-
+                    else
+                    {
+                        Patients_ClearAutoFill();
+                    }
                 }
             }
         }
@@ -639,8 +643,12 @@ namespace ClinicManagementSystem
                         {
 
                         }
+                        Patients_AutoFill();
                     }
-
+                    else
+                    {
+                        Patients_ClearAutoFill();
+                    }
                 }
             }
         }
@@ -666,8 +674,12 @@ namespace ClinicManagementSystem
                         {
 
                         }
+                        Patients_AutoFill();
                     }
-
+                    else
+                    {
+                        Patients_ClearAutoFill();
+                    }
                 }
             }
         }
@@ -730,25 +742,55 @@ namespace ClinicManagementSystem
 
         public void Appointments_AutoFill()
         {
-            AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
-            AppointmentDateTextBox.Text = Database.CurrentAppointment.DateTime;
-            PatientIDTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
-            PatientNameTextBox.Text = patientName;
-            DoctorIDTextBox.Text = Database.CurrentAppointment.DoctorId.ToString();
-            DoctorNameTextBox.Text = doctorName;
-            ReasonTextBox.Text = Database.CurrentAppointment.Reason;
-            StatusTextBox.Text = Database.CurrentAppointment.Status;
+            Appointments_AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
+            Appointments_AppointmentDateTextBox.Text = Database.CurrentAppointment.DateTime;
+            Appointments_PatientIDTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
+            Appointments_PatientNameTextBox.Text = patientName;
+            Appointments_DoctorIDTextBox.Text = Database.CurrentAppointment.DoctorId.ToString();
+            Appointments_DoctorNameTextBox.Text = doctorName;
+            Appointments_ReasonTextBox.Text = Database.CurrentAppointment.Reason;
+            Appointments_StatusTextBox.Text = Database.CurrentAppointment.Status;
         }
 
         public void Appointments_ClearAutoFill()
         {
-            AppointmentIDTextBox.Clear();
-            AppointmentDateTextBox.Clear();
+            Appointments_AppointmentIDTextBox.Clear();
+            Appointments_AppointmentDateTextBox.Clear();
+            Appointments_PatientIDTextBox.Clear();
+            Appointments_PatientNameTextBox.Clear();
+            Appointments_DoctorIDTextBox.Clear();
+            Appointments_DoctorNameTextBox.Clear();
+            Appointments_ReasonTextBox.Clear();
+            Appointments_StatusTextBox.Clear();
+        }
+
+        public void Patients_AutoFill()
+        {
+            PatientIDTextBox.Text = Database.CurrentPatient.ID.ToString();
+            FirstNameTextBox.Text = Database.CurrentPatient.FirstName;
+            MiddleNameTextBox.Text = Database.CurrentPatient.MiddleName;
+            LastNameTextBox.Text = Database.CurrentPatient.LastName;
+            DoBTextBox.Text = Database.CurrentPatient.DoB;
+            SexTextBox.Text = Database.CurrentPatient.Sex;
+            ContactNumberTextBox.Text = Database.CurrentPatient.ContactNumber;
+            AltContactNumberTextBox.Text = Database.CurrentPatient.AltContactNumber;
+            EmailAddressTextBox.Text = Database.CurrentPatient.EmailAddress;
+            AddressTextBox.Text = Database.CurrentPatient.Address;
+            StatusTextBox.Text = Database.CurrentPatient.Status;
+        }
+
+        public void Patients_ClearAutoFill()
+        {
             PatientIDTextBox.Clear();
-            PatientNameTextBox.Clear();
-            DoctorIDTextBox.Clear();
-            DoctorNameTextBox.Clear();
-            ReasonTextBox.Clear();
+            FirstNameTextBox.Clear();
+            MiddleNameTextBox.Clear();
+            LastNameTextBox.Clear();
+            DoBTextBox.Clear();
+            SexTextBox.Clear();
+            ContactNumberTextBox.Clear(); 
+            AltContactNumberTextBox.Clear();
+            EmailAddressTextBox.Clear();
+            AddressTextBox.Clear();
             StatusTextBox.Clear();
         }
 
