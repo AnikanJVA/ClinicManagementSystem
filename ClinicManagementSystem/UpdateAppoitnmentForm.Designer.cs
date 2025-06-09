@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.SelectAppointmentButton = new System.Windows.Forms.Button();
             this.SelectDoctorButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -74,20 +73,6 @@
             this.label2.Size = new System.Drawing.Size(143, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Appointment Date:";
-            // 
-            // SelectAppointmentButton
-            // 
-            this.SelectAppointmentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.SelectAppointmentButton.FlatAppearance.BorderSize = 0;
-            this.SelectAppointmentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SelectAppointmentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.SelectAppointmentButton.Location = new System.Drawing.Point(494, 17);
-            this.SelectAppointmentButton.Name = "SelectAppointmentButton";
-            this.SelectAppointmentButton.Size = new System.Drawing.Size(137, 42);
-            this.SelectAppointmentButton.TabIndex = 3;
-            this.SelectAppointmentButton.Text = "Select Appointment";
-            this.SelectAppointmentButton.UseVisualStyleBackColor = false;
-            this.SelectAppointmentButton.Click += new System.EventHandler(this.SelectAppointmentButton_Click);
             // 
             // SelectDoctorButton
             // 
@@ -214,7 +199,6 @@
             this.v.Controls.Add(this.UpdateButton);
             this.v.Controls.Add(this.label1);
             this.v.Controls.Add(this.label8);
-            this.v.Controls.Add(this.SelectAppointmentButton);
             this.v.Controls.Add(this.label7);
             this.v.Controls.Add(this.label6);
             this.v.Controls.Add(this.label5);
@@ -350,7 +334,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button SelectAppointmentButton;
         private System.Windows.Forms.Button SelectDoctorButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

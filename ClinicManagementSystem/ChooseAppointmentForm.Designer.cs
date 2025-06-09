@@ -29,22 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.AppointmentDateTextBox = new System.Windows.Forms.TextBox();
-            this.PatientNameTextBox = new System.Windows.Forms.TextBox();
-            this.DoctorIDTextBox = new System.Windows.Forms.TextBox();
             this.DoctorNameTextBox = new System.Windows.Forms.TextBox();
             this.ReasonTextBox = new System.Windows.Forms.TextBox();
             this.StatusTextBox = new System.Windows.Forms.TextBox();
-            this.PatientIDTextBox = new System.Windows.Forms.TextBox();
-            this.AppointmentIDTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.Appointments_DataGridView = new System.Windows.Forms.DataGridView();
             this.SelectButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
@@ -64,6 +54,16 @@
             this.ResetButton = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.AppointmentIDTextBox = new System.Windows.Forms.TextBox();
+            this.PatientIDTextBox = new System.Windows.Forms.TextBox();
+            this.DoctorIDTextBox = new System.Windows.Forms.TextBox();
+            this.PatientNameTextBox = new System.Windows.Forms.TextBox();
+            this.AppointmentDateTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Appointments_DataGridView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -93,39 +93,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(422, 307);
             this.panel1.TabIndex = 0;
-            // 
-            // AppointmentDateTextBox
-            // 
-            this.AppointmentDateTextBox.Enabled = false;
-            this.AppointmentDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AppointmentDateTextBox.Location = new System.Drawing.Point(163, 45);
-            this.AppointmentDateTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.AppointmentDateTextBox.Name = "AppointmentDateTextBox";
-            this.AppointmentDateTextBox.ReadOnly = true;
-            this.AppointmentDateTextBox.Size = new System.Drawing.Size(244, 26);
-            this.AppointmentDateTextBox.TabIndex = 15;
-            // 
-            // PatientNameTextBox
-            // 
-            this.PatientNameTextBox.Enabled = false;
-            this.PatientNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PatientNameTextBox.Location = new System.Drawing.Point(163, 105);
-            this.PatientNameTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.PatientNameTextBox.Name = "PatientNameTextBox";
-            this.PatientNameTextBox.ReadOnly = true;
-            this.PatientNameTextBox.Size = new System.Drawing.Size(244, 26);
-            this.PatientNameTextBox.TabIndex = 14;
-            // 
-            // DoctorIDTextBox
-            // 
-            this.DoctorIDTextBox.Enabled = false;
-            this.DoctorIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.DoctorIDTextBox.Location = new System.Drawing.Point(163, 135);
-            this.DoctorIDTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.DoctorIDTextBox.Name = "DoctorIDTextBox";
-            this.DoctorIDTextBox.ReadOnly = true;
-            this.DoctorIDTextBox.Size = new System.Drawing.Size(244, 26);
-            this.DoctorIDTextBox.TabIndex = 13;
             // 
             // DoctorNameTextBox
             // 
@@ -160,28 +127,6 @@
             this.StatusTextBox.ReadOnly = true;
             this.StatusTextBox.Size = new System.Drawing.Size(244, 26);
             this.StatusTextBox.TabIndex = 10;
-            // 
-            // PatientIDTextBox
-            // 
-            this.PatientIDTextBox.Enabled = false;
-            this.PatientIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PatientIDTextBox.Location = new System.Drawing.Point(163, 75);
-            this.PatientIDTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.PatientIDTextBox.Name = "PatientIDTextBox";
-            this.PatientIDTextBox.ReadOnly = true;
-            this.PatientIDTextBox.Size = new System.Drawing.Size(244, 26);
-            this.PatientIDTextBox.TabIndex = 9;
-            // 
-            // AppointmentIDTextBox
-            // 
-            this.AppointmentIDTextBox.Enabled = false;
-            this.AppointmentIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.AppointmentIDTextBox.Location = new System.Drawing.Point(163, 15);
-            this.AppointmentIDTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.AppointmentIDTextBox.Name = "AppointmentIDTextBox";
-            this.AppointmentIDTextBox.ReadOnly = true;
-            this.AppointmentIDTextBox.Size = new System.Drawing.Size(244, 26);
-            this.AppointmentIDTextBox.TabIndex = 8;
             // 
             // label8
             // 
@@ -218,66 +163,6 @@
             this.label6.Size = new System.Drawing.Size(111, 20);
             this.label6.TabIndex = 5;
             this.label6.Text = "Doctor Name: ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(81, 141);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 20);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Doctor ID:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(56, 111);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 20);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Patient Name: ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(81, 81);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Patient ID: ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(25, 51);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Appointment Date:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(42, 21);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Appointment ID:";
             // 
             // Appointments_DataGridView
             // 
@@ -520,6 +405,121 @@
             this.label14.TabIndex = 8;
             this.label14.Text = "Appointment Details";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(42, 21);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Appointment ID:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(25, 51);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Appointment Date:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(81, 81);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 20);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Patient ID: ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(56, 111);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 20);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Patient Name: ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(81, 141);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 20);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Doctor ID:";
+            // 
+            // AppointmentIDTextBox
+            // 
+            this.AppointmentIDTextBox.Enabled = false;
+            this.AppointmentIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.AppointmentIDTextBox.Location = new System.Drawing.Point(163, 15);
+            this.AppointmentIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.AppointmentIDTextBox.Name = "AppointmentIDTextBox";
+            this.AppointmentIDTextBox.ReadOnly = true;
+            this.AppointmentIDTextBox.Size = new System.Drawing.Size(244, 26);
+            this.AppointmentIDTextBox.TabIndex = 8;
+            // 
+            // PatientIDTextBox
+            // 
+            this.PatientIDTextBox.Enabled = false;
+            this.PatientIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.PatientIDTextBox.Location = new System.Drawing.Point(163, 75);
+            this.PatientIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.PatientIDTextBox.Name = "PatientIDTextBox";
+            this.PatientIDTextBox.ReadOnly = true;
+            this.PatientIDTextBox.Size = new System.Drawing.Size(244, 26);
+            this.PatientIDTextBox.TabIndex = 9;
+            // 
+            // DoctorIDTextBox
+            // 
+            this.DoctorIDTextBox.Enabled = false;
+            this.DoctorIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.DoctorIDTextBox.Location = new System.Drawing.Point(163, 135);
+            this.DoctorIDTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DoctorIDTextBox.Name = "DoctorIDTextBox";
+            this.DoctorIDTextBox.ReadOnly = true;
+            this.DoctorIDTextBox.Size = new System.Drawing.Size(244, 26);
+            this.DoctorIDTextBox.TabIndex = 13;
+            // 
+            // PatientNameTextBox
+            // 
+            this.PatientNameTextBox.Enabled = false;
+            this.PatientNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.PatientNameTextBox.Location = new System.Drawing.Point(163, 105);
+            this.PatientNameTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.PatientNameTextBox.Name = "PatientNameTextBox";
+            this.PatientNameTextBox.ReadOnly = true;
+            this.PatientNameTextBox.Size = new System.Drawing.Size(244, 26);
+            this.PatientNameTextBox.TabIndex = 14;
+            // 
+            // AppointmentDateTextBox
+            // 
+            this.AppointmentDateTextBox.Enabled = false;
+            this.AppointmentDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.AppointmentDateTextBox.Location = new System.Drawing.Point(163, 45);
+            this.AppointmentDateTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.AppointmentDateTextBox.Name = "AppointmentDateTextBox";
+            this.AppointmentDateTextBox.ReadOnly = true;
+            this.AppointmentDateTextBox.Size = new System.Drawing.Size(244, 26);
+            this.AppointmentDateTextBox.TabIndex = 15;
+            // 
             // ChooseAppointmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,22 +557,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView Appointments_DataGridView;
         private System.Windows.Forms.Button SelectButton;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.TextBox PatientIDTextBox;
-        private System.Windows.Forms.TextBox AppointmentIDTextBox;
         private System.Windows.Forms.TextBox DoctorNameTextBox;
         private System.Windows.Forms.TextBox ReasonTextBox;
         private System.Windows.Forms.TextBox StatusTextBox;
-        private System.Windows.Forms.TextBox PatientNameTextBox;
-        private System.Windows.Forms.TextBox DoctorIDTextBox;
-        private System.Windows.Forms.TextBox AppointmentDateTextBox;
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox SearchFnameTextBox;
@@ -589,6 +579,16 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.DateTimePicker AppointmentDateTimePicker;
         private System.Windows.Forms.CheckBox DateCheckBox;
+        private System.Windows.Forms.TextBox AppointmentDateTextBox;
+        private System.Windows.Forms.TextBox PatientNameTextBox;
+        private System.Windows.Forms.TextBox DoctorIDTextBox;
+        private System.Windows.Forms.TextBox PatientIDTextBox;
+        private System.Windows.Forms.TextBox AppointmentIDTextBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

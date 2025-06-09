@@ -20,6 +20,9 @@ namespace ClinicManagementSystem
 {
     public partial class RecepView : Form
     {
+        private string patientName = "";
+        private string doctorName = "";
+
         public RecepView()
         {
             InitializeComponent();
@@ -59,7 +62,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Show();
             Appointments_CreateButton.Show();
             Appointments_UpdateButton.Show();
-            Appointments_SerachButton.Show();
+            Appointments_DetailsPanel.Show();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -70,7 +73,7 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
             Billing_Deletebutton.Hide();
             Billing_GetButton.Hide();
-            Billing_BillDetailsPanel.Hide();
+            Billing_DetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
@@ -91,7 +94,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
             Appointments_UpdateButton.Hide();
-            Appointments_SerachButton.Hide();
+            Appointments_DetailsPanel.Hide();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -102,7 +105,7 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Show();
             Billing_Deletebutton.Show();
             Billing_GetButton.Show();
-            Billing_BillDetailsPanel.Show();
+            Billing_DetailsPanel.Show();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
@@ -123,7 +126,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
             Appointments_UpdateButton.Hide();
-            Appointments_SerachButton.Hide();
+            Appointments_DetailsPanel.Hide();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -134,7 +137,7 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
             Billing_Deletebutton.Hide();
             Billing_GetButton.Hide();
-            Billing_BillDetailsPanel.Hide();
+            Billing_DetailsPanel.Hide();
 
             Doctors_TabControl.Show();
             Doctors_SearchButton.Show();
@@ -162,7 +165,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
             Appointments_UpdateButton.Hide();
-            Appointments_SerachButton.Hide();
+            Appointments_DetailsPanel.Hide();
 
             Patients_TabControl.Show();
             Patients_RegisterButton.Show();
@@ -173,7 +176,7 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
             Billing_Deletebutton.Hide();
             Billing_GetButton.Hide();
-            Billing_BillDetailsPanel.Hide();
+            Billing_DetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
@@ -232,9 +235,17 @@ namespace ClinicManagementSystem
 
         private void Apointments_UpdateButton_Click(object sender, EventArgs e)
         {
-            UpdateAppoitnment updateAppoitnment = new UpdateAppoitnment();
-            updateAppoitnment.ShowDialog();
-            UpdateDataGrids();
+
+            if (Database.CurrentAppointment.AppointmentId == 0 || Database.CurrentAppointment == null)
+            {
+                MessageBox.Show("Select an appointment first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                UpdateAppoitnment updateAppoitnment = new UpdateAppoitnment();
+                updateAppoitnment.ShowDialog();
+                UpdateDataGrids();
+            }
         }
 
         private void DashBoard_NavButton_Click(object sender, EventArgs e)
@@ -248,7 +259,7 @@ namespace ClinicManagementSystem
             Appointments_TabControl.Hide();
             Appointments_CreateButton.Hide();
             Appointments_UpdateButton.Hide();
-            Appointments_SerachButton.Hide();
+            Appointments_DetailsPanel.Hide();
 
             Patients_TabControl.Hide();
             Patients_RegisterButton.Hide();
@@ -259,7 +270,7 @@ namespace ClinicManagementSystem
             Billing_CreateButton.Hide();
             Billing_Deletebutton.Hide();
             Billing_GetButton.Hide();
-            Billing_BillDetailsPanel.Hide();
+            Billing_DetailsPanel.Hide();
 
             Doctors_TabControl.Hide();
             Doctors_SearchButton.Hide();
@@ -397,97 +408,7 @@ namespace ClinicManagementSystem
             UpdateDataGrids();
         }
 
-        public void UpdateDataGrids()
-        {
-            Appointments_AllDataGridView.DataSource = Database.GetAppointments("ALL");
-            Appointments_ApprovedDataGridView.DataSource = Database.GetAppointments("APPROVED");
-            Appointments_RescheduledDataGridView.DataSource = Database.GetAppointments("RESCHEDULED");
-            Appointments_CanceledDataGridView.DataSource = Database.GetAppointments("CANCELED");
-            Appointments_FinishedDataGridView.DataSource = Database.GetAppointments("FINISHED");
-
-            Patients_AllDataGridView.DataSource = Database.GetPatients("ALL");
-            Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
-            Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
-
-            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
-            Doctors_AvailableDataGridView.DataSource = Database.GetDoctors("AVAILABLE");
-            Doctors_UnavailableDataGridView.DataSource = Database.GetDoctors("UNAVAILABLE");
-            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
-
-            Billing_DataGridView.DataSource = Database.GetBills();
-        }
-
-        public void FormatDataGridViews()
-        {
-            Appointments_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            Appointments_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Appointments_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Patients_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Appointments_ApprovedDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            Appointments_ApprovedDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Appointments_ApprovedDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Appointments_ApprovedDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Appointments_RescheduledDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            Appointments_RescheduledDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Appointments_RescheduledDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Appointments_RescheduledDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Appointments_CanceledDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            Appointments_CanceledDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Appointments_CanceledDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Appointments_CanceledDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Appointments_FinishedDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            Appointments_FinishedDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Appointments_FinishedDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Appointments_FinishedDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Patients_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Patients_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Patients_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Patients_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Patients_ActiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Patients_ActiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Patients_ActiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Patients_ActiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Patients_InactiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Patients_InactiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Patients_InactiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Patients_InactiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Doctors_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Doctors_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Doctors_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Doctors_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Doctors_AvailableDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Doctors_AvailableDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Doctors_AvailableDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Doctors_AvailableDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Doctors_UnavailableDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Doctors_UnavailableDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Doctors_UnavailableDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Doctors_UnavailableDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Doctors_InactiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Doctors_InactiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Doctors_InactiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Doctors_InactiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-
-            Billing_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            Billing_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Billing_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            Billing_DataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-
-            Billing_DataGridView.ReadOnly = true;
-            Billing_DataGridView.AllowUserToAddRows = false;
-            Billing_DataGridView.AllowUserToDeleteRows = false;
-        }
+       
 
         private void Appointments_AllDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -512,8 +433,15 @@ namespace ClinicManagementSystem
                         {
 
                         }
+                        patientName = row.Cells["Patient"].Value.ToString();
+                        doctorName = row.Cells["Doctor"].Value.ToString();
+
+                        Appointments_AutoFill();
                     }
-                    
+                    else
+                    {
+                        Appointments_ClearAutoFill();
+                    }
                 }
             }
         }
@@ -541,8 +469,15 @@ namespace ClinicManagementSystem
                         {
 
                         }
-                    }
+                        patientName = row.Cells["Patient"].Value.ToString();
+                        doctorName = row.Cells["Doctor"].Value.ToString();
 
+                        Appointments_AutoFill();
+                    }
+                    else
+                    {
+                        Appointments_ClearAutoFill();
+                    }
                 }
             }
         }
@@ -570,8 +505,15 @@ namespace ClinicManagementSystem
                         {
 
                         }
-                    }
+                        patientName = row.Cells["Patient"].Value.ToString();
+                        doctorName = row.Cells["Doctor"].Value.ToString();
 
+                        Appointments_AutoFill();
+                    }
+                    else
+                    {
+                        Appointments_ClearAutoFill();
+                    }
                 }
             }
         }
@@ -599,8 +541,15 @@ namespace ClinicManagementSystem
                         {
 
                         }
-                    }
+                        patientName = row.Cells["Patient"].Value.ToString();
+                        doctorName = row.Cells["Doctor"].Value.ToString();
 
+                        Appointments_AutoFill();
+                    }
+                    else
+                    {
+                        Appointments_ClearAutoFill();
+                    }
                 }
             }
         }
@@ -628,8 +577,15 @@ namespace ClinicManagementSystem
                         {
 
                         }
-                    }
+                        patientName = row.Cells["Patient"].Value.ToString();
+                        doctorName = row.Cells["Doctor"].Value.ToString();
 
+                        Appointments_AutoFill();
+                    }
+                    else
+                    {
+                        Appointments_ClearAutoFill();
+                    }
                 }
             }
         }
@@ -770,6 +726,123 @@ namespace ClinicManagementSystem
 
                 }
             }
+        }
+
+        public void Appointments_AutoFill()
+        {
+            AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
+            AppointmentDateTextBox.Text = Database.CurrentAppointment.DateTime;
+            PatientIDTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
+            PatientNameTextBox.Text = patientName;
+            DoctorIDTextBox.Text = Database.CurrentAppointment.DoctorId.ToString();
+            DoctorNameTextBox.Text = doctorName;
+            ReasonTextBox.Text = Database.CurrentAppointment.Reason;
+            StatusTextBox.Text = Database.CurrentAppointment.Status;
+        }
+
+        public void Appointments_ClearAutoFill()
+        {
+            AppointmentIDTextBox.Clear();
+            AppointmentDateTextBox.Clear();
+            PatientIDTextBox.Clear();
+            PatientNameTextBox.Clear();
+            DoctorIDTextBox.Clear();
+            DoctorNameTextBox.Clear();
+            ReasonTextBox.Clear();
+            StatusTextBox.Clear();
+        }
+
+
+        public void UpdateDataGrids()
+        {
+            Appointments_AllDataGridView.DataSource = Database.GetAppointments("ALL");
+            Appointments_ApprovedDataGridView.DataSource = Database.GetAppointments("APPROVED");
+            Appointments_RescheduledDataGridView.DataSource = Database.GetAppointments("RESCHEDULED");
+            Appointments_CanceledDataGridView.DataSource = Database.GetAppointments("CANCELED");
+            Appointments_FinishedDataGridView.DataSource = Database.GetAppointments("FINISHED");
+
+            Patients_AllDataGridView.DataSource = Database.GetPatients("ALL");
+            Patients_ActiveDataGridView.DataSource = Database.GetPatients("ACTIVE");
+            Patients_InactiveDataGridView.DataSource = Database.GetPatients("INACTIVE");
+
+            Doctors_AllDataGridView.DataSource = Database.GetDoctors("ALL");
+            Doctors_AvailableDataGridView.DataSource = Database.GetDoctors("AVAILABLE");
+            Doctors_UnavailableDataGridView.DataSource = Database.GetDoctors("UNAVAILABLE");
+            Doctors_InactiveDataGridView.DataSource = Database.GetDoctors("INACTIVE");
+
+            Billing_DataGridView.DataSource = Database.GetBills();
+        }
+
+        public void FormatDataGridViews()
+        {
+            Appointments_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Patients_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Appointments_ApprovedDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_ApprovedDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_ApprovedDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Appointments_ApprovedDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Appointments_RescheduledDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_RescheduledDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_RescheduledDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Appointments_RescheduledDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Appointments_CanceledDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_CanceledDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_CanceledDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Appointments_CanceledDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Appointments_FinishedDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Appointments_FinishedDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Appointments_FinishedDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Appointments_FinishedDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Patients_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Patients_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Patients_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Patients_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Patients_ActiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Patients_ActiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Patients_ActiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Patients_ActiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Patients_InactiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Patients_InactiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Patients_InactiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Patients_InactiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Doctors_AllDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_AllDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_AllDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Doctors_AllDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Doctors_AvailableDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_AvailableDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_AvailableDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Doctors_AvailableDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Doctors_UnavailableDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_UnavailableDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_UnavailableDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Doctors_UnavailableDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Doctors_InactiveDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Doctors_InactiveDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Doctors_InactiveDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Doctors_InactiveDataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+
+            Billing_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Billing_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            Billing_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            Billing_DataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+
+            Billing_DataGridView.ReadOnly = true;
+            Billing_DataGridView.AllowUserToAddRows = false;
+            Billing_DataGridView.AllowUserToDeleteRows = false;
         }
     }
 }
