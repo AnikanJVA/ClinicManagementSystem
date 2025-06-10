@@ -49,16 +49,16 @@ namespace ClinicManagementSystem
                 ViewRecordButton.Visible = false;
                 DocViewCancelButton.Visible = false;
             }
-            else if (formType.ToUpper().Equals("RECORDS"))
-            {
-                Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE", Database.CurrentLoggedDoctor.DoctorId);
-                CloseButton.Visible = false;
-                SelectButton.Visible = false;
-                CancelButton.Visible = false;
-                RegisterNewPatientButton.Visible = false;
-                ViewRecordButton.Visible = true;
-                DocViewCancelButton.Visible = true;
-            }
+                        else if (formType.ToUpper().Equals("RECORDS"))
+                        {
+                            Patients_DataGridView.DataSource = Database.GetPatients("ACTIVE", Database.CurrentLoggedDoctor.DoctorId);
+                            CloseButton.Visible = false;
+                            SelectButton.Visible = false;
+                            CancelButton.Visible = false;
+                            RegisterNewPatientButton.Visible = false;
+                            ViewRecordButton.Visible = true;
+                            DocViewCancelButton.Visible = true;
+                        }
             else if (formType.ToUpper().Equals("UPDATE"))
             {
                 Patients_DataGridView.DataSource = Database.GetPatients("ALL");

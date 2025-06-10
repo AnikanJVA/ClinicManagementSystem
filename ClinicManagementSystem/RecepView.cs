@@ -934,32 +934,32 @@ namespace ClinicManagementSystem
 
         public void Doctors_AutoFill()
         {
-            DoctorIDTextBox.Text = Database.CurrentDoctor.DoctorId.ToString();
-            FirstNameTextBox.Text = Database.CurrentDoctor.FirstName;
-            MiddleNameTextBox.Text = Database.CurrentDoctor.LastName;
-            LastNameTextBox.Text = Database.CurrentDoctor.MiddleName;
-            LicenseNumberTextBox.Text = Database.CurrentDoctor.LicenseNumber;
-            ContactNumberTextBox.Text = Database.CurrentDoctor.ContactNumber;
-            AltContactNumberTextBox.Text = Database.CurrentDoctor.AltContactNumber;
-            EmailAddressTextBox.Text = Database.CurrentDoctor.EmailAddress;
-            AddressTextBox.Text = Database.CurrentDoctor.Address;
-            ScheduleTextBox.Text = Database.CurrentDoctor.Schedule;
-            StatusTextBox.Text = Database.CurrentDoctor.AvailabilityStatus;
+            Doctor_DoctorIDTextBox.Text = Database.CurrentDoctor.DoctorId.ToString();
+            Doctor_FirstNameTextBox.Text = Database.CurrentDoctor.FirstName;
+            Doctor_MiddleNameTextBox.Text = Database.CurrentDoctor.LastName;
+            Doctor_LastNameTextBox.Text = Database.CurrentDoctor.MiddleName;
+            Doctor_LicenseNumberTextBox.Text = Database.CurrentDoctor.LicenseNumber;
+            Doctor_ContactNumberTextBox.Text = Database.CurrentDoctor.ContactNumber;
+            Doctor_AltContactNumberTextBox.Text = Database.CurrentDoctor.AltContactNumber;
+            Doctor_EmailAddressTextBox.Text = Database.CurrentDoctor.EmailAddress;
+            Doctor_AddressTextBox.Text = Database.CurrentDoctor.Address;
+            Doctor_ScheduleTextBox.Text = Database.CurrentDoctor.Schedule;
+            Doctor_StatusTextBox.Text = Database.CurrentDoctor.AvailabilityStatus;
         }
 
         public void Doctors_ClearAutoFill()
         {
-            DoctorIDTextBox.Clear();
-            FirstNameTextBox.Clear();
-            MiddleNameTextBox.Clear();
-            LastNameTextBox.Clear();
-            LicenseNumberTextBox.Clear();
-            ContactNumberTextBox.Clear();
-            AltContactNumberTextBox.Clear();
-            EmailAddressTextBox.Clear();
-            AddressTextBox.Clear();
-            ScheduleTextBox.Clear();
-            StatusTextBox.Clear();
+            Doctor_DoctorIDTextBox.Clear();
+            Doctor_FirstNameTextBox.Clear();
+            Doctor_MiddleNameTextBox.Clear();
+            Doctor_LastNameTextBox.Clear();
+            Doctor_LicenseNumberTextBox.Clear();
+            Doctor_ContactNumberTextBox.Clear();
+            Doctor_AltContactNumberTextBox.Clear();
+            Doctor_EmailAddressTextBox.Clear();
+            Doctor_AddressTextBox.Clear();
+            Doctor_ScheduleTextBox.Clear();
+            Doctor_StatusTextBox.Clear();
         }
 
         public void UpdateDataGrids()

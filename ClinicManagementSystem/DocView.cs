@@ -13,6 +13,8 @@ namespace ClinicManagementSystem
 {
     public partial class DocView : Form
     {
+        private string patientName = "";
+        private string doctorName = ""; 
         public DocView()
         {
             InitializeComponent();
@@ -44,10 +46,11 @@ namespace ClinicManagementSystem
             Dashboard_panel.Visible = true;
 
             Appointments_TabControl.Visible = false;
-            Appointments_SearchButton.Visible = false;
+            Appointments_DetailsPanel.Visible = false;
 
             Patients_DataGridView.Visible = false;
-            Patients_SearchButton.Visible = false;
+            Patients_ViewRecordsButton.Visible = false;
+            Patients_DetailsPanel.Visible = false;
 
             Services_DataGridView.Visible = false;
             Services_UpdateButton.Visible = false;
@@ -66,10 +69,11 @@ namespace ClinicManagementSystem
             Dashboard_panel.Visible = false;
 
             Appointments_TabControl.Visible = true;
-            Appointments_SearchButton.Visible = true;
+            Appointments_DetailsPanel.Visible = true;
 
             Patients_DataGridView.Visible = false;
-            Patients_SearchButton.Visible = false;
+            Patients_ViewRecordsButton.Visible = false;
+            Patients_DetailsPanel.Visible = false;
 
             Services_DataGridView.Visible = false;
             Services_UpdateButton.Visible = false;
@@ -88,10 +92,11 @@ namespace ClinicManagementSystem
             Dashboard_panel.Visible = false;
 
             Appointments_TabControl.Visible = false;
-            Appointments_SearchButton.Visible = false;
+            Appointments_DetailsPanel.Visible = false;
 
             Patients_DataGridView.Visible = true;
-            Patients_SearchButton.Visible = true;
+            Patients_ViewRecordsButton.Visible = true;
+            Patients_DetailsPanel.Visible = true;
 
             Services_DataGridView.Visible = false;
             Services_UpdateButton.Visible = false;
@@ -130,10 +135,11 @@ namespace ClinicManagementSystem
             Dashboard_panel.Visible = false;
 
             Appointments_TabControl.Visible = false;
-            Appointments_SearchButton.Visible = false;
+            Appointments_DetailsPanel.Visible = false;
 
             Patients_DataGridView.Visible = false;
-            Patients_SearchButton.Visible = false;
+            Patients_ViewRecordsButton.Visible = false;
+            Patients_DetailsPanel.Visible = false;
 
             Services_DataGridView.Visible = true;
             Services_UpdateButton.Visible = true;
@@ -166,7 +172,7 @@ namespace ClinicManagementSystem
         {
             if (Database.CurrentService.ServiceID == 0 || Database.CurrentService == null)
             {
-                MessageBox.Show("Select a bill first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Select a service first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -178,7 +184,18 @@ namespace ClinicManagementSystem
 
         private void Services_DeleteButton_Click(object sender, EventArgs e)
         {
-
+            if (Database.CurrentService.ServiceID == 0 || Database.CurrentService == null)
+            {
+                MessageBox.Show("Select a service first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                var choice = MessageBox.Show("Are you sure you want to delete service: " + Database.CurrentService.ServiceName + " ?", "Delete Service?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (choice == DialogResult.Yes)
+                {
+                    UpdateDataGrids();
+                }
+            }
         }
 
         public void FormatDataGridViews()
@@ -238,6 +255,213 @@ namespace ClinicManagementSystem
                         Services_PriceTextBox.Text = Database.CurrentService.Price.ToString();
                     }
                 }
+            }
+        }
+
+        private void Appointments_AllDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long appointmentID = 0;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Appointments_AllDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Appointments_AllDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            appointmentID = Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString());
+                            Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        patientName = row.Cells["Patient"].Value.ToString();
+                        doctorName = row.Cells["Doctor"].Value.ToString();
+
+                        Appointments_AutoFill();
+                    }
+                    else
+                    {
+                        Appointments_ClearAutoFill();
+                    }
+                }
+            }
+        }
+
+        private void Appointments_UpcomingDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long appointmentID = 0;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Appointments_UpcomingDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Appointments_UpcomingDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            appointmentID = Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString());
+                            Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        patientName = row.Cells["Patient"].Value.ToString();
+                        doctorName = row.Cells["Doctor"].Value.ToString();
+
+                        Appointments_AutoFill();
+                    }
+                    else
+                    {
+                        Appointments_ClearAutoFill();
+                    }
+                }
+            }
+        }
+
+        private void Appointments_FinishedDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long appointmentID = 0;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Appointments_FinishedDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Appointments_FinishedDataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            appointmentID = Convert.ToInt64(row.Cells["AppointmentID"].Value.ToString());
+                            Database.CurrentAppointment = Database.RetrieveAppointment(appointmentID);
+                            Database.CurrentPatient = Database.RetrievePatient(Database.CurrentAppointment.PatientId);
+                            Database.CurrentDoctor = Database.RetrieveDoctor(Database.CurrentAppointment.DoctorId, "DOCTORID");
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        patientName = row.Cells["Patient"].Value.ToString();
+                        doctorName = row.Cells["Doctor"].Value.ToString();
+
+                        Appointments_AutoFill();
+                    }
+                    else
+                    {
+                        Appointments_ClearAutoFill();
+                    }
+                }
+            }
+        }
+
+        public void Appointments_AutoFill()
+        {
+            Appointments_AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
+            Appointments_AppointmentDateTextBox.Text = Database.CurrentAppointment.DateTime;
+            Appointments_PatientIDTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
+            Appointments_PatientNameTextBox.Text = patientName;
+            Appointments_DoctorIDTextBox.Text = Database.CurrentAppointment.DoctorId.ToString();
+            Appointments_DoctorNameTextBox.Text = doctorName;
+            Appointments_ReasonTextBox.Text = Database.CurrentAppointment.Reason;
+            Appointments_StatusTextBox.Text = Database.CurrentAppointment.Status;
+        }
+
+        public void Appointments_ClearAutoFill()
+        {
+            Appointments_AppointmentIDTextBox.Clear();
+            Appointments_AppointmentDateTextBox.Clear();
+            Appointments_PatientIDTextBox.Clear();
+            Appointments_PatientNameTextBox.Clear();
+            Appointments_DoctorIDTextBox.Clear();
+            Appointments_DoctorNameTextBox.Clear();
+            Appointments_ReasonTextBox.Clear();
+            Appointments_StatusTextBox.Clear();
+        }
+        private void Patients_DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            long patientID = 0;
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var cell = Patients_DataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow row = Patients_DataGridView.Rows[e.RowIndex];
+                        try
+                        {
+                            patientID = Convert.ToInt64(row.Cells["PatientID"].Value.ToString());
+                            Database.CurrentPatient = Database.RetrievePatient(patientID);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        Patients_AutoFill();
+                    }
+                    else
+                    {
+                        Patients_ClearAutoFill();
+                    }
+                }
+            }
+        }
+
+        public void Patients_AutoFill()
+        {
+            Patients_PatientIDTextBox.Text = Database.CurrentPatient.ID.ToString();
+            Patients_FirstNameTextBox.Text = Database.CurrentPatient.FirstName;
+            Patients_MiddleNameTextBox.Text = Database.CurrentPatient.MiddleName;
+            Patients_LastNameTextBox.Text = Database.CurrentPatient.LastName;
+            Patients_DoBTextBox.Text = Database.CurrentPatient.DoB;
+            Patients_SexTextBox.Text = Database.CurrentPatient.Sex;
+            Patients_ContactNumberTextBox.Text = Database.CurrentPatient.ContactNumber;
+            Patients_AltContactNumberTextBox.Text = Database.CurrentPatient.AltContactNumber;
+            Patients_EmailAddressTextBox.Text = Database.CurrentPatient.EmailAddress;
+            Patients_AddressTextBox.Text = Database.CurrentPatient.Address;
+            Patients_StatusTextBox.Text = Database.CurrentPatient.Status;
+        }
+
+        public void Patients_ClearAutoFill()
+        {
+            Patients_PatientIDTextBox.Clear();
+            Patients_FirstNameTextBox.Clear();
+            Patients_MiddleNameTextBox.Clear();
+            Patients_LastNameTextBox.Clear();
+            Patients_DoBTextBox.Clear();
+            Patients_SexTextBox.Clear();
+            Patients_ContactNumberTextBox.Clear();
+            Patients_AltContactNumberTextBox.Clear();
+            Patients_EmailAddressTextBox.Clear();
+            Patients_AddressTextBox.Clear();
+            Patients_StatusTextBox.Clear();
+        }
+
+
+        private void Patients_ViewRecordsButton_Click(object sender, EventArgs e)
+        {
+            if (Database.CurrentPatient.ID == 0 || Database.CurrentPatient == null)
+            {
+                MessageBox.Show("Select a patient first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+                PatientRecordsForm patientRecordsForm = new PatientRecordsForm();
+                patientRecordsForm.ShowDialog();
             }
         }
     }

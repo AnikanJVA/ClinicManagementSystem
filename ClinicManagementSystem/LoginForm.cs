@@ -618,6 +618,17 @@ namespace ClinicManagementSystem
                 return true;
             }
 
+            public static bool DeleteService(long serviceId)
+            {
+                string deleteQuery = @"DELETE FROM services
+                                       WHERE ServiceID = @serviceId";
+                using (MySqlCommand cmd = new MySqlCommand(deleteQuery, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+
             public static bool UpdatePatient(long patientId,
                                              string firstName,
                                              string middleName,
@@ -765,12 +776,12 @@ namespace ClinicManagementSystem
                 currentDay = "%" + currentDay + ",%";
 
                 string updateAvailable = @"UPDATE doctors 
-                               SET AvailabilityStatus = @availabilityStatus 
-                               WHERE Schedule LIKE @currentDay";
+                                           SET AvailabilityStatus = @availabilityStatus 
+                                           WHERE Schedule LIKE @currentDay";
 
                 string updateUnavailable = @"UPDATE doctors 
-                                 SET AvailabilityStatus = @availabilityStatus 
-                                 WHERE Schedule NOT LIKE @currentDay";
+                                             SET AvailabilityStatus = @availabilityStatus 
+                                             WHERE Schedule NOT LIKE @currentDay";
 
                 using (MySqlCommand cmd1 = new MySqlCommand(updateAvailable, Instance.connection))
                 {
@@ -1282,13 +1293,14 @@ namespace ClinicManagementSystem
                               FROM appointments 
                               INNER JOIN patients ON appointments.patientID = patients.patientID 
                               INNER JOIN doctors ON appointments.doctorID = doctors.doctorID 
-                              WHERE appointments.doctorID = @doctorId AND appointments.status = @status AND AppointmentDateTime > NOW()
+                              WHERE appointments.doctorID = @doctorId AND (appointments.status = @status1 OR appointments.status = @status2) AND AppointmentDateTime > NOW()
                               ORDER BY appointments.appointmentID DESC";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                     using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                     {
-                        cmd.Parameters.AddWithValue("@status", "Approved");
+                        cmd.Parameters.AddWithValue("@status1", "Approved");
+                        cmd.Parameters.AddWithValue("@status2", "Rescheduled");
                         cmd.Parameters.AddWithValue("@doctorId", doctorId);
                         DataTable table = new DataTable();
                         adapter.Fill(table);
@@ -2453,7 +2465,7 @@ namespace ClinicManagementSystem
 
             public string Schedule
             {
-                get { return schedule; }
+                get { return schedule.Substring(0, schedule.Length -1); }
                 set { schedule = value; }
             }
 
