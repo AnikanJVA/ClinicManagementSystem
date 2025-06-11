@@ -29,21 +29,6 @@ namespace ClinicManagementSystem
             Doctors_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
-        public ChooseDoctorForm(string formType)
-        {
-            InitializeComponent();
-            Doctors_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            Doctors_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            Doctors_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            if (formType.ToUpper().Equals("SEARCH"))
-            {
-                Doctors_DataGridView.DataSource = Database.GetDoctors("ALL");
-                CloseButton.Visible = true;
-                SelectButton.Visible = false;
-                CancelButton.Visible = false;
-            }
-        }
-
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -1118,8 +1118,23 @@ namespace ClinicManagementSystem
                         return table;
                     }
                 }
+
+                if (availabilityStatus.Equals("INACTIVE"))
+                {
+                    query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.Schedule, d.AvailabilityStatus FROM doctors d " +
+                            "INNER JOIN users u ON d.userId = u.userId WHERE u.status = @availabilityStatus ORDER BY doctorId DESC";
+                    using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        cmd.Parameters.AddWithValue("@availabilityStatus", availabilityStatus);
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+                        return table;
+                    }
+                }
+
                 query = "SELECT d.DoctorID, d.FirstName, d.MiddleName, d.LastName, u.ContactNumber, u.AltContactNumber, u.EmailAddress, d.LicenseNumber, u.Address, d.Schedule, d.AvailabilityStatus FROM doctors d " +
-                        "INNER JOIN users u ON d.userId = u.userId WHERE availabilityStatus = @availabilityStatus ORDER BY doctorId DESC";
+                        "INNER JOIN users u ON d.userId = u.userId WHERE availabilityStatus = @availabilityStatus AND u.status = 'ACTIVE' ORDER BY doctorId DESC";
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
