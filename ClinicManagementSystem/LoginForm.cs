@@ -581,6 +581,21 @@ namespace ClinicManagementSystem
                 return true;
             }
 
+            public static bool hasAppointments(long patientId)
+            {
+                string query = "SELECT COUNT(*) FROM appointments WHERE PatientID = @patientId AND Status = @status";
+                using (MySqlCommand cmd = new MySqlCommand(query, Instance.connection))
+                {
+                    cmd.Parameters.AddWithValue("@patientId", patientId);
+                    cmd.Parameters.AddWithValue("@status", "FINISHED");
+                    if (Convert.ToInt32(cmd.ExecuteScalar()) > 0)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
             public static bool DeleteBill(long billId, long appointmentId)
             {
                 bool flag;
@@ -616,17 +631,6 @@ namespace ClinicManagementSystem
                     }
                 }
                 return true;
-            }
-
-            public static bool DeleteService(long serviceId)
-            {
-                string deleteQuery = @"DELETE FROM services
-                                       WHERE ServiceID = @serviceId";
-                using (MySqlCommand cmd = new MySqlCommand(deleteQuery, Instance.connection))
-                {
-                    cmd.Parameters.AddWithValue("@serviceId", serviceId);
-                    return cmd.ExecuteNonQuery() > 0;
-                }
             }
 
             public static bool UpdatePatient(long patientId,
@@ -766,7 +770,7 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@MiddleName", middleName);
                     cmd.Parameters.AddWithValue("@LastName", lastName);
                     cmd.Parameters.AddWithValue("@LicenseNumber", licenseNumber);
-                    cmd.Parameters.AddWithValue("@Schedule", schedule);
+                    cmd.Parameters.AddWithValue("@Schedule", schedule + ",");
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
@@ -802,7 +806,8 @@ namespace ClinicManagementSystem
                                              string serviceName,
                                              string serviceDesc,
                                              string serviceType,
-                                             double price)
+                                             double price,
+                                             string status)
             {
                 string checkQuery = @"SELECT COUNT(*) 
                                         FROM services
@@ -825,7 +830,8 @@ namespace ClinicManagementSystem
                                            serviceDesc = @serviceDesc,
                                            serviceDesc = @serviceDesc,
                                            serviceTypeID = @serviceTypeId,
-                                           price = @price
+                                           price = @price,
+                                           status = @status
                                        WHERE serviceId = @serviceId";
 
                 using (MySqlCommand cmd = new MySqlCommand(updateQuery, Instance.connection))
@@ -835,6 +841,7 @@ namespace ClinicManagementSystem
                     cmd.Parameters.AddWithValue("@serviceTypeId", serviceTypeId);
                     cmd.Parameters.AddWithValue("@price", price);
                     cmd.Parameters.AddWithValue("@serviceId", serviceId);
+                    cmd.Parameters.AddWithValue("@status", status);
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
@@ -1123,19 +1130,64 @@ namespace ClinicManagementSystem
                 }
             }
 
-            public static DataTable GetServices()
+            public static DataTable GetServices(string accType, string status)
             {
-                string query = @"SELECT s.ServiceID,
+                string query = "";
+                if (accType.Equals("RECEP"))
+                {
+                    query = @"SELECT s.ServiceID,
                                         s.ServiceName,
                                         st.serviceTypeName AS ServiceType,
                                         s.ServiceDesc,
                                         s.Price
                                 FROM services s
+                                INNER JOIN servicetypes st ON s.serviceTypeID = st.serviceTypeID
+                                WHERE s.status = @status1;";
+                }
+                else if (accType.Equals("DOC"))
+                {
+                    if (status.Equals("ALL"))
+                    {
+                        query = @"SELECT s.ServiceID,
+                                        s.ServiceName,
+                                        st.serviceTypeName AS ServiceType,
+                                        s.ServiceDesc,
+                                        s.Price,
+                                        s.Status
+                                FROM services s
                                 INNER JOIN servicetypes st ON s.serviceTypeID = st.serviceTypeID;";
+                    }
+                    else if (status.Equals("AVAILABLE"))
+                    {
+                        query = @"SELECT s.ServiceID,
+                                        s.ServiceName,
+                                        st.serviceTypeName AS ServiceType,
+                                        s.ServiceDesc,
+                                        s.Price,
+                                        s.Status
+                                FROM services s
+                                INNER JOIN servicetypes st ON s.serviceTypeID = st.serviceTypeID
+                                WHERE s.status = @status1;";
+                    }
+                    else if (status.Equals("UNAVAILABLE"))
+                    {
+                        query = @"SELECT s.ServiceID,
+                                        s.ServiceName,
+                                        st.serviceTypeName AS ServiceType,
+                                        s.ServiceDesc,
+                                        s.Price,
+                                        s.Status
+                                FROM services s
+                                INNER JOIN servicetypes st ON s.serviceTypeID = st.serviceTypeID
+                                WHERE s.status = @status2;";
+                    }
+                }
 
                 using (MySqlCommand cmd = new MySqlCommand(query, Instance.Connection))
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
                 {
+                    cmd.Parameters.AddWithValue("@status1", "AVAILABLE");
+                    cmd.Parameters.AddWithValue("@status2", "UNAVAILABLE");
                     DataTable table = new DataTable();
                     adapter.Fill(table);
                     return table;
@@ -2103,7 +2155,8 @@ namespace ClinicManagementSystem
                                  s.ServiceName,
                                  st.serviceTypeName AS ServiceType,
                                  s.ServiceDesc,
-                                 s.Price
+                                 s.Price,
+                                 s.Status
                           FROM services s
                           INNER JOIN servicetypes st ON s.serviceTypeID = st.serviceTypeID
                           WHERE s.serviceID = @serviceId;";
@@ -2120,6 +2173,7 @@ namespace ClinicManagementSystem
                             service.ServiceType = reader["ServiceType"].ToString();
                             service.ServiceDesc = reader["ServiceDesc"].ToString();
                             service.Price = Convert.ToDouble(reader["Price"].ToString());
+                            service.Status = reader["Status"].ToString();
 
                             reader.Close();
                             return service;
@@ -2579,6 +2633,7 @@ namespace ClinicManagementSystem
             private string serviceName;
             private string serviceType;
             private string serviceDesc;
+            private string status;
             private double price;
 
             public Service()
@@ -2587,6 +2642,7 @@ namespace ClinicManagementSystem
                 ServiceName = string.Empty;
                 ServiceType = string.Empty;
                 ServiceDesc = string.Empty;
+                Status = string.Empty;
                 Price = 0; 
             }
 
@@ -2612,6 +2668,12 @@ namespace ClinicManagementSystem
             {
                 get { return serviceDesc; }
                 set { serviceDesc = value; }
+            }
+
+            public string Status
+            {
+                get { return status; }
+                set { status = value; }
             }
 
             public double Price

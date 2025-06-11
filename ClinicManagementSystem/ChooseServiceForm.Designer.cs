@@ -41,8 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SelectServiceButton = new System.Windows.Forms.Button();
             this.Services_DataGridView = new System.Windows.Forms.DataGridView();
-            this.AddNewServiceButton = new System.Windows.Forms.Button();
-            this.UpdateServiceButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.CloseButton = new System.Windows.Forms.Button();
@@ -183,7 +181,7 @@
             this.SelectServiceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectServiceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectServiceButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.SelectServiceButton.Location = new System.Drawing.Point(23, 333);
+            this.SelectServiceButton.Location = new System.Drawing.Point(23, 312);
             this.SelectServiceButton.Name = "SelectServiceButton";
             this.SelectServiceButton.Size = new System.Drawing.Size(429, 29);
             this.SelectServiceButton.TabIndex = 1;
@@ -208,38 +206,6 @@
             this.Services_DataGridView.TabIndex = 2;
             this.Services_DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Services_DataGridView_CellClick);
             // 
-            // AddNewServiceButton
-            // 
-            this.AddNewServiceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.AddNewServiceButton.FlatAppearance.BorderSize = 0;
-            this.AddNewServiceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddNewServiceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddNewServiceButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.AddNewServiceButton.Location = new System.Drawing.Point(191, 298);
-            this.AddNewServiceButton.Name = "AddNewServiceButton";
-            this.AddNewServiceButton.Size = new System.Drawing.Size(261, 29);
-            this.AddNewServiceButton.TabIndex = 3;
-            this.AddNewServiceButton.Text = "Add New Service";
-            this.AddNewServiceButton.UseVisualStyleBackColor = false;
-            this.AddNewServiceButton.Visible = false;
-            this.AddNewServiceButton.Click += new System.EventHandler(this.AddNewService_Click);
-            // 
-            // UpdateServiceButton
-            // 
-            this.UpdateServiceButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.UpdateServiceButton.FlatAppearance.BorderSize = 0;
-            this.UpdateServiceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UpdateServiceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateServiceButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.UpdateServiceButton.Location = new System.Drawing.Point(467, 298);
-            this.UpdateServiceButton.Name = "UpdateServiceButton";
-            this.UpdateServiceButton.Size = new System.Drawing.Size(261, 29);
-            this.UpdateServiceButton.TabIndex = 4;
-            this.UpdateServiceButton.Text = "Update Service";
-            this.UpdateServiceButton.UseVisualStyleBackColor = false;
-            this.UpdateServiceButton.Visible = false;
-            this.UpdateServiceButton.Click += new System.EventHandler(this.UpdateService_Click);
-            // 
             // CancelButton
             // 
             this.CancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
@@ -247,7 +213,7 @@
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.CancelButton.Location = new System.Drawing.Point(467, 333);
+            this.CancelButton.Location = new System.Drawing.Point(467, 312);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(426, 29);
             this.CancelButton.TabIndex = 5;
@@ -272,7 +238,7 @@
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.CloseButton.Location = new System.Drawing.Point(329, 333);
+            this.CloseButton.Location = new System.Drawing.Point(329, 312);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(261, 29);
             this.CloseButton.TabIndex = 5;
@@ -286,12 +252,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.ClientSize = new System.Drawing.Size(905, 376);
+            this.ClientSize = new System.Drawing.Size(905, 361);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.UpdateServiceButton);
             this.Controls.Add(this.SelectServiceButton);
-            this.Controls.Add(this.AddNewServiceButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -318,8 +282,6 @@
         private System.Windows.Forms.TextBox ServiceNameTextBox;
         private System.Windows.Forms.Button SelectServiceButton;
         private System.Windows.Forms.DataGridView Services_DataGridView;
-        private System.Windows.Forms.Button AddNewServiceButton;
-        private System.Windows.Forms.Button UpdateServiceButton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.TextBox PriceTextBox;
         private System.Windows.Forms.TextBox ServiceTypeTextBox;

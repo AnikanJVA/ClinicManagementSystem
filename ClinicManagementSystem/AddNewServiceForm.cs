@@ -23,6 +23,8 @@ namespace ClinicManagementSystem
             AddServiceButton.Visible = true;
             ServiceTypeComboBox.DataSource = Database.GetServiceTypeNames();
             ServiceTypeComboBox.DisplayMember = "serviceTypeName";
+            StatusLabel.Visible = false;
+            StatusComboBox.Visible = false;
             this.Text = "Add Service";
         }
 
@@ -38,12 +40,15 @@ namespace ClinicManagementSystem
                 ServiceIDTextBox.Visible = true;
                 UpdateButton.Visible = true;
                 AddServiceButton.Visible = false;
+                StatusLabel.Visible = true;
+                StatusComboBox.Visible = true;
 
                 ServiceIDTextBox.Text = Database.CurrentService.ServiceID.ToString();
                 ServiceNameTextBox.Text = Database.CurrentService.ServiceName;
                 ServiceDescriptionTextBox.Text = Database.CurrentService.ServiceDesc;
                 ServiceTypeComboBox.Text = Database.CurrentService.ServiceType;
                 PriceTextBox.Text = Database.CurrentService.Price.ToString();
+                StatusComboBox.Text = Database.CurrentService.Status;
             }
         }
 
@@ -91,9 +96,11 @@ namespace ClinicManagementSystem
                                            ServiceNameTextBox.Text,
                                            ServiceDescriptionTextBox.Text,
                                            ServiceTypeComboBox.Text,
-                                           Convert.ToDouble(PriceTextBox.Text)))
+                                           Convert.ToDouble(PriceTextBox.Text),
+                                           StatusComboBox.Text))
                 {
                     MessageBox.Show("Service updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Database.CurrentService = null;
                     this.Close();
                 }
                 else
@@ -105,6 +112,7 @@ namespace ClinicManagementSystem
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            Database.CurrentService = null;
             this.Close();
         }
 

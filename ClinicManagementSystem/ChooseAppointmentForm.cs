@@ -32,7 +32,7 @@ namespace ClinicManagementSystem
             this.status = status;
             AppointmentDateTimePicker.Format = DateTimePickerFormat.Custom;
             AppointmentDateTimePicker.CustomFormat = "yyyy'/'MM'/'dd HH':'mm";
-            Appointments_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            Appointments_DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             Appointments_DataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             Appointments_DataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 

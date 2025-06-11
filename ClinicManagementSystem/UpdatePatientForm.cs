@@ -111,6 +111,7 @@ namespace ClinicManagementSystem
                                                StatusComboBox.Text.ToUpper())) 
                     {
                         MessageBox.Show("Patient updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Database.CurrentPatient = null;
                         this.Close();
                     }
                     else

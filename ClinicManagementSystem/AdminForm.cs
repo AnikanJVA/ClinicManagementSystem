@@ -126,9 +126,9 @@ namespace ClinicManagementSystem
                                 ScheduleLabel.Visible = false;
                                 ScheduleTextBox.Visible = false;
                                 Database.CurrentReceptionist = Database.RetrieveReceptionist(userID);
-                                firstName = Database.CurrentDoctor.FirstName;
-                                middleName = Database.CurrentDoctor.MiddleName;
-                                lastName = Database.CurrentDoctor.LastName;
+                                firstName = Database.CurrentReceptionist.FirstName;
+                                middleName = Database.CurrentReceptionist.MiddleName;
+                                lastName = Database.CurrentReceptionist.LastName;
                             }
                         }
                         catch (Exception ex)

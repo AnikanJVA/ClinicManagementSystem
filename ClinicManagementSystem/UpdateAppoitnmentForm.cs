@@ -81,27 +81,20 @@ namespace ClinicManagementSystem
             }
             else
             {
-                Database.UpdateAppointment(Convert.ToInt64(AppointmentIDTextBox.Text),
-                                           Convert.ToInt64(DoctorIdTextBox.Text),
-                                           AppointmentDateTimePicker.Text,
-                                           StatusComboBox.Text.ToUpper());
-                this.Close();
+                if(Database.UpdateAppointment(Convert.ToInt64(AppointmentIDTextBox.Text),
+                                               Convert.ToInt64(DoctorIdTextBox.Text),
+                                               AppointmentDateTimePicker.Text,
+                                               StatusComboBox.Text.ToUpper()))
+                {
+                    MessageBox.Show("Appointment updated successfully.", "Succress", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Database.CurrentAppointment = null;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Error!\nAppointment not udpated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-        }
-
-        private void SelectAppointmentButton_Click(object sender, EventArgs e)
-        {
-            ChooseAppointmentForm chooseAppointmentForm = new ChooseAppointmentForm("ALL", "SELECT");
-            chooseAppointmentForm.ShowDialog();
-
-            AppointmentIDTextBox.Text = Database.CurrentAppointment.AppointmentId.ToString();
-            AppointmentDateTimePicker.Text = Database.CurrentAppointment.DateTime.ToString();
-            PatientIdTextBox.Text = Database.CurrentAppointment.PatientId.ToString();
-            PatientNameTextBox.Text = Database.CurrentPatient.FirstName.ToString() + " " + Database.CurrentPatient.MiddleName.ToString() + " " + Database.CurrentPatient.LastName.ToString();
-            DoctorIdTextBox.Text = Database.CurrentDoctor.DoctorId.ToString();
-            DoctorNameTextBox.Text = Database.CurrentDoctor.FirstName.ToString() + " " + Database.CurrentDoctor.MiddleName.ToString() + " " + Database.CurrentDoctor.LastName.ToString();
-            ReasonTextBox.Text = Database.CurrentAppointment.Reason.ToString();
-            StatusComboBox.Text = Database.CurrentAppointment.Status.ToString();
         }
 
         private void SelectPatientButton_Click(object sender, EventArgs e)

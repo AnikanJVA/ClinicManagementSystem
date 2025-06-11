@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2025 at 08:15 AM
+-- Generation Time: Jun 11, 2025 at 03:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -49,7 +49,16 @@ INSERT INTO `appointments` (`AppointmentID`, `PatientID`, `DoctorID`, `Appointme
 (6, 5, 2, '2025-05-30 13:00:00', 'asdf', 'FINISHED'),
 (7, 5, 1, '2025-05-30 13:02:00', 'adsfas', 'FINISHED'),
 (8, 1, 1, '2025-05-30 13:03:00', 'bvdcxvbxcbv', 'FINISHED'),
-(9, 4, 1, '2025-05-30 09:00:00', 'asdfasdf', 'FINISHED');
+(9, 4, 1, '2025-05-30 09:00:00', 'asdfasdf', 'FINISHED'),
+(10, 2, 3, '2025-06-13 17:00:00', 'nagsakit ang tiyan, pa tanaw daw sa ngipon', 'APPROVED'),
+(11, 2, 2, '2025-06-08 12:00:00', 'asdf', 'APPROVED'),
+(12, 4, 2, '2025-06-08 12:10:00', 'nbvcvbn', 'APPROVED'),
+(13, 2, 1, '2025-06-11 13:11:00', 'asdf', 'RESCHEDULED'),
+(14, 5, 2, '2025-06-08 14:12:00', 'asdf', 'APPROVED'),
+(15, 4, 4, '2025-06-11 17:00:00', 'Request for Ubercharge', 'RESCHEDULED'),
+(16, 4, 4, '2025-06-10 15:13:00', 'Requesting Kritz', 'APPROVED'),
+(17, 1, 3, '2025-06-10 16:14:00', 'gi panuhot, gusto magpa puti ug ngipon\r\n', 'RESCHEDULED'),
+(18, 5, 3, '2025-06-26 17:00:00', 'lkhjl', 'APPROVED');
 
 -- --------------------------------------------------------
 
@@ -70,11 +79,11 @@ CREATE TABLE `bills` (
 
 INSERT INTO `bills` (`BillID`, `AppointmentID`, `BillingDate`, `TotalAmount`) VALUES
 (1, 1, '2025-05-29', 800.00),
-(2, 3, '2025-05-30', 1100.00),
 (3, 5, '2025-05-30', 723.00),
 (4, 6, '2025-05-30', 1650.50),
-(5, 9, '2025-05-30', 600.00),
-(6, 9, '2025-05-30', 600.00);
+(6, 9, '2025-06-07', 950.50),
+(9, 8, '2025-06-09', 2386.49),
+(10, 2, '2025-06-09', 2832.91);
 
 -- --------------------------------------------------------
 
@@ -99,8 +108,11 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`DoctorID`, `UserID`, `FirstName`, `MiddleName`, `LastName`, `HireDate`, `LicenseNumber`, `Schedule`, `AvailabilityStatus`) VALUES
-(1, 3, 'asdfxczv', 'lkjoib', 'lkjboijasdf', '2025-05-28', '12345', 'MWF', 'AVAILABLE'),
-(2, 7, 'DOCTOR ', 'NUMBER', 'TWO', NULL, '12312412531235', 'TThS', 'AVAILABLE');
+(1, 3, 'A', 'Doc', 'Tor', NULL, '12345', 'M,', 'UNAVAILABLE'),
+(2, 7, 'DOCTOR ', 'NUMBER', 'TWO', NULL, '12312412531235', 'T, Th,', 'UNAVAILABLE'),
+(3, 8, 'fredric', 'odd', 'loop', NULL, '9889312515125', 'M, T, W,', 'AVAILABLE'),
+(4, 9, 'Medic', 'Sa', 'TeamFortress', NULL, '0912349816', 'Th, F, S,', 'UNAVAILABLE'),
+(5, 10, 'aa', 'AA', 'AAA', NULL, '123516234125', 'T,', 'UNAVAILABLE');
 
 -- --------------------------------------------------------
 
@@ -127,12 +139,12 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`PatientID`, `FirstName`, `LastName`, `MiddleName`, `DoB`, `Sex`, `ContactNumber`, `AltContactNumber`, `EmailAddress`, `Address`, `Status`) VALUES
-(1, 'ani', 'va', 'kan', '2003-10-11', 'm', '09103243490', '09080808', 'anikanjva@gmail.com', 'juna subd, matina, davao city', 'ACTIVE'),
+(1, 'ani', 'va', 'kan', '2003-10-11', 'F', '09103243490', '09080808', 'anikanjva@gmail.com', 'juna subd, matina, davao city', 'ACTIVE'),
 (2, 'james andrew', 'De castro', 'Doe', '2000-05-10', 'M', '09101010101', '09222222222', 'james@gmail.com', 'cabantian dc', 'ACTIVE'),
-(3, 'justine', 'mantua', 'lamnda', '2004-09-10', 'M', '09123123123', NULL, NULL, 'bangkerohan dc', 'INACTIVE'),
+(3, 'justine', 'mantua', 'lamnda', '2004-09-10', 'M', '09123123123', NULL, NULL, 'bangkerohan dc', 'ACTIVE'),
 (4, 'matt oliver', 'pojadas', 'utrera', '2004-07-06', 'M', '0933333333', '0944444444', 'matt@gmail.com', 'sandawa dc', 'ACTIVE'),
 (5, 'Bryce', 'Rosco', 'Bandala', '1965-12-12', 'M', '0922654823125', '090893312', 'erialakjsdf@gmail.com', 'balay namo', 'ACTIVE'),
-(6, 'Justine', 'Paclibar', 'Lim', '2001-08-29', 'F', '09917099706', '12345678910', 'N/A', 'asdf 140123', 'ACTIVE');
+(6, 'Justine', 'Paclibar', 'Lim', '2001-08-29', 'F', '09917099706', '12345678910', NULL, 'asdf 140123', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -153,10 +165,10 @@ CREATE TABLE `receptionists` (
 --
 
 INSERT INTO `receptionists` (`ReceptionistID`, `UserID`, `FirstName`, `LastName`, `MiddleName`) VALUES
-(1, 2, 'bryce', 'eqrwadsg', 'asdfzxcv'),
-(2, 4, 'asdf', 'asdf', 'asdf'),
-(3, 5, 'asdf', 'asdf', 'asdf'),
-(4, 6, 'asdf', 'qewr', 'zxcv');
+(1, 2, 'bryce', 'arce', 'tiburtio'),
+(2, 4, 'recep', 'nista', 'tion'),
+(3, 5, 'sparks', 'miming', 'si'),
+(4, 6, 'ginger', 'cat', 'hinher');
 
 -- --------------------------------------------------------
 
@@ -169,21 +181,23 @@ CREATE TABLE `services` (
   `ServiceName` varchar(100) DEFAULT NULL,
   `ServiceTypeID` bigint(20) DEFAULT NULL,
   `ServiceDesc` text DEFAULT NULL,
-  `Price` decimal(10,2) DEFAULT NULL
+  `Price` decimal(10,2) DEFAULT NULL,
+  `Status` varchar(20) NOT NULL DEFAULT 'ACTIVE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`ServiceID`, `ServiceName`, `ServiceTypeID`, `ServiceDesc`, `Price`) VALUES
-(1, 'Check up', 1, 'check up', 500.00),
-(2, 'Cleaning', 1, 'cleaning', 600.00),
-(3, 'Teeth Whitening', 1, 'Whitening', 200.00),
-(4, 'aaron', 2, 'john', 99999999.99),
-(5, 'test2', 1, 'testing2', 123.00),
-(6, 'test three', 1, 'testing3', 950.50),
-(7, 'Tooth Extraction', 3, 'tanggal ngipon', 1000.00);
+INSERT INTO `services` (`ServiceID`, `ServiceName`, `ServiceTypeID`, `ServiceDesc`, `Price`, `Status`) VALUES
+(1, 'Check up', 1, 'check up', 500.00, 'AVAILABLE'),
+(2, 'Cleaning', 1, 'cleaning', 600.00, 'AVAILABLE'),
+(3, 'Teeth Whitening', 1, 'Whitening', 200.00, 'AVAILABLE'),
+(4, 'aaron', 2, 'john', 12.99, 'AVAILABLE'),
+(5, 'test2', 1, 'testing2', 123.00, 'AVAILABLE'),
+(6, 'test three', 1, 'testing3', 950.50, 'AVAILABLE'),
+(7, 'Tooth Extraction', 3, 'tanggal ngipon', 1000.00, 'UNAVAILABLE'),
+(8, 'kuan', 4, 'kato gung kuang gud', 69.42, 'UNAVAILABLE');
 
 -- --------------------------------------------------------
 
@@ -204,15 +218,24 @@ CREATE TABLE `servicesperformed` (
 INSERT INTO `servicesperformed` (`ServicePerformedID`, `AppointmentID`, `ServiceID`) VALUES
 (1, 1, 3),
 (2, 1, 2),
-(3, 3, 1),
-(4, 3, 2),
 (5, 5, 2),
 (6, 5, 5),
 (7, 6, 1),
 (8, 6, 3),
 (9, 6, 6),
-(10, 9, 2),
-(11, 9, 2);
+(11, 9, 6),
+(25, 8, 2),
+(26, 8, 1),
+(27, 8, 3),
+(28, 8, 4),
+(29, 8, 5),
+(30, 8, 6),
+(31, 2, 8),
+(32, 2, 7),
+(33, 2, 3),
+(34, 2, 2),
+(35, 2, 6),
+(36, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -252,7 +275,7 @@ CREATE TABLE `users` (
   `ContactNumber` varchar(20) DEFAULT NULL,
   `AltContactNumber` varchar(20) DEFAULT NULL,
   `Address` text DEFAULT NULL,
-  `status` varchar(20) DEFAULT 'ACTIVE'
+  `status` varchar(20) DEFAULT 'AVAILABLE'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -261,12 +284,15 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `AccType`, `EmailAddress`, `ContactNumber`, `AltContactNumber`, `Address`, `status`) VALUES
 (1, 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'admin', 'admin@admin.com', '0000000', '111111111', 'adminhome', 'ACTIVE'),
-(2, 'jo', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'RECEPTIONIST', '123', '1', '23', 'asdf', 'ACTIVE'),
-(3, 'do', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', 'asdf', '123', '12342314', '123asdf', 'ACTIVE'),
-(4, 'test', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'RECEPTIONIST', NULL, '12341256', NULL, 'asdf', 'ACTIVE'),
-(5, 'asdf', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'RECEPTIONIST', NULL, '8976839456', NULL, 'asdf', 'ACTIVE'),
-(6, 'asdfzcvx', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'RECEPTIONIST', NULL, '23141234', NULL, 'axzcv', 'ACTIVE'),
-(7, 'cc', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', '123as@', '34537234', '253423671346', 'asdf', 'ACTIVE');
+(2, 'jo', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'RECEPTIONIST', '123@yahoo.com', '1', '23', 'asdf', 'ACTIVE'),
+(3, 'do', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', 'asdf@yahoo.com', '123', '12342314', '123asdf', 'ACTIVE'),
+(4, 'test', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'RECEPTIONIST', 'email@gmail.com', '12341256', '23156156', 'asdf', 'ACTIVE'),
+(5, 'asdf', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'RECEPTIONIST', 'email2@gmail.com', '8976839456', '235198489', 'asdf', 'ACTIVE'),
+(6, 'asdfzcvx', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'RECEPTIONIST', 'email3@gmail.com', '23141234', '56498132', 'axzcv', 'ACTIVE'),
+(7, 'cc', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', '1123as@123.com', '34537234', '253423671346', 'asdf', 'ACTIVE'),
+(8, 'fredric', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', 'fredric@gmail.com', '12309123123', '34250982345', 'japan', 'ACTIVE'),
+(9, 'medic', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', 'medic@tf2.com', '321657891', '321325468', 'Germany', 'ACTIVE'),
+(10, 'aaa', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'DOCTOR', 'aaa@aaa.com', '453634571', '234623462', 'aaaaa', 'ACTIVE');
 
 --
 -- Indexes for dumped tables
@@ -348,19 +374,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `AppointmentID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `AppointmentID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `BillID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `BillID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `DoctorID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `DoctorID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `patients`
@@ -378,13 +404,13 @@ ALTER TABLE `receptionists`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `ServiceID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ServiceID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `servicesperformed`
 --
 ALTER TABLE `servicesperformed`
-  MODIFY `ServicePerformedID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ServicePerformedID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `servicetypes`
@@ -396,7 +422,7 @@ ALTER TABLE `servicetypes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `UserID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

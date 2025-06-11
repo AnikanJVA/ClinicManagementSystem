@@ -42,6 +42,8 @@
             this.ServiceIdLabel = new System.Windows.Forms.Label();
             this.AddServiceButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
+            this.StatusLabel = new System.Windows.Forms.Label();
+            this.StatusComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,9 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(34)))), ((int)(((byte)(79)))));
             this.panel1.Controls.Add(this.ServiceIDTextBox);
             this.panel1.Controls.Add(this.CancelButton);
+            this.panel1.Controls.Add(this.StatusLabel);
             this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.StatusComboBox);
             this.panel1.Controls.Add(this.ServiceTypeComboBox);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.ServiceDescriptionTextBox);
@@ -70,7 +74,7 @@
             // 
             this.ServiceIDTextBox.Enabled = false;
             this.ServiceIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ServiceIDTextBox.Location = new System.Drawing.Point(164, 28);
+            this.ServiceIDTextBox.Location = new System.Drawing.Point(174, 12);
             this.ServiceIDTextBox.Name = "ServiceIDTextBox";
             this.ServiceIDTextBox.ReadOnly = true;
             this.ServiceIDTextBox.Size = new System.Drawing.Size(277, 26);
@@ -96,7 +100,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(110, 186);
+            this.label5.Location = new System.Drawing.Point(120, 170);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 20);
             this.label5.TabIndex = 6;
@@ -107,7 +111,7 @@
             this.ServiceTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ServiceTypeComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.ServiceTypeComboBox.FormattingEnabled = true;
-            this.ServiceTypeComboBox.Location = new System.Drawing.Point(164, 149);
+            this.ServiceTypeComboBox.Location = new System.Drawing.Point(174, 133);
             this.ServiceTypeComboBox.Name = "ServiceTypeComboBox";
             this.ServiceTypeComboBox.Size = new System.Drawing.Size(277, 28);
             this.ServiceTypeComboBox.TabIndex = 7;
@@ -117,7 +121,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(59, 152);
+            this.label4.Location = new System.Drawing.Point(69, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 20);
             this.label4.TabIndex = 6;
@@ -126,7 +130,7 @@
             // ServiceDescriptionTextBox
             // 
             this.ServiceDescriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ServiceDescriptionTextBox.Location = new System.Drawing.Point(164, 88);
+            this.ServiceDescriptionTextBox.Location = new System.Drawing.Point(174, 72);
             this.ServiceDescriptionTextBox.Multiline = true;
             this.ServiceDescriptionTextBox.Name = "ServiceDescriptionTextBox";
             this.ServiceDescriptionTextBox.Size = new System.Drawing.Size(277, 55);
@@ -135,7 +139,7 @@
             // PriceTextBox
             // 
             this.PriceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.PriceTextBox.Location = new System.Drawing.Point(164, 183);
+            this.PriceTextBox.Location = new System.Drawing.Point(174, 167);
             this.PriceTextBox.Name = "PriceTextBox";
             this.PriceTextBox.Size = new System.Drawing.Size(277, 26);
             this.PriceTextBox.TabIndex = 4;
@@ -144,7 +148,7 @@
             // ServiceNameTextBox
             // 
             this.ServiceNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ServiceNameTextBox.Location = new System.Drawing.Point(164, 58);
+            this.ServiceNameTextBox.Location = new System.Drawing.Point(174, 42);
             this.ServiceNameTextBox.Name = "ServiceNameTextBox";
             this.ServiceNameTextBox.Size = new System.Drawing.Size(277, 26);
             this.ServiceNameTextBox.TabIndex = 4;
@@ -154,7 +158,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(12, 91);
+            this.label3.Location = new System.Drawing.Point(22, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 20);
             this.label3.TabIndex = 2;
@@ -165,7 +169,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(49, 61);
+            this.label2.Location = new System.Drawing.Point(59, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 20);
             this.label2.TabIndex = 1;
@@ -176,7 +180,7 @@
             this.ServiceIdLabel.AutoSize = true;
             this.ServiceIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.ServiceIdLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.ServiceIdLabel.Location = new System.Drawing.Point(77, 31);
+            this.ServiceIdLabel.Location = new System.Drawing.Point(87, 15);
             this.ServiceIdLabel.Name = "ServiceIdLabel";
             this.ServiceIdLabel.Size = new System.Drawing.Size(81, 20);
             this.ServiceIdLabel.TabIndex = 0;
@@ -214,6 +218,31 @@
             this.UpdateButton.UseVisualStyleBackColor = false;
             this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
+            // StatusLabel
+            // 
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.StatusLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.StatusLabel.Location = new System.Drawing.Point(108, 202);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(60, 20);
+            this.StatusLabel.TabIndex = 6;
+            this.StatusLabel.Text = "Status:";
+            this.StatusLabel.Visible = false;
+            // 
+            // StatusComboBox
+            // 
+            this.StatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatusComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.StatusComboBox.FormattingEnabled = true;
+            this.StatusComboBox.Items.AddRange(new object[] {
+            "AVAILABLE",
+            "UNAVAILABLE"});
+            this.StatusComboBox.Location = new System.Drawing.Point(174, 199);
+            this.StatusComboBox.Name = "StatusComboBox";
+            this.StatusComboBox.Size = new System.Drawing.Size(277, 28);
+            this.StatusComboBox.TabIndex = 7;
+            // 
             // AddNewServiceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,5 +277,7 @@
         private System.Windows.Forms.Button AddServiceButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox PriceTextBox;
+        private System.Windows.Forms.Label StatusLabel;
+        private System.Windows.Forms.ComboBox StatusComboBox;
     }
 }

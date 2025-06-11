@@ -19,27 +19,9 @@ namespace ClinicManagementSystem
         public ChooseServiceForm()
         {
             InitializeComponent();
-            Services_DataGridView.DataSource = Database.GetServices();
+            Services_DataGridView.DataSource = Database.GetServices("RECEP", "AVAILABLE");
             CancelButton.Visible = true;
             SelectServiceButton.Visible = true;
-        }
-
-        public ChooseServiceForm(string formType)
-        {
-            InitializeComponent();
-            Services_DataGridView.DataSource = Database.GetServices();
-            if (formType.ToUpper().Equals("UPDATE"))
-            {
-                UpdateServiceButton.Visible = false;
-                AddNewServiceButton.Visible = false;
-                SelectServiceButton.Visible = true;
-            }
-            else
-            {
-                UpdateServiceButton.Visible = true;
-                AddNewServiceButton.Visible = true;
-                CloseButton.Visible = true;
-            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -111,28 +93,6 @@ namespace ClinicManagementSystem
             {
                 Database.CurrentService = Database.RetrieveService(Convert.ToInt64(ServiceIdTextBox.Text));
                 this.Close();
-            }
-        }
-
-        private void AddNewService_Click(object sender, EventArgs e)
-        {
-            AddNewServiceForm addNewServiceForm = new AddNewServiceForm();
-            addNewServiceForm.ShowDialog();
-            Services_DataGridView.DataSource = Database.GetServices();
-        }
-
-        private void UpdateService_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(ServiceIdTextBox.Text))
-            {
-                MessageBox.Show("Select a service first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            { 
-                AddNewServiceForm addNewServiceForm = new AddNewServiceForm("UPDATE");
-                Database.CurrentService = Database.RetrieveService(Convert.ToInt64(ServiceIdTextBox.Text));
-                addNewServiceForm.ShowDialog();
-                Services_DataGridView.DataSource = Database.GetServices();
             }
         }
     }

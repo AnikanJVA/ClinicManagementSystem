@@ -239,7 +239,6 @@
             // SplitContainer.Panel2
             // 
             this.SplitContainer.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(82)))), ((int)(((byte)(154)))));
-            this.SplitContainer.Panel2.Controls.Add(this.Billing_Deletebutton);
             this.SplitContainer.Panel2.Controls.Add(this.Patients_RegisterButton);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_CreateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Doctors_TabControl);
@@ -247,14 +246,15 @@
             this.SplitContainer.Panel2.Controls.Add(this.Billing_DataGridView);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_GetButton);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_CreateButton);
-            this.SplitContainer.Panel2.Controls.Add(this.Patients_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_TabControl);
-            this.SplitContainer.Panel2.Controls.Add(this.Patients_DetailsPanel);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_DetailsPanel);
             this.SplitContainer.Panel2.Controls.Add(this.Billing_DetailsPanel);
-            this.SplitContainer.Panel2.Controls.Add(this.Dashboard_panel);
+            this.SplitContainer.Panel2.Controls.Add(this.Patients_UpdateButton);
             this.SplitContainer.Panel2.Controls.Add(this.Doctors_DetailsPanel);
+            this.SplitContainer.Panel2.Controls.Add(this.Patients_DetailsPanel);
             this.SplitContainer.Panel2.Controls.Add(this.Appointments_UpdateButton);
+            this.SplitContainer.Panel2.Controls.Add(this.Dashboard_panel);
+            this.SplitContainer.Panel2.Controls.Add(this.Billing_Deletebutton);
             this.SplitContainer.Panel2MinSize = 978;
             this.SplitContainer.Size = new System.Drawing.Size(1264, 681);
             this.SplitContainer.SplitterDistance = 282;

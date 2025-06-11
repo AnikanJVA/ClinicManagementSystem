@@ -223,7 +223,7 @@ namespace ClinicManagementSystem
 
         private void Patients_UpdateButton_Click(object sender, EventArgs e)
         {
-            if (Database.CurrentPatient.ID == 0 || Database.CurrentPatient == null)
+            if (Database.CurrentPatient == null || Database.CurrentPatient.ID == 0 || string.IsNullOrWhiteSpace(Patients_PatientIDTextBox.Text))
             {
                 MessageBox.Show("Select a patient first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -231,13 +231,14 @@ namespace ClinicManagementSystem
             {
                 UpdatePatientForm updatePatientForm = new UpdatePatientForm();
                 updatePatientForm.ShowDialog();
+                Patients_ClearAutoFill();
                 UpdateDataGrids();
             }
         }
 
         private void Appointments_UpdateButton_Click(object sender, EventArgs e)
         {
-            if (Database.CurrentAppointment.AppointmentId == 0 || Database.CurrentAppointment == null)
+            if (Database.CurrentAppointment == null || Database.CurrentAppointment.AppointmentId == 0 || string.IsNullOrWhiteSpace(Appointments_AppointmentIDTextBox.Text))
             {
                 MessageBox.Show("Select an appointment first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -245,6 +246,7 @@ namespace ClinicManagementSystem
             {
                 UpdateAppoitnment updateAppoitnment = new UpdateAppoitnment();
                 updateAppoitnment.ShowDialog();
+                Appointments_ClearAutoFill();
                 UpdateDataGrids();
             }
         }
@@ -382,25 +384,39 @@ namespace ClinicManagementSystem
 
         private void Billing_Deletebutton_Click(object sender, EventArgs e)
         {
-            string filename = $"Bill_{Database.CurrentBill.BillID.ToString()}.pdf";
-            long billID = Database.CurrentBill.BillID;
-            var choice = MessageBox.Show("Are you sure you want to delete Bill: " + billID + " ?", "Delete Bill?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (choice == DialogResult.Yes)
+            if (Database.CurrentBill == null || Database.CurrentBill.BillID == 0 || string.IsNullOrWhiteSpace(Billing_BillIDTextBox.Text))
             {
-                if (Database.DeleteBill(billID, Database.CurrentBill.AppointmentID))
-                {
-                    if (File.Exists(filename))
-                    {
-                        File.Delete(filename);
-                    }
-                    MessageBox.Show("Bill " + billID + " has beed deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Error!\nDatabse error.\nBill not deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Select a bill first", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            UpdateDataGrids();
+            else
+            {
+                string filename = $"Bill_{Database.CurrentBill.BillID.ToString()}.pdf";
+                long billID = Database.CurrentBill.BillID;
+                var choice = MessageBox.Show("Are you sure you want to delete Bill: " + billID + " ?", "Delete Bill?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (choice == DialogResult.Yes)
+                {
+                    if (Database.DeleteBill(billID, Database.CurrentBill.AppointmentID))
+                    {
+                        if (File.Exists(filename))
+                        {
+                            File.Delete(filename);
+                        }
+                        MessageBox.Show("Bill " + billID + " has beed deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Database.CurrentBill = null;
+                        Billing_BillIDTextBox.Clear();
+                        Billing_PatientNameTextBox.Clear();
+                        Billing_AppointmentIDTextBox.Clear();
+                        Billing_AppointmentDateTimeTextBox.Clear();
+                        Billing_ServicesPerformedTextBox.Clear();
+                        Billing_AmountTextBox.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error!\nDatabse error.\nBill not deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                UpdateDataGrids();
+            }
         }
 
        
